@@ -1,0 +1,198 @@
+================================================================================
+  ENTIDADES Y RELACIONES (ERD textual)
+  Proyecto : Sistema de Gestion de Invernadero Automatizado
+  Version  : 1.0.0
+  Generado : 2026-05-15 16:57:17
+================================================================================
+
+  MAPA DE RELACIONES
+--------------------------------------------------------------------------------
+  invernadero          |--[responsable_id]-->| usuario(id_usuario)
+  zona                 |--[id_invernadero]-->| invernadero(id_invernadero)
+  siembra              |--[id_zona]-->| zona(id_zona)
+  siembra              |--[id_cultivo]-->| cultivo(id_cultivo)
+  siembra              |--[id_usuario]-->| usuario(id_usuario)
+  sensor               |--[id_zona]-->| zona(id_zona)
+  lectura_sensor       |--[id_sensor]-->| sensor(id_sensor)
+  riego                |--[id_zona]-->| zona(id_zona)
+  riego                |--[id_usuario]-->| usuario(id_usuario)
+  alerta               |--[id_sensor]-->| sensor(id_sensor)
+  alerta               |--[id_zona]-->| zona(id_zona)
+  aplicacion_insumo    |--[id_insumo]-->| insumo(id_insumo)
+  aplicacion_insumo    |--[id_siembra]-->| siembra(id_siembra)
+  aplicacion_insumo    |--[id_zona]-->| zona(id_zona)
+  aplicacion_insumo    |--[id_usuario]-->| usuario(id_usuario)
+  cosecha              |--[id_siembra]-->| siembra(id_siembra)
+  cosecha              |--[id_usuario]-->| usuario(id_usuario)
+
+--------------------------------------------------------------------------------
+
+  DETALLE DE ENTIDADES
+--------------------------------------------------------------------------------
+
+  +────────────────────────────────────────────────────────────+
+  | ENTIDAD: USUARIO                                          |
+  | Usuarios del sistema con roles y permisos de acceso al inv|
+  +────────────────────────────────────────────────────────────+
+  | id_usuario                   INT                 [PK, NOT NULL]
+  | nombre                       VARCHAR(100)        [NOT NULL]
+  | apellido                     VARCHAR(100)        [NOT NULL]
+  | email                        VARCHAR(150)        [UNIQUE, NOT NULL]
+  | password_hash                VARCHAR(255)      
+  | rol                          VARCHAR(30)         [NOT NULL]
+  | fecha_registro               DATE                [NOT NULL]
+  | activo                       BOOLEAN             [NOT NULL]
+  | proveedor_oauth              VARCHAR(30)       
+  +────────────────────────────────────────────────────────────+
+
+  +────────────────────────────────────────────────────────────+
+  | ENTIDAD: INVERNADERO                                      |
+  | Informacion general de cada instalacion fisica de invernad|
+  +────────────────────────────────────────────────────────────+
+  | id_invernadero               INT                 [PK, NOT NULL]
+  | nombre                       VARCHAR(100)        [NOT NULL]
+  | ubicacion                    VARCHAR(200)        [NOT NULL]
+  | area_m2                      DECIMAL(10,2)       [NOT NULL]
+  | tipo_estructura              VARCHAR(50)       
+  | responsable_id               INT                 [FK->usuario.id_usuario, NOT NULL]
+  | fecha_creacion               DATE                [NOT NULL]
+  | estado                       VARCHAR(20)         [NOT NULL]
+  +────────────────────────────────────────────────────────────+
+
+  +────────────────────────────────────────────────────────────+
+  | ENTIDAD: ZONA                                             |
+  | Secciones o areas internas dentro de un invernadero con co|
+  +────────────────────────────────────────────────────────────+
+  | id_zona                      INT                 [PK, NOT NULL]
+  | id_invernadero               INT                 [FK->invernadero.id_invernadero, NOT NULL]
+  | nombre_zona                  VARCHAR(100)        [NOT NULL]
+  | area_m2                      DECIMAL(10,2)     
+  | descripcion                  TEXT              
+  +────────────────────────────────────────────────────────────+
+
+  +────────────────────────────────────────────────────────────+
+  | ENTIDAD: CULTIVO                                          |
+  | Catalogo maestro de especies y variedades cultivadas en el|
+  +────────────────────────────────────────────────────────────+
+  | id_cultivo                   INT                 [PK, NOT NULL]
+  | nombre_comun                 VARCHAR(100)        [NOT NULL]
+  | nombre_cientifico            VARCHAR(150)      
+  | tipo                         VARCHAR(50)         [NOT NULL]
+  | temp_min_c                   DECIMAL(5,2)      
+  | temp_max_c                   DECIMAL(5,2)      
+  | humedad_min_pct              DECIMAL(5,2)      
+  | humedad_max_pct              DECIMAL(5,2)      
+  | dias_ciclo                   INT               
+  | descripcion                  TEXT              
+  +────────────────────────────────────────────────────────────+
+
+  +────────────────────────────────────────────────────────────+
+  | ENTIDAD: SIEMBRA                                          |
+  | Registro de cada evento de siembra realizado en una zona d|
+  +────────────────────────────────────────────────────────────+
+  | id_siembra                   INT                 [PK, NOT NULL]
+  | id_zona                      INT                 [FK->zona.id_zona, NOT NULL]
+  | id_cultivo                   INT                 [FK->cultivo.id_cultivo, NOT NULL]
+  | id_usuario                   INT                 [FK->usuario.id_usuario, NOT NULL]
+  | fecha_siembra                DATE                [NOT NULL]
+  | fecha_cosecha_estimada       DATE              
+  | cantidad_plantas             INT                 [NOT NULL]
+  | estado                       VARCHAR(30)         [NOT NULL]
+  | observaciones                TEXT              
+  +────────────────────────────────────────────────────────────+
+
+  +────────────────────────────────────────────────────────────+
+  | ENTIDAD: SENSOR                                           |
+  | Dispositivos de medicion instalados en las zonas del inver|
+  +────────────────────────────────────────────────────────────+
+  | id_sensor                    INT                 [PK, NOT NULL]
+  | id_zona                      INT                 [FK->zona.id_zona, NOT NULL]
+  | tipo_sensor                  VARCHAR(50)         [NOT NULL]
+  | modelo                       VARCHAR(100)      
+  | unidad_medida                VARCHAR(20)         [NOT NULL]
+  | fecha_instalacion            DATE              
+  | estado                       VARCHAR(20)         [NOT NULL]
+  +────────────────────────────────────────────────────────────+
+
+  +────────────────────────────────────────────────────────────+
+  | ENTIDAD: LECTURA_SENSOR                                   |
+  | Serie temporal de mediciones registradas por cada sensor d|
+  +────────────────────────────────────────────────────────────+
+  | id_lectura                   INT                 [PK, NOT NULL]
+  | id_sensor                    INT                 [FK->sensor.id_sensor, NOT NULL]
+  | valor                        DECIMAL(10,4)       [NOT NULL]
+  | fecha_hora                   DATETIME            [NOT NULL]
+  | genera_alerta                BOOLEAN             [NOT NULL]
+  +────────────────────────────────────────────────────────────+
+
+  +────────────────────────────────────────────────────────────+
+  | ENTIDAD: RIEGO                                            |
+  | Eventos de riego automaticos o manuales ejecutados en las |
+  +────────────────────────────────────────────────────────────+
+  | id_riego                     INT                 [PK, NOT NULL]
+  | id_zona                      INT                 [FK->zona.id_zona, NOT NULL]
+  | id_usuario                   INT                 [FK->usuario.id_usuario]
+  | fecha_hora                   DATETIME            [NOT NULL]
+  | duracion_min                 INT                 [NOT NULL]
+  | volumen_litros               DECIMAL(10,2)     
+  | tipo                         VARCHAR(20)         [NOT NULL]
+  | observaciones                TEXT              
+  +────────────────────────────────────────────────────────────+
+
+  +────────────────────────────────────────────────────────────+
+  | ENTIDAD: ALERTA                                           |
+  | Notificaciones generadas por condiciones anomalas detectad|
+  +────────────────────────────────────────────────────────────+
+  | id_alerta                    INT                 [PK, NOT NULL]
+  | id_sensor                    INT                 [FK->sensor.id_sensor]
+  | id_zona                      INT                 [FK->zona.id_zona]
+  | tipo_alerta                  VARCHAR(50)         [NOT NULL]
+  | descripcion                  TEXT                [NOT NULL]
+  | fecha_hora                   DATETIME            [NOT NULL]
+  | nivel                        VARCHAR(20)         [NOT NULL]
+  | resuelta                     BOOLEAN             [NOT NULL]
+  | fecha_resolucion             DATETIME          
+  +────────────────────────────────────────────────────────────+
+
+  +────────────────────────────────────────────────────────────+
+  | ENTIDAD: INSUMO                                           |
+  | Catalogo de insumos con control de inventario para el inve|
+  +────────────────────────────────────────────────────────────+
+  | id_insumo                    INT                 [PK, NOT NULL]
+  | nombre                       VARCHAR(100)        [NOT NULL]
+  | tipo                         VARCHAR(50)         [NOT NULL]
+  | unidad                       VARCHAR(20)         [NOT NULL]
+  | stock_actual                 DECIMAL(10,2)       [NOT NULL]
+  | stock_minimo                 DECIMAL(10,2)     
+  | descripcion                  TEXT              
+  +────────────────────────────────────────────────────────────+
+
+  +────────────────────────────────────────────────────────────+
+  | ENTIDAD: APLICACION_INSUMO                                |
+  | Historial de aplicaciones de insumos realizadas en siembra|
+  +────────────────────────────────────────────────────────────+
+  | id_aplicacion                INT                 [PK, NOT NULL]
+  | id_insumo                    INT                 [FK->insumo.id_insumo, NOT NULL]
+  | id_siembra                   INT                 [FK->siembra.id_siembra]
+  | id_zona                      INT                 [FK->zona.id_zona]
+  | id_usuario                   INT                 [FK->usuario.id_usuario, NOT NULL]
+  | fecha_hora                   DATETIME            [NOT NULL]
+  | cantidad                     DECIMAL(10,2)       [NOT NULL]
+  | metodo                       VARCHAR(50)       
+  | observaciones                TEXT              
+  +────────────────────────────────────────────────────────────+
+
+  +────────────────────────────────────────────────────────────+
+  | ENTIDAD: COSECHA                                          |
+  | Registro de produccion cosechada por cada evento de siembr|
+  +────────────────────────────────────────────────────────────+
+  | id_cosecha                   INT                 [PK, NOT NULL]
+  | id_siembra                   INT                 [FK->siembra.id_siembra, NOT NULL]
+  | id_usuario                   INT                 [FK->usuario.id_usuario, NOT NULL]
+  | fecha_cosecha                DATE                [NOT NULL]
+  | cantidad_kg                  DECIMAL(10,2)       [NOT NULL]
+  | calidad                      VARCHAR(20)       
+  | observaciones                TEXT              
+  +────────────────────────────────────────────────────────────+
+
+================================================================================

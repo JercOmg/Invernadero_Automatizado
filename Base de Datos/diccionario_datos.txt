@@ -1,0 +1,252 @@
+================================================================================
+  DICCIONARIO DE DATOS
+  Proyecto : Sistema de Gestion de Invernadero Automatizado
+  Version  : 1.0.0
+  Fecha    : 2026-05-15 16:57:17
+================================================================================
+
+  Total de entidades: 12
+
+================================================================================
+  ENTIDAD 01: USUARIO
+  Descripcion: Usuarios del sistema con roles y permisos de acceso al invernadero automatizado
+  Total de campos: 9
+================================================================================
+  Campo                        Tipo                   Nulo   PK   FK   Unico   Default         Descripcion
+  --------------------------------------------------------------------------------
+  id_usuario                   INT                    NO     SI   NO   NO      —               Identificador unico del usuario
+  nombre                       VARCHAR(100)           NO     NO   NO   NO      —               Nombre del usuario
+  apellido                     VARCHAR(100)           NO     NO   NO   NO      —               Apellido del usuario
+  email                        VARCHAR(150)           NO     NO   NO   SI      —               Correo electronico unico, usado para autenticacion OAuth Google
+  password_hash                VARCHAR(255)           SI     NO   NO   NO      —               Hash de contrasena para login local (nulo si usa solo OAuth Google)
+  rol                          VARCHAR(30)            NO     NO   NO   NO      OPERARIO        Rol del usuario en el sistema
+                               Valores permitidos: ADMINISTRADOR | TECNICO | OPERARIO | VISUALIZADOR
+  fecha_registro               DATE                   NO     NO   NO   NO      —               Fecha en que el usuario fue registrado en el sistema
+  activo                       BOOLEAN                NO     NO   NO   NO      True            Indica si la cuenta del usuario esta habilitada
+  proveedor_oauth              VARCHAR(30)            SI     NO   NO   NO      —               Proveedor de autenticacion OAuth (ej: GOOGLE)
+                               Valores permitidos: LOCAL | GOOGLE
+
+================================================================================
+  ENTIDAD 02: INVERNADERO
+  Descripcion: Informacion general de cada instalacion fisica de invernadero
+  Total de campos: 8
+================================================================================
+  Campo                        Tipo                   Nulo   PK   FK   Unico   Default         Descripcion
+  --------------------------------------------------------------------------------
+  id_invernadero               INT                    NO     SI   NO   NO      —               Identificador unico del invernadero
+  nombre                       VARCHAR(100)           NO     NO   NO   NO      —               Nombre o codigo del invernadero
+  ubicacion                    VARCHAR(200)           NO     NO   NO   NO      —               Descripcion de la ubicacion fisica del invernadero
+  area_m2                      DECIMAL(10,2)          NO     NO   NO   NO      —               Area total del invernadero en metros cuadrados
+  tipo_estructura              VARCHAR(50)            SI     NO   NO   NO      —               Material de construccion de la estructura del invernadero
+                               Valores permitidos: VIDRIO | POLICARBONATO | MALLA | PLASTICO
+  responsable_id               INT                    NO     NO   SI   NO      —               Usuario administrador responsable del invernadero
+                               Referencia FK: usuario.id_usuario
+  fecha_creacion               DATE                   NO     NO   NO   NO      —               Fecha en que el invernadero fue registrado en el sistema
+  estado                       VARCHAR(20)            NO     NO   NO   NO      ACTIVO          Estado operacional actual del invernadero
+                               Valores permitidos: ACTIVO | INACTIVO | MANTENIMIENTO
+
+================================================================================
+  ENTIDAD 03: ZONA
+  Descripcion: Secciones o areas internas dentro de un invernadero con condiciones especificas
+  Total de campos: 5
+================================================================================
+  Campo                        Tipo                   Nulo   PK   FK   Unico   Default         Descripcion
+  --------------------------------------------------------------------------------
+  id_zona                      INT                    NO     SI   NO   NO      —               Identificador unico de la zona
+  id_invernadero               INT                    NO     NO   SI   NO      —               Invernadero al que pertenece esta zona
+                               Referencia FK: invernadero.id_invernadero
+  nombre_zona                  VARCHAR(100)           NO     NO   NO   NO      —               Nombre descriptivo de la zona (ej: Zona A - Tomates)
+  area_m2                      DECIMAL(10,2)          SI     NO   NO   NO      —               Area de la zona en metros cuadrados
+  descripcion                  TEXT                   SI     NO   NO   NO      —               Descripcion adicional sobre las condiciones o uso de la zona
+
+================================================================================
+  ENTIDAD 04: CULTIVO
+  Descripcion: Catalogo maestro de especies y variedades cultivadas en el invernadero
+  Total de campos: 10
+================================================================================
+  Campo                        Tipo                   Nulo   PK   FK   Unico   Default         Descripcion
+  --------------------------------------------------------------------------------
+  id_cultivo                   INT                    NO     SI   NO   NO      —               Identificador unico del cultivo
+  nombre_comun                 VARCHAR(100)           NO     NO   NO   NO      —               Nombre comun de la planta o cultivo (ej: Tomate)
+  nombre_cientifico            VARCHAR(150)           SI     NO   NO   NO      —               Nombre cientifico de la especie (ej: Solanum lycopersicum)
+  tipo                         VARCHAR(50)            NO     NO   NO   NO      —               Clasificacion del tipo de cultivo
+                               Valores permitidos: HORTALIZA | FRUTA | FLOR | HIERBA | OTRO
+  temp_min_c                   DECIMAL(5,2)           SI     NO   NO   NO      —               Temperatura minima optima de cultivo en grados Celsius
+  temp_max_c                   DECIMAL(5,2)           SI     NO   NO   NO      —               Temperatura maxima optima de cultivo en grados Celsius
+  humedad_min_pct              DECIMAL(5,2)           SI     NO   NO   NO      —               Porcentaje minimo de humedad relativa recomendado
+  humedad_max_pct              DECIMAL(5,2)           SI     NO   NO   NO      —               Porcentaje maximo de humedad relativa recomendado
+  dias_ciclo                   INT                    SI     NO   NO   NO      —               Duracion tipica del ciclo de cultivo en dias
+  descripcion                  TEXT                   SI     NO   NO   NO      —               Notas adicionales sobre el manejo del cultivo
+
+================================================================================
+  ENTIDAD 05: SIEMBRA
+  Descripcion: Registro de cada evento de siembra realizado en una zona del invernadero
+  Total de campos: 9
+================================================================================
+  Campo                        Tipo                   Nulo   PK   FK   Unico   Default         Descripcion
+  --------------------------------------------------------------------------------
+  id_siembra                   INT                    NO     SI   NO   NO      —               Identificador unico del evento de siembra
+  id_zona                      INT                    NO     NO   SI   NO      —               Zona donde se realizo la siembra
+                               Referencia FK: zona.id_zona
+  id_cultivo                   INT                    NO     NO   SI   NO      —               Cultivo o especie sembrada
+                               Referencia FK: cultivo.id_cultivo
+  id_usuario                   INT                    NO     NO   SI   NO      —               Usuario que registro la siembra
+                               Referencia FK: usuario.id_usuario
+  fecha_siembra                DATE                   NO     NO   NO   NO      —               Fecha en que se realizo la siembra
+  fecha_cosecha_estimada       DATE                   SI     NO   NO   NO      —               Fecha estimada de cosecha segun el ciclo del cultivo
+  cantidad_plantas             INT                    NO     NO   NO   NO      —               Numero de plantas o unidades sembradas
+  estado                       VARCHAR(30)            NO     NO   NO   NO      EN_CRECIMIENTO  Estado actual del ciclo de la siembra
+                               Valores permitidos: EN_CRECIMIENTO | COSECHADO | PERDIDO | EN_CUARENTENA
+  observaciones                TEXT                   SI     NO   NO   NO      —               Notas u observaciones adicionales sobre la siembra
+
+================================================================================
+  ENTIDAD 06: SENSOR
+  Descripcion: Dispositivos de medicion instalados en las zonas del invernadero
+  Total de campos: 7
+================================================================================
+  Campo                        Tipo                   Nulo   PK   FK   Unico   Default         Descripcion
+  --------------------------------------------------------------------------------
+  id_sensor                    INT                    NO     SI   NO   NO      —               Identificador unico del sensor
+  id_zona                      INT                    NO     NO   SI   NO      —               Zona donde esta instalado el sensor
+                               Referencia FK: zona.id_zona
+  tipo_sensor                  VARCHAR(50)            NO     NO   NO   NO      —               Variable fisica que mide el sensor
+                               Valores permitidos: TEMPERATURA | HUMEDAD | CO2 | LUMINOSIDAD | PH | HUMEDAD_SUELO
+  modelo                       VARCHAR(100)           SI     NO   NO   NO      —               Modelo o referencia comercial del sensor
+  unidad_medida                VARCHAR(20)            NO     NO   NO   NO      —               Unidad de la magnitud medida (ej: grados C, %, ppm, lux)
+  fecha_instalacion            DATE                   SI     NO   NO   NO      —               Fecha en que el sensor fue instalado en la zona
+  estado                       VARCHAR(20)            NO     NO   NO   NO      ACTIVO          Estado operacional del sensor
+                               Valores permitidos: ACTIVO | INACTIVO | FALLA
+
+================================================================================
+  ENTIDAD 07: LECTURA_SENSOR
+  Descripcion: Serie temporal de mediciones registradas por cada sensor del invernadero
+  Total de campos: 5
+================================================================================
+  Campo                        Tipo                   Nulo   PK   FK   Unico   Default         Descripcion
+  --------------------------------------------------------------------------------
+  id_lectura                   INT                    NO     SI   NO   NO      —               Identificador unico de la lectura
+  id_sensor                    INT                    NO     NO   SI   NO      —               Sensor que realizo la medicion
+                               Referencia FK: sensor.id_sensor
+  valor                        DECIMAL(10,4)          NO     NO   NO   NO      —               Valor numerico medido por el sensor
+  fecha_hora                   DATETIME               NO     NO   NO   NO      —               Marca de tiempo exacta de la medicion
+  genera_alerta                BOOLEAN                NO     NO   NO   NO      False           Indica si esta lectura supero un umbral y genero una alerta
+
+================================================================================
+  ENTIDAD 08: RIEGO
+  Descripcion: Eventos de riego automaticos o manuales ejecutados en las zonas
+  Total de campos: 8
+================================================================================
+  Campo                        Tipo                   Nulo   PK   FK   Unico   Default         Descripcion
+  --------------------------------------------------------------------------------
+  id_riego                     INT                    NO     SI   NO   NO      —               Identificador unico del evento de riego
+  id_zona                      INT                    NO     NO   SI   NO      —               Zona donde se aplico el riego
+                               Referencia FK: zona.id_zona
+  id_usuario                   INT                    SI     NO   SI   NO      —               Usuario que ordeno el riego (nulo si fue automatico)
+                               Referencia FK: usuario.id_usuario
+  fecha_hora                   DATETIME               NO     NO   NO   NO      —               Fecha y hora de inicio del evento de riego
+  duracion_min                 INT                    NO     NO   NO   NO      —               Duracion del riego en minutos
+  volumen_litros               DECIMAL(10,2)          SI     NO   NO   NO      —               Volumen total de agua utilizado en litros
+  tipo                         VARCHAR(20)            NO     NO   NO   NO      —               Forma en que fue iniciado el riego
+                               Valores permitidos: AUTOMATICO | MANUAL
+  observaciones                TEXT                   SI     NO   NO   NO      —               Notas adicionales sobre el evento de riego
+
+================================================================================
+  ENTIDAD 09: ALERTA
+  Descripcion: Notificaciones generadas por condiciones anomalas detectadas en el invernadero
+  Total de campos: 9
+================================================================================
+  Campo                        Tipo                   Nulo   PK   FK   Unico   Default         Descripcion
+  --------------------------------------------------------------------------------
+  id_alerta                    INT                    NO     SI   NO   NO      —               Identificador unico de la alerta
+  id_sensor                    INT                    SI     NO   SI   NO      —               Sensor que origino la alerta (nulo si es alerta manual)
+                               Referencia FK: sensor.id_sensor
+  id_zona                      INT                    SI     NO   SI   NO      —               Zona donde se genero la alerta
+                               Referencia FK: zona.id_zona
+  tipo_alerta                  VARCHAR(50)            NO     NO   NO   NO      —               Clasificacion del tipo de alerta generada
+                               Valores permitidos: TEMPERATURA_ALTA | TEMPERATURA_BAJA | HUMEDAD_ALTA | HUMEDAD_BAJA | CO2_ALTO | PH_FUERA_RANGO | FALLA_SENSOR | PLAGA_ENFERMEDAD
+  descripcion                  TEXT                   NO     NO   NO   NO      —               Mensaje detallado que describe la condicion de alerta
+  fecha_hora                   DATETIME               NO     NO   NO   NO      —               Fecha y hora en que se genero la alerta
+  nivel                        VARCHAR(20)            NO     NO   NO   NO      —               Nivel de gravedad de la alerta
+                               Valores permitidos: INFORMATIVA | ADVERTENCIA | CRITICA
+  resuelta                     BOOLEAN                NO     NO   NO   NO      False           Indica si la alerta ha sido atendida y resuelta
+  fecha_resolucion             DATETIME               SI     NO   NO   NO      —               Fecha y hora en que la alerta fue marcada como resuelta
+
+================================================================================
+  ENTIDAD 10: INSUMO
+  Descripcion: Catalogo de insumos con control de inventario para el invernadero
+  Total de campos: 7
+================================================================================
+  Campo                        Tipo                   Nulo   PK   FK   Unico   Default         Descripcion
+  --------------------------------------------------------------------------------
+  id_insumo                    INT                    NO     SI   NO   NO      —               Identificador unico del insumo
+  nombre                       VARCHAR(100)           NO     NO   NO   NO      —               Nombre comercial o descriptivo del insumo
+  tipo                         VARCHAR(50)            NO     NO   NO   NO      —               Categoria del insumo
+                               Valores permitidos: FERTILIZANTE | PESTICIDA | FUNGICIDA | SUSTRATO | AGUA | OTRO
+  unidad                       VARCHAR(20)            NO     NO   NO   NO      —               Unidad de medida para el inventario del insumo
+                               Valores permitidos: kg | g | L | mL | unidad
+  stock_actual                 DECIMAL(10,2)          NO     NO   NO   NO      0               Cantidad disponible actualmente en inventario
+  stock_minimo                 DECIMAL(10,2)          SI     NO   NO   NO      —               Cantidad minima antes de generar alerta de reabastecimiento
+  descripcion                  TEXT                   SI     NO   NO   NO      —               Informacion adicional sobre el uso o composicion del insumo
+
+================================================================================
+  ENTIDAD 11: APLICACION_INSUMO
+  Descripcion: Historial de aplicaciones de insumos realizadas en siembras o zonas
+  Total de campos: 9
+================================================================================
+  Campo                        Tipo                   Nulo   PK   FK   Unico   Default         Descripcion
+  --------------------------------------------------------------------------------
+  id_aplicacion                INT                    NO     SI   NO   NO      —               Identificador unico del evento de aplicacion
+  id_insumo                    INT                    NO     NO   SI   NO      —               Insumo que fue aplicado
+                               Referencia FK: insumo.id_insumo
+  id_siembra                   INT                    SI     NO   SI   NO      —               Siembra especifica a la que se aplico el insumo (opcional)
+                               Referencia FK: siembra.id_siembra
+  id_zona                      INT                    SI     NO   SI   NO      —               Zona donde se aplico el insumo
+                               Referencia FK: zona.id_zona
+  id_usuario                   INT                    NO     NO   SI   NO      —               Usuario que realizo o registro la aplicacion
+                               Referencia FK: usuario.id_usuario
+  fecha_hora                   DATETIME               NO     NO   NO   NO      —               Fecha y hora en que se realizo la aplicacion
+  cantidad                     DECIMAL(10,2)          NO     NO   NO   NO      —               Cantidad del insumo aplicada en la unidad del insumo
+  metodo                       VARCHAR(50)            SI     NO   NO   NO      —               Metodo de aplicacion utilizado
+                               Valores permitidos: FOLIAR | RIEGO | SUELO | INYECCION
+  observaciones                TEXT                   SI     NO   NO   NO      —               Notas adicionales sobre la aplicacion del insumo
+
+================================================================================
+  ENTIDAD 12: COSECHA
+  Descripcion: Registro de produccion cosechada por cada evento de siembra
+  Total de campos: 7
+================================================================================
+  Campo                        Tipo                   Nulo   PK   FK   Unico   Default         Descripcion
+  --------------------------------------------------------------------------------
+  id_cosecha                   INT                    NO     SI   NO   NO      —               Identificador unico del evento de cosecha
+  id_siembra                   INT                    NO     NO   SI   NO      —               Siembra de la que proviene la cosecha
+                               Referencia FK: siembra.id_siembra
+  id_usuario                   INT                    NO     NO   SI   NO      —               Usuario que registro la cosecha
+                               Referencia FK: usuario.id_usuario
+  fecha_cosecha                DATE                   NO     NO   NO   NO      —               Fecha en que se realizo la cosecha
+  cantidad_kg                  DECIMAL(10,2)          NO     NO   NO   NO      —               Cantidad cosechada expresada en kilogramos
+  calidad                      VARCHAR(20)            SI     NO   NO   NO      —               Clasificacion de calidad del producto cosechado
+                               Valores permitidos: PREMIUM | ESTANDAR | SEGUNDA | DESCARTE
+  observaciones                TEXT                   SI     NO   NO   NO      —               Observaciones sobre las condiciones o calidad de la cosecha
+
+================================================================================
+  RESUMEN DE RELACIONES (FK)
+================================================================================
+  invernadero.responsable_id  →  usuario.id_usuario
+  zona.id_invernadero  →  invernadero.id_invernadero
+  siembra.id_zona  →  zona.id_zona
+  siembra.id_cultivo  →  cultivo.id_cultivo
+  siembra.id_usuario  →  usuario.id_usuario
+  sensor.id_zona  →  zona.id_zona
+  lectura_sensor.id_sensor  →  sensor.id_sensor
+  riego.id_zona  →  zona.id_zona
+  riego.id_usuario  →  usuario.id_usuario
+  alerta.id_sensor  →  sensor.id_sensor
+  alerta.id_zona  →  zona.id_zona
+  aplicacion_insumo.id_insumo  →  insumo.id_insumo
+  aplicacion_insumo.id_siembra  →  siembra.id_siembra
+  aplicacion_insumo.id_zona  →  zona.id_zona
+  aplicacion_insumo.id_usuario  →  usuario.id_usuario
+  cosecha.id_siembra  →  siembra.id_siembra
+  cosecha.id_usuario  →  usuario.id_usuario
+
+================================================================================

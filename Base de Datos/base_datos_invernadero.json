@@ -1,0 +1,688 @@
+{
+    "metadata": {
+        "proyecto": "Sistema de Gestion de Invernadero Automatizado",
+        "version": "1.0.0",
+        "fecha": "2026-05-15",
+        "descripcion": "Modelo relacional para el sistema de automatizacion de invernadero. Fuente de verdad para generacion de BD, backend y frontend.",
+        "motor_destino": "postgresql",
+        "autores": [],
+        "conexion": {
+            "host": "localhost",
+            "puerto": 5432,
+            "nombre_db": "invernadero_db",
+            "usuario": "postgres",
+            "password": "admin1234",
+            "schema": "public"
+        }
+    },
+    "tablas": {
+        "usuario": {
+            "descripcion": "Usuarios del sistema con roles y permisos de acceso al invernadero automatizado",
+            "campos": {
+                "id_usuario": {
+                    "tipo": "INT",
+                    "pk": true,
+                    "nullable": false,
+                    "autoincrement": true,
+                    "descripcion": "Identificador unico del usuario"
+                },
+                "nombre": {
+                    "tipo": "VARCHAR(100)",
+                    "nullable": false,
+                    "descripcion": "Nombre del usuario"
+                },
+                "apellido": {
+                    "tipo": "VARCHAR(100)",
+                    "nullable": false,
+                    "descripcion": "Apellido del usuario"
+                },
+                "email": {
+                    "tipo": "VARCHAR(150)",
+                    "nullable": false,
+                    "unique": true,
+                    "descripcion": "Correo electronico unico, usado para autenticacion OAuth Google"
+                },
+                "password_hash": {
+                    "tipo": "VARCHAR(255)",
+                    "nullable": true,
+                    "descripcion": "Hash de contrasena para login local (nulo si usa solo OAuth Google)"
+                },
+                "rol": {
+                    "tipo": "VARCHAR(30)",
+                    "nullable": false,
+                    "default": "OPERARIO",
+                    "descripcion": "Rol del usuario en el sistema",
+                    "valores": [
+                        "ADMINISTRADOR",
+                        "TECNICO",
+                        "OPERARIO",
+                        "VISUALIZADOR"
+                    ]
+                },
+                "fecha_registro": {
+                    "tipo": "DATE",
+                    "nullable": false,
+                    "descripcion": "Fecha en que el usuario fue registrado en el sistema"
+                },
+                "activo": {
+                    "tipo": "BOOLEAN",
+                    "nullable": false,
+                    "default": true,
+                    "descripcion": "Indica si la cuenta del usuario esta habilitada"
+                },
+                "proveedor_oauth": {
+                    "tipo": "VARCHAR(30)",
+                    "nullable": true,
+                    "descripcion": "Proveedor de autenticacion OAuth (ej: GOOGLE)",
+                    "valores": [
+                        "LOCAL",
+                        "GOOGLE"
+                    ]
+                }
+            }
+        },
+        "invernadero": {
+            "descripcion": "Informacion general de cada instalacion fisica de invernadero",
+            "campos": {
+                "id_invernadero": {
+                    "tipo": "INT",
+                    "pk": true,
+                    "nullable": false,
+                    "autoincrement": true,
+                    "descripcion": "Identificador unico del invernadero"
+                },
+                "nombre": {
+                    "tipo": "VARCHAR(100)",
+                    "nullable": false,
+                    "descripcion": "Nombre o codigo del invernadero"
+                },
+                "ubicacion": {
+                    "tipo": "VARCHAR(200)",
+                    "nullable": false,
+                    "descripcion": "Descripcion de la ubicacion fisica del invernadero"
+                },
+                "area_m2": {
+                    "tipo": "DECIMAL(10,2)",
+                    "nullable": false,
+                    "descripcion": "Area total del invernadero en metros cuadrados"
+                },
+                "tipo_estructura": {
+                    "tipo": "VARCHAR(50)",
+                    "nullable": true,
+                    "descripcion": "Material de construccion de la estructura del invernadero",
+                    "valores": [
+                        "VIDRIO",
+                        "POLICARBONATO",
+                        "MALLA",
+                        "PLASTICO"
+                    ]
+                },
+                "responsable_id": {
+                    "tipo": "INT",
+                    "nullable": false,
+                    "fk": "usuario.id_usuario",
+                    "descripcion": "Usuario administrador responsable del invernadero"
+                },
+                "fecha_creacion": {
+                    "tipo": "DATE",
+                    "nullable": false,
+                    "descripcion": "Fecha en que el invernadero fue registrado en el sistema"
+                },
+                "estado": {
+                    "tipo": "VARCHAR(20)",
+                    "nullable": false,
+                    "default": "ACTIVO",
+                    "descripcion": "Estado operacional actual del invernadero",
+                    "valores": [
+                        "ACTIVO",
+                        "INACTIVO",
+                        "MANTENIMIENTO"
+                    ]
+                }
+            }
+        },
+        "zona": {
+            "descripcion": "Secciones o areas internas dentro de un invernadero con condiciones especificas",
+            "campos": {
+                "id_zona": {
+                    "tipo": "INT",
+                    "pk": true,
+                    "nullable": false,
+                    "autoincrement": true,
+                    "descripcion": "Identificador unico de la zona"
+                },
+                "id_invernadero": {
+                    "tipo": "INT",
+                    "nullable": false,
+                    "fk": "invernadero.id_invernadero",
+                    "descripcion": "Invernadero al que pertenece esta zona"
+                },
+                "nombre_zona": {
+                    "tipo": "VARCHAR(100)",
+                    "nullable": false,
+                    "descripcion": "Nombre descriptivo de la zona (ej: Zona A - Tomates)"
+                },
+                "area_m2": {
+                    "tipo": "DECIMAL(10,2)",
+                    "nullable": true,
+                    "descripcion": "Area de la zona en metros cuadrados"
+                },
+                "descripcion": {
+                    "tipo": "TEXT",
+                    "nullable": true,
+                    "descripcion": "Descripcion adicional sobre las condiciones o uso de la zona"
+                }
+            }
+        },
+        "cultivo": {
+            "descripcion": "Catalogo maestro de especies y variedades cultivadas en el invernadero",
+            "campos": {
+                "id_cultivo": {
+                    "tipo": "INT",
+                    "pk": true,
+                    "nullable": false,
+                    "autoincrement": true,
+                    "descripcion": "Identificador unico del cultivo"
+                },
+                "nombre_comun": {
+                    "tipo": "VARCHAR(100)",
+                    "nullable": false,
+                    "descripcion": "Nombre comun de la planta o cultivo (ej: Tomate)"
+                },
+                "nombre_cientifico": {
+                    "tipo": "VARCHAR(150)",
+                    "nullable": true,
+                    "descripcion": "Nombre cientifico de la especie (ej: Solanum lycopersicum)"
+                },
+                "tipo": {
+                    "tipo": "VARCHAR(50)",
+                    "nullable": false,
+                    "descripcion": "Clasificacion del tipo de cultivo",
+                    "valores": [
+                        "HORTALIZA",
+                        "FRUTA",
+                        "FLOR",
+                        "HIERBA",
+                        "OTRO"
+                    ]
+                },
+                "temp_min_c": {
+                    "tipo": "DECIMAL(5,2)",
+                    "nullable": true,
+                    "descripcion": "Temperatura minima optima de cultivo en grados Celsius"
+                },
+                "temp_max_c": {
+                    "tipo": "DECIMAL(5,2)",
+                    "nullable": true,
+                    "descripcion": "Temperatura maxima optima de cultivo en grados Celsius"
+                },
+                "humedad_min_pct": {
+                    "tipo": "DECIMAL(5,2)",
+                    "nullable": true,
+                    "descripcion": "Porcentaje minimo de humedad relativa recomendado"
+                },
+                "humedad_max_pct": {
+                    "tipo": "DECIMAL(5,2)",
+                    "nullable": true,
+                    "descripcion": "Porcentaje maximo de humedad relativa recomendado"
+                },
+                "dias_ciclo": {
+                    "tipo": "INT",
+                    "nullable": true,
+                    "descripcion": "Duracion tipica del ciclo de cultivo en dias"
+                },
+                "descripcion": {
+                    "tipo": "TEXT",
+                    "nullable": true,
+                    "descripcion": "Notas adicionales sobre el manejo del cultivo"
+                }
+            }
+        },
+        "siembra": {
+            "descripcion": "Registro de cada evento de siembra realizado en una zona del invernadero",
+            "campos": {
+                "id_siembra": {
+                    "tipo": "INT",
+                    "pk": true,
+                    "nullable": false,
+                    "autoincrement": true,
+                    "descripcion": "Identificador unico del evento de siembra"
+                },
+                "id_zona": {
+                    "tipo": "INT",
+                    "nullable": false,
+                    "fk": "zona.id_zona",
+                    "descripcion": "Zona donde se realizo la siembra"
+                },
+                "id_cultivo": {
+                    "tipo": "INT",
+                    "nullable": false,
+                    "fk": "cultivo.id_cultivo",
+                    "descripcion": "Cultivo o especie sembrada"
+                },
+                "id_usuario": {
+                    "tipo": "INT",
+                    "nullable": false,
+                    "fk": "usuario.id_usuario",
+                    "descripcion": "Usuario que registro la siembra"
+                },
+                "fecha_siembra": {
+                    "tipo": "DATE",
+                    "nullable": false,
+                    "descripcion": "Fecha en que se realizo la siembra"
+                },
+                "fecha_cosecha_estimada": {
+                    "tipo": "DATE",
+                    "nullable": true,
+                    "descripcion": "Fecha estimada de cosecha segun el ciclo del cultivo"
+                },
+                "cantidad_plantas": {
+                    "tipo": "INT",
+                    "nullable": false,
+                    "descripcion": "Numero de plantas o unidades sembradas"
+                },
+                "estado": {
+                    "tipo": "VARCHAR(30)",
+                    "nullable": false,
+                    "default": "EN_CRECIMIENTO",
+                    "descripcion": "Estado actual del ciclo de la siembra",
+                    "valores": [
+                        "EN_CRECIMIENTO",
+                        "COSECHADO",
+                        "PERDIDO",
+                        "EN_CUARENTENA"
+                    ]
+                },
+                "observaciones": {
+                    "tipo": "TEXT",
+                    "nullable": true,
+                    "descripcion": "Notas u observaciones adicionales sobre la siembra"
+                }
+            }
+        },
+        "sensor": {
+            "descripcion": "Dispositivos de medicion instalados en las zonas del invernadero",
+            "campos": {
+                "id_sensor": {
+                    "tipo": "INT",
+                    "pk": true,
+                    "nullable": false,
+                    "autoincrement": true,
+                    "descripcion": "Identificador unico del sensor"
+                },
+                "id_zona": {
+                    "tipo": "INT",
+                    "nullable": false,
+                    "fk": "zona.id_zona",
+                    "descripcion": "Zona donde esta instalado el sensor"
+                },
+                "tipo_sensor": {
+                    "tipo": "VARCHAR(50)",
+                    "nullable": false,
+                    "descripcion": "Variable fisica que mide el sensor",
+                    "valores": [
+                        "TEMPERATURA",
+                        "HUMEDAD",
+                        "CO2",
+                        "LUMINOSIDAD",
+                        "PH",
+                        "HUMEDAD_SUELO"
+                    ]
+                },
+                "modelo": {
+                    "tipo": "VARCHAR(100)",
+                    "nullable": true,
+                    "descripcion": "Modelo o referencia comercial del sensor"
+                },
+                "unidad_medida": {
+                    "tipo": "VARCHAR(20)",
+                    "nullable": false,
+                    "descripcion": "Unidad de la magnitud medida (ej: grados C, %, ppm, lux)"
+                },
+                "fecha_instalacion": {
+                    "tipo": "DATE",
+                    "nullable": true,
+                    "descripcion": "Fecha en que el sensor fue instalado en la zona"
+                },
+                "estado": {
+                    "tipo": "VARCHAR(20)",
+                    "nullable": false,
+                    "default": "ACTIVO",
+                    "descripcion": "Estado operacional del sensor",
+                    "valores": [
+                        "ACTIVO",
+                        "INACTIVO",
+                        "FALLA"
+                    ]
+                }
+            }
+        },
+        "lectura_sensor": {
+            "descripcion": "Serie temporal de mediciones registradas por cada sensor del invernadero",
+            "campos": {
+                "id_lectura": {
+                    "tipo": "INT",
+                    "pk": true,
+                    "nullable": false,
+                    "autoincrement": true,
+                    "descripcion": "Identificador unico de la lectura"
+                },
+                "id_sensor": {
+                    "tipo": "INT",
+                    "nullable": false,
+                    "fk": "sensor.id_sensor",
+                    "descripcion": "Sensor que realizo la medicion"
+                },
+                "valor": {
+                    "tipo": "DECIMAL(10,4)",
+                    "nullable": false,
+                    "descripcion": "Valor numerico medido por el sensor"
+                },
+                "fecha_hora": {
+                    "tipo": "DATETIME",
+                    "nullable": false,
+                    "descripcion": "Marca de tiempo exacta de la medicion"
+                },
+                "genera_alerta": {
+                    "tipo": "BOOLEAN",
+                    "nullable": false,
+                    "default": false,
+                    "descripcion": "Indica si esta lectura supero un umbral y genero una alerta"
+                }
+            }
+        },
+        "riego": {
+            "descripcion": "Eventos de riego automaticos o manuales ejecutados en las zonas",
+            "campos": {
+                "id_riego": {
+                    "tipo": "INT",
+                    "pk": true,
+                    "nullable": false,
+                    "autoincrement": true,
+                    "descripcion": "Identificador unico del evento de riego"
+                },
+                "id_zona": {
+                    "tipo": "INT",
+                    "nullable": false,
+                    "fk": "zona.id_zona",
+                    "descripcion": "Zona donde se aplico el riego"
+                },
+                "id_usuario": {
+                    "tipo": "INT",
+                    "nullable": true,
+                    "fk": "usuario.id_usuario",
+                    "descripcion": "Usuario que ordeno el riego (nulo si fue automatico)"
+                },
+                "fecha_hora": {
+                    "tipo": "DATETIME",
+                    "nullable": false,
+                    "descripcion": "Fecha y hora de inicio del evento de riego"
+                },
+                "duracion_min": {
+                    "tipo": "INT",
+                    "nullable": false,
+                    "descripcion": "Duracion del riego en minutos"
+                },
+                "volumen_litros": {
+                    "tipo": "DECIMAL(10,2)",
+                    "nullable": true,
+                    "descripcion": "Volumen total de agua utilizado en litros"
+                },
+                "tipo": {
+                    "tipo": "VARCHAR(20)",
+                    "nullable": false,
+                    "descripcion": "Forma en que fue iniciado el riego",
+                    "valores": [
+                        "AUTOMATICO",
+                        "MANUAL"
+                    ]
+                },
+                "observaciones": {
+                    "tipo": "TEXT",
+                    "nullable": true,
+                    "descripcion": "Notas adicionales sobre el evento de riego"
+                }
+            }
+        },
+        "alerta": {
+            "descripcion": "Notificaciones generadas por condiciones anomalas detectadas en el invernadero",
+            "campos": {
+                "id_alerta": {
+                    "tipo": "INT",
+                    "pk": true,
+                    "nullable": false,
+                    "autoincrement": true,
+                    "descripcion": "Identificador unico de la alerta"
+                },
+                "id_sensor": {
+                    "tipo": "INT",
+                    "nullable": true,
+                    "fk": "sensor.id_sensor",
+                    "descripcion": "Sensor que origino la alerta (nulo si es alerta manual)"
+                },
+                "id_zona": {
+                    "tipo": "INT",
+                    "nullable": true,
+                    "fk": "zona.id_zona",
+                    "descripcion": "Zona donde se genero la alerta"
+                },
+                "tipo_alerta": {
+                    "tipo": "VARCHAR(50)",
+                    "nullable": false,
+                    "descripcion": "Clasificacion del tipo de alerta generada",
+                    "valores": [
+                        "TEMPERATURA_ALTA",
+                        "TEMPERATURA_BAJA",
+                        "HUMEDAD_ALTA",
+                        "HUMEDAD_BAJA",
+                        "CO2_ALTO",
+                        "PH_FUERA_RANGO",
+                        "FALLA_SENSOR",
+                        "PLAGA_ENFERMEDAD"
+                    ]
+                },
+                "descripcion": {
+                    "tipo": "TEXT",
+                    "nullable": false,
+                    "descripcion": "Mensaje detallado que describe la condicion de alerta"
+                },
+                "fecha_hora": {
+                    "tipo": "DATETIME",
+                    "nullable": false,
+                    "descripcion": "Fecha y hora en que se genero la alerta"
+                },
+                "nivel": {
+                    "tipo": "VARCHAR(20)",
+                    "nullable": false,
+                    "descripcion": "Nivel de gravedad de la alerta",
+                    "valores": [
+                        "INFORMATIVA",
+                        "ADVERTENCIA",
+                        "CRITICA"
+                    ]
+                },
+                "resuelta": {
+                    "tipo": "BOOLEAN",
+                    "nullable": false,
+                    "default": false,
+                    "descripcion": "Indica si la alerta ha sido atendida y resuelta"
+                },
+                "fecha_resolucion": {
+                    "tipo": "DATETIME",
+                    "nullable": true,
+                    "descripcion": "Fecha y hora en que la alerta fue marcada como resuelta"
+                }
+            }
+        },
+        "insumo": {
+            "descripcion": "Catalogo de insumos con control de inventario para el invernadero",
+            "campos": {
+                "id_insumo": {
+                    "tipo": "INT",
+                    "pk": true,
+                    "nullable": false,
+                    "autoincrement": true,
+                    "descripcion": "Identificador unico del insumo"
+                },
+                "nombre": {
+                    "tipo": "VARCHAR(100)",
+                    "nullable": false,
+                    "descripcion": "Nombre comercial o descriptivo del insumo"
+                },
+                "tipo": {
+                    "tipo": "VARCHAR(50)",
+                    "nullable": false,
+                    "descripcion": "Categoria del insumo",
+                    "valores": [
+                        "FERTILIZANTE",
+                        "PESTICIDA",
+                        "FUNGICIDA",
+                        "SUSTRATO",
+                        "AGUA",
+                        "OTRO"
+                    ]
+                },
+                "unidad": {
+                    "tipo": "VARCHAR(20)",
+                    "nullable": false,
+                    "descripcion": "Unidad de medida para el inventario del insumo",
+                    "valores": [
+                        "kg",
+                        "g",
+                        "L",
+                        "mL",
+                        "unidad"
+                    ]
+                },
+                "stock_actual": {
+                    "tipo": "DECIMAL(10,2)",
+                    "nullable": false,
+                    "default": 0,
+                    "descripcion": "Cantidad disponible actualmente en inventario"
+                },
+                "stock_minimo": {
+                    "tipo": "DECIMAL(10,2)",
+                    "nullable": true,
+                    "descripcion": "Cantidad minima antes de generar alerta de reabastecimiento"
+                },
+                "descripcion": {
+                    "tipo": "TEXT",
+                    "nullable": true,
+                    "descripcion": "Informacion adicional sobre el uso o composicion del insumo"
+                }
+            }
+        },
+        "aplicacion_insumo": {
+            "descripcion": "Historial de aplicaciones de insumos realizadas en siembras o zonas",
+            "campos": {
+                "id_aplicacion": {
+                    "tipo": "INT",
+                    "pk": true,
+                    "nullable": false,
+                    "autoincrement": true,
+                    "descripcion": "Identificador unico del evento de aplicacion"
+                },
+                "id_insumo": {
+                    "tipo": "INT",
+                    "nullable": false,
+                    "fk": "insumo.id_insumo",
+                    "descripcion": "Insumo que fue aplicado"
+                },
+                "id_siembra": {
+                    "tipo": "INT",
+                    "nullable": true,
+                    "fk": "siembra.id_siembra",
+                    "descripcion": "Siembra especifica a la que se aplico el insumo (opcional)"
+                },
+                "id_zona": {
+                    "tipo": "INT",
+                    "nullable": true,
+                    "fk": "zona.id_zona",
+                    "descripcion": "Zona donde se aplico el insumo"
+                },
+                "id_usuario": {
+                    "tipo": "INT",
+                    "nullable": false,
+                    "fk": "usuario.id_usuario",
+                    "descripcion": "Usuario que realizo o registro la aplicacion"
+                },
+                "fecha_hora": {
+                    "tipo": "DATETIME",
+                    "nullable": false,
+                    "descripcion": "Fecha y hora en que se realizo la aplicacion"
+                },
+                "cantidad": {
+                    "tipo": "DECIMAL(10,2)",
+                    "nullable": false,
+                    "descripcion": "Cantidad del insumo aplicada en la unidad del insumo"
+                },
+                "metodo": {
+                    "tipo": "VARCHAR(50)",
+                    "nullable": true,
+                    "descripcion": "Metodo de aplicacion utilizado",
+                    "valores": [
+                        "FOLIAR",
+                        "RIEGO",
+                        "SUELO",
+                        "INYECCION"
+                    ]
+                },
+                "observaciones": {
+                    "tipo": "TEXT",
+                    "nullable": true,
+                    "descripcion": "Notas adicionales sobre la aplicacion del insumo"
+                }
+            }
+        },
+        "cosecha": {
+            "descripcion": "Registro de produccion cosechada por cada evento de siembra",
+            "campos": {
+                "id_cosecha": {
+                    "tipo": "INT",
+                    "pk": true,
+                    "nullable": false,
+                    "autoincrement": true,
+                    "descripcion": "Identificador unico del evento de cosecha"
+                },
+                "id_siembra": {
+                    "tipo": "INT",
+                    "nullable": false,
+                    "fk": "siembra.id_siembra",
+                    "descripcion": "Siembra de la que proviene la cosecha"
+                },
+                "id_usuario": {
+                    "tipo": "INT",
+                    "nullable": false,
+                    "fk": "usuario.id_usuario",
+                    "descripcion": "Usuario que registro la cosecha"
+                },
+                "fecha_cosecha": {
+                    "tipo": "DATE",
+                    "nullable": false,
+                    "descripcion": "Fecha en que se realizo la cosecha"
+                },
+                "cantidad_kg": {
+                    "tipo": "DECIMAL(10,2)",
+                    "nullable": false,
+                    "descripcion": "Cantidad cosechada expresada en kilogramos"
+                },
+                "calidad": {
+                    "tipo": "VARCHAR(20)",
+                    "nullable": true,
+                    "descripcion": "Clasificacion de calidad del producto cosechado",
+                    "valores": [
+                        "PREMIUM",
+                        "ESTANDAR",
+                        "SEGUNDA",
+                        "DESCARTE"
+                    ]
+                },
+                "observaciones": {
+                    "tipo": "TEXT",
+                    "nullable": true,
+                    "descripcion": "Observaciones sobre las condiciones o calidad de la cosecha"
+                }
+            }
+        }
+    }
+}
