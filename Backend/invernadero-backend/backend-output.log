@@ -1,0 +1,132 @@
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.5)
+
+2026-05-15 21:50:35 - Starting InvernaderoBackendApplication v1.0.0 using Java 17.0.10 with PID 27984 (C:\Users\Usuario\Desktop\Invernadero automatizado\Backend\invernadero-backend\target\invernadero-backend-1.0.0.jar started by Usuario in C:\Users\Usuario\Desktop\Invernadero automatizado\Backend\invernadero-backend)
+2026-05-15 21:50:35 - Running with Spring Boot v3.2.5, Spring v6.1.6
+2026-05-15 21:50:35 - The following 1 profile is active: "dev"
+2026-05-15 21:50:37 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-05-15 21:50:37 - Finished Spring Data repository scanning in 121 ms. Found 12 JPA repository interfaces.
+2026-05-15 21:50:38 - Tomcat initialized with port 8080 (http)
+2026-05-15 21:50:38 - Starting service [Tomcat]
+2026-05-15 21:50:38 - Starting Servlet engine: [Apache Tomcat/10.1.20]
+2026-05-15 21:50:38 - Initializing Spring embedded WebApplicationContext
+2026-05-15 21:50:38 - Root WebApplicationContext: initialization completed in 2824 ms
+2026-05-15 21:50:39 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-05-15 21:50:39 - HHH000412: Hibernate ORM core version 6.4.4.Final
+2026-05-15 21:50:39 - HHH000026: Second-level cache disabled
+2026-05-15 21:50:39 - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-05-15 21:50:39 - HikariPool-1 - Starting...
+2026-05-15 21:50:39 - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@b0d3e7
+2026-05-15 21:50:39 - HikariPool-1 - Start completed.
+2026-05-15 21:50:39 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-05-15 21:50:41 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-05-15 21:50:41 - 
+    alter table if exists aplicacion_insumo 
+       alter column cantidad set data type numeric(38,2)
+Hibernate: 
+    alter table if exists aplicacion_insumo 
+       alter column cantidad set data type numeric(38,2)
+2026-05-15 21:50:41 - 
+    alter table if exists cosecha 
+       alter column cantidad_kg set data type numeric(38,2)
+Hibernate: 
+    alter table if exists cosecha 
+       alter column cantidad_kg set data type numeric(38,2)
+2026-05-15 21:50:41 - 
+    alter table if exists cultivo 
+       alter column humedad_max_pct set data type numeric(38,2)
+Hibernate: 
+    alter table if exists cultivo 
+       alter column humedad_max_pct set data type numeric(38,2)
+2026-05-15 21:50:41 - 
+    alter table if exists cultivo 
+       alter column humedad_min_pct set data type numeric(38,2)
+Hibernate: 
+    alter table if exists cultivo 
+       alter column humedad_min_pct set data type numeric(38,2)
+2026-05-15 21:50:41 - 
+    alter table if exists cultivo 
+       alter column temp_max_c set data type numeric(38,2)
+Hibernate: 
+    alter table if exists cultivo 
+       alter column temp_max_c set data type numeric(38,2)
+2026-05-15 21:50:41 - 
+    alter table if exists cultivo 
+       alter column temp_min_c set data type numeric(38,2)
+Hibernate: 
+    alter table if exists cultivo 
+       alter column temp_min_c set data type numeric(38,2)
+2026-05-15 21:50:41 - 
+    alter table if exists insumo 
+       alter column stock_actual set data type numeric(38,2)
+Hibernate: 
+    alter table if exists insumo 
+       alter column stock_actual set data type numeric(38,2)
+2026-05-15 21:50:41 - 
+    alter table if exists insumo 
+       alter column stock_minimo set data type numeric(38,2)
+Hibernate: 
+    alter table if exists insumo 
+       alter column stock_minimo set data type numeric(38,2)
+2026-05-15 21:50:41 - 
+    alter table if exists invernadero 
+       alter column area_m2 set data type numeric(38,2)
+Hibernate: 
+    alter table if exists invernadero 
+       alter column area_m2 set data type numeric(38,2)
+2026-05-15 21:50:41 - 
+    alter table if exists lectura_sensor 
+       alter column valor set data type numeric(38,2)
+Hibernate: 
+    alter table if exists lectura_sensor 
+       alter column valor set data type numeric(38,2)
+2026-05-15 21:50:41 - 
+    alter table if exists riego 
+       alter column volumen_litros set data type numeric(38,2)
+Hibernate: 
+    alter table if exists riego 
+       alter column volumen_litros set data type numeric(38,2)
+2026-05-15 21:50:41 - 
+    alter table if exists zona 
+       alter column area_m2 set data type numeric(38,2)
+Hibernate: 
+    alter table if exists zona 
+       alter column area_m2 set data type numeric(38,2)
+2026-05-15 21:50:41 - 
+    alter table if exists usuario 
+       drop constraint if exists UK5171l57faosmj8myawaucatdw
+Hibernate: 
+    alter table if exists usuario 
+       drop constraint if exists UK5171l57faosmj8myawaucatdw
+2026-05-15 21:50:41 - SQL Warning Code: 0, SQLState: 00000
+2026-05-15 21:50:41 - no existe la restricción «uk5171l57faosmj8myawaucatdw» en la relación «usuario», omitiendo
+2026-05-15 21:50:41 - 
+    alter table if exists usuario 
+       add constraint UK5171l57faosmj8myawaucatdw unique (email)
+Hibernate: 
+    alter table if exists usuario 
+       add constraint UK5171l57faosmj8myawaucatdw unique (email)
+2026-05-15 21:50:41 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-05-15 21:50:42 - Filter 'jwtAuthenticationFilter' configured for use
+2026-05-15 21:50:42 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-05-15 21:50:43 - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@289d9f0d, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@39aaa7db, org.springframework.security.web.context.SecurityContextHolderFilter@c7008b4, org.springframework.security.web.header.HeaderWriterFilter@74997ca6, org.springframework.web.filter.CorsFilter@14a3a66c, org.springframework.security.web.authentication.logout.LogoutFilter@54af9cce, com.invernadero.invernadero_backend.auth.infrastructure.security.JwtAuthenticationFilter@10c1682b, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@719e8f9f, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5122387, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1738d3b2, org.springframework.security.web.session.SessionManagementFilter@14b4f462, org.springframework.security.web.access.ExceptionTranslationFilter@504a9352, org.springframework.security.web.access.intercept.AuthorizationFilter@72fc6b5e]
+2026-05-15 21:50:43 - Tomcat started on port 8080 (http) with context path '/api'
+2026-05-15 21:50:43 - Started InvernaderoBackendApplication in 8.849 seconds (process running for 9.634)
+2026-05-15 22:10:53 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-05-15 22:10:53 - Initializing Servlet 'dispatcherServlet'
+2026-05-15 22:10:53 - Completed initialization in 2 ms
+2026-05-15 22:10:53 - Securing GET /actuator/health
+2026-05-15 22:10:53 - Set SecurityContextHolder to anonymous SecurityContext
+2026-05-15 22:10:53 - Secured GET /actuator/health
+2026-05-15 22:12:27 - Securing POST /auth/register
+2026-05-15 22:12:27 - Set SecurityContextHolder to anonymous SecurityContext
+2026-05-15 22:12:27 - Secured POST /auth/register
+2026-05-15 22:12:51 - Securing POST /auth/register
+2026-05-15 22:12:51 - Set SecurityContextHolder to anonymous SecurityContext
+2026-05-15 22:12:51 - Secured POST /auth/register
