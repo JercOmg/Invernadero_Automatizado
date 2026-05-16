@@ -1,0 +1,170 @@
+# ============================================
+# INVERNADERO AUTOMATIZADO - .gitignore
+# ============================================
+
+# ============================================
+# ARCHIVOS DE ENTORNO Y CONFIGURACION SENSIBLE
+# ============================================
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+*.env
+application-*.properties
+!application.properties
+!application-dev.properties
+!application-prod.properties
+
+# ============================================
+# LOGS
+# ============================================
+*.log
+logs/
+*.log.*
+backend-output.log
+backend-error.log
+
+# ============================================
+# JAVA / SPRING BOOT / MAVEN
+# ============================================
+Backend/invernadero-backend/target/
+Backend/invernadero-backend/.mvn/
+Backend/invernadero-backend/mvnw
+Backend/invernadero-backend/mvnw.cmd
+*.class
+*.jar
+!Backend/invernadero-backend/.mvn/wrapper/maven-wrapper.jar
+*.war
+*.ear
+*.nar
+hs_err_pid*
+replay_pid*
+
+# ============================================
+# NODE.JS / NPM / REACT / VITE
+# ============================================
+Frontend/node_modules/
+Frontend/dist/
+Frontend/dist-ssr/
+Frontend/.vite/
+Frontend/.cache/
+*.local
+
+# NPM
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# ============================================
+# IDEs Y EDITORES
+# ============================================
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# Eclipse
+.classpath
+.project
+.settings/
+bin/
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# NetBeans
+nbproject/
+nbbuild/
+nbdist/
+.nb-gradle/
+
+# ============================================
+# SISTEMA OPERATIVO
+# ============================================
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Linux
+*~
+.directory
+
+# ============================================
+# BASES DE DATOS
+# ============================================
+*.db
+*.sqlite
+*.sqlite3
+*.sql.backup
+
+# PostgreSQL
+*.dump
+*.backup
+
+# ============================================
+# TEMPORAL Y CACHE
+# ============================================
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+.cache/
+tmp/
+temp/
+
+# ============================================
+# ARCHIVOS DE BUILD Y COMPILACION
+# ============================================
+build/
+dist/
+*.o
+*.so
+*.dylib
+*.dll
+*.exe
+
+# ============================================
+# DEPENDENCIAS Y PAQUETES
+# ============================================
+node_modules/
+jspm_packages/
+bower_components/
+
+# ============================================
+# TESTING
+# ============================================
+coverage/
+*.cover
+.hypothesis/
+.pytest_cache/
+test-results/
+
+# ============================================
+# DOCUMENTACION GENERADA
+# ============================================
+docs/_build/
+site/
+
+# ============================================
+# OTROS
+# ============================================
+*.bak
+*.orig
+*.rej
+.env.backup

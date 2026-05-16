@@ -2372,3 +2372,234 @@ Caused by: org.postgresql.util.PSQLException: FATAL: la autentificación passwor
 2026-05-15 22:20:20 [http-nio-8080-exec-1] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 0, SQLState: 23502
 2026-05-15 22:20:20 [http-nio-8080-exec-1] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - ERROR: null value in column "nombre" of relation "invernadero" violates not-null constraint
   Detail: Failing row contains (1, null, null, null, null, null, null, null).
+2026-05-15 22:21:20 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing GET /invernadero?page=0&size=10
+2026-05-15 22:21:20 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-15 22:21:20 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured GET /invernadero?page=0&size=10
+2026-05-15 22:21:20 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        i1_0.id_invernadero,
+        i1_0.area_m2,
+        i1_0.estado,
+        i1_0.fecha_creacion,
+        i1_0.nombre,
+        i1_0.responsable_id,
+        i1_0.tipo_estructura,
+        i1_0.ubicacion 
+    from
+        invernadero i1_0 
+    offset
+        ? rows 
+    fetch
+        first ? rows only
+2026-05-15 22:21:21 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing GET /invernadero?page=0&size=10
+2026-05-15 22:21:21 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-15 22:21:21 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Secured GET /invernadero?page=0&size=10
+2026-05-15 22:21:21 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        i1_0.id_invernadero,
+        i1_0.area_m2,
+        i1_0.estado,
+        i1_0.fecha_creacion,
+        i1_0.nombre,
+        i1_0.responsable_id,
+        i1_0.tipo_estructura,
+        i1_0.ubicacion 
+    from
+        invernadero i1_0 
+    offset
+        ? rows 
+    fetch
+        first ? rows only
+2026-05-15 22:21:22 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing GET /zona?page=0&size=10
+2026-05-15 22:21:22 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-15 22:21:22 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Secured GET /zona?page=0&size=10
+2026-05-15 22:21:22 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        z1_0.id_zona,
+        z1_0.area_m2,
+        z1_0.descripcion,
+        z1_0.id_invernadero,
+        z1_0.nombre_zona 
+    from
+        zona z1_0 
+    offset
+        ? rows 
+    fetch
+        first ? rows only
+2026-05-15 22:21:22 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing GET /cultivo?page=0&size=10
+2026-05-15 22:21:22 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-15 22:21:22 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Secured GET /cultivo?page=0&size=10
+2026-05-15 22:21:22 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        c1_0.id_cultivo,
+        c1_0.descripcion,
+        c1_0.dias_ciclo,
+        c1_0.humedad_max_pct,
+        c1_0.humedad_min_pct,
+        c1_0.nombre_cientifico,
+        c1_0.nombre_comun,
+        c1_0.temp_max_c,
+        c1_0.temp_min_c,
+        c1_0.tipo 
+    from
+        cultivo c1_0 
+    offset
+        ? rows 
+    fetch
+        first ? rows only
+2026-05-15 22:21:23 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Securing GET /siembra?page=0&size=10
+2026-05-15 22:21:23 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-15 22:21:23 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Secured GET /siembra?page=0&size=10
+2026-05-15 22:21:23 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        s1_0.id_siembra,
+        s1_0.cantidad_plantas,
+        s1_0.estado,
+        s1_0.fecha_cosecha_estimada,
+        s1_0.fecha_siembra,
+        s1_0.id_cultivo,
+        s1_0.id_usuario,
+        s1_0.id_zona,
+        s1_0.observaciones 
+    from
+        siembra s1_0 
+    offset
+        ? rows 
+    fetch
+        first ? rows only
+2026-05-15 22:21:24 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Securing GET /sensor?page=0&size=10
+2026-05-15 22:21:24 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-15 22:21:24 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Secured GET /sensor?page=0&size=10
+2026-05-15 22:21:24 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        s1_0.id_sensor,
+        s1_0.estado,
+        s1_0.fecha_instalacion,
+        s1_0.id_zona,
+        s1_0.modelo,
+        s1_0.tipo_sensor,
+        s1_0.unidad_medida 
+    from
+        sensor s1_0 
+    offset
+        ? rows 
+    fetch
+        first ? rows only
+2026-05-15 22:21:24 [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Securing GET /alerta?page=0&size=10
+2026-05-15 22:21:24 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-15 22:21:24 [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Secured GET /alerta?page=0&size=10
+2026-05-15 22:21:24 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        a1_0.id_alerta,
+        a1_0.descripcion,
+        a1_0.fecha_hora,
+        a1_0.fecha_resolucion,
+        a1_0.id_sensor,
+        a1_0.id_zona,
+        a1_0.nivel,
+        a1_0.resuelta,
+        a1_0.tipo_alerta 
+    from
+        alerta a1_0 
+    offset
+        ? rows 
+    fetch
+        first ? rows only
