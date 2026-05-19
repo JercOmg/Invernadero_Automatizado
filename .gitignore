@@ -20,7 +20,9 @@ application-*.properties
 # LOGS
 # ============================================
 *.log
+**/*.log
 logs/
+**/logs/
 *.log.*
 backend-output.log
 backend-error.log
