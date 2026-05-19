@@ -49,7 +49,7 @@ public class SecurityConfig {
                 )
                 .authorizeHttpRequests(auth -> auth
                         // Endpoints publicos
-                        .requestMatchers("/auth/login", "/auth/register", "/auth/health").permitAll()
+                        .requestMatchers("/auth/login", "/auth/register", "/auth/google", "/auth/health").permitAll()
                         .requestMatchers("/auth/oauth2/**").permitAll()
                         
                         // Swagger UI

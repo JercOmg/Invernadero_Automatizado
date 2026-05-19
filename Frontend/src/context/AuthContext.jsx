@@ -51,6 +51,25 @@ export const AuthProvider = ({ children }) => {
   };
 
   /**
+   * Login con Google
+   */
+  const loginWithGoogle = async (idToken) => {
+    try {
+      const data = await authService.loginWithGoogle(idToken);
+      setUser({
+        userId: data.userId,
+        email: data.email,
+        nombre: data.nombre,
+        apellido: data.apellido,
+        rol: data.rol,
+      });
+      return data;
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  /**
    * Registro de nuevo usuario
    */
   const register = async (userData) => {
@@ -95,6 +114,7 @@ export const AuthProvider = ({ children }) => {
     user,
     loading,
     login,
+    loginWithGoogle,
     register,
     logout,
     isAuthenticated: !!user,

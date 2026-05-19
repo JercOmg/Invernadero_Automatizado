@@ -1,6 +1,7 @@
 package com.invernadero.invernadero_backend.auth.infrastructure.rest;
 
 import com.invernadero.invernadero_backend.auth.application.dto.AuthResponse;
+import com.invernadero.invernadero_backend.auth.application.dto.GoogleLoginRequest;
 import com.invernadero.invernadero_backend.auth.application.dto.LoginRequest;
 import com.invernadero.invernadero_backend.auth.application.dto.RefreshTokenRequest;
 import com.invernadero.invernadero_backend.auth.application.dto.RegisterRequest;
@@ -56,6 +57,20 @@ public class AuthController {
     public ResponseEntity<AuthResponse> register(@Valid @RequestBody RegisterRequest registerRequest) {
         AuthResponse response = authService.register(registerRequest);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    }
+
+    /**
+     * Endpoint para login con Google
+     * POST /api/auth/google
+     * 
+     * @param googleLoginRequest Request conteniendo el idToken de Google
+     * @return Respuesta con tokens JWT
+     */
+    @PostMapping("/google")
+    @Operation(summary = "Login con Google", description = "Autentica o registra un usuario usando su ID token de Google")
+    public ResponseEntity<AuthResponse> loginWithGoogle(@Valid @RequestBody GoogleLoginRequest googleLoginRequest) {
+        AuthResponse response = authService.loginWithGoogle(googleLoginRequest);
+        return ResponseEntity.ok(response);
     }
     
     /**

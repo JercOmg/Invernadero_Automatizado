@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 import { AuthProvider } from './context/AuthContext';
 import ProtectedRoute from './components/common/ProtectedRoute';
 import Layout from './components/layout/Layout';
@@ -31,9 +32,13 @@ import CosechaForm from './pages/cosecha/CosechaForm';
 import './App.css';
 
 function App() {
+  // En producción, este ID vendría de las variables de entorno (import.meta.env.VITE_GOOGLE_CLIENT_ID)
+  const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID || 'TU_GOOGLE_CLIENT_ID.apps.googleusercontent.com';
+
   return (
-    <AuthProvider>
-      <Router>
+    <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
+      <AuthProvider>
+        <Router>
         <Routes>
           {/* Rutas públicas */}
           <Route path="/login" element={<Login />} />
@@ -102,6 +107,7 @@ function App() {
         </Routes>
       </Router>
     </AuthProvider>
+    </GoogleOAuthProvider>
   );
 }
 

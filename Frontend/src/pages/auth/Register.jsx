@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { GoogleLogin } from '@react-oauth/google';
 import { useAuth } from '../../context/AuthContext';
 import './Register.css';
 
@@ -18,8 +19,25 @@ const Register = () => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const { register } = useAuth();
+  const { register, loginWithGoogle } = useAuth();
   const navigate = useNavigate();
+
+  const handleGoogleSuccess = async (credentialResponse) => {
+    setError('');
+    setLoading(true);
+    try {
+      await loginWithGoogle(credentialResponse.credential);
+      navigate('/dashboard');
+    } catch (err) {
+      setError(err.response?.data?.message || 'Error al registrarse con Google.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleGoogleError = () => {
+    setError('No se pudo conectar con Google. Intenta nuevamente.');
+  };
 
   const handleChange = (e) => {
     setFormData({
@@ -152,6 +170,17 @@ const Register = () => {
             {loading ? 'Registrando...' : 'Registrarse'}
           </button>
         </form>
+
+        <div className="social-login-container" style={{ display: 'flex', justifyContent: 'center', margin: '20px 0' }}>
+          <GoogleLogin
+            onSuccess={handleGoogleSuccess}
+            onError={handleGoogleError}
+            useOneTap={false}
+            shape="rectangular"
+            theme="filled_blue"
+            text="signup_with"
+          />
+        </div>
 
         <div className="register-footer">
           <p>

@@ -24,6 +24,23 @@ const authService = {
   },
 
   /**
+   * Login con Google
+   * @param {string} idToken - Token de ID devuelto por Google
+   * @returns {Promise} Datos del usuario y tokens
+   */
+  loginWithGoogle: async (idToken) => {
+    const response = await apiClient.post('/auth/google', { idToken });
+    const { accessToken, refreshToken, userId, nombre, apellido, rol, email } = response.data;
+
+    // Guardar tokens y datos del usuario en localStorage
+    localStorage.setItem('accessToken', accessToken);
+    localStorage.setItem('refreshToken', refreshToken);
+    localStorage.setItem('user', JSON.stringify({ userId, email, nombre, apellido, rol }));
+
+    return response.data;
+  },
+
+  /**
    * Registro de nuevo usuario
    * @param {Object} userData - Datos del usuario a registrar
    * @returns {Promise} Datos del usuario y tokens
