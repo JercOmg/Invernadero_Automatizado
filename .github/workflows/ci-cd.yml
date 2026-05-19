@@ -1,0 +1,334 @@
+name: CI/CD Pipeline - Invernadero Automatizado
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+env:
+  JAVA_VERSION: '17'
+  NODE_VERSION: '24'
+  PYTHON_VERSION: '3.10'
+
+jobs:
+  # ============================================
+  # JOB 1: Tests Python (Generadores)
+  # ============================================
+  test-python:
+    name: 🐍 Tests Python (Generadores)
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 📥 Checkout código
+        uses: actions/checkout@v4
+      
+      - name: 🐍 Configurar Python ${{ env.PYTHON_VERSION }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: 'pip'
+      
+      - name: 📦 Instalar dependencias
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements-test.txt
+      
+      - name: 🧪 Ejecutar tests pytest
+        run: |
+          pytest tests/test_generadores.py -v --tb=short --junitxml=test-results/pytest-results.xml
+      
+      - name: 📊 Publicar resultados de tests
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        if: always()
+        with:
+          files: test-results/pytest-results.xml
+          check_name: Resultados Tests Python
+      
+      - name: 🚨 Crear tarea en Taiga si falla
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issue = await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `[CI/CD] Tests Python fallaron - ${context.sha.substring(0, 7)}`,
+              body: `❌ Los tests de Python fallaron en el commit ${context.sha}\n\n**Branch:** ${context.ref}\n**Workflow:** ${context.workflow}\n**Run:** ${context.runNumber}\n\n[Ver logs](${context.payload.repository.html_url}/actions/runs/${context.runId})`,
+              labels: ['bug', 'ci-failure', 'python']
+            });
+            console.log(`Issue creado: ${issue.data.html_url}`);
+
+  # ============================================
+  # JOB 2: Tests Backend (JUnit)
+  # ============================================
+  test-backend:
+    name: ☕ Tests Backend (JUnit)
+    runs-on: ubuntu-latest
+    needs: test-python
+    
+    steps:
+      - name: 📥 Checkout código
+        uses: actions/checkout@v4
+      
+      - name: ☕ Configurar Java ${{ env.JAVA_VERSION }}
+        uses: actions/setup-java@v4
+        with:
+          java-version: ${{ env.JAVA_VERSION }}
+          distribution: 'temurin'
+          cache: 'maven'
+      
+      - name: 🧪 Ejecutar tests Maven
+        working-directory: Backend/invernadero-backend
+        run: mvn test -B
+      
+      - name: 📊 Publicar resultados de tests
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        if: always()
+        with:
+          files: Backend/invernadero-backend/target/surefire-reports/*.xml
+          check_name: Resultados Tests Backend
+      
+      - name: 📈 Generar reporte de cobertura
+        if: always()
+        working-directory: Backend/invernadero-backend
+        run: mvn jacoco:report
+      
+      - name: 📤 Subir reporte de cobertura
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: backend-coverage-report
+          path: Backend/invernadero-backend/target/site/jacoco/
+      
+      - name: 🚨 Crear tarea en Taiga si falla
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issue = await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `[CI/CD] Tests Backend fallaron - ${context.sha.substring(0, 7)}`,
+              body: `❌ Los tests de Backend (JUnit) fallaron en el commit ${context.sha}\n\n**Branch:** ${context.ref}\n**Workflow:** ${context.workflow}\n**Run:** ${context.runNumber}\n\n[Ver logs](${context.payload.repository.html_url}/actions/runs/${context.runId})`,
+              labels: ['bug', 'ci-failure', 'backend']
+            });
+            console.log(`Issue creado: ${issue.data.html_url}`);
+
+  # ============================================
+  # JOB 3: Build Backend
+  # ============================================
+  build-backend:
+    name: 🏗️ Build Backend
+    runs-on: ubuntu-latest
+    needs: test-backend
+    
+    steps:
+      - name: 📥 Checkout código
+        uses: actions/checkout@v4
+      
+      - name: ☕ Configurar Java ${{ env.JAVA_VERSION }}
+        uses: actions/setup-java@v4
+        with:
+          java-version: ${{ env.JAVA_VERSION }}
+          distribution: 'temurin'
+          cache: 'maven'
+      
+      - name: 🔨 Compilar Backend
+        working-directory: Backend/invernadero-backend
+        run: mvn clean package -DskipTests -B
+      
+      - name: 📤 Subir JAR como artefacto
+        uses: actions/upload-artifact@v4
+        with:
+          name: backend-jar
+          path: Backend/invernadero-backend/target/*.jar
+          retention-days: 7
+
+  # ============================================
+  # JOB 4: Build Frontend
+  # ============================================
+  build-frontend:
+    name: 🎨 Build Frontend
+    runs-on: ubuntu-latest
+    needs: test-python
+    
+    steps:
+      - name: 📥 Checkout código
+        uses: actions/checkout@v4
+      
+      - name: 📦 Configurar Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          cache-dependency-path: Frontend/package-lock.json
+      
+      - name: 📦 Instalar dependencias
+        working-directory: Frontend
+        run: npm ci
+      
+      - name: 🔨 Build Frontend
+        working-directory: Frontend
+        run: npm run build
+      
+      - name: 📤 Subir build como artefacto
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontend-dist
+          path: Frontend/dist/
+          retention-days: 7
+
+  # ============================================
+  # JOB 5: Tests E2E (Selenium)
+  # ============================================
+  test-e2e:
+    name: 🌐 Tests E2E (Selenium)
+    runs-on: ubuntu-latest
+    needs: [build-backend, build-frontend]
+    
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_DB: invernadero_db
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: test_password
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+    
+    steps:
+      - name: 📥 Checkout código
+        uses: actions/checkout@v4
+      
+      - name: ☕ Configurar Java ${{ env.JAVA_VERSION }}
+        uses: actions/setup-java@v4
+        with:
+          java-version: ${{ env.JAVA_VERSION }}
+          distribution: 'temurin'
+      
+      - name: 📦 Configurar Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      
+      - name: 🐍 Configurar Python ${{ env.PYTHON_VERSION }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      
+      - name: 📦 Instalar dependencias Python
+        run: pip install -r requirements-test.txt
+      
+      - name: 📥 Descargar JAR del backend
+        uses: actions/download-artifact@v4
+        with:
+          name: backend-jar
+          path: Backend/invernadero-backend/target/
+      
+      - name: 📥 Descargar build del frontend
+        uses: actions/download-artifact@v4
+        with:
+          name: frontend-dist
+          path: Frontend/dist/
+      
+      - name: 🚀 Iniciar Backend
+        working-directory: Backend/invernadero-backend
+        env:
+          SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/invernadero_db
+          SPRING_DATASOURCE_USERNAME: postgres
+          SPRING_DATASOURCE_PASSWORD: test_password
+        run: |
+          java -jar target/*.jar &
+          echo $! > backend.pid
+          sleep 30
+      
+      - name: 🚀 Iniciar Frontend
+        working-directory: Frontend
+        run: |
+          npm install -g serve
+          serve -s dist -l 5173 &
+          echo $! > frontend.pid
+          sleep 10
+      
+      - name: 🧪 Ejecutar tests Selenium
+        working-directory: Frontend
+        run: pytest tests/test_selenium.py -v --tb=short --junitxml=../test-results/selenium-results.xml
+      
+      - name: 🛑 Detener servicios
+        if: always()
+        run: |
+          [ -f Backend/invernadero-backend/backend.pid ] && kill $(cat Backend/invernadero-backend/backend.pid) || true
+          [ -f Frontend/frontend.pid ] && kill $(cat Frontend/frontend.pid) || true
+      
+      - name: 📊 Publicar resultados de tests
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        if: always()
+        with:
+          files: test-results/selenium-results.xml
+          check_name: Resultados Tests E2E
+      
+      - name: 🚨 Crear tarea en Taiga si falla
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issue = await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `[CI/CD] Tests E2E (Selenium) fallaron - ${context.sha.substring(0, 7)}`,
+              body: `❌ Los tests E2E (Selenium) fallaron en el commit ${context.sha}\n\n**Branch:** ${context.ref}\n**Workflow:** ${context.workflow}\n**Run:** ${context.runNumber}\n\n[Ver logs](${context.payload.repository.html_url}/actions/runs/${context.runId})`,
+              labels: ['bug', 'ci-failure', 'e2e']
+            });
+            console.log(`Issue creado: ${issue.data.html_url}`);
+
+  # ============================================
+  # JOB 6: Deploy (solo en main)
+  # ============================================
+  deploy:
+    name: 🚀 Deploy a Producción
+    runs-on: ubuntu-latest
+    needs: [test-e2e]
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    
+    steps:
+      - name: 📥 Checkout código
+        uses: actions/checkout@v4
+      
+      - name: 📥 Descargar artefactos
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts/
+      
+      - name: 🚀 Deploy Backend a Render
+        env:
+          RENDER_DEPLOY_HOOK: ${{ secrets.RENDER_DEPLOY_HOOK_BACKEND }}
+        run: |
+          echo "🚀 Desplegando backend a Render..."
+          curl -X POST "$RENDER_DEPLOY_HOOK"
+          echo "✅ Deploy hook enviado a Render"
+
+      - name: 🚀 Deploy Frontend a Vercel
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+        working-directory: Frontend
+        run: |
+          echo "🚀 Desplegando frontend a Vercel..."
+          npm install -g vercel
+          vercel pull --yes --environment=production --token=$VERCEL_TOKEN
+          vercel build --prod --token=$VERCEL_TOKEN
+          vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN
+          echo "✅ Deploy completado en Vercel"
+      
+      - name: ✅ Notificar deploy exitoso
+        run: |
+          echo "✅ Deploy completado exitosamente"
+          echo "Backend: https://invernadero-backend.onrender.com"
+          echo "Frontend: https://invernadero-frontend.vercel.app"

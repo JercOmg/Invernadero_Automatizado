@@ -4,6 +4,8 @@ import com.invernadero.invernadero_backend.invernadero.application.dto.Invernade
 import com.invernadero.invernadero_backend.invernadero.application.dto.InvernaderoResponse;
 import com.invernadero.invernadero_backend.invernadero.domain.model.Invernadero;
 import com.invernadero.invernadero_backend.invernadero.domain.repository.InvernaderoRepository;
+import com.invernadero.invernadero_backend.auth.domain.model.Usuario;
+import com.invernadero.invernadero_backend.auth.domain.repository.UsuarioRepository;
 import com.invernadero.invernadero_backend.shared.exception.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -20,8 +22,9 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @RequiredArgsConstructor
 public class InvernaderoService {
-    
+
     private final InvernaderoRepository invernaderoRepository;
+    private final UsuarioRepository usuarioRepository;
     
     /**
      * Obtiene todos los registros paginados
@@ -89,17 +92,38 @@ public class InvernaderoService {
      * Actualiza una entidad desde un Request DTO
      */
     private void updateEntityFromRequest(Invernadero entity, InvernaderoRequest request) {
-        // TODO: Implementar mapeo de campos desde request a entity
-        // Usar BeanUtils.copyProperties o mapeo manual
+        entity.setNombre(request.getNombre());
+        entity.setUbicacion(request.getUbicacion());
+        entity.setAreaM2(request.getAreaM2());
+        entity.setFechaCreacion(request.getFechaCreacion());
+        entity.setEstado(Invernadero.Estado.valueOf(request.getEstado()));
+
+        if (request.getTipoEstructura() != null && !request.getTipoEstructura().isBlank()) {
+            entity.setTipoEstructura(Invernadero.TipoEstructura.valueOf(request.getTipoEstructura()));
+        }
+
+        if (request.getResponsableId() != null) {
+            Usuario responsable = usuarioRepository.findById(request.getResponsableId())
+                    .orElseThrow(() -> new ResourceNotFoundException("Usuario", "id", request.getResponsableId()));
+            entity.setResponsableId(responsable);
+        }
     }
-    
+
     /**
      * Convierte Entidad a Response DTO
      */
     private InvernaderoResponse convertToResponse(Invernadero entity) {
         InvernaderoResponse response = new InvernaderoResponse();
-        // TODO: Implementar mapeo de campos desde entity a response
-        // Usar BeanUtils.copyProperties o mapeo manual
+        response.setIdInvernadero(entity.getIdInvernadero());
+        response.setNombre(entity.getNombre());
+        response.setUbicacion(entity.getUbicacion());
+        response.setAreaM2(entity.getAreaM2());
+        response.setFechaCreacion(entity.getFechaCreacion());
+        response.setEstado(entity.getEstado() != null ? entity.getEstado().name() : null);
+        response.setTipoEstructura(entity.getTipoEstructura() != null ? entity.getTipoEstructura().name() : null);
+        if (entity.getResponsableId() != null) {
+            response.setResponsableId(entity.getResponsableId().getIdUsuario());
+        }
         return response;
     }
 }
