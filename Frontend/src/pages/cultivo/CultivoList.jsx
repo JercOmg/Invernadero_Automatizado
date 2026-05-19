@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import cultivoService from '../../services/cultivoService';
 import './CultivoList.css';
 
@@ -11,6 +12,7 @@ const CultivoList = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   useEffect(() => {
     loadItems();
@@ -22,7 +24,7 @@ const CultivoList = () => {
       const data = await cultivoService.getAll();
       setItems(data.content || data);
     } catch (err) {
-      setError('Error al cargar los datos');
+      setError(t('common.errorLoading'));
       console.error(err);
     } finally {
       setLoading(false);
@@ -30,12 +32,12 @@ const CultivoList = () => {
   };
 
   const handleDelete = async (id) => {
-    if (window.confirm('¿Estás seguro de eliminar este registro?')) {
+    if (window.confirm(t('common.confirmDelete'))) {
       try {
         await cultivoService.delete(id);
         loadItems();
       } catch (err) {
-        alert('Error al eliminar el registro');
+        alert(t('common.errorDeleting'));
         console.error(err);
       }
     }
@@ -54,7 +56,7 @@ const CultivoList = () => {
       <div className="list-header">
         <h1>Cultivo</h1>
         <Link to="/cultivo/new" className="btn btn-primary">
-          Crear Nuevo
+          {t('common.createNew')}
         </Link>
       </div>
 
@@ -67,14 +69,14 @@ const CultivoList = () => {
             <th>Tipo</th>
             <th>Temp Min C</th>
             <th>Temp Max C</th>
-              <th>Acciones</th>
+              <th>{t('common.actions')}</th>
             </tr>
           </thead>
           <tbody>
             {items.length === 0 ? (
               <tr>
                 <td colSpan="{100}" style={{ textAlign: 'center' }}>
-                  No hay registros disponibles
+                  {t('common.noRecords')}
                 </td>
               </tr>
             ) : (
@@ -90,15 +92,11 @@ const CultivoList = () => {
                       <button
                         onClick={() => navigate(`/cultivo/${item.idCultivo || item.id}`)}
                         className="btn btn-sm btn-primary"
-                      >
-                        Editar
-                      </button>
+                      >{t('common.edit')}</button>
                       <button
                         onClick={() => handleDelete(item.idCultivo || item.id)}
                         className="btn btn-sm btn-danger"
-                      >
-                        Eliminar
-                      </button>
+                      >{t('common.delete')}</button>
                     </div>
                   </td>
                 </tr>

@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { GoogleLogin } from '@react-oauth/google';
+import { useTranslation } from 'react-i18next';
 import { useAuth } from '../../context/AuthContext';
+import LanguageSelector from '../../components/common/LanguageSelector';
 import './Login.css';
 
 /**
@@ -13,6 +15,7 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const { t } = useTranslation();
 
   const { login, loginWithGoogle } = useAuth();
   const navigate = useNavigate();
@@ -52,43 +55,46 @@ const Login = () => {
   return (
     <div className="login-container">
       <div className="login-card">
+        <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '10px' }}>
+          <LanguageSelector />
+        </div>
         <div className="login-header">
-          <h1>🌱 Invernadero Automatizado</h1>
-          <h2>Iniciar Sesión</h2>
+          <h1>{t('login.title')}</h1>
+          <h2>{t('login.subtitle')}</h2>
         </div>
 
         {error && <div className="error-message">{error}</div>}
 
         <form onSubmit={handleSubmit} className="login-form">
           <div className="form-group">
-            <label htmlFor="email">Email</label>
+            <label htmlFor="email">{t('login.emailLabel')}</label>
             <input
               type="email"
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              placeholder="tu@email.com"
+              placeholder={t('login.emailPlaceholder')}
               disabled={loading}
             />
           </div>
 
           <div className="form-group">
-            <label htmlFor="password">Contraseña</label>
+            <label htmlFor="password">{t('login.passwordLabel')}</label>
             <input
               type="password"
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              placeholder="••••••••"
+              placeholder={t('login.passwordPlaceholder')}
               disabled={loading}
               minLength={6}
             />
           </div>
 
           <button type="submit" className="login-btn" disabled={loading}>
-            {loading ? 'Iniciando sesión...' : 'Iniciar Sesión'}
+            {loading ? t('login.loading') : t('login.loginButton')}
           </button>
         </form>
 
@@ -104,7 +110,7 @@ const Login = () => {
 
         <div className="login-footer">
           <p>
-            ¿No tienes cuenta? <Link to="/register">Regístrate aquí</Link>
+            {t('login.noAccount')} <Link to="/register">{t('login.registerHere')}</Link>
           </p>
         </div>
       </div>

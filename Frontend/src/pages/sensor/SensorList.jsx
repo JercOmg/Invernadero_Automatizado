@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import sensorService from '../../services/sensorService';
 import './SensorList.css';
 
@@ -11,6 +12,7 @@ const SensorList = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   useEffect(() => {
     loadItems();
@@ -22,7 +24,7 @@ const SensorList = () => {
       const data = await sensorService.getAll();
       setItems(data.content || data);
     } catch (err) {
-      setError('Error al cargar los datos');
+      setError(t('common.errorLoading'));
       console.error(err);
     } finally {
       setLoading(false);
@@ -30,12 +32,12 @@ const SensorList = () => {
   };
 
   const handleDelete = async (id) => {
-    if (window.confirm('¿Estás seguro de eliminar este registro?')) {
+    if (window.confirm(t('common.confirmDelete'))) {
       try {
         await sensorService.delete(id);
         loadItems();
       } catch (err) {
-        alert('Error al eliminar el registro');
+        alert(t('common.errorDeleting'));
         console.error(err);
       }
     }
@@ -54,7 +56,7 @@ const SensorList = () => {
       <div className="list-header">
         <h1>Sensor</h1>
         <Link to="/sensor/new" className="btn btn-primary">
-          Crear Nuevo
+          {t('common.createNew')}
         </Link>
       </div>
 
@@ -67,14 +69,14 @@ const SensorList = () => {
             <th>Modelo</th>
             <th>Unidad Medida</th>
             <th>Fecha Instalacion</th>
-              <th>Acciones</th>
+              <th>{t('common.actions')}</th>
             </tr>
           </thead>
           <tbody>
             {items.length === 0 ? (
               <tr>
                 <td colSpan="{100}" style={{ textAlign: 'center' }}>
-                  No hay registros disponibles
+                  {t('common.noRecords')}
                 </td>
               </tr>
             ) : (
@@ -90,15 +92,11 @@ const SensorList = () => {
                       <button
                         onClick={() => navigate(`/sensor/${item.idSensor || item.id}`)}
                         className="btn btn-sm btn-primary"
-                      >
-                        Editar
-                      </button>
+                      >{t('common.edit')}</button>
                       <button
                         onClick={() => handleDelete(item.idSensor || item.id)}
                         className="btn btn-sm btn-danger"
-                      >
-                        Eliminar
-                      </button>
+                      >{t('common.delete')}</button>
                     </div>
                   </td>
                 </tr>

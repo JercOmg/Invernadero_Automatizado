@@ -1,5 +1,6 @@
 import React from 'react';
 import { useAuth } from '../../context/AuthContext';
+import { useTranslation } from 'react-i18next';
 import './Dashboard.css';
 
 /**
@@ -8,90 +9,91 @@ import './Dashboard.css';
  */
 const Dashboard = () => {
   const { user } = useAuth();
+  const { t } = useTranslation();
 
   return (
     <div className="dashboard">
       <div className="dashboard-header">
-        <h1>Bienvenido, {user?.nombre} {user?.apellido}</h1>
-        <p className="user-role">Rol: {user?.rol}</p>
+        <h1>{t('dashboard.welcome')}, {user?.nombre} {user?.apellido}</h1>
+        <p className="user-role">{t('dashboard.role')}: {user?.rol}</p>
       </div>
 
       <div className="dashboard-grid">
         <div className="dashboard-card">
           <div className="card-icon">🏠</div>
-          <h3>Invernaderos</h3>
-          <p>Gestiona las instalaciones físicas de invernadero</p>
-          <a href="/invernadero" className="card-link">Ver Invernaderos →</a>
+          <h3>{t('menu.invernaderos')}</h3>
+          <p>{t('dashboard.descInvernaderos')}</p>
+          <a href="/invernadero" className="card-link">{t('dashboard.viewInvernaderos')}</a>
         </div>
 
         <div className="dashboard-card">
           <div className="card-icon">📍</div>
-          <h3>Zonas</h3>
-          <p>Administra las zonas dentro de cada invernadero</p>
-          <a href="/zona" className="card-link">Ver Zonas →</a>
+          <h3>{t('menu.zonas')}</h3>
+          <p>{t('dashboard.descZonas')}</p>
+          <a href="/zona" className="card-link">{t('dashboard.viewZonas')}</a>
         </div>
 
         <div className="dashboard-card">
           <div className="card-icon">🌾</div>
-          <h3>Cultivos</h3>
-          <p>Catálogo de especies y variedades cultivadas</p>
-          <a href="/cultivo" className="card-link">Ver Cultivos →</a>
+          <h3>{t('menu.cultivos')}</h3>
+          <p>{t('dashboard.descCultivos')}</p>
+          <a href="/cultivo" className="card-link">{t('dashboard.viewCultivos')}</a>
         </div>
 
         <div className="dashboard-card">
           <div className="card-icon">🌱</div>
-          <h3>Siembras</h3>
-          <p>Registro de eventos de siembra realizados</p>
-          <a href="/siembra" className="card-link">Ver Siembras →</a>
+          <h3>{t('menu.siembras')}</h3>
+          <p>{t('dashboard.descSiembras')}</p>
+          <a href="/siembra" className="card-link">{t('dashboard.viewSiembras')}</a>
         </div>
 
         <div className="dashboard-card">
           <div className="card-icon">📡</div>
-          <h3>Sensores</h3>
-          <p>Dispositivos de medición instalados</p>
-          <a href="/sensor" className="card-link">Ver Sensores →</a>
+          <h3>{t('menu.sensores')}</h3>
+          <p>{t('dashboard.descSensores')}</p>
+          <a href="/sensor" className="card-link">{t('dashboard.viewSensores')}</a>
         </div>
 
         <div className="dashboard-card">
           <div className="card-icon">📊</div>
-          <h3>Lecturas</h3>
-          <p>Serie temporal de mediciones de sensores</p>
-          <a href="/lectura_sensor" className="card-link">Ver Lecturas →</a>
+          <h3>{t('dashboard.titleLecturas')}</h3>
+          <p>{t('dashboard.descLecturas')}</p>
+          <a href="/lectura_sensor" className="card-link">{t('dashboard.viewLecturas')}</a>
         </div>
 
         <div className="dashboard-card">
           <div className="card-icon">💧</div>
-          <h3>Riego</h3>
-          <p>Eventos de riego automáticos y manuales</p>
-          <a href="/riego" className="card-link">Ver Riego →</a>
+          <h3>{t('menu.riego')}</h3>
+          <p>{t('dashboard.descRiego')}</p>
+          <a href="/riego" className="card-link">{t('dashboard.viewRiego')}</a>
         </div>
 
         <div className="dashboard-card">
           <div className="card-icon">⚠️</div>
-          <h3>Alertas</h3>
-          <p>Notificaciones de condiciones anómalas</p>
-          <a href="/alerta" className="card-link">Ver Alertas →</a>
+          <h3>{t('menu.alertas')}</h3>
+          <p>{t('dashboard.descAlertas')}</p>
+          <a href="/alerta" className="card-link">{t('dashboard.viewAlertas')}</a>
         </div>
 
         <div className="dashboard-card">
           <div className="card-icon">🧪</div>
-          <h3>Insumos</h3>
-          <p>Inventario de fertilizantes y pesticidas</p>
-          <a href="/insumo" className="card-link">Ver Insumos →</a>
+          <h3>{t('menu.insumos')}</h3>
+          <p>{t('dashboard.descInsumos')}</p>
+          <a href="/insumo" className="card-link">{t('dashboard.viewInsumos')}</a>
         </div>
 
         <div className="dashboard-card">
           <div className="card-icon">💉</div>
-          <h3>Aplicaciones</h3>
-          <p>Historial de aplicación de insumos</p>
-          <a href="/aplicacion_insumo" className="card-link">Ver Aplicaciones →</a>
+          <h3>{t('dashboard.titleAplicaciones')}</h3>
+          <p>{t('dashboard.descAplicaciones')}</p>
+          <a href="/aplicacion_insumo" className="card-link">{t('dashboard.viewAplicaciones')}</a>
         </div>
 
         <div className="dashboard-card">
           <div className="card-icon">🌽</div>
-          <h3>Cosechas</h3>
-          <p>Registro de producción cosechada</p>
-          <a href="/cosecha" className="card-link">Ver Cosechas →</a>
+          <h3>{t('dashboard.titleCosechas')}</h3>
+          <p>{t('dashboard.descCosechas')}</p>
+          <a href="/cosecha" className="card-link">{t('dashboard.viewCosechas')}</a>
         </div>
       </div>
     </div>
