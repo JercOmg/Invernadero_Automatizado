@@ -1,3 +1,10 @@
+/**
+ * Proyecto: Sistema Invernadero Automatizado
+ * Modulo: LecturaSensorService
+ * Autor: Invernadero Team
+ * Fecha: 2026-05-19
+ * Descripcion: Clase para LecturaSensorService
+ */
 package com.invernadero.invernadero_backend.lectura_sensor.application.service;
 
 import com.invernadero.invernadero_backend.lectura_sensor.application.dto.LecturaSensorRequest;

@@ -1,3 +1,10 @@
+/**
+ * Proyecto: Sistema Invernadero Automatizado
+ * Modulo: ZonaResponse
+ * Autor: Invernadero Team
+ * Fecha: 2026-05-19
+ * Descripcion: Clase para ZonaResponse
+ */
 package com.invernadero.invernadero_backend.zona.application.dto;
 
 import lombok.AllArgsConstructor;

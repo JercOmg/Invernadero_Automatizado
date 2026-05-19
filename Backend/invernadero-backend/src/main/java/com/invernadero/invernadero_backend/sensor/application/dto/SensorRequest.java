@@ -1,3 +1,10 @@
+/**
+ * Proyecto: Sistema Invernadero Automatizado
+ * Modulo: SensorRequest
+ * Autor: Invernadero Team
+ * Fecha: 2026-05-19
+ * Descripcion: Clase para SensorRequest
+ */
 package com.invernadero.invernadero_backend.sensor.application.dto;
 
 import jakarta.validation.constraints.*;

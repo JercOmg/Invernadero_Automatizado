@@ -1,3 +1,10 @@
+/**
+ * Proyecto: Sistema Invernadero Automatizado
+ * Modulo: CosechaResponse
+ * Autor: Invernadero Team
+ * Fecha: 2026-05-19
+ * Descripcion: Clase para CosechaResponse
+ */
 package com.invernadero.invernadero_backend.cosecha.application.dto;
 
 import lombok.AllArgsConstructor;

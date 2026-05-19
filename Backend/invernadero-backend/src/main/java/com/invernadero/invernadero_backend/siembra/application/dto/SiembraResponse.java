@@ -1,3 +1,10 @@
+/**
+ * Proyecto: Sistema Invernadero Automatizado
+ * Modulo: SiembraResponse
+ * Autor: Invernadero Team
+ * Fecha: 2026-05-19
+ * Descripcion: Clase para SiembraResponse
+ */
 package com.invernadero.invernadero_backend.siembra.application.dto;
 
 import lombok.AllArgsConstructor;

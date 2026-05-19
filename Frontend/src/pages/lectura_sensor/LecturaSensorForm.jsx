@@ -1,3 +1,10 @@
+/**
+ * Proyecto: Sistema Invernadero Automatizado
+ * Modulo: LecturaSensorForm
+ * Autor: Invernadero Team
+ * Fecha: 2026-05-19
+ * Descripcion: Componente/Servicio LecturaSensorForm
+ */
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import lecturaSensorService from '../../services/lecturaSensorService';
@@ -5,6 +12,10 @@ import './LecturaSensorForm.css';
 
 /**
  * Componente para crear/editar LecturaSensor
+ */
+/**
+ * Componente LecturaSensorForm
+ * @returns {JSX.Element}
  */
 const LecturaSensorForm = () => {
   const [formData, setFormData] = useState({});

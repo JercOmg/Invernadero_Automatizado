@@ -1,3 +1,10 @@
+/**
+ * Proyecto: Sistema Invernadero Automatizado
+ * Modulo: Usuario
+ * Autor: Invernadero Team
+ * Fecha: 2026-05-19
+ * Descripcion: Clase para Usuario
+ */
 package com.invernadero.invernadero_backend.auth.domain.model;
 
 import jakarta.persistence.*;

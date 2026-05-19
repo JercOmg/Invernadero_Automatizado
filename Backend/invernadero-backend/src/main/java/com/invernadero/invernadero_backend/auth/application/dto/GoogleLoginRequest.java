@@ -1,3 +1,10 @@
+/**
+ * Proyecto: Sistema Invernadero Automatizado
+ * Modulo: GoogleLoginRequest
+ * Autor: Invernadero Team
+ * Fecha: 2026-05-19
+ * Descripcion: Clase para GoogleLoginRequest
+ */
 package com.invernadero.invernadero_backend.auth.application.dto;
 
 import jakarta.validation.constraints.NotBlank;

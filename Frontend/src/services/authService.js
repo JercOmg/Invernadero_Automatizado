@@ -1,3 +1,10 @@
+/**
+ * Proyecto: Sistema Invernadero Automatizado
+ * Modulo: authService
+ * Autor: Invernadero Team
+ * Fecha: 2026-05-19
+ * Descripcion: Componente/Servicio authService
+ */
 import apiClient from './api';
 
 /**

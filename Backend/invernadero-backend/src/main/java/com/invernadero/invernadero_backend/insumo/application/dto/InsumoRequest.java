@@ -1,3 +1,10 @@
+/**
+ * Proyecto: Sistema Invernadero Automatizado
+ * Modulo: InsumoRequest
+ * Autor: Invernadero Team
+ * Fecha: 2026-05-19
+ * Descripcion: Clase para InsumoRequest
+ */
 package com.invernadero.invernadero_backend.insumo.application.dto;
 
 import jakarta.validation.constraints.*;

@@ -1,3 +1,10 @@
+/**
+ * Proyecto: Sistema Invernadero Automatizado
+ * Modulo: SensorController
+ * Autor: Invernadero Team
+ * Fecha: 2026-05-19
+ * Descripcion: Clase para SensorController
+ */
 package com.invernadero.invernadero_backend.sensor.infrastructure.rest;
 
 import com.invernadero.invernadero_backend.sensor.application.dto.SensorRequest;

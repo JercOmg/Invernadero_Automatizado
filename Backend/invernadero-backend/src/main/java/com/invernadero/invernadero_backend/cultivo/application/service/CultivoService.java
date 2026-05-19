@@ -1,3 +1,10 @@
+/**
+ * Proyecto: Sistema Invernadero Automatizado
+ * Modulo: CultivoService
+ * Autor: Invernadero Team
+ * Fecha: 2026-05-19
+ * Descripcion: Clase para CultivoService
+ */
 package com.invernadero.invernadero_backend.cultivo.application.service;
 
 import com.invernadero.invernadero_backend.cultivo.application.dto.CultivoRequest;

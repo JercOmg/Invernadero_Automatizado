@@ -1,7 +1,18 @@
+/**
+ * Proyecto: Sistema Invernadero Automatizado
+ * Modulo: LanguageSelector
+ * Autor: Invernadero Team
+ * Fecha: 2026-05-19
+ * Descripcion: Componente/Servicio LanguageSelector
+ */
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import './LanguageSelector.css';
 
+/**
+ * Componente LanguageSelector
+ * @returns {JSX.Element}
+ */
 const LanguageSelector = () => {
   const { i18n, t } = useTranslation();
 

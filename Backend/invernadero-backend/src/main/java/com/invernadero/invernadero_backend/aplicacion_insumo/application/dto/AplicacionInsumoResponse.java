@@ -1,3 +1,10 @@
+/**
+ * Proyecto: Sistema Invernadero Automatizado
+ * Modulo: AplicacionInsumoResponse
+ * Autor: Invernadero Team
+ * Fecha: 2026-05-19
+ * Descripcion: Clase para AplicacionInsumoResponse
+ */
 package com.invernadero.invernadero_backend.aplicacion_insumo.application.dto;
 
 import lombok.AllArgsConstructor;

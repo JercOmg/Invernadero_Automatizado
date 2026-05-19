@@ -1,3 +1,10 @@
+/**
+ * Proyecto: Sistema Invernadero Automatizado
+ * Modulo: SiembraForm
+ * Autor: Invernadero Team
+ * Fecha: 2026-05-19
+ * Descripcion: Componente/Servicio SiembraForm
+ */
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import siembraService from '../../services/siembraService';

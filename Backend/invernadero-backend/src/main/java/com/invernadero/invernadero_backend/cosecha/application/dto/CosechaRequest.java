@@ -1,3 +1,10 @@
+/**
+ * Proyecto: Sistema Invernadero Automatizado
+ * Modulo: CosechaRequest
+ * Autor: Invernadero Team
+ * Fecha: 2026-05-19
+ * Descripcion: Clase para CosechaRequest
+ */
 package com.invernadero.invernadero_backend.cosecha.application.dto;
 
 import jakarta.validation.constraints.*;

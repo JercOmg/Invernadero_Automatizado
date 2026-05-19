@@ -1,3 +1,10 @@
+/**
+ * Proyecto: Sistema Invernadero Automatizado
+ * Modulo: LecturaSensor
+ * Autor: Invernadero Team
+ * Fecha: 2026-05-19
+ * Descripcion: Clase para LecturaSensor
+ */
 package com.invernadero.invernadero_backend.lectura_sensor.domain.model;
 
 import jakarta.persistence.*;

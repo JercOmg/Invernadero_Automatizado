@@ -1,3 +1,10 @@
+/**
+ * Proyecto: Sistema Invernadero Automatizado
+ * Modulo: AlertaService
+ * Autor: Invernadero Team
+ * Fecha: 2026-05-19
+ * Descripcion: Clase para AlertaService
+ */
 package com.invernadero.invernadero_backend.alerta.application.service;
 
 import com.invernadero.invernadero_backend.alerta.application.dto.AlertaRequest;

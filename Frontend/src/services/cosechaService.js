@@ -1,3 +1,10 @@
+/**
+ * Proyecto: Sistema Invernadero Automatizado
+ * Modulo: cosechaService
+ * Autor: Invernadero Team
+ * Fecha: 2026-05-19
+ * Descripcion: Componente/Servicio cosechaService
+ */
 import apiClient from './api';
 
 /**

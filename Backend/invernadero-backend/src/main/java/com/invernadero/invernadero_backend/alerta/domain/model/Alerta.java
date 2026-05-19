@@ -1,3 +1,10 @@
+/**
+ * Proyecto: Sistema Invernadero Automatizado
+ * Modulo: Alerta
+ * Autor: Invernadero Team
+ * Fecha: 2026-05-19
+ * Descripcion: Clase para Alerta
+ */
 package com.invernadero.invernadero_backend.alerta.domain.model;
 
 import jakarta.persistence.*;

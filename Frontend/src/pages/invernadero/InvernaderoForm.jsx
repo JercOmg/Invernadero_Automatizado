@@ -1,3 +1,10 @@
+/**
+ * Proyecto: Sistema Invernadero Automatizado
+ * Modulo: InvernaderoForm
+ * Autor: Invernadero Team
+ * Fecha: 2026-05-19
+ * Descripcion: Componente/Servicio InvernaderoForm
+ */
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import invernaderoService from '../../services/invernaderoService';
@@ -5,6 +12,10 @@ import './InvernaderoForm.css';
 
 /**
  * Componente para crear/editar Invernadero
+ */
+/**
+ * Componente InvernaderoForm
+ * @returns {JSX.Element}
  */
 const InvernaderoForm = () => {
   const [formData, setFormData] = useState({});

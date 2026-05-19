@@ -1,3 +1,10 @@
+/**
+ * Proyecto: Sistema Invernadero Automatizado
+ * Modulo: RiegoRepository
+ * Autor: Invernadero Team
+ * Fecha: 2026-05-19
+ * Descripcion: Clase para RiegoRepository
+ */
 package com.invernadero.invernadero_backend.riego.domain.repository;
 
 import com.invernadero.invernadero_backend.riego.domain.model.Riego;

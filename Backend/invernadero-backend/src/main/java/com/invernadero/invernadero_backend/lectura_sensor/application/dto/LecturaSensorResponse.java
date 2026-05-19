@@ -1,3 +1,10 @@
+/**
+ * Proyecto: Sistema Invernadero Automatizado
+ * Modulo: LecturaSensorResponse
+ * Autor: Invernadero Team
+ * Fecha: 2026-05-19
+ * Descripcion: Clase para LecturaSensorResponse
+ */
 package com.invernadero.invernadero_backend.lectura_sensor.application.dto;
 
 import lombok.AllArgsConstructor;

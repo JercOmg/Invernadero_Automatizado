@@ -1,3 +1,10 @@
+/**
+ * Proyecto: Sistema Invernadero Automatizado
+ * Modulo: SiembraController
+ * Autor: Invernadero Team
+ * Fecha: 2026-05-19
+ * Descripcion: Clase para SiembraController
+ */
 package com.invernadero.invernadero_backend.siembra.infrastructure.rest;
 
 import com.invernadero.invernadero_backend.siembra.application.dto.SiembraRequest;

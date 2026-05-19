@@ -1,3 +1,10 @@
+/**
+ * Proyecto: Sistema Invernadero Automatizado
+ * Modulo: JwtAuthenticationFilter
+ * Autor: Invernadero Team
+ * Fecha: 2026-05-19
+ * Descripcion: Clase para JwtAuthenticationFilter
+ */
 package com.invernadero.invernadero_backend.auth.infrastructure.security;
 
 import com.invernadero.invernadero_backend.shared.exception.UnauthorizedException;

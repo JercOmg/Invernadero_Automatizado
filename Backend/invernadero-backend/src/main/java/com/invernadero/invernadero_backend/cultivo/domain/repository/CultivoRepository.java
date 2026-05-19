@@ -1,3 +1,10 @@
+/**
+ * Proyecto: Sistema Invernadero Automatizado
+ * Modulo: CultivoRepository
+ * Autor: Invernadero Team
+ * Fecha: 2026-05-19
+ * Descripcion: Clase para CultivoRepository
+ */
 package com.invernadero.invernadero_backend.cultivo.domain.repository;
 
 import com.invernadero.invernadero_backend.cultivo.domain.model.Cultivo;

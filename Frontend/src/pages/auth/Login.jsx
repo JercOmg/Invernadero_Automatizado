@@ -1,3 +1,10 @@
+/**
+ * Proyecto: Sistema Invernadero Automatizado
+ * Modulo: Login
+ * Autor: Invernadero Team
+ * Fecha: 2026-05-19
+ * Descripcion: Componente/Servicio Login
+ */
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { GoogleLogin } from '@react-oauth/google';
@@ -9,6 +16,10 @@ import './Login.css';
 /**
  * Página de login
  * Permite a los usuarios autenticarse en el sistema
+ */
+/**
+ * Componente Login
+ * @returns {JSX.Element}
  */
 const Login = () => {
   const [email, setEmail] = useState('');

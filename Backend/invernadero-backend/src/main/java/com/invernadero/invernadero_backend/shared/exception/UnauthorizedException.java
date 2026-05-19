@@ -1,3 +1,10 @@
+/**
+ * Proyecto: Sistema Invernadero Automatizado
+ * Modulo: UnauthorizedException
+ * Autor: Invernadero Team
+ * Fecha: 2026-05-19
+ * Descripcion: Clase para UnauthorizedException
+ */
 package com.invernadero.invernadero_backend.shared.exception;
 
 /**

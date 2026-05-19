@@ -1,3 +1,10 @@
+/**
+ * Proyecto: Sistema Invernadero Automatizado
+ * Modulo: CosechaController
+ * Autor: Invernadero Team
+ * Fecha: 2026-05-19
+ * Descripcion: Clase para CosechaController
+ */
 package com.invernadero.invernadero_backend.cosecha.infrastructure.rest;
 
 import com.invernadero.invernadero_backend.cosecha.application.dto.CosechaRequest;

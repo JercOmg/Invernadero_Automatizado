@@ -1,3 +1,10 @@
+/**
+ * Proyecto: Sistema Invernadero Automatizado
+ * Modulo: Register
+ * Autor: Invernadero Team
+ * Fecha: 2026-05-19
+ * Descripcion: Componente/Servicio Register
+ */
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { GoogleLogin } from '@react-oauth/google';
@@ -7,6 +14,10 @@ import './Register.css';
 /**
  * Página de registro
  * Permite a nuevos usuarios crear una cuenta
+ */
+/**
+ * Componente Register
+ * @returns {JSX.Element}
  */
 const Register = () => {
   const [formData, setFormData] = useState({

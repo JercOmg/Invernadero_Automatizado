@@ -1,3 +1,10 @@
+/**
+ * Proyecto: Sistema Invernadero Automatizado
+ * Modulo: ProtectedRoute
+ * Autor: Invernadero Team
+ * Fecha: 2026-05-19
+ * Descripcion: Componente/Servicio ProtectedRoute
+ */
 import React from 'react';
 import { Navigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
@@ -5,6 +12,10 @@ import { useAuth } from '../../context/AuthContext';
 /**
  * Componente para proteger rutas que requieren autenticación
  * Redirige al login si el usuario no está autenticado
+ */
+/**
+ * Componente ProtectedRoute
+ * @returns {JSX.Element}
  */
 const ProtectedRoute = ({ children, requiredRoles = [] }) => {
   const { isAuthenticated, user, loading } = useAuth();

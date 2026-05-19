@@ -1,3 +1,10 @@
+/**
+ * Proyecto: Sistema Invernadero Automatizado
+ * Modulo: InvernaderoController
+ * Autor: Invernadero Team
+ * Fecha: 2026-05-19
+ * Descripcion: Clase para InvernaderoController
+ */
 package com.invernadero.invernadero_backend.invernadero.infrastructure.rest;
 
 import com.invernadero.invernadero_backend.invernadero.application.dto.InvernaderoRequest;

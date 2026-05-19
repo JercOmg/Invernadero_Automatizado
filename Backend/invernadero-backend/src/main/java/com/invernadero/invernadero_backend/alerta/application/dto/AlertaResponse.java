@@ -1,3 +1,10 @@
+/**
+ * Proyecto: Sistema Invernadero Automatizado
+ * Modulo: AlertaResponse
+ * Autor: Invernadero Team
+ * Fecha: 2026-05-19
+ * Descripcion: Clase para AlertaResponse
+ */
 package com.invernadero.invernadero_backend.alerta.application.dto;
 
 import lombok.AllArgsConstructor;

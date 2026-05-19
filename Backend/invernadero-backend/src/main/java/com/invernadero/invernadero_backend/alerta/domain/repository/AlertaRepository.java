@@ -1,3 +1,10 @@
+/**
+ * Proyecto: Sistema Invernadero Automatizado
+ * Modulo: AlertaRepository
+ * Autor: Invernadero Team
+ * Fecha: 2026-05-19
+ * Descripcion: Clase para AlertaRepository
+ */
 package com.invernadero.invernadero_backend.alerta.domain.repository;
 
 import com.invernadero.invernadero_backend.alerta.domain.model.Alerta;

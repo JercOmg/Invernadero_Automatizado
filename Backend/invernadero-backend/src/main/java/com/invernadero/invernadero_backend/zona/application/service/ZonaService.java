@@ -1,3 +1,10 @@
+/**
+ * Proyecto: Sistema Invernadero Automatizado
+ * Modulo: ZonaService
+ * Autor: Invernadero Team
+ * Fecha: 2026-05-19
+ * Descripcion: Clase para ZonaService
+ */
 package com.invernadero.invernadero_backend.zona.application.service;
 
 import com.invernadero.invernadero_backend.zona.application.dto.ZonaRequest;

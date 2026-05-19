@@ -1,3 +1,10 @@
+/**
+ * Proyecto: Sistema Invernadero Automatizado
+ * Modulo: SensorService
+ * Autor: Invernadero Team
+ * Fecha: 2026-05-19
+ * Descripcion: Clase para SensorService
+ */
 package com.invernadero.invernadero_backend.sensor.application.service;
 
 import com.invernadero.invernadero_backend.sensor.application.dto.SensorRequest;

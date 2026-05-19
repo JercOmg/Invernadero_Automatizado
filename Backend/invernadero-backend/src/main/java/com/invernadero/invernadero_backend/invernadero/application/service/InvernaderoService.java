@@ -1,3 +1,10 @@
+/**
+ * Proyecto: Sistema Invernadero Automatizado
+ * Modulo: InvernaderoService
+ * Autor: Invernadero Team
+ * Fecha: 2026-05-19
+ * Descripcion: Clase para InvernaderoService
+ */
 package com.invernadero.invernadero_backend.invernadero.application.service;
 
 import com.invernadero.invernadero_backend.invernadero.application.dto.InvernaderoRequest;

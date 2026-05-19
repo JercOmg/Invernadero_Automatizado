@@ -1,3 +1,10 @@
+/**
+ * Proyecto: Sistema Invernadero Automatizado
+ * Modulo: CultivoRequest
+ * Autor: Invernadero Team
+ * Fecha: 2026-05-19
+ * Descripcion: Clase para CultivoRequest
+ */
 package com.invernadero.invernadero_backend.cultivo.application.dto;
 
 import jakarta.validation.constraints.*;

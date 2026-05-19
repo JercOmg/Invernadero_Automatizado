@@ -1,3 +1,10 @@
+/**
+ * Proyecto: Sistema Invernadero Automatizado
+ * Modulo: InsumoRepository
+ * Autor: Invernadero Team
+ * Fecha: 2026-05-19
+ * Descripcion: Clase para InsumoRepository
+ */
 package com.invernadero.invernadero_backend.insumo.domain.repository;
 
 import com.invernadero.invernadero_backend.insumo.domain.model.Insumo;

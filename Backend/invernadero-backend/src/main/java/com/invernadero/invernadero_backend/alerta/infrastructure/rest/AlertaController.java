@@ -1,3 +1,10 @@
+/**
+ * Proyecto: Sistema Invernadero Automatizado
+ * Modulo: AlertaController
+ * Autor: Invernadero Team
+ * Fecha: 2026-05-19
+ * Descripcion: Clase para AlertaController
+ */
 package com.invernadero.invernadero_backend.alerta.infrastructure.rest;
 
 import com.invernadero.invernadero_backend.alerta.application.dto.AlertaRequest;

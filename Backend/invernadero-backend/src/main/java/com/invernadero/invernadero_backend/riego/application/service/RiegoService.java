@@ -1,3 +1,10 @@
+/**
+ * Proyecto: Sistema Invernadero Automatizado
+ * Modulo: RiegoService
+ * Autor: Invernadero Team
+ * Fecha: 2026-05-19
+ * Descripcion: Clase para RiegoService
+ */
 package com.invernadero.invernadero_backend.riego.application.service;
 
 import com.invernadero.invernadero_backend.riego.application.dto.RiegoRequest;

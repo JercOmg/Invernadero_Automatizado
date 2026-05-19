@@ -1,5 +1,14 @@
+/**
+ * Proyecto: Sistema Invernadero Automatizado
+ * Modulo: GlobalExceptionHandler
+ * Autor: Invernadero Team
+ * Fecha: 2026-05-19
+ * Descripcion: Clase para GlobalExceptionHandler
+ */
 package com.invernadero.invernadero_backend.shared.exception;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import com.invernadero.invernadero_backend.shared.dto.ErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +32,7 @@ import java.util.Map;
  * @version 1.0.0
  */
 @RestControllerAdvice
+@Tag(name = "GlobalExceptionHandler", description = "API para operaciones de GlobalExceptionHandler")
 public class GlobalExceptionHandler {
     
     /**

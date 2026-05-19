@@ -1,3 +1,10 @@
+/**
+ * Proyecto: Sistema Invernadero Automatizado
+ * Modulo: LoginRequest
+ * Autor: Invernadero Team
+ * Fecha: 2026-05-19
+ * Descripcion: Clase para LoginRequest
+ */
 package com.invernadero.invernadero_backend.auth.application.dto;
 
 import jakarta.validation.constraints.Email;

@@ -1,3 +1,10 @@
+/**
+ * Proyecto: Sistema Invernadero Automatizado
+ * Modulo: Siembra
+ * Autor: Invernadero Team
+ * Fecha: 2026-05-19
+ * Descripcion: Clase para Siembra
+ */
 package com.invernadero.invernadero_backend.siembra.domain.model;
 
 import jakarta.persistence.*;

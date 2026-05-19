@@ -1,3 +1,10 @@
+/**
+ * Proyecto: Sistema Invernadero Automatizado
+ * Modulo: Cultivo
+ * Autor: Invernadero Team
+ * Fecha: 2026-05-19
+ * Descripcion: Clase para Cultivo
+ */
 package com.invernadero.invernadero_backend.cultivo.domain.model;
 
 import jakarta.persistence.*;

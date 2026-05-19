@@ -1,3 +1,10 @@
+/**
+ * Proyecto: Sistema Invernadero Automatizado
+ * Modulo: Cosecha
+ * Autor: Invernadero Team
+ * Fecha: 2026-05-19
+ * Descripcion: Clase para Cosecha
+ */
 package com.invernadero.invernadero_backend.cosecha.domain.model;
 
 import jakarta.persistence.*;

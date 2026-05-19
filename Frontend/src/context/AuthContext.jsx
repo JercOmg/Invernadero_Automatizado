@@ -1,3 +1,10 @@
+/**
+ * Proyecto: Sistema Invernadero Automatizado
+ * Modulo: AuthContext
+ * Autor: Invernadero Team
+ * Fecha: 2026-05-19
+ * Descripcion: Componente/Servicio AuthContext
+ */
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import authService from '../services/authService';
 
@@ -18,7 +25,11 @@ export const useAuth = () => {
  * Proveedor del contexto de autenticación
  * Maneja el estado de autenticación global de la aplicación
  */
-export const AuthProvider = ({ children }) => {
+export /**
+ * Componente AuthProvider
+ * @returns {JSX.Element}
+ */
+const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 

@@ -1,3 +1,10 @@
+/**
+ * Proyecto: Sistema Invernadero Automatizado
+ * Modulo: ErrorResponse
+ * Autor: Invernadero Team
+ * Fecha: 2026-05-19
+ * Descripcion: Clase para ErrorResponse
+ */
 package com.invernadero.invernadero_backend.shared.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;

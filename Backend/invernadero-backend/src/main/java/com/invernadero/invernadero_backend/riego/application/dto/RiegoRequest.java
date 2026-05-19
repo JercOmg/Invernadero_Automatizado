@@ -1,3 +1,10 @@
+/**
+ * Proyecto: Sistema Invernadero Automatizado
+ * Modulo: RiegoRequest
+ * Autor: Invernadero Team
+ * Fecha: 2026-05-19
+ * Descripcion: Clase para RiegoRequest
+ */
 package com.invernadero.invernadero_backend.riego.application.dto;
 
 import jakarta.validation.constraints.*;

@@ -1,3 +1,10 @@
+/**
+ * Proyecto: Sistema Invernadero Automatizado
+ * Modulo: BusinessException
+ * Autor: Invernadero Team
+ * Fecha: 2026-05-19
+ * Descripcion: Clase para BusinessException
+ */
 package com.invernadero.invernadero_backend.shared.exception;
 
 /**

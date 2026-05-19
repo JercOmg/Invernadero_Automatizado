@@ -1,3 +1,10 @@
+/**
+ * Proyecto: Sistema Invernadero Automatizado
+ * Modulo: RiegoResponse
+ * Autor: Invernadero Team
+ * Fecha: 2026-05-19
+ * Descripcion: Clase para RiegoResponse
+ */
 package com.invernadero.invernadero_backend.riego.application.dto;
 
 import lombok.AllArgsConstructor;

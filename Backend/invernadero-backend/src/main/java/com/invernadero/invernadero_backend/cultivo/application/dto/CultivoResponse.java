@@ -1,3 +1,10 @@
+/**
+ * Proyecto: Sistema Invernadero Automatizado
+ * Modulo: CultivoResponse
+ * Autor: Invernadero Team
+ * Fecha: 2026-05-19
+ * Descripcion: Clase para CultivoResponse
+ */
 package com.invernadero.invernadero_backend.cultivo.application.dto;
 
 import lombok.AllArgsConstructor;

@@ -1,3 +1,10 @@
+/**
+ * Proyecto: Sistema Invernadero Automatizado
+ * Modulo: Sensor
+ * Autor: Invernadero Team
+ * Fecha: 2026-05-19
+ * Descripcion: Clase para Sensor
+ */
 package com.invernadero.invernadero_backend.sensor.domain.model;
 
 import jakarta.persistence.*;

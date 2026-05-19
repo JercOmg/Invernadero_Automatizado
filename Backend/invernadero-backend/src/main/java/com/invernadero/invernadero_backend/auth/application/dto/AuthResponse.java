@@ -1,3 +1,10 @@
+/**
+ * Proyecto: Sistema Invernadero Automatizado
+ * Modulo: AuthResponse
+ * Autor: Invernadero Team
+ * Fecha: 2026-05-19
+ * Descripcion: Clase para AuthResponse
+ */
 package com.invernadero.invernadero_backend.auth.application.dto;
 
 import com.invernadero.invernadero_backend.auth.domain.model.Usuario;

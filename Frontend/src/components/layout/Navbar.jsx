@@ -1,3 +1,10 @@
+/**
+ * Proyecto: Sistema Invernadero Automatizado
+ * Modulo: Navbar
+ * Autor: Invernadero Team
+ * Fecha: 2026-05-19
+ * Descripcion: Componente/Servicio Navbar
+ */
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -8,6 +15,10 @@ import './Navbar.css';
 /**
  * Componente de barra de navegación
  * Muestra el menú principal y opciones de usuario
+ */
+/**
+ * Componente Navbar
+ * @returns {JSX.Element}
  */
 const Navbar = () => {
   const { user, logout, isAuthenticated } = useAuth();

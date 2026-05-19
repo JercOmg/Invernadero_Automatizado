@@ -1,3 +1,10 @@
+/**
+ * Proyecto: Sistema Invernadero Automatizado
+ * Modulo: UsuarioRepository
+ * Autor: Invernadero Team
+ * Fecha: 2026-05-19
+ * Descripcion: Clase para UsuarioRepository
+ */
 package com.invernadero.invernadero_backend.auth.domain.repository;
 
 import com.invernadero.invernadero_backend.auth.domain.model.Usuario;

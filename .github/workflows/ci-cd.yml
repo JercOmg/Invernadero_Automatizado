@@ -47,17 +47,18 @@ jobs:
       
       - name: 🚨 Crear tarea en Taiga si falla
         if: failure()
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const issue = await github.rest.issues.create({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              title: `[CI/CD] Tests Python fallaron - ${context.sha.substring(0, 7)}`,
-              body: `❌ Los tests de Python fallaron en el commit ${context.sha}\n\n**Branch:** ${context.ref}\n**Workflow:** ${context.workflow}\n**Run:** ${context.runNumber}\n\n[Ver logs](${context.payload.repository.html_url}/actions/runs/${context.runId})`,
-              labels: ['bug', 'ci-failure', 'python']
-            });
-            console.log(`Issue creado: ${issue.data.html_url}`);
+        env:
+          TAIGA_BEARER_TOKEN: ${{ secrets.TAIGA_BEARER_TOKEN }}
+          TAIGA_PROJECT_ID: ${{ secrets.TAIGA_PROJECT_ID }}
+        run: |
+          curl -X POST "https://api.taiga.io/api/v1/userstories" \
+            -H "Authorization: Bearer $TAIGA_BEARER_TOKEN" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "project": '${TAIGA_PROJECT_ID}',
+              "subject": "[CI/CD] Tests Python fallaron - '${GITHUB_SHA::7}'",
+              "description": "❌ Los tests de Python fallaron en el commit '${GITHUB_SHA}'.\n\n**Branch:** '${GITHUB_REF}'\n**Workflow:** '${GITHUB_WORKFLOW}'\n**Run:** '${GITHUB_RUN_NUMBER}'\n\n[Ver logs]('${GITHUB_SERVER_URL}'/'${GITHUB_REPOSITORY}'/actions/runs/'${GITHUB_RUN_ID}')"
+            }'
 
   # ============================================
   # JOB 2: Tests Backend (JUnit)
@@ -103,17 +104,18 @@ jobs:
       
       - name: 🚨 Crear tarea en Taiga si falla
         if: failure()
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const issue = await github.rest.issues.create({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              title: `[CI/CD] Tests Backend fallaron - ${context.sha.substring(0, 7)}`,
-              body: `❌ Los tests de Backend (JUnit) fallaron en el commit ${context.sha}\n\n**Branch:** ${context.ref}\n**Workflow:** ${context.workflow}\n**Run:** ${context.runNumber}\n\n[Ver logs](${context.payload.repository.html_url}/actions/runs/${context.runId})`,
-              labels: ['bug', 'ci-failure', 'backend']
-            });
-            console.log(`Issue creado: ${issue.data.html_url}`);
+        env:
+          TAIGA_BEARER_TOKEN: ${{ secrets.TAIGA_BEARER_TOKEN }}
+          TAIGA_PROJECT_ID: ${{ secrets.TAIGA_PROJECT_ID }}
+        run: |
+          curl -X POST "https://api.taiga.io/api/v1/userstories" \
+            -H "Authorization: Bearer $TAIGA_BEARER_TOKEN" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "project": '${TAIGA_PROJECT_ID}',
+              "subject": "[CI/CD] Tests Backend fallaron - '${GITHUB_SHA::7}'",
+              "description": "❌ Los tests de Backend (JUnit) fallaron en el commit '${GITHUB_SHA}'.\n\n**Branch:** '${GITHUB_REF}'\n**Workflow:** '${GITHUB_WORKFLOW}'\n**Run:** '${GITHUB_RUN_NUMBER}'\n\n[Ver logs]('${GITHUB_SERVER_URL}'/'${GITHUB_REPOSITORY}'/actions/runs/'${GITHUB_RUN_ID}')"
+            }'
 
   # ============================================
   # JOB 3: Build Backend
@@ -275,17 +277,18 @@ jobs:
       
       - name: 🚨 Crear tarea en Taiga si falla
         if: failure()
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const issue = await github.rest.issues.create({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              title: `[CI/CD] Tests E2E (Selenium) fallaron - ${context.sha.substring(0, 7)}`,
-              body: `❌ Los tests E2E (Selenium) fallaron en el commit ${context.sha}\n\n**Branch:** ${context.ref}\n**Workflow:** ${context.workflow}\n**Run:** ${context.runNumber}\n\n[Ver logs](${context.payload.repository.html_url}/actions/runs/${context.runId})`,
-              labels: ['bug', 'ci-failure', 'e2e']
-            });
-            console.log(`Issue creado: ${issue.data.html_url}`);
+        env:
+          TAIGA_BEARER_TOKEN: ${{ secrets.TAIGA_BEARER_TOKEN }}
+          TAIGA_PROJECT_ID: ${{ secrets.TAIGA_PROJECT_ID }}
+        run: |
+          curl -X POST "https://api.taiga.io/api/v1/userstories" \
+            -H "Authorization: Bearer $TAIGA_BEARER_TOKEN" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "project": '${TAIGA_PROJECT_ID}',
+              "subject": "[CI/CD] Tests E2E fallaron - '${GITHUB_SHA::7}'",
+              "description": "❌ Los tests E2E (Selenium) fallaron en el commit '${GITHUB_SHA}'.\n\n**Branch:** '${GITHUB_REF}'\n**Workflow:** '${GITHUB_WORKFLOW}'\n**Run:** '${GITHUB_RUN_NUMBER}'\n\n[Ver logs]('${GITHUB_SERVER_URL}'/'${GITHUB_REPOSITORY}'/actions/runs/'${GITHUB_RUN_ID}')"
+            }'
 
   # ============================================
   # JOB 6: Deploy (solo en main)

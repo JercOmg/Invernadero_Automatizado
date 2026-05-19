@@ -1,11 +1,23 @@
+/**
+ * Proyecto: Sistema Invernadero Automatizado
+ * Modulo: Dashboard
+ * Autor: Invernadero Team
+ * Fecha: 2026-05-19
+ * Descripcion: Componente/Servicio Dashboard
+ */
 import React from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { useTranslation } from 'react-i18next';
+import TaigaPanel from '../../components/taiga/TaigaPanel';
 import './Dashboard.css';
 
 /**
  * Página principal del dashboard
  * Muestra un resumen del sistema de invernadero
+ */
+/**
+ * Componente Dashboard
+ * @returns {JSX.Element}
  */
 const Dashboard = () => {
   const { user } = useAuth();
@@ -17,6 +29,8 @@ const Dashboard = () => {
         <h1>{t('dashboard.welcome')}, {user?.nombre} {user?.apellido}</h1>
         <p className="user-role">{t('dashboard.role')}: {user?.rol}</p>
       </div>
+
+      <TaigaPanel />
 
       <div className="dashboard-grid">
         <div className="dashboard-card">

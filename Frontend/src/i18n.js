@@ -1,3 +1,10 @@
+/**
+ * Proyecto: Sistema Invernadero Automatizado
+ * Modulo: i18n
+ * Autor: Invernadero Team
+ * Fecha: 2026-05-19
+ * Descripcion: Componente/Servicio i18n
+ */
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
