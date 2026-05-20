@@ -266,10 +266,9 @@ jobs:
       - name: 🚀 Iniciar Frontend
         working-directory: Frontend
         run: |
-          npm install -g serve
-          serve -s dist -l 5173 &
+          npx serve -s dist -l 5173 &
           echo $! > frontend.pid
-          sleep 10
+          sleep 15
       
       - name: 🧪 Ejecutar tests Selenium
         working-directory: Frontend
