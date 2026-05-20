@@ -2501,3 +2501,1002 @@ NULL not allowed for column "AREA_M2"; SQL statement:
     drop table if exists usuario cascade 
 2026-05-19 01:18:58 [SpringApplicationShutdownHook] DEBUG org.hibernate.SQL - 
     drop table if exists zona cascade 
+2026-05-19 22:51:20 [restartedMain] INFO  c.i.i.InvernaderoBackendApplication - Starting InvernaderoBackendApplication using Java 25.0.1 with PID 23204 (C:\Users\Usuario\Desktop\Invernadero automatizado\Backend\invernadero-backend\target\classes started by Usuario in C:\Users\Usuario\Desktop\Invernadero automatizado\Backend\invernadero-backend)
+2026-05-19 22:51:20 [restartedMain] DEBUG c.i.i.InvernaderoBackendApplication - Running with Spring Boot v3.2.5, Spring v6.1.6
+2026-05-19 22:51:20 [restartedMain] INFO  c.i.i.InvernaderoBackendApplication - The following 1 profile is active: "dev"
+2026-05-19 22:51:20 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-05-19 22:51:20 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-05-19 22:51:21 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-05-19 22:51:21 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 102 ms. Found 12 JPA repository interfaces.
+2026-05-19 22:51:22 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-05-19 22:51:22 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-05-19 22:51:22 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.20]
+2026-05-19 22:51:22 [restartedMain] INFO  o.a.c.c.C.[.[localhost].[/api] - Initializing Spring embedded WebApplicationContext
+2026-05-19 22:51:22 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1483 ms
+2026-05-19 22:51:22 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-05-19 22:51:22 [restartedMain] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.4.Final
+2026-05-19 22:51:22 [restartedMain] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-05-19 22:51:22 [restartedMain] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-05-19 22:51:22 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-19 22:51:22 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@6a914142
+2026-05-19 22:51:22 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-19 22:51:22 [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-05-19 22:51:23 [restartedMain] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-05-19 22:51:24 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-05-19 22:51:24 [restartedMain] DEBUG c.i.i.a.i.s.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2026-05-19 22:51:24 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-05-19 22:51:24 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@4937f1ca, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@310ab616, org.springframework.security.web.context.SecurityContextHolderFilter@4a123e20, org.springframework.security.web.header.HeaderWriterFilter@62a89335, org.springframework.web.filter.CorsFilter@1f8964e6, org.springframework.security.web.authentication.logout.LogoutFilter@22006440, com.invernadero.invernadero_backend.auth.infrastructure.security.JwtAuthenticationFilter@1c557ea4, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@52279cff, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@77c68358, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@311eaeb1, org.springframework.security.web.session.SessionManagementFilter@5603fb8b, org.springframework.security.web.access.ExceptionTranslationFilter@16a1db0e, org.springframework.security.web.access.intercept.AuthorizationFilter@2c5a83f1]
+2026-05-19 22:51:25 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2026-05-19 22:51:25 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/api'
+2026-05-19 22:51:25 [restartedMain] INFO  c.i.i.InvernaderoBackendApplication - Started InvernaderoBackendApplication in 4.969 seconds (process running for 5.379)
+2026-05-19 22:51:48 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[.[localhost].[/api] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-05-19 22:51:48 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-05-19 22:51:48 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2026-05-19 22:51:48 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /taiga/sprint-actual
+2026-05-19 22:51:48 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /taiga/sprint-actual
+2026-05-19 22:51:48 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing GET /taiga/sprint-actual
+2026-05-19 22:51:48 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-19 22:51:48 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured GET /taiga/sprint-actual
+2026-05-19 22:51:49 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing GET /taiga/sprint-actual
+2026-05-19 22:51:49 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-19 22:51:49 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Secured GET /taiga/sprint-actual
+2026-05-19 22:52:04 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /taiga/sprint-actual
+2026-05-19 22:52:04 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /taiga/sprint-actual
+2026-05-19 22:52:04 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Securing GET /taiga/sprint-actual
+2026-05-19 22:52:04 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-19 22:52:04 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Secured GET /taiga/sprint-actual
+2026-05-19 22:52:05 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Securing GET /taiga/sprint-actual
+2026-05-19 22:52:05 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-19 22:52:05 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Secured GET /taiga/sprint-actual
+2026-05-19 22:53:07 [File Watcher] INFO  o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2026-05-19 22:53:07 [Thread-5] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-05-19 22:53:07 [Thread-5] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-05-19 22:53:07 [Thread-5] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-05-19 22:53:07 [restartedMain] INFO  c.i.i.InvernaderoBackendApplication - Starting InvernaderoBackendApplication using Java 25.0.1 with PID 23204 (C:\Users\Usuario\Desktop\Invernadero automatizado\Backend\invernadero-backend\target\classes started by Usuario in C:\Users\Usuario\Desktop\Invernadero automatizado\Backend\invernadero-backend)
+2026-05-19 22:53:07 [restartedMain] DEBUG c.i.i.InvernaderoBackendApplication - Running with Spring Boot v3.2.5, Spring v6.1.6
+2026-05-19 22:53:07 [restartedMain] INFO  c.i.i.InvernaderoBackendApplication - The following 1 profile is active: "dev"
+2026-05-19 22:53:08 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-05-19 22:53:08 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 62 ms. Found 12 JPA repository interfaces.
+2026-05-19 22:53:08 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-05-19 22:53:08 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-05-19 22:53:08 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.20]
+2026-05-19 22:53:08 [restartedMain] INFO  o.a.c.c.C.[.[localhost].[/api] - Initializing Spring embedded WebApplicationContext
+2026-05-19 22:53:08 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 551 ms
+2026-05-19 22:53:08 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-05-19 22:53:08 [restartedMain] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-05-19 22:53:08 [restartedMain] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-05-19 22:53:08 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Starting...
+2026-05-19 22:53:08 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Added connection org.postgresql.jdbc.PgConnection@244cdb03
+2026-05-19 22:53:08 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Start completed.
+2026-05-19 22:53:08 [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-05-19 22:53:08 [restartedMain] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-05-19 22:53:08 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-05-19 22:53:09 [restartedMain] DEBUG c.i.i.a.i.s.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2026-05-19 22:53:09 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-05-19 22:53:09 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@37983474, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1677ea36, org.springframework.security.web.context.SecurityContextHolderFilter@7fe6b9df, org.springframework.security.web.header.HeaderWriterFilter@339f3c5, org.springframework.web.filter.CorsFilter@362762f9, org.springframework.security.web.authentication.logout.LogoutFilter@58bf3e37, com.invernadero.invernadero_backend.auth.infrastructure.security.JwtAuthenticationFilter@7abf52e7, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@318a8675, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7d61ec5a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6dbbb11e, org.springframework.security.web.session.SessionManagementFilter@cbc7df1, org.springframework.security.web.access.ExceptionTranslationFilter@6b34b2c4, org.springframework.security.web.access.intercept.AuthorizationFilter@4f128aa1]
+2026-05-19 22:53:09 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2026-05-19 22:53:09 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/api'
+2026-05-19 22:53:09 [restartedMain] INFO  c.i.i.InvernaderoBackendApplication - Started InvernaderoBackendApplication in 1.727 seconds (process running for 109.705)
+2026-05-19 22:53:09 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+2026-05-19 22:54:16 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-05-19 22:54:16 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Shutdown initiated...
+2026-05-19 22:54:16 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Shutdown completed.
+2026-05-19 22:54:33 [restartedMain] INFO  c.i.i.InvernaderoBackendApplication - Starting InvernaderoBackendApplication using Java 25.0.1 with PID 9720 (C:\Users\Usuario\Desktop\Invernadero automatizado\Backend\invernadero-backend\target\classes started by Usuario in C:\Users\Usuario\Desktop\Invernadero automatizado\Backend\invernadero-backend)
+2026-05-19 22:54:33 [restartedMain] DEBUG c.i.i.InvernaderoBackendApplication - Running with Spring Boot v3.2.5, Spring v6.1.6
+2026-05-19 22:54:33 [restartedMain] INFO  c.i.i.InvernaderoBackendApplication - The following 1 profile is active: "dev"
+2026-05-19 22:54:33 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-05-19 22:54:33 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-05-19 22:54:34 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-05-19 22:54:34 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 90 ms. Found 12 JPA repository interfaces.
+2026-05-19 22:54:35 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-05-19 22:54:35 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-05-19 22:54:35 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.20]
+2026-05-19 22:54:35 [restartedMain] INFO  o.a.c.c.C.[.[localhost].[/api] - Initializing Spring embedded WebApplicationContext
+2026-05-19 22:54:35 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1484 ms
+2026-05-19 22:54:35 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-05-19 22:54:35 [restartedMain] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.4.Final
+2026-05-19 22:54:35 [restartedMain] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-05-19 22:54:35 [restartedMain] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-05-19 22:54:35 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-19 22:54:36 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@6a914142
+2026-05-19 22:54:36 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-19 22:54:36 [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-05-19 22:54:37 [restartedMain] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-05-19 22:54:37 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-05-19 22:54:37 [restartedMain] DEBUG c.i.i.a.i.s.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2026-05-19 22:54:37 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-05-19 22:54:38 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2f6039a8, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@743b4056, org.springframework.security.web.context.SecurityContextHolderFilter@385d35e0, org.springframework.security.web.header.HeaderWriterFilter@16a1db0e, org.springframework.web.filter.CorsFilter@4937f1ca, org.springframework.security.web.authentication.logout.LogoutFilter@3334dd49, com.invernadero.invernadero_backend.auth.infrastructure.security.JwtAuthenticationFilter@1c557ea4, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4a123e20, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3044b4a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@310ab616, org.springframework.security.web.session.SessionManagementFilter@71245c6d, org.springframework.security.web.access.ExceptionTranslationFilter@391bdb1b, org.springframework.security.web.access.intercept.AuthorizationFilter@43630c6e]
+2026-05-19 22:54:38 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2026-05-19 22:54:38 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/api'
+2026-05-19 22:54:38 [restartedMain] INFO  c.i.i.InvernaderoBackendApplication - Started InvernaderoBackendApplication in 5.055 seconds (process running for 5.482)
+2026-05-19 22:54:42 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[.[localhost].[/api] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-05-19 22:54:42 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-05-19 22:54:42 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2026-05-19 22:54:42 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing GET /taiga/sprint-actual
+2026-05-19 22:54:43 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-19 22:54:43 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured GET /taiga/sprint-actual
+2026-05-19 22:54:44 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing GET /taiga/sprint-actual
+2026-05-19 22:54:44 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-19 22:54:44 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured GET /taiga/sprint-actual
+2026-05-19 22:55:58 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /invernadero?page=0&size=10
+2026-05-19 22:55:58 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /invernadero?page=0&size=10
+2026-05-19 22:55:58 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Securing GET /invernadero?page=0&size=10
+2026-05-19 22:55:58 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-19 22:55:58 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Secured GET /invernadero?page=0&size=10
+2026-05-19 22:55:58 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        i1_0.id_invernadero,
+        i1_0.area_m2,
+        i1_0.estado,
+        i1_0.fecha_creacion,
+        i1_0.nombre,
+        i1_0.responsable_id,
+        i1_0.tipo_estructura,
+        i1_0.ubicacion 
+    from
+        invernadero i1_0 
+    offset
+        ? rows 
+    fetch
+        first ? rows only
+2026-05-19 22:55:58 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Securing GET /invernadero?page=0&size=10
+2026-05-19 22:55:58 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-19 22:55:58 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Secured GET /invernadero?page=0&size=10
+2026-05-19 22:55:58 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        i1_0.id_invernadero,
+        i1_0.area_m2,
+        i1_0.estado,
+        i1_0.fecha_creacion,
+        i1_0.nombre,
+        i1_0.responsable_id,
+        i1_0.tipo_estructura,
+        i1_0.ubicacion 
+    from
+        invernadero i1_0 
+    offset
+        ? rows 
+    fetch
+        first ? rows only
+2026-05-19 22:56:02 [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Securing GET /taiga/sprint-actual
+2026-05-19 22:56:02 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-19 22:56:02 [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Secured GET /taiga/sprint-actual
+2026-05-19 22:56:03 [http-nio-8080-exec-10] DEBUG o.s.security.web.FilterChainProxy - Securing GET /taiga/sprint-actual
+2026-05-19 22:56:03 [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-19 22:56:03 [http-nio-8080-exec-10] DEBUG o.s.security.web.FilterChainProxy - Secured GET /taiga/sprint-actual
+2026-05-19 23:02:24 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing GET /taiga/sprint-actual
+2026-05-19 23:02:24 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-19 23:02:24 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Secured GET /taiga/sprint-actual
+2026-05-19 23:02:25 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing GET /taiga/sprint-actual
+2026-05-19 23:02:25 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-19 23:02:25 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured GET /taiga/sprint-actual
+2026-05-19 23:03:08 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing GET /taiga/sprint-actual
+2026-05-19 23:03:08 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-19 23:03:08 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Secured GET /taiga/sprint-actual
+2026-05-19 23:03:09 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing GET /taiga/sprint-actual
+2026-05-19 23:03:09 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-19 23:03:09 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Secured GET /taiga/sprint-actual
+2026-05-19 23:03:16 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Securing GET /taiga/sprint-actual
+2026-05-19 23:03:16 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-19 23:03:16 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Secured GET /taiga/sprint-actual
+2026-05-19 23:04:18 [http-nio-8080-exec-10] DEBUG o.s.security.web.FilterChainProxy - Securing GET /taiga/sprint-actual
+2026-05-19 23:04:18 [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-19 23:04:18 [http-nio-8080-exec-10] DEBUG o.s.security.web.FilterChainProxy - Secured GET /taiga/sprint-actual
+2026-05-19 23:04:19 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing GET /taiga/sprint-actual
+2026-05-19 23:04:19 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-19 23:04:19 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured GET /taiga/sprint-actual
+2026-05-19 23:04:57 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing GET /invernadero?page=0&size=10
+2026-05-19 23:04:57 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-19 23:04:57 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured GET /invernadero?page=0&size=10
+2026-05-19 23:04:57 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        i1_0.id_invernadero,
+        i1_0.area_m2,
+        i1_0.estado,
+        i1_0.fecha_creacion,
+        i1_0.nombre,
+        i1_0.responsable_id,
+        i1_0.tipo_estructura,
+        i1_0.ubicacion 
+    from
+        invernadero i1_0 
+    offset
+        ? rows 
+    fetch
+        first ? rows only
+2026-05-19 23:04:57 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing GET /invernadero?page=0&size=10
+2026-05-19 23:04:57 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-19 23:04:57 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Secured GET /invernadero?page=0&size=10
+2026-05-19 23:04:57 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        i1_0.id_invernadero,
+        i1_0.area_m2,
+        i1_0.estado,
+        i1_0.fecha_creacion,
+        i1_0.nombre,
+        i1_0.responsable_id,
+        i1_0.tipo_estructura,
+        i1_0.ubicacion 
+    from
+        invernadero i1_0 
+    offset
+        ? rows 
+    fetch
+        first ? rows only
+2026-05-19 23:04:59 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /zona?page=0&size=10
+2026-05-19 23:04:59 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing GET /zona?page=0&size=10
+2026-05-19 23:04:59 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /zona?page=0&size=10
+2026-05-19 23:04:59 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-19 23:04:59 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Secured GET /zona?page=0&size=10
+2026-05-19 23:04:59 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        z1_0.id_zona,
+        z1_0.area_m2,
+        z1_0.descripcion,
+        z1_0.id_invernadero,
+        z1_0.nombre_zona 
+    from
+        zona z1_0 
+    offset
+        ? rows 
+    fetch
+        first ? rows only
+2026-05-19 23:04:59 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Securing GET /zona?page=0&size=10
+2026-05-19 23:04:59 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-19 23:04:59 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Secured GET /zona?page=0&size=10
+2026-05-19 23:04:59 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        z1_0.id_zona,
+        z1_0.area_m2,
+        z1_0.descripcion,
+        z1_0.id_invernadero,
+        z1_0.nombre_zona 
+    from
+        zona z1_0 
+    offset
+        ? rows 
+    fetch
+        first ? rows only
+2026-05-19 23:05:00 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Securing GET /taiga/sprint-actual
+2026-05-19 23:05:00 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-19 23:05:00 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Secured GET /taiga/sprint-actual
+2026-05-19 23:05:01 [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Securing GET /taiga/sprint-actual
+2026-05-19 23:05:01 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-19 23:05:01 [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Secured GET /taiga/sprint-actual
+2026-05-19 23:05:49 [http-nio-8080-exec-10] DEBUG o.s.security.web.FilterChainProxy - Securing GET /taiga/sprint-actual
+2026-05-19 23:05:49 [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-19 23:05:49 [http-nio-8080-exec-10] DEBUG o.s.security.web.FilterChainProxy - Secured GET /taiga/sprint-actual
+2026-05-19 23:05:50 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing GET /taiga/sprint-actual
+2026-05-19 23:05:50 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-19 23:05:50 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured GET /taiga/sprint-actual
+2026-05-19 23:06:39 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing GET /taiga/sprint-actual
+2026-05-19 23:06:39 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-19 23:06:39 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured GET /taiga/sprint-actual
+2026-05-19 23:06:40 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing GET /taiga/sprint-actual
+2026-05-19 23:06:40 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-19 23:06:40 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Secured GET /taiga/sprint-actual
+2026-05-19 23:37:04 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing GET /invernadero?page=0&size=10
+2026-05-19 23:37:04 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-19 23:37:04 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Secured GET /invernadero?page=0&size=10
+2026-05-19 23:37:04 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        i1_0.id_invernadero,
+        i1_0.area_m2,
+        i1_0.estado,
+        i1_0.fecha_creacion,
+        i1_0.nombre,
+        i1_0.responsable_id,
+        i1_0.tipo_estructura,
+        i1_0.ubicacion 
+    from
+        invernadero i1_0 
+    offset
+        ? rows 
+    fetch
+        first ? rows only
+2026-05-19 23:37:04 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Securing GET /invernadero?page=0&size=10
+2026-05-19 23:37:04 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-19 23:37:04 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Secured GET /invernadero?page=0&size=10
+2026-05-19 23:37:04 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        i1_0.id_invernadero,
+        i1_0.area_m2,
+        i1_0.estado,
+        i1_0.fecha_creacion,
+        i1_0.nombre,
+        i1_0.responsable_id,
+        i1_0.tipo_estructura,
+        i1_0.ubicacion 
+    from
+        invernadero i1_0 
+    offset
+        ? rows 
+    fetch
+        first ? rows only
+2026-05-19 23:37:14 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /auth/google
+2026-05-19 23:37:14 [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Securing POST /auth/google
+2026-05-19 23:37:14 [http-nio-8080-exec-9] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-05-19 23:37:14 [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Secured POST /auth/google
+2026-05-19 23:37:14 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-19 23:37:14 [http-nio-8080-exec-10] DEBUG o.s.security.web.FilterChainProxy - Securing GET /taiga/sprint-actual
+2026-05-19 23:37:14 [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-19 23:37:14 [http-nio-8080-exec-10] DEBUG o.s.security.web.FilterChainProxy - Secured GET /taiga/sprint-actual
+2026-05-19 23:37:15 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing GET /taiga/sprint-actual
+2026-05-19 23:37:15 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-19 23:37:15 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured GET /taiga/sprint-actual
+2026-05-19 23:37:39 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing GET /taiga/sprint-actual
+2026-05-19 23:37:39 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-19 23:37:39 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured GET /taiga/sprint-actual
+2026-05-19 23:37:40 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing GET /taiga/sprint-actual
+2026-05-19 23:37:40 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-19 23:37:40 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Secured GET /taiga/sprint-actual
+2026-05-19 23:38:54 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-05-19 23:38:54 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-05-19 23:38:54 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-05-19 23:39:10 [restartedMain] INFO  c.i.i.InvernaderoBackendApplication - Starting InvernaderoBackendApplication using Java 25.0.1 with PID 13296 (C:\Users\Usuario\Desktop\Invernadero automatizado\Backend\invernadero-backend\target\classes started by Usuario in C:\Users\Usuario\Desktop\Invernadero automatizado\Backend\invernadero-backend)
+2026-05-19 23:39:10 [restartedMain] DEBUG c.i.i.InvernaderoBackendApplication - Running with Spring Boot v3.2.5, Spring v6.1.6
+2026-05-19 23:39:10 [restartedMain] INFO  c.i.i.InvernaderoBackendApplication - The following 1 profile is active: "dev"
+2026-05-19 23:39:10 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-05-19 23:39:10 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-05-19 23:39:11 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-05-19 23:39:11 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 89 ms. Found 12 JPA repository interfaces.
+2026-05-19 23:39:12 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-05-19 23:39:12 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-05-19 23:39:12 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.20]
+2026-05-19 23:39:12 [restartedMain] INFO  o.a.c.c.C.[.[localhost].[/api] - Initializing Spring embedded WebApplicationContext
+2026-05-19 23:39:12 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1482 ms
+2026-05-19 23:39:12 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-05-19 23:39:12 [restartedMain] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.4.Final
+2026-05-19 23:39:12 [restartedMain] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-05-19 23:39:12 [restartedMain] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-05-19 23:39:12 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-19 23:39:12 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@6a914142
+2026-05-19 23:39:12 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-19 23:39:12 [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-05-19 23:39:13 [restartedMain] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-05-19 23:39:14 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-05-19 23:39:14 [restartedMain] DEBUG c.i.i.a.i.s.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2026-05-19 23:39:14 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-05-19 23:39:14 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2f6039a8, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@743b4056, org.springframework.security.web.context.SecurityContextHolderFilter@385d35e0, org.springframework.security.web.header.HeaderWriterFilter@16a1db0e, org.springframework.web.filter.CorsFilter@4937f1ca, org.springframework.security.web.authentication.logout.LogoutFilter@3334dd49, com.invernadero.invernadero_backend.auth.infrastructure.security.JwtAuthenticationFilter@1c557ea4, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4a123e20, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3044b4a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@310ab616, org.springframework.security.web.session.SessionManagementFilter@71245c6d, org.springframework.security.web.access.ExceptionTranslationFilter@391bdb1b, org.springframework.security.web.access.intercept.AuthorizationFilter@43630c6e]
+2026-05-19 23:39:15 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2026-05-19 23:39:15 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/api'
+2026-05-19 23:39:15 [restartedMain] INFO  c.i.i.InvernaderoBackendApplication - Started InvernaderoBackendApplication in 5.074 seconds (process running for 5.547)
+2026-05-19 23:39:21 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[.[localhost].[/api] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-05-19 23:39:21 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-05-19 23:39:21 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2026-05-19 23:39:21 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing GET /taiga/sprint-actual
+2026-05-19 23:39:21 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-19 23:39:21 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured GET /taiga/sprint-actual
+2026-05-19 23:39:23 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing GET /taiga/sprint-actual
+2026-05-19 23:39:23 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-19 23:39:23 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Secured GET /taiga/sprint-actual
+2026-05-19 23:40:06 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing GET /invernadero?page=0&size=10
+2026-05-19 23:40:06 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-19 23:40:06 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured GET /invernadero?page=0&size=10
+2026-05-19 23:40:06 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        i1_0.id_invernadero,
+        i1_0.area_m2,
+        i1_0.estado,
+        i1_0.fecha_creacion,
+        i1_0.nombre,
+        i1_0.responsable_id,
+        i1_0.tipo_estructura,
+        i1_0.ubicacion 
+    from
+        invernadero i1_0 
+    offset
+        ? rows 
+    fetch
+        first ? rows only
+2026-05-19 23:40:06 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing GET /invernadero?page=0&size=10
+2026-05-19 23:40:06 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-19 23:40:06 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured GET /invernadero?page=0&size=10
+2026-05-19 23:40:06 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        i1_0.id_invernadero,
+        i1_0.area_m2,
+        i1_0.estado,
+        i1_0.fecha_creacion,
+        i1_0.nombre,
+        i1_0.responsable_id,
+        i1_0.tipo_estructura,
+        i1_0.ubicacion 
+    from
+        invernadero i1_0 
+    offset
+        ? rows 
+    fetch
+        first ? rows only
+2026-05-19 23:40:40 [File Watcher] INFO  o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2026-05-19 23:40:40 [Thread-5] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-05-19 23:40:40 [Thread-5] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-05-19 23:40:40 [Thread-5] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-05-19 23:40:40 [restartedMain] INFO  c.i.i.InvernaderoBackendApplication - Starting InvernaderoBackendApplication using Java 25.0.1 with PID 13296 (C:\Users\Usuario\Desktop\Invernadero automatizado\Backend\invernadero-backend\target\classes started by Usuario in C:\Users\Usuario\Desktop\Invernadero automatizado\Backend\invernadero-backend)
+2026-05-19 23:40:40 [restartedMain] DEBUG c.i.i.InvernaderoBackendApplication - Running with Spring Boot v3.2.5, Spring v6.1.6
+2026-05-19 23:40:40 [restartedMain] INFO  c.i.i.InvernaderoBackendApplication - The following 1 profile is active: "dev"
+2026-05-19 23:40:41 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-05-19 23:40:41 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 64 ms. Found 12 JPA repository interfaces.
+2026-05-19 23:40:41 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-05-19 23:40:41 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-05-19 23:40:41 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.20]
+2026-05-19 23:40:41 [restartedMain] INFO  o.a.c.c.C.[.[localhost].[/api] - Initializing Spring embedded WebApplicationContext
+2026-05-19 23:40:41 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 612 ms
+2026-05-19 23:40:41 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-05-19 23:40:41 [restartedMain] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-05-19 23:40:41 [restartedMain] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-05-19 23:40:41 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Starting...
+2026-05-19 23:40:41 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Added connection org.postgresql.jdbc.PgConnection@55b3fb6e
+2026-05-19 23:40:41 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Start completed.
+2026-05-19 23:40:41 [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-05-19 23:40:41 [restartedMain] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-05-19 23:40:42 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-05-19 23:40:42 [restartedMain] DEBUG c.i.i.a.i.s.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2026-05-19 23:40:42 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-05-19 23:40:42 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@668ca9e7, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@474d5a96, org.springframework.security.web.context.SecurityContextHolderFilter@5e5f6721, org.springframework.security.web.header.HeaderWriterFilter@15df51ec, org.springframework.web.filter.CorsFilter@18e847, org.springframework.security.web.authentication.logout.LogoutFilter@6ed9f72f, com.invernadero.invernadero_backend.auth.infrastructure.security.JwtAuthenticationFilter@36f41066, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4e7acda1, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@21c5a5b3, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6dd987d3, org.springframework.security.web.session.SessionManagementFilter@1faea36a, org.springframework.security.web.access.ExceptionTranslationFilter@2b577c4f, org.springframework.security.web.access.intercept.AuthorizationFilter@7a32e3d4]
+2026-05-19 23:40:42 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2026-05-19 23:40:42 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/api'
+2026-05-19 23:40:42 [restartedMain] INFO  c.i.i.InvernaderoBackendApplication - Started InvernaderoBackendApplication in 1.992 seconds (process running for 93.067)
+2026-05-19 23:40:42 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+2026-05-19 23:44:22 [File Watcher] INFO  o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2026-05-19 23:44:22 [Thread-7] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-05-19 23:44:22 [Thread-7] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Shutdown initiated...
+2026-05-19 23:44:22 [Thread-7] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Shutdown completed.
+2026-05-19 23:44:22 [restartedMain] INFO  c.i.i.InvernaderoBackendApplication - Starting InvernaderoBackendApplication using Java 25.0.1 with PID 13296 (C:\Users\Usuario\Desktop\Invernadero automatizado\Backend\invernadero-backend\target\classes started by Usuario in C:\Users\Usuario\Desktop\Invernadero automatizado\Backend\invernadero-backend)
+2026-05-19 23:44:22 [restartedMain] DEBUG c.i.i.InvernaderoBackendApplication - Running with Spring Boot v3.2.5, Spring v6.1.6
+2026-05-19 23:44:22 [restartedMain] INFO  c.i.i.InvernaderoBackendApplication - The following 1 profile is active: "dev"
+2026-05-19 23:44:22 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-05-19 23:44:23 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 64 ms. Found 12 JPA repository interfaces.
+2026-05-19 23:44:23 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-05-19 23:44:23 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-05-19 23:44:23 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.20]
+2026-05-19 23:44:23 [restartedMain] INFO  o.a.c.c.C.[.[localhost].[/api] - Initializing Spring embedded WebApplicationContext
+2026-05-19 23:44:23 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 651 ms
+2026-05-19 23:44:23 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-05-19 23:44:23 [restartedMain] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-05-19 23:44:23 [restartedMain] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-05-19 23:44:23 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-3 - Starting...
+2026-05-19 23:44:23 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-3 - Added connection org.postgresql.jdbc.PgConnection@29935e81
+2026-05-19 23:44:23 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-3 - Start completed.
+2026-05-19 23:44:23 [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-05-19 23:44:23 [restartedMain] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-05-19 23:44:23 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-05-19 23:44:23 [restartedMain] DEBUG c.i.i.a.i.s.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2026-05-19 23:44:24 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-05-19 23:44:24 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@618683d3, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6d1470ce, org.springframework.security.web.context.SecurityContextHolderFilter@50d65ad6, org.springframework.security.web.header.HeaderWriterFilter@4b718b19, org.springframework.web.filter.CorsFilter@6a460c86, org.springframework.security.web.authentication.logout.LogoutFilter@2c94014c, com.invernadero.invernadero_backend.auth.infrastructure.security.JwtAuthenticationFilter@6d2a08dd, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@662606, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@47884c50, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@112e9323, org.springframework.security.web.session.SessionManagementFilter@407921de, org.springframework.security.web.access.ExceptionTranslationFilter@635666cc, org.springframework.security.web.access.intercept.AuthorizationFilter@189c61ec]
+2026-05-19 23:44:24 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2026-05-19 23:44:24 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/api'
+2026-05-19 23:44:24 [restartedMain] INFO  c.i.i.InvernaderoBackendApplication - Started InvernaderoBackendApplication in 1.999 seconds (process running for 314.78)
+2026-05-19 23:44:24 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged

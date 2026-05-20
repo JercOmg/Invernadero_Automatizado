@@ -31,6 +31,7 @@ public class TaigaController {
             }
             return ResponseEntity.ok(sprint);
         } catch (Exception e) {
+            e.printStackTrace();
             return ResponseEntity.internalServerError().body(e.getMessage());
         }
     }
@@ -45,6 +46,7 @@ public class TaigaController {
             }
             return ResponseEntity.ok(criteria);
         } catch (Exception e) {
+            e.printStackTrace();
             return ResponseEntity.internalServerError().body(e.getMessage());
         }
     }

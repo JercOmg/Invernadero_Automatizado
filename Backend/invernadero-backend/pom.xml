@@ -24,7 +24,7 @@
         <springdoc.version>2.5.0</springdoc.version>
         <jjwt.version>0.12.5</jjwt.version>
         <!-- Lombok 1.18.36+ soporta Java 21-25 -->
-        <lombok.version>1.18.36</lombok.version>
+        <lombok.version>1.18.40</lombok.version>
     </properties>
     
     <dependencies>

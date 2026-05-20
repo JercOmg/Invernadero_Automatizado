@@ -79,6 +79,8 @@ C:\Users\Usuario\Desktop\Invernadero automatizado\Backend\invernadero-backend\sr
 C:\Users\Usuario\Desktop\Invernadero automatizado\Backend\invernadero-backend\src\main\java\com\invernadero\invernadero_backend\siembra\domain\model\Siembra.java
 C:\Users\Usuario\Desktop\Invernadero automatizado\Backend\invernadero-backend\src\main\java\com\invernadero\invernadero_backend\siembra\domain\repository\SiembraRepository.java
 C:\Users\Usuario\Desktop\Invernadero automatizado\Backend\invernadero-backend\src\main\java\com\invernadero\invernadero_backend\siembra\infrastructure\rest\SiembraController.java
+C:\Users\Usuario\Desktop\Invernadero automatizado\Backend\invernadero-backend\src\main\java\com\invernadero\invernadero_backend\taiga\TaigaController.java
+C:\Users\Usuario\Desktop\Invernadero automatizado\Backend\invernadero-backend\src\main\java\com\invernadero\invernadero_backend\taiga\TaigaService.java
 C:\Users\Usuario\Desktop\Invernadero automatizado\Backend\invernadero-backend\src\main\java\com\invernadero\invernadero_backend\zona\application\dto\ZonaRequest.java
 C:\Users\Usuario\Desktop\Invernadero automatizado\Backend\invernadero-backend\src\main\java\com\invernadero\invernadero_backend\zona\application\dto\ZonaResponse.java
 C:\Users\Usuario\Desktop\Invernadero automatizado\Backend\invernadero-backend\src\main\java\com\invernadero\invernadero_backend\zona\application\service\ZonaService.java
