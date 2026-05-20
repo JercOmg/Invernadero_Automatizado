@@ -89,6 +89,8 @@ jobs:
       
       - name: 🧪 Ejecutar tests Maven
         working-directory: Backend/invernadero-backend
+        env:
+          SPRING_PROFILES_ACTIVE: test
         run: mvn test -B
       
       - name: 📊 Publicar resultados de tests
