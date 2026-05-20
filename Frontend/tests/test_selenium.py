@@ -263,11 +263,29 @@ class TestCRUDInvernadero:
         submit_btn.click()
 
         # Esperar y verificar que el invernadero aparezca en la lista
-        WebDriverWait(driver, 10).until(
-            EC.presence_of_element_located(
-                (By.XPATH, f"//td[contains(text(), '{nombre}')]")
+        try:
+            WebDriverWait(driver, 10).until(
+                EC.presence_of_element_located(
+                    (By.XPATH, f"//td[contains(text(), '{nombre}')]")
+                )
             )
-        )
+        except Exception as e:
+            # Capturar logs para depuración extrema
+            print("\n" + "="*50)
+            print("🚨 DEBUG: test_crear_invernadero falló por timeout!")
+            print(f"URL actual: {driver.current_url}")
+            try:
+                alert = driver.find_element(By.XPATH, "//*[contains(@class,'error') or contains(@class,'alert') or @role='alert']")
+                print(f"Alerta/Error detectado en pantalla: {alert.text}")
+            except Exception:
+                print("No se encontró ningún elemento de alerta/error explícito.")
+            try:
+                body_text = driver.find_element(By.TAG_NAME, "body").text
+                print(f"Texto del body (primeros 1000 caracteres):\n{body_text[:1000]}")
+            except Exception:
+                print("No se pudo extraer el texto del body.")
+            print("="*50 + "\n")
+            raise e
 
 
 @pytest.mark.selenium
