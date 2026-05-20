@@ -172,10 +172,10 @@ class TestCRUDInvernadero:
 
     def test_crear_invernadero(self, driver):
         """Verifica la creacion de un nuevo invernadero"""
-        # Buscar boton de crear (puede variar el selector)
+        # Buscar boton de crear (puede variar el selector, ej: a o button)
         btn_nuevo = WebDriverWait(driver, 5).until(
             EC.element_to_be_clickable(
-                (By.XPATH, "//button[contains(@class,'btn-nuevo') or contains(text(),'Nuevo') or contains(text(),'Crear')]")
+                (By.XPATH, "//*[contains(@class,'btn-nuevo') or contains(text(),'Nuevo') or contains(text(),'Crear') or contains(text(),'Create') or contains(text(),'New')]")
             )
         )
         btn_nuevo.click()
@@ -189,6 +189,20 @@ class TestCRUDInvernadero:
         driver.find_element(By.NAME, "nombre").send_keys(nombre)
         driver.find_element(By.NAME, "ubicacion").send_keys("Ubicacion Test")
         driver.find_element(By.NAME, "areaM2").send_keys("150.5")
+
+        # Rellenar campos adicionales requeridos si existen en el formulario
+        for name, value in [("responsableId", "1"), ("fechaCreacion", "2026-05-20"), ("estado", "ACTIVO")]:
+            try:
+                elem = driver.find_element(By.NAME, name)
+                if elem:
+                    if elem.tag_name == "select":
+                        from selenium.webdriver.support.ui import Select
+                        Select(elem).select_by_value(value)
+                    else:
+                        elem.clear()
+                        elem.send_keys(value)
+            except Exception:
+                pass
 
         driver.find_element(By.CSS_SELECTOR, "button[type='submit']").click()
 

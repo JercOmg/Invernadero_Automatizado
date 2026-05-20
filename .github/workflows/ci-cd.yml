@@ -261,14 +261,36 @@ jobs:
         run: |
           java -jar target/*.jar &
           echo $! > backend.pid
-          sleep 30
+          echo "Waiting for backend to be ready..."
+          for i in {1..60}; do
+            if curl -s -o /dev/null -w "%{http_code}" http://localhost:8080/api/api-docs | grep -qE "200|401|403"; then
+              echo "✅ Backend is up!"
+              break
+            fi
+            sleep 1
+            if [ $i -eq 60 ]; then
+              echo "❌ Timeout waiting for backend"
+              exit 1
+            fi
+          done
       
       - name: 🚀 Iniciar Frontend
         working-directory: Frontend
         run: |
-          npx serve -s dist -l 5173 &
+          npx -y serve -s dist -l 5173 &
           echo $! > frontend.pid
-          sleep 15
+          echo "Waiting for frontend to be ready..."
+          for i in {1..30}; do
+            if curl -s -o /dev/null -w "%{http_code}" http://localhost:5173 | grep -qE "200|301|404"; then
+              echo "✅ Frontend is up!"
+              break
+            fi
+            sleep 1
+            if [ $i -eq 30 ]; then
+              echo "❌ Timeout waiting for frontend"
+              exit 1
+            fi
+          done
       
       - name: 🧪 Ejecutar tests Selenium
         working-directory: Frontend
