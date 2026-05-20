@@ -203,7 +203,7 @@ class TestCRUDInvernadero:
 
     def test_crear_invernadero(self, driver):
         """Verifica la creacion de un nuevo invernadero"""
-        # Buscar boton de crear (puede variar el selector, ej: a o button)
+        # Buscar boton de crear
         btn_nuevo = WebDriverWait(driver, 5).until(
             EC.element_to_be_clickable(
                 (By.XPATH, "//*[contains(@class,'btn-nuevo') or contains(text(),'Nuevo') or contains(text(),'Crear') or contains(text(),'Create') or contains(text(),'New')]")
@@ -217,38 +217,53 @@ class TestCRUDInvernadero:
         WebDriverWait(driver, 5).until(
             EC.presence_of_element_located((By.NAME, "nombre"))
         )
-        driver.find_element(By.NAME, "nombre").send_keys(nombre)
-        driver.find_element(By.NAME, "ubicacion").send_keys("Ubicacion Test")
-        driver.find_element(By.NAME, "areaM2").send_keys("150.5")
 
-        # Rellenar campos adicionales requeridos si existen en el formulario
-        for name, value in [("responsableId", "1"), ("fechaCreacion", "2026-05-20"), ("estado", "ACTIVO"), ("tipoEstructura", "PLASTICO")]:
+        # Obtener el responsableId real del usuario logueado desde localStorage para evitar violar FKs
+        try:
+            user_id = driver.execute_script("return JSON.parse(localStorage.getItem('user')).userId;")
+            responsable_val = str(user_id)
+        except Exception:
+            responsable_val = "1"
+
+        # Función robusta para rellenar campos y disparar eventos de React
+        def fill_field(name, value):
             try:
                 elem = driver.find_element(By.NAME, name)
                 if elem:
-                    if elem.tag_name == "select":
-                        from selenium.webdriver.support.ui import Select
-                        Select(elem).select_by_value(value)
-                    else:
-                        elem.clear()
-                        elem.send_keys(value)
-            except Exception:
-                pass
+                    # Intento estándar primero
+                    try:
+                        if elem.tag_name == "select":
+                            from selenium.webdriver.support.ui import Select
+                            Select(elem).select_by_value(value)
+                        else:
+                            elem.clear()
+                            elem.send_keys(value)
+                    except Exception:
+                        pass
+                    # Refuerzo absoluto con JS para setear valor y disparar React onChange handlers
+                    driver.execute_script("arguments[0].value = arguments[1];", elem, value)
+                    driver.execute_script("arguments[0].dispatchEvent(new Event('input', { bubbles: true }));", elem)
+                    driver.execute_script("arguments[0].dispatchEvent(new Event('change', { bubbles: true }));", elem)
+            except Exception as e:
+                print(f"Error rellenando campo {name}: {e}")
 
-        driver.find_element(By.CSS_SELECTOR, "button[type='submit']").click()
+        # Rellenar todos los campos usando el método robusto
+        fill_field("nombre", nombre)
+        fill_field("ubicacion", "Ubicacion Test")
+        fill_field("areaM2", "150.5")
+        fill_field("tipoEstructura", "VIDRIO")
+        fill_field("responsableId", responsable_val)
+        fill_field("fechaCreacion", "2026-05-20")
+        fill_field("estado", "ACTIVO")
 
-        # Paso 1: esperar que el formulario rediriga de vuelta a la lista
-        WebDriverWait(driver, 20).until(
-            lambda d: "/invernadero/new" not in d.current_url and "/invernadero" in d.current_url
+        # Clic en guardar
+        submit_btn = WebDriverWait(driver, 5).until(
+            EC.element_to_be_clickable((By.CSS_SELECTOR, "button[type='submit']"))
         )
+        submit_btn.click()
 
-        # Paso 2: esperar que la tabla cargue con los datos del backend
-        WebDriverWait(driver, 20).until(
-            EC.presence_of_element_located((By.TAG_NAME, "table"))
-        )
-
-        # Paso 3: verificar que el nuevo invernadero aparece en la tabla
-        WebDriverWait(driver, 20).until(
+        # Esperar y verificar que el invernadero aparezca en la lista
+        WebDriverWait(driver, 10).until(
             EC.presence_of_element_located(
                 (By.XPATH, f"//td[contains(text(), '{nombre}')]")
             )
