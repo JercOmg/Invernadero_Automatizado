@@ -36,16 +36,43 @@ BASE_URL = "http://localhost:5173"
 
 
 def login(driver, email=ADMIN_EMAIL, password=ADMIN_PASSWORD):
-    """Helper: hace login y espera el dashboard"""
+    """Helper: hace login y espera el dashboard. Si falla, intenta registrar al usuario primero."""
     driver.get(f"{BASE_URL}/login")
-    WebDriverWait(driver, 10).until(
-        EC.presence_of_element_located((By.NAME, "email"))
+    
+    # 1. Intentar hacer Login directamente
+    try:
+        WebDriverWait(driver, 5).until(
+            EC.presence_of_element_located((By.NAME, "email"))
+        )
+        driver.find_element(By.NAME, "email").clear()
+        driver.find_element(By.NAME, "email").send_keys(email)
+        driver.find_element(By.NAME, "password").clear()
+        driver.find_element(By.NAME, "password").send_keys(password)
+        driver.find_element(By.CSS_SELECTOR, "button[type='submit']").click()
+        
+        # Esperar a ver si redirige al dashboard
+        WebDriverWait(driver, 5).until(EC.url_contains("/dashboard"))
+        return
+    except Exception:
+        # Si falló (ej. el usuario no existe en la base de datos vacía), procedemos a registrar
+        pass
+
+    # 2. Registrar al usuario dinámicamente si no existe
+    driver.get(f"{BASE_URL}/register")
+    WebDriverWait(driver, 5).until(
+        EC.presence_of_element_located((By.NAME, "nombre"))
     )
-    driver.find_element(By.NAME, "email").clear()
+    driver.find_element(By.NAME, "nombre").send_keys("Admin")
+    driver.find_element(By.NAME, "apellido").send_keys("Invernadero")
     driver.find_element(By.NAME, "email").send_keys(email)
-    driver.find_element(By.NAME, "password").clear()
     driver.find_element(By.NAME, "password").send_keys(password)
+    try:
+        driver.find_element(By.NAME, "confirmPassword").send_keys(password)
+    except Exception:
+        pass
     driver.find_element(By.CSS_SELECTOR, "button[type='submit']").click()
+    
+    # Esperar redirección tras registro exitoso
     WebDriverWait(driver, 10).until(EC.url_contains("/dashboard"))
 
 
@@ -77,6 +104,10 @@ class TestAutenticacion:
         driver.find_element(By.NAME, "apellido").send_keys("Test")
         driver.find_element(By.NAME, "email").send_keys(f"selenium{timestamp}@test.com")
         driver.find_element(By.NAME, "password").send_keys("TestSelenium123")
+        try:
+            driver.find_element(By.NAME, "confirmPassword").send_keys("TestSelenium123")
+        except Exception:
+            pass
 
         driver.find_element(By.CSS_SELECTOR, "button[type='submit']").click()
 
