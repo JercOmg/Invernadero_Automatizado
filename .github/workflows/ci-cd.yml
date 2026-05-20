@@ -51,14 +51,17 @@ jobs:
           TAIGA_BEARER_TOKEN: ${{ secrets.TAIGA_BEARER_TOKEN }}
           TAIGA_PROJECT_ID: ${{ secrets.TAIGA_PROJECT_ID }}
         run: |
+          cat <<EOF > taiga_payload.json
+          {
+            "project": $TAIGA_PROJECT_ID,
+            "subject": "[CI/CD] Tests Python fallaron - ${GITHUB_SHA::7}",
+            "description": "❌ Los tests de Python fallaron en el commit ${GITHUB_SHA}.\n\n**Branch:** ${GITHUB_REF}\n**Workflow:** ${GITHUB_WORKFLOW}\n**Run:** ${GITHUB_RUN_NUMBER}\n\n[Ver logs](${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID})"
+          }
+          EOF
           curl -X POST "https://api.taiga.io/api/v1/userstories" \
             -H "Authorization: Bearer $TAIGA_BEARER_TOKEN" \
             -H "Content-Type: application/json" \
-            -d '{
-              "project": '${TAIGA_PROJECT_ID}',
-              "subject": "[CI/CD] Tests Python fallaron - '${GITHUB_SHA::7}'",
-              "description": "❌ Los tests de Python fallaron en el commit '${GITHUB_SHA}'.\n\n**Branch:** '${GITHUB_REF}'\n**Workflow:** '${GITHUB_WORKFLOW}'\n**Run:** '${GITHUB_RUN_NUMBER}'\n\n[Ver logs]('${GITHUB_SERVER_URL}'/'${GITHUB_REPOSITORY}'/actions/runs/'${GITHUB_RUN_ID}')"
-            }'
+            -d @taiga_payload.json
 
   # ============================================
   # JOB 2: Tests Backend (JUnit)
@@ -108,14 +111,17 @@ jobs:
           TAIGA_BEARER_TOKEN: ${{ secrets.TAIGA_BEARER_TOKEN }}
           TAIGA_PROJECT_ID: ${{ secrets.TAIGA_PROJECT_ID }}
         run: |
+          cat <<EOF > taiga_payload.json
+          {
+            "project": $TAIGA_PROJECT_ID,
+            "subject": "[CI/CD] Tests Backend fallaron - ${GITHUB_SHA::7}",
+            "description": "❌ Los tests de Backend (JUnit) fallaron en el commit ${GITHUB_SHA}.\n\n**Branch:** ${GITHUB_REF}\n**Workflow:** ${GITHUB_WORKFLOW}\n**Run:** ${GITHUB_RUN_NUMBER}\n\n[Ver logs](${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID})"
+          }
+          EOF
           curl -X POST "https://api.taiga.io/api/v1/userstories" \
             -H "Authorization: Bearer $TAIGA_BEARER_TOKEN" \
             -H "Content-Type: application/json" \
-            -d '{
-              "project": '${TAIGA_PROJECT_ID}',
-              "subject": "[CI/CD] Tests Backend fallaron - '${GITHUB_SHA::7}'",
-              "description": "❌ Los tests de Backend (JUnit) fallaron en el commit '${GITHUB_SHA}'.\n\n**Branch:** '${GITHUB_REF}'\n**Workflow:** '${GITHUB_WORKFLOW}'\n**Run:** '${GITHUB_RUN_NUMBER}'\n\n[Ver logs]('${GITHUB_SERVER_URL}'/'${GITHUB_REPOSITORY}'/actions/runs/'${GITHUB_RUN_ID}')"
-            }'
+            -d @taiga_payload.json
 
   # ============================================
   # JOB 3: Build Backend
@@ -281,14 +287,17 @@ jobs:
           TAIGA_BEARER_TOKEN: ${{ secrets.TAIGA_BEARER_TOKEN }}
           TAIGA_PROJECT_ID: ${{ secrets.TAIGA_PROJECT_ID }}
         run: |
+          cat <<EOF > taiga_payload.json
+          {
+            "project": $TAIGA_PROJECT_ID,
+            "subject": "[CI/CD] Tests E2E fallaron - ${GITHUB_SHA::7}",
+            "description": "❌ Los tests E2E (Selenium) fallaron en el commit ${GITHUB_SHA}.\n\n**Branch:** ${GITHUB_REF}\n**Workflow:** ${GITHUB_WORKFLOW}\n**Run:** ${GITHUB_RUN_NUMBER}\n\n[Ver logs](${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID})"
+          }
+          EOF
           curl -X POST "https://api.taiga.io/api/v1/userstories" \
             -H "Authorization: Bearer $TAIGA_BEARER_TOKEN" \
             -H "Content-Type: application/json" \
-            -d '{
-              "project": '${TAIGA_PROJECT_ID}',
-              "subject": "[CI/CD] Tests E2E fallaron - '${GITHUB_SHA::7}'",
-              "description": "❌ Los tests E2E (Selenium) fallaron en el commit '${GITHUB_SHA}'.\n\n**Branch:** '${GITHUB_REF}'\n**Workflow:** '${GITHUB_WORKFLOW}'\n**Run:** '${GITHUB_RUN_NUMBER}'\n\n[Ver logs]('${GITHUB_SERVER_URL}'/'${GITHUB_REPOSITORY}'/actions/runs/'${GITHUB_RUN_ID}')"
-            }'
+            -d @taiga_payload.json
 
   # ============================================
   # JOB 6: Deploy (solo en main)
@@ -312,9 +321,13 @@ jobs:
         env:
           RENDER_DEPLOY_HOOK: ${{ secrets.RENDER_DEPLOY_HOOK_BACKEND }}
         run: |
-          echo "🚀 Desplegando backend a Render..."
-          curl -X POST "$RENDER_DEPLOY_HOOK"
-          echo "✅ Deploy hook enviado a Render"
+          if [ -n "$RENDER_DEPLOY_HOOK" ]; then
+            echo "🚀 Desplegando backend a Render..."
+            curl -X POST "$RENDER_DEPLOY_HOOK"
+            echo "✅ Deploy hook enviado a Render"
+          else
+            echo "⚠️ RENDER_DEPLOY_HOOK_BACKEND no configurado. Saltando deploy del Backend."
+          fi
 
       - name: 🚀 Deploy Frontend a Vercel
         env:

@@ -1,0 +1,15 @@
+# ============================================
+# DEPENDENCIAS DEL PROYECTO (Greenhouse Automation)
+# ============================================
+
+# Testing framework
+pytest==8.0.0
+pytest-html==4.1.1
+pytest-cov==4.1.0
+
+# Selenium para tests de frontend
+selenium==4.17.2
+webdriver-manager==4.0.1
+
+# Utilidades
+reportlab==4.0.9
