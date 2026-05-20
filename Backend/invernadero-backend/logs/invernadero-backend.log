@@ -3500,3 +3500,1546 @@ NULL not allowed for column "AREA_M2"; SQL statement:
 2026-05-19 23:44:24 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/api'
 2026-05-19 23:44:24 [restartedMain] INFO  c.i.i.InvernaderoBackendApplication - Started InvernaderoBackendApplication in 1.999 seconds (process running for 314.78)
 2026-05-19 23:44:24 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+2026-05-19 23:45:25 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[.[localhost].[/api] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-05-19 23:45:25 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-05-19 23:45:25 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2026-05-19 23:45:25 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing GET /invernadero?page=0&size=10
+2026-05-19 23:45:25 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-19 23:45:25 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured GET /invernadero?page=0&size=10
+2026-05-19 23:45:25 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        i1_0.id_invernadero,
+        i1_0.area_m2,
+        i1_0.estado,
+        i1_0.fecha_creacion,
+        i1_0.nombre,
+        i1_0.responsable_id,
+        i1_0.tipo_estructura,
+        i1_0.ubicacion 
+    from
+        invernadero i1_0 
+    offset
+        ? rows 
+    fetch
+        first ? rows only
+2026-05-19 23:45:25 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing GET /invernadero?page=0&size=10
+2026-05-19 23:45:25 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-19 23:45:25 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Secured GET /invernadero?page=0&size=10
+2026-05-19 23:45:25 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        i1_0.id_invernadero,
+        i1_0.area_m2,
+        i1_0.estado,
+        i1_0.fecha_creacion,
+        i1_0.nombre,
+        i1_0.responsable_id,
+        i1_0.tipo_estructura,
+        i1_0.ubicacion 
+    from
+        invernadero i1_0 
+    offset
+        ? rows 
+    fetch
+        first ? rows only
+2026-05-19 23:45:26 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing GET /taiga/sprint-actual
+2026-05-19 23:45:26 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-19 23:45:26 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured GET /taiga/sprint-actual
+2026-05-19 23:45:27 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing GET /taiga/sprint-actual
+2026-05-19 23:45:27 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-19 23:45:27 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /taiga/historia/9270036/criterios
+2026-05-19 23:45:27 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured GET /taiga/sprint-actual
+2026-05-19 23:45:27 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing GET /taiga/historia/9270036/criterios
+2026-05-19 23:45:27 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-19 23:45:27 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Secured GET /taiga/historia/9270036/criterios
+2026-05-19 23:45:28 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Securing GET /taiga/historia/9270036/criterios
+2026-05-19 23:45:28 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-19 23:45:28 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Secured GET /taiga/historia/9270036/criterios
+2026-05-19 23:45:30 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Securing GET /taiga/historia/9270036/criterios
+2026-05-19 23:45:30 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-19 23:45:30 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Secured GET /taiga/historia/9270036/criterios
+2026-05-20 00:14:23 [main] INFO  c.i.i.auth.AuthControllerTest - Starting AuthControllerTest using Java 25.0.1 with PID 2264 (started by Usuario in C:\Users\Usuario\Desktop\Invernadero automatizado\Backend\invernadero-backend)
+2026-05-20 00:14:23 [main] INFO  c.i.i.auth.AuthControllerTest - The following 1 profile is active: "test"
+2026-05-20 00:14:27 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-05-20 00:14:29 [main] DEBUG org.hibernate.SQL - 
+    drop table if exists alerta cascade 
+2026-05-20 00:14:29 [main] DEBUG org.hibernate.SQL - 
+    drop table if exists aplicacion_insumo cascade 
+2026-05-20 00:14:29 [main] DEBUG org.hibernate.SQL - 
+    drop table if exists cosecha cascade 
+2026-05-20 00:14:29 [main] DEBUG org.hibernate.SQL - 
+    drop table if exists cultivo cascade 
+2026-05-20 00:14:29 [main] DEBUG org.hibernate.SQL - 
+    drop table if exists insumo cascade 
+2026-05-20 00:14:29 [main] DEBUG org.hibernate.SQL - 
+    drop table if exists invernadero cascade 
+2026-05-20 00:14:29 [main] DEBUG org.hibernate.SQL - 
+    drop table if exists lectura_sensor cascade 
+2026-05-20 00:14:29 [main] DEBUG org.hibernate.SQL - 
+    drop table if exists riego cascade 
+2026-05-20 00:14:29 [main] DEBUG org.hibernate.SQL - 
+    drop table if exists sensor cascade 
+2026-05-20 00:14:29 [main] DEBUG org.hibernate.SQL - 
+    drop table if exists siembra cascade 
+2026-05-20 00:14:29 [main] DEBUG org.hibernate.SQL - 
+    drop table if exists usuario cascade 
+2026-05-20 00:14:29 [main] DEBUG org.hibernate.SQL - 
+    drop table if exists zona cascade 
+2026-05-20 00:14:29 [main] DEBUG org.hibernate.SQL - 
+    create table alerta (
+        id_alerta integer generated by default as identity,
+        id_sensor integer,
+        id_zona integer,
+        resuelta boolean not null,
+        fecha_hora timestamp(6) not null,
+        fecha_resolucion timestamp(6),
+        nivel varchar(20) not null check (nivel in ('INFORMATIVA','ADVERTENCIA','CRITICA')),
+        tipo_alerta varchar(50) not null check (tipo_alerta in ('TEMPERATURA_ALTA','TEMPERATURA_BAJA','HUMEDAD_ALTA','HUMEDAD_BAJA','CO2_ALTO','PH_FUERA_RANGO','FALLA_SENSOR','PLAGA_ENFERMEDAD')),
+        descripcion varchar(255) not null,
+        primary key (id_alerta)
+    )
+2026-05-20 00:14:29 [main] DEBUG org.hibernate.SQL - 
+    create table aplicacion_insumo (
+        cantidad numeric(38,2) not null,
+        id_aplicacion integer generated by default as identity,
+        id_insumo integer not null,
+        id_siembra integer,
+        id_usuario integer not null,
+        id_zona integer,
+        fecha_hora timestamp(6) not null,
+        metodo varchar(50) check (metodo in ('FOLIAR','RIEGO','SUELO','INYECCION')),
+        observaciones varchar(255),
+        primary key (id_aplicacion)
+    )
+2026-05-20 00:14:29 [main] DEBUG org.hibernate.SQL - 
+    create table cosecha (
+        cantidad_kg numeric(38,2) not null,
+        fecha_cosecha date not null,
+        id_cosecha integer generated by default as identity,
+        id_siembra integer not null,
+        id_usuario integer not null,
+        calidad varchar(20) check (calidad in ('PREMIUM','ESTANDAR','SEGUNDA','DESCARTE')),
+        observaciones varchar(255),
+        primary key (id_cosecha)
+    )
+2026-05-20 00:14:29 [main] DEBUG org.hibernate.SQL - 
+    create table cultivo (
+        dias_ciclo integer,
+        humedad_max_pct numeric(38,2),
+        humedad_min_pct numeric(38,2),
+        id_cultivo integer generated by default as identity,
+        temp_max_c numeric(38,2),
+        temp_min_c numeric(38,2),
+        tipo varchar(50) not null check (tipo in ('HORTALIZA','FRUTA','FLOR','HIERBA','OTRO')),
+        nombre_comun varchar(100) not null,
+        nombre_cientifico varchar(150),
+        descripcion varchar(255),
+        primary key (id_cultivo)
+    )
+2026-05-20 00:14:29 [main] DEBUG org.hibernate.SQL - 
+    create table insumo (
+        id_insumo integer generated by default as identity,
+        stock_actual numeric(38,2) not null,
+        stock_minimo numeric(38,2),
+        unidad varchar(20) not null check (unidad in ('kg','g','L','mL','unidad')),
+        tipo varchar(50) not null check (tipo in ('FERTILIZANTE','PESTICIDA','FUNGICIDA','SUSTRATO','AGUA','OTRO')),
+        nombre varchar(100) not null,
+        descripcion varchar(255),
+        primary key (id_insumo)
+    )
+2026-05-20 00:14:29 [main] DEBUG org.hibernate.SQL - 
+    create table invernadero (
+        area_m2 numeric(38,2) not null,
+        fecha_creacion date not null,
+        id_invernadero integer generated by default as identity,
+        responsable_id integer not null,
+        estado varchar(20) not null check (estado in ('ACTIVO','INACTIVO','MANTENIMIENTO')),
+        tipo_estructura varchar(50) check (tipo_estructura in ('VIDRIO','POLICARBONATO','MALLA','PLASTICO')),
+        nombre varchar(100) not null,
+        ubicacion varchar(200) not null,
+        primary key (id_invernadero)
+    )
+2026-05-20 00:14:29 [main] DEBUG org.hibernate.SQL - 
+    create table lectura_sensor (
+        genera_alerta boolean not null,
+        id_lectura integer generated by default as identity,
+        id_sensor integer not null,
+        valor numeric(38,2) not null,
+        fecha_hora timestamp(6) not null,
+        primary key (id_lectura)
+    )
+2026-05-20 00:14:29 [main] DEBUG org.hibernate.SQL - 
+    create table riego (
+        duracion_min integer not null,
+        id_riego integer generated by default as identity,
+        id_usuario integer,
+        id_zona integer not null,
+        volumen_litros numeric(38,2),
+        fecha_hora timestamp(6) not null,
+        tipo varchar(20) not null check (tipo in ('AUTOMATICO','MANUAL')),
+        observaciones varchar(255),
+        primary key (id_riego)
+    )
+2026-05-20 00:14:29 [main] DEBUG org.hibernate.SQL - 
+    create table sensor (
+        fecha_instalacion date,
+        id_sensor integer generated by default as identity,
+        id_zona integer not null,
+        estado varchar(20) not null check (estado in ('ACTIVO','INACTIVO','FALLA')),
+        unidad_medida varchar(20) not null,
+        tipo_sensor varchar(50) not null check (tipo_sensor in ('TEMPERATURA','HUMEDAD','CO2','LUMINOSIDAD','PH','HUMEDAD_SUELO')),
+        modelo varchar(100),
+        primary key (id_sensor)
+    )
+2026-05-20 00:14:29 [main] DEBUG org.hibernate.SQL - 
+    create table siembra (
+        cantidad_plantas integer not null,
+        fecha_cosecha_estimada date,
+        fecha_siembra date not null,
+        id_cultivo integer not null,
+        id_siembra integer generated by default as identity,
+        id_usuario integer not null,
+        id_zona integer not null,
+        estado varchar(30) not null check (estado in ('EN_CRECIMIENTO','COSECHADO','PERDIDO','EN_CUARENTENA')),
+        observaciones varchar(255),
+        primary key (id_siembra)
+    )
+2026-05-20 00:14:29 [main] DEBUG org.hibernate.SQL - 
+    create table usuario (
+        activo boolean not null,
+        fecha_registro date not null,
+        id_usuario integer generated by default as identity,
+        proveedor_oauth varchar(30) check (proveedor_oauth in ('LOCAL','GOOGLE')),
+        rol varchar(30) not null check (rol in ('ADMINISTRADOR','TECNICO','OPERARIO','VISUALIZADOR')),
+        apellido varchar(100) not null,
+        nombre varchar(100) not null,
+        email varchar(150) not null unique,
+        password_hash varchar(255),
+        primary key (id_usuario)
+    )
+2026-05-20 00:14:29 [main] DEBUG org.hibernate.SQL - 
+    create table zona (
+        area_m2 numeric(38,2),
+        id_invernadero integer not null,
+        id_zona integer generated by default as identity,
+        nombre_zona varchar(100) not null,
+        descripcion varchar(255),
+        primary key (id_zona)
+    )
+2026-05-20 00:14:29 [main] DEBUG org.hibernate.SQL - 
+    alter table if exists alerta 
+       add constraint FKcnl0hmvpcs6vi1d3pqbt72h5 
+       foreign key (id_sensor) 
+       references sensor
+2026-05-20 00:14:29 [main] DEBUG org.hibernate.SQL - 
+    alter table if exists alerta 
+       add constraint FK5jb5wphsd1l7p0ie5bqj01xhu 
+       foreign key (id_zona) 
+       references zona
+2026-05-20 00:14:29 [main] DEBUG org.hibernate.SQL - 
+    alter table if exists aplicacion_insumo 
+       add constraint FKe2pd377u4y3q4e1fo1hv2pffb 
+       foreign key (id_insumo) 
+       references insumo
+2026-05-20 00:14:29 [main] DEBUG org.hibernate.SQL - 
+    alter table if exists aplicacion_insumo 
+       add constraint FKqvhpcrccp6l1oxqw8hjpuqub8 
+       foreign key (id_siembra) 
+       references siembra
+2026-05-20 00:14:29 [main] DEBUG org.hibernate.SQL - 
+    alter table if exists aplicacion_insumo 
+       add constraint FK4eet376ddx3v02okd3mrsdh0e 
+       foreign key (id_usuario) 
+       references usuario
+2026-05-20 00:14:29 [main] DEBUG org.hibernate.SQL - 
+    alter table if exists aplicacion_insumo 
+       add constraint FK21klspp1iynjmmb7d7jlt04oy 
+       foreign key (id_zona) 
+       references zona
+2026-05-20 00:14:29 [main] DEBUG org.hibernate.SQL - 
+    alter table if exists cosecha 
+       add constraint FKsn4nbc3arfrjjew7rfvi0th44 
+       foreign key (id_siembra) 
+       references siembra
+2026-05-20 00:14:29 [main] DEBUG org.hibernate.SQL - 
+    alter table if exists cosecha 
+       add constraint FKbf4vqn6dd0vw3ydcl3smngd61 
+       foreign key (id_usuario) 
+       references usuario
+2026-05-20 00:14:29 [main] DEBUG org.hibernate.SQL - 
+    alter table if exists invernadero 
+       add constraint FKdxokdh0nnkeuvln4mqjofico 
+       foreign key (responsable_id) 
+       references usuario
+2026-05-20 00:14:29 [main] DEBUG org.hibernate.SQL - 
+    alter table if exists lectura_sensor 
+       add constraint FK89gg88nhvva88e2q5f6q575og 
+       foreign key (id_sensor) 
+       references sensor
+2026-05-20 00:14:29 [main] DEBUG org.hibernate.SQL - 
+    alter table if exists riego 
+       add constraint FKbqpr3bb2h33mcj785q02v8v2t 
+       foreign key (id_usuario) 
+       references usuario
+2026-05-20 00:14:29 [main] DEBUG org.hibernate.SQL - 
+    alter table if exists riego 
+       add constraint FKbdrr4gx88k3nw5kd34gyufnd2 
+       foreign key (id_zona) 
+       references zona
+2026-05-20 00:14:29 [main] DEBUG org.hibernate.SQL - 
+    alter table if exists sensor 
+       add constraint FK2393tqld5hg4hbtojlqau8h7r 
+       foreign key (id_zona) 
+       references zona
+2026-05-20 00:14:29 [main] DEBUG org.hibernate.SQL - 
+    alter table if exists siembra 
+       add constraint FK9qltcv7297y3fmeabfbv8q70l 
+       foreign key (id_cultivo) 
+       references cultivo
+2026-05-20 00:14:29 [main] DEBUG org.hibernate.SQL - 
+    alter table if exists siembra 
+       add constraint FK7xe7pf30qat10dxcpfhk1j2xa 
+       foreign key (id_usuario) 
+       references usuario
+2026-05-20 00:14:29 [main] DEBUG org.hibernate.SQL - 
+    alter table if exists siembra 
+       add constraint FKqlch7ecw90qbqlfq179s7fa 
+       foreign key (id_zona) 
+       references zona
+2026-05-20 00:14:29 [main] DEBUG org.hibernate.SQL - 
+    alter table if exists zona 
+       add constraint FK3cwosls4tdfy74xjrua5m8o4v 
+       foreign key (id_invernadero) 
+       references invernadero
+2026-05-20 00:14:30 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-05-20 00:14:30 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@87c349d, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4b0465bd, org.springframework.security.web.context.SecurityContextHolderFilter@2b4c26ec, org.springframework.security.web.header.HeaderWriterFilter@1084b6f7, org.springframework.web.filter.CorsFilter@53021597, org.springframework.security.web.authentication.logout.LogoutFilter@3c066b66, com.invernadero.invernadero_backend.auth.infrastructure.security.JwtAuthenticationFilter@a58f9a6, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@40724ccd, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@49ee30ca, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4c6e7fe8, org.springframework.security.web.session.SessionManagementFilter@43f79aa0, org.springframework.security.web.access.ExceptionTranslationFilter@2a5eac38, org.springframework.security.web.access.intercept.AuthorizationFilter@49614b44]
+2026-05-20 00:14:31 [main] INFO  c.i.i.auth.AuthControllerTest - Started AuthControllerTest in 8.229 seconds (process running for 10.027)
+2026-05-20 00:14:31 [main] DEBUG o.s.security.web.FilterChainProxy - Securing POST /auth/login
+2026-05-20 00:14:31 [main] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-05-20 00:14:31 [main] DEBUG o.s.security.web.FilterChainProxy - Secured POST /auth/login
+2026-05-20 00:14:32 [main] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-20 00:14:32 [main] DEBUG o.s.s.a.d.DaoAuthenticationProvider - Failed to find user 'noexiste@invernadero.com'
+2026-05-20 00:14:32 [main] DEBUG o.s.security.web.FilterChainProxy - Securing POST /auth/register
+2026-05-20 00:14:32 [main] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-05-20 00:14:32 [main] DEBUG o.s.security.web.FilterChainProxy - Secured POST /auth/register
+2026-05-20 00:14:32 [main] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=? 
+    fetch
+        first ? rows only
+2026-05-20 00:14:32 [main] DEBUG org.hibernate.SQL - 
+    /* insert for
+        com.invernadero.invernadero_backend.auth.domain.model.Usuario */insert 
+    into
+        usuario (activo, apellido, email, fecha_registro, nombre, password_hash, proveedor_oauth, rol, id_usuario) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+2026-05-20 00:14:32 [main] DEBUG o.s.security.web.FilterChainProxy - Securing POST /auth/login
+2026-05-20 00:14:32 [main] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-05-20 00:14:32 [main] DEBUG o.s.security.web.FilterChainProxy - Secured POST /auth/login
+2026-05-20 00:14:32 [main] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-20 00:14:32 [main] DEBUG o.s.s.a.d.DaoAuthenticationProvider - Authenticated user
+2026-05-20 00:14:32 [main] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-20 00:14:32 [main] DEBUG o.s.security.web.FilterChainProxy - Securing POST /auth/register
+2026-05-20 00:14:32 [main] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-05-20 00:14:32 [main] DEBUG o.s.security.web.FilterChainProxy - Secured POST /auth/register
+2026-05-20 00:14:32 [main] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=? 
+    fetch
+        first ? rows only
+2026-05-20 00:14:32 [main] DEBUG org.hibernate.SQL - 
+    /* insert for
+        com.invernadero.invernadero_backend.auth.domain.model.Usuario */insert 
+    into
+        usuario (activo, apellido, email, fecha_registro, nombre, password_hash, proveedor_oauth, rol, id_usuario) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+2026-05-20 00:14:32 [main] DEBUG o.s.security.web.FilterChainProxy - Securing POST /auth/register
+2026-05-20 00:14:32 [main] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-05-20 00:14:32 [main] DEBUG o.s.security.web.FilterChainProxy - Secured POST /auth/register
+2026-05-20 00:14:32 [main] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=? 
+    fetch
+        first ? rows only
+2026-05-20 00:14:32 [main] DEBUG o.s.security.web.FilterChainProxy - Securing POST /auth/register
+2026-05-20 00:14:32 [main] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-05-20 00:14:32 [main] DEBUG o.s.security.web.FilterChainProxy - Secured POST /auth/register
+2026-05-20 00:14:32 [main] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=? 
+    fetch
+        first ? rows only
+2026-05-20 00:14:32 [main] DEBUG org.hibernate.SQL - 
+    /* insert for
+        com.invernadero.invernadero_backend.auth.domain.model.Usuario */insert 
+    into
+        usuario (activo, apellido, email, fecha_registro, nombre, password_hash, proveedor_oauth, rol, id_usuario) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+2026-05-20 00:14:32 [main] DEBUG o.s.security.web.FilterChainProxy - Securing POST /auth/register
+2026-05-20 00:14:32 [main] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-05-20 00:14:32 [main] DEBUG o.s.security.web.FilterChainProxy - Secured POST /auth/register
+2026-05-20 00:14:32 [main] DEBUG o.s.security.web.FilterChainProxy - Securing POST /auth/register
+2026-05-20 00:14:32 [main] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-05-20 00:14:32 [main] DEBUG o.s.security.web.FilterChainProxy - Secured POST /auth/register
+2026-05-20 00:14:32 [main] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=? 
+    fetch
+        first ? rows only
+2026-05-20 00:14:33 [main] DEBUG org.hibernate.SQL - 
+    /* insert for
+        com.invernadero.invernadero_backend.auth.domain.model.Usuario */insert 
+    into
+        usuario (activo, apellido, email, fecha_registro, nombre, password_hash, proveedor_oauth, rol, id_usuario) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+2026-05-20 00:14:33 [main] DEBUG o.s.security.web.FilterChainProxy - Securing POST /invernadero
+2026-05-20 00:14:33 [main] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-20 00:14:33 [main] DEBUG o.s.security.web.FilterChainProxy - Secured POST /invernadero
+2026-05-20 00:14:33 [main] DEBUG org.hibernate.SQL - 
+    /* insert for
+        com.invernadero.invernadero_backend.invernadero.domain.model.Invernadero */insert 
+    into
+        invernadero (area_m2, estado, fecha_creacion, nombre, responsable_id, tipo_estructura, ubicacion, id_invernadero) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+2026-05-20 00:14:33 [main] DEBUG o.s.security.web.FilterChainProxy - Securing DELETE /invernadero/1
+2026-05-20 00:14:33 [main] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-20 00:14:33 [main] DEBUG o.s.security.web.FilterChainProxy - Secured DELETE /invernadero/1
+2026-05-20 00:14:33 [main] DEBUG org.hibernate.SQL - 
+    /* select
+        count(*) 
+    from
+        Invernadero x 
+    WHERE
+        x.idInvernadero = :idInvernadero */ select
+            count(*) 
+        from
+            invernadero i1_0 
+        where
+            i1_0.id_invernadero=?
+2026-05-20 00:14:33 [main] DEBUG o.s.security.web.FilterChainProxy - Securing GET /invernadero/1
+2026-05-20 00:14:33 [main] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-20 00:14:33 [main] DEBUG o.s.security.web.FilterChainProxy - Secured GET /invernadero/1
+2026-05-20 00:14:33 [main] DEBUG o.s.security.web.FilterChainProxy - Securing POST /auth/register
+2026-05-20 00:14:33 [main] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-05-20 00:14:33 [main] DEBUG o.s.security.web.FilterChainProxy - Secured POST /auth/register
+2026-05-20 00:14:33 [main] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=? 
+    fetch
+        first ? rows only
+2026-05-20 00:14:33 [main] DEBUG org.hibernate.SQL - 
+    /* insert for
+        com.invernadero.invernadero_backend.auth.domain.model.Usuario */insert 
+    into
+        usuario (activo, apellido, email, fecha_registro, nombre, password_hash, proveedor_oauth, rol, id_usuario) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+2026-05-20 00:14:33 [main] DEBUG o.s.security.web.FilterChainProxy - Securing GET /invernadero
+2026-05-20 00:14:33 [main] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-05-20 00:14:33 [main] DEBUG o.s.security.web.FilterChainProxy - Securing POST /auth/register
+2026-05-20 00:14:33 [main] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-05-20 00:14:33 [main] DEBUG o.s.security.web.FilterChainProxy - Secured POST /auth/register
+2026-05-20 00:14:33 [main] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=? 
+    fetch
+        first ? rows only
+2026-05-20 00:14:33 [main] DEBUG org.hibernate.SQL - 
+    /* insert for
+        com.invernadero.invernadero_backend.auth.domain.model.Usuario */insert 
+    into
+        usuario (activo, apellido, email, fecha_registro, nombre, password_hash, proveedor_oauth, rol, id_usuario) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+2026-05-20 00:14:33 [main] DEBUG o.s.security.web.FilterChainProxy - Securing POST /invernadero
+2026-05-20 00:14:33 [main] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-20 00:14:33 [main] DEBUG o.s.security.web.FilterChainProxy - Secured POST /invernadero
+2026-05-20 00:14:33 [main] DEBUG org.hibernate.SQL - 
+    /* insert for
+        com.invernadero.invernadero_backend.invernadero.domain.model.Invernadero */insert 
+    into
+        invernadero (area_m2, estado, fecha_creacion, nombre, responsable_id, tipo_estructura, ubicacion, id_invernadero) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+2026-05-20 00:14:33 [main] DEBUG o.s.security.web.FilterChainProxy - Securing POST /auth/register
+2026-05-20 00:14:33 [main] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-05-20 00:14:33 [main] DEBUG o.s.security.web.FilterChainProxy - Secured POST /auth/register
+2026-05-20 00:14:33 [main] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=? 
+    fetch
+        first ? rows only
+2026-05-20 00:14:33 [main] DEBUG org.hibernate.SQL - 
+    /* insert for
+        com.invernadero.invernadero_backend.auth.domain.model.Usuario */insert 
+    into
+        usuario (activo, apellido, email, fecha_registro, nombre, password_hash, proveedor_oauth, rol, id_usuario) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+2026-05-20 00:14:33 [main] DEBUG o.s.security.web.FilterChainProxy - Securing POST /invernadero
+2026-05-20 00:14:33 [main] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-20 00:14:33 [main] DEBUG o.s.security.web.FilterChainProxy - Secured POST /invernadero
+2026-05-20 00:14:33 [main] DEBUG org.hibernate.SQL - 
+    /* insert for
+        com.invernadero.invernadero_backend.invernadero.domain.model.Invernadero */insert 
+    into
+        invernadero (area_m2, estado, fecha_creacion, nombre, responsable_id, tipo_estructura, ubicacion, id_invernadero) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+2026-05-20 00:14:33 [main] DEBUG o.s.security.web.FilterChainProxy - Securing GET /invernadero
+2026-05-20 00:14:33 [main] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-20 00:14:33 [main] DEBUG o.s.security.web.FilterChainProxy - Secured GET /invernadero
+2026-05-20 00:14:33 [main] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        i1_0.id_invernadero,
+        i1_0.area_m2,
+        i1_0.estado,
+        i1_0.fecha_creacion,
+        i1_0.nombre,
+        i1_0.responsable_id,
+        i1_0.tipo_estructura,
+        i1_0.ubicacion 
+    from
+        invernadero i1_0 
+    offset
+        ? rows 
+    fetch
+        first ? rows only
+2026-05-20 00:14:33 [main] DEBUG o.s.security.web.FilterChainProxy - Securing POST /auth/register
+2026-05-20 00:14:33 [main] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-05-20 00:14:33 [main] DEBUG o.s.security.web.FilterChainProxy - Secured POST /auth/register
+2026-05-20 00:14:33 [main] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=? 
+    fetch
+        first ? rows only
+2026-05-20 00:14:33 [main] DEBUG org.hibernate.SQL - 
+    /* insert for
+        com.invernadero.invernadero_backend.auth.domain.model.Usuario */insert 
+    into
+        usuario (activo, apellido, email, fecha_registro, nombre, password_hash, proveedor_oauth, rol, id_usuario) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+2026-05-20 00:14:33 [main] DEBUG o.s.security.web.FilterChainProxy - Securing POST /invernadero
+2026-05-20 00:14:33 [main] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-20 00:14:33 [main] DEBUG o.s.security.web.FilterChainProxy - Secured POST /invernadero
+2026-05-20 00:14:33 [main] DEBUG org.hibernate.SQL - 
+    /* insert for
+        com.invernadero.invernadero_backend.invernadero.domain.model.Invernadero */insert 
+    into
+        invernadero (area_m2, estado, fecha_creacion, nombre, responsable_id, tipo_estructura, ubicacion, id_invernadero) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+2026-05-20 00:14:33 [main] DEBUG o.s.security.web.FilterChainProxy - Securing PUT /invernadero/4
+2026-05-20 00:14:33 [main] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-20 00:14:33 [main] DEBUG o.s.security.web.FilterChainProxy - Secured PUT /invernadero/4
+2026-05-20 00:14:34 [SpringApplicationShutdownHook] DEBUG org.hibernate.SQL - 
+    drop table if exists alerta cascade 
+2026-05-20 00:14:34 [SpringApplicationShutdownHook] DEBUG org.hibernate.SQL - 
+    drop table if exists aplicacion_insumo cascade 
+2026-05-20 00:14:34 [SpringApplicationShutdownHook] DEBUG org.hibernate.SQL - 
+    drop table if exists cosecha cascade 
+2026-05-20 00:14:34 [SpringApplicationShutdownHook] DEBUG org.hibernate.SQL - 
+    drop table if exists cultivo cascade 
+2026-05-20 00:14:34 [SpringApplicationShutdownHook] DEBUG org.hibernate.SQL - 
+    drop table if exists insumo cascade 
+2026-05-20 00:14:34 [SpringApplicationShutdownHook] DEBUG org.hibernate.SQL - 
+    drop table if exists invernadero cascade 
+2026-05-20 00:14:34 [SpringApplicationShutdownHook] DEBUG org.hibernate.SQL - 
+    drop table if exists lectura_sensor cascade 
+2026-05-20 00:14:34 [SpringApplicationShutdownHook] DEBUG org.hibernate.SQL - 
+    drop table if exists riego cascade 
+2026-05-20 00:14:34 [SpringApplicationShutdownHook] DEBUG org.hibernate.SQL - 
+    drop table if exists sensor cascade 
+2026-05-20 00:14:34 [SpringApplicationShutdownHook] DEBUG org.hibernate.SQL - 
+    drop table if exists siembra cascade 
+2026-05-20 00:14:34 [SpringApplicationShutdownHook] DEBUG org.hibernate.SQL - 
+    drop table if exists usuario cascade 
+2026-05-20 00:14:34 [SpringApplicationShutdownHook] DEBUG org.hibernate.SQL - 
+    drop table if exists zona cascade 
+2026-05-20 14:59:56 [main] INFO  c.i.i.auth.AuthControllerTest - Starting AuthControllerTest using Java 25.0.1 with PID 24388 (started by Usuario in C:\Users\Usuario\Desktop\Invernadero automatizado\Backend\invernadero-backend)
+2026-05-20 14:59:56 [main] INFO  c.i.i.auth.AuthControllerTest - The following 1 profile is active: "test"
+2026-05-20 14:59:59 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-05-20 15:00:00 [main] DEBUG org.hibernate.SQL - 
+    drop table if exists alerta cascade 
+2026-05-20 15:00:00 [main] DEBUG org.hibernate.SQL - 
+    drop table if exists aplicacion_insumo cascade 
+2026-05-20 15:00:00 [main] DEBUG org.hibernate.SQL - 
+    drop table if exists cosecha cascade 
+2026-05-20 15:00:00 [main] DEBUG org.hibernate.SQL - 
+    drop table if exists cultivo cascade 
+2026-05-20 15:00:00 [main] DEBUG org.hibernate.SQL - 
+    drop table if exists insumo cascade 
+2026-05-20 15:00:00 [main] DEBUG org.hibernate.SQL - 
+    drop table if exists invernadero cascade 
+2026-05-20 15:00:00 [main] DEBUG org.hibernate.SQL - 
+    drop table if exists lectura_sensor cascade 
+2026-05-20 15:00:00 [main] DEBUG org.hibernate.SQL - 
+    drop table if exists riego cascade 
+2026-05-20 15:00:00 [main] DEBUG org.hibernate.SQL - 
+    drop table if exists sensor cascade 
+2026-05-20 15:00:00 [main] DEBUG org.hibernate.SQL - 
+    drop table if exists siembra cascade 
+2026-05-20 15:00:00 [main] DEBUG org.hibernate.SQL - 
+    drop table if exists usuario cascade 
+2026-05-20 15:00:00 [main] DEBUG org.hibernate.SQL - 
+    drop table if exists zona cascade 
+2026-05-20 15:00:00 [main] DEBUG org.hibernate.SQL - 
+    create table alerta (
+        id_alerta integer generated by default as identity,
+        id_sensor integer,
+        id_zona integer,
+        resuelta boolean not null,
+        fecha_hora timestamp(6) not null,
+        fecha_resolucion timestamp(6),
+        nivel varchar(20) not null check (nivel in ('INFORMATIVA','ADVERTENCIA','CRITICA')),
+        tipo_alerta varchar(50) not null check (tipo_alerta in ('TEMPERATURA_ALTA','TEMPERATURA_BAJA','HUMEDAD_ALTA','HUMEDAD_BAJA','CO2_ALTO','PH_FUERA_RANGO','FALLA_SENSOR','PLAGA_ENFERMEDAD')),
+        descripcion varchar(255) not null,
+        primary key (id_alerta)
+    )
+2026-05-20 15:00:00 [main] DEBUG org.hibernate.SQL - 
+    create table aplicacion_insumo (
+        cantidad numeric(38,2) not null,
+        id_aplicacion integer generated by default as identity,
+        id_insumo integer not null,
+        id_siembra integer,
+        id_usuario integer not null,
+        id_zona integer,
+        fecha_hora timestamp(6) not null,
+        metodo varchar(50) check (metodo in ('FOLIAR','RIEGO','SUELO','INYECCION')),
+        observaciones varchar(255),
+        primary key (id_aplicacion)
+    )
+2026-05-20 15:00:00 [main] DEBUG org.hibernate.SQL - 
+    create table cosecha (
+        cantidad_kg numeric(38,2) not null,
+        fecha_cosecha date not null,
+        id_cosecha integer generated by default as identity,
+        id_siembra integer not null,
+        id_usuario integer not null,
+        calidad varchar(20) check (calidad in ('PREMIUM','ESTANDAR','SEGUNDA','DESCARTE')),
+        observaciones varchar(255),
+        primary key (id_cosecha)
+    )
+2026-05-20 15:00:00 [main] DEBUG org.hibernate.SQL - 
+    create table cultivo (
+        dias_ciclo integer,
+        humedad_max_pct numeric(38,2),
+        humedad_min_pct numeric(38,2),
+        id_cultivo integer generated by default as identity,
+        temp_max_c numeric(38,2),
+        temp_min_c numeric(38,2),
+        tipo varchar(50) not null check (tipo in ('HORTALIZA','FRUTA','FLOR','HIERBA','OTRO')),
+        nombre_comun varchar(100) not null,
+        nombre_cientifico varchar(150),
+        descripcion varchar(255),
+        primary key (id_cultivo)
+    )
+2026-05-20 15:00:00 [main] DEBUG org.hibernate.SQL - 
+    create table insumo (
+        id_insumo integer generated by default as identity,
+        stock_actual numeric(38,2) not null,
+        stock_minimo numeric(38,2),
+        unidad varchar(20) not null check (unidad in ('kg','g','L','mL','unidad')),
+        tipo varchar(50) not null check (tipo in ('FERTILIZANTE','PESTICIDA','FUNGICIDA','SUSTRATO','AGUA','OTRO')),
+        nombre varchar(100) not null,
+        descripcion varchar(255),
+        primary key (id_insumo)
+    )
+2026-05-20 15:00:00 [main] DEBUG org.hibernate.SQL - 
+    create table invernadero (
+        area_m2 numeric(38,2) not null,
+        fecha_creacion date not null,
+        id_invernadero integer generated by default as identity,
+        responsable_id integer not null,
+        estado varchar(20) not null check (estado in ('ACTIVO','INACTIVO','MANTENIMIENTO')),
+        tipo_estructura varchar(50) check (tipo_estructura in ('VIDRIO','POLICARBONATO','MALLA','PLASTICO')),
+        nombre varchar(100) not null,
+        ubicacion varchar(200) not null,
+        primary key (id_invernadero)
+    )
+2026-05-20 15:00:00 [main] DEBUG org.hibernate.SQL - 
+    create table lectura_sensor (
+        genera_alerta boolean not null,
+        id_lectura integer generated by default as identity,
+        id_sensor integer not null,
+        valor numeric(38,2) not null,
+        fecha_hora timestamp(6) not null,
+        primary key (id_lectura)
+    )
+2026-05-20 15:00:00 [main] DEBUG org.hibernate.SQL - 
+    create table riego (
+        duracion_min integer not null,
+        id_riego integer generated by default as identity,
+        id_usuario integer,
+        id_zona integer not null,
+        volumen_litros numeric(38,2),
+        fecha_hora timestamp(6) not null,
+        tipo varchar(20) not null check (tipo in ('AUTOMATICO','MANUAL')),
+        observaciones varchar(255),
+        primary key (id_riego)
+    )
+2026-05-20 15:00:00 [main] DEBUG org.hibernate.SQL - 
+    create table sensor (
+        fecha_instalacion date,
+        id_sensor integer generated by default as identity,
+        id_zona integer not null,
+        estado varchar(20) not null check (estado in ('ACTIVO','INACTIVO','FALLA')),
+        unidad_medida varchar(20) not null,
+        tipo_sensor varchar(50) not null check (tipo_sensor in ('TEMPERATURA','HUMEDAD','CO2','LUMINOSIDAD','PH','HUMEDAD_SUELO')),
+        modelo varchar(100),
+        primary key (id_sensor)
+    )
+2026-05-20 15:00:00 [main] DEBUG org.hibernate.SQL - 
+    create table siembra (
+        cantidad_plantas integer not null,
+        fecha_cosecha_estimada date,
+        fecha_siembra date not null,
+        id_cultivo integer not null,
+        id_siembra integer generated by default as identity,
+        id_usuario integer not null,
+        id_zona integer not null,
+        estado varchar(30) not null check (estado in ('EN_CRECIMIENTO','COSECHADO','PERDIDO','EN_CUARENTENA')),
+        observaciones varchar(255),
+        primary key (id_siembra)
+    )
+2026-05-20 15:00:00 [main] DEBUG org.hibernate.SQL - 
+    create table usuario (
+        activo boolean not null,
+        fecha_registro date not null,
+        id_usuario integer generated by default as identity,
+        proveedor_oauth varchar(30) check (proveedor_oauth in ('LOCAL','GOOGLE')),
+        rol varchar(30) not null check (rol in ('ADMINISTRADOR','TECNICO','OPERARIO','VISUALIZADOR')),
+        apellido varchar(100) not null,
+        nombre varchar(100) not null,
+        email varchar(150) not null unique,
+        password_hash varchar(255),
+        primary key (id_usuario)
+    )
+2026-05-20 15:00:00 [main] DEBUG org.hibernate.SQL - 
+    create table zona (
+        area_m2 numeric(38,2),
+        id_invernadero integer not null,
+        id_zona integer generated by default as identity,
+        nombre_zona varchar(100) not null,
+        descripcion varchar(255),
+        primary key (id_zona)
+    )
+2026-05-20 15:00:00 [main] DEBUG org.hibernate.SQL - 
+    alter table if exists alerta 
+       add constraint FKcnl0hmvpcs6vi1d3pqbt72h5 
+       foreign key (id_sensor) 
+       references sensor
+2026-05-20 15:00:01 [main] DEBUG org.hibernate.SQL - 
+    alter table if exists alerta 
+       add constraint FK5jb5wphsd1l7p0ie5bqj01xhu 
+       foreign key (id_zona) 
+       references zona
+2026-05-20 15:00:01 [main] DEBUG org.hibernate.SQL - 
+    alter table if exists aplicacion_insumo 
+       add constraint FKe2pd377u4y3q4e1fo1hv2pffb 
+       foreign key (id_insumo) 
+       references insumo
+2026-05-20 15:00:01 [main] DEBUG org.hibernate.SQL - 
+    alter table if exists aplicacion_insumo 
+       add constraint FKqvhpcrccp6l1oxqw8hjpuqub8 
+       foreign key (id_siembra) 
+       references siembra
+2026-05-20 15:00:01 [main] DEBUG org.hibernate.SQL - 
+    alter table if exists aplicacion_insumo 
+       add constraint FK4eet376ddx3v02okd3mrsdh0e 
+       foreign key (id_usuario) 
+       references usuario
+2026-05-20 15:00:01 [main] DEBUG org.hibernate.SQL - 
+    alter table if exists aplicacion_insumo 
+       add constraint FK21klspp1iynjmmb7d7jlt04oy 
+       foreign key (id_zona) 
+       references zona
+2026-05-20 15:00:01 [main] DEBUG org.hibernate.SQL - 
+    alter table if exists cosecha 
+       add constraint FKsn4nbc3arfrjjew7rfvi0th44 
+       foreign key (id_siembra) 
+       references siembra
+2026-05-20 15:00:01 [main] DEBUG org.hibernate.SQL - 
+    alter table if exists cosecha 
+       add constraint FKbf4vqn6dd0vw3ydcl3smngd61 
+       foreign key (id_usuario) 
+       references usuario
+2026-05-20 15:00:01 [main] DEBUG org.hibernate.SQL - 
+    alter table if exists invernadero 
+       add constraint FKdxokdh0nnkeuvln4mqjofico 
+       foreign key (responsable_id) 
+       references usuario
+2026-05-20 15:00:01 [main] DEBUG org.hibernate.SQL - 
+    alter table if exists lectura_sensor 
+       add constraint FK89gg88nhvva88e2q5f6q575og 
+       foreign key (id_sensor) 
+       references sensor
+2026-05-20 15:00:01 [main] DEBUG org.hibernate.SQL - 
+    alter table if exists riego 
+       add constraint FKbqpr3bb2h33mcj785q02v8v2t 
+       foreign key (id_usuario) 
+       references usuario
+2026-05-20 15:00:01 [main] DEBUG org.hibernate.SQL - 
+    alter table if exists riego 
+       add constraint FKbdrr4gx88k3nw5kd34gyufnd2 
+       foreign key (id_zona) 
+       references zona
+2026-05-20 15:00:01 [main] DEBUG org.hibernate.SQL - 
+    alter table if exists sensor 
+       add constraint FK2393tqld5hg4hbtojlqau8h7r 
+       foreign key (id_zona) 
+       references zona
+2026-05-20 15:00:01 [main] DEBUG org.hibernate.SQL - 
+    alter table if exists siembra 
+       add constraint FK9qltcv7297y3fmeabfbv8q70l 
+       foreign key (id_cultivo) 
+       references cultivo
+2026-05-20 15:00:01 [main] DEBUG org.hibernate.SQL - 
+    alter table if exists siembra 
+       add constraint FK7xe7pf30qat10dxcpfhk1j2xa 
+       foreign key (id_usuario) 
+       references usuario
+2026-05-20 15:00:01 [main] DEBUG org.hibernate.SQL - 
+    alter table if exists siembra 
+       add constraint FKqlch7ecw90qbqlfq179s7fa 
+       foreign key (id_zona) 
+       references zona
+2026-05-20 15:00:01 [main] DEBUG org.hibernate.SQL - 
+    alter table if exists zona 
+       add constraint FK3cwosls4tdfy74xjrua5m8o4v 
+       foreign key (id_invernadero) 
+       references invernadero
+2026-05-20 15:00:01 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-05-20 15:00:02 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@38c7ad43, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1ee04ff6, org.springframework.security.web.context.SecurityContextHolderFilter@18d963be, org.springframework.security.web.header.HeaderWriterFilter@7955b4d4, org.springframework.web.filter.CorsFilter@32fefbe6, org.springframework.security.web.authentication.logout.LogoutFilter@3e7935f1, com.invernadero.invernadero_backend.auth.infrastructure.security.JwtAuthenticationFilter@85104d6, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@17f5b53a, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2df79942, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3e92bded, org.springframework.security.web.session.SessionManagementFilter@2823bd30, org.springframework.security.web.access.ExceptionTranslationFilter@479f738a, org.springframework.security.web.access.intercept.AuthorizationFilter@3fe33c59]
+2026-05-20 15:00:02 [main] INFO  c.i.i.auth.AuthControllerTest - Started AuthControllerTest in 6.809 seconds (process running for 8.167)
+2026-05-20 15:00:03 [main] DEBUG o.s.security.web.FilterChainProxy - Securing POST /auth/login
+2026-05-20 15:00:03 [main] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-05-20 15:00:03 [main] DEBUG o.s.security.web.FilterChainProxy - Secured POST /auth/login
+2026-05-20 15:00:03 [main] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-20 15:00:03 [main] DEBUG o.s.s.a.d.DaoAuthenticationProvider - Failed to find user 'noexiste@invernadero.com'
+2026-05-20 15:00:03 [main] DEBUG o.s.security.web.FilterChainProxy - Securing POST /auth/register
+2026-05-20 15:00:03 [main] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-05-20 15:00:03 [main] DEBUG o.s.security.web.FilterChainProxy - Secured POST /auth/register
+2026-05-20 15:00:03 [main] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=? 
+    fetch
+        first ? rows only
+2026-05-20 15:00:03 [main] DEBUG org.hibernate.SQL - 
+    /* insert for
+        com.invernadero.invernadero_backend.auth.domain.model.Usuario */insert 
+    into
+        usuario (activo, apellido, email, fecha_registro, nombre, password_hash, proveedor_oauth, rol, id_usuario) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+2026-05-20 15:00:04 [main] DEBUG o.s.security.web.FilterChainProxy - Securing POST /auth/login
+2026-05-20 15:00:04 [main] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-05-20 15:00:04 [main] DEBUG o.s.security.web.FilterChainProxy - Secured POST /auth/login
+2026-05-20 15:00:04 [main] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-20 15:00:04 [main] DEBUG o.s.s.a.d.DaoAuthenticationProvider - Authenticated user
+2026-05-20 15:00:04 [main] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-20 15:00:04 [main] DEBUG o.s.security.web.FilterChainProxy - Securing POST /auth/register
+2026-05-20 15:00:04 [main] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-05-20 15:00:04 [main] DEBUG o.s.security.web.FilterChainProxy - Secured POST /auth/register
+2026-05-20 15:00:04 [main] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=? 
+    fetch
+        first ? rows only
+2026-05-20 15:00:04 [main] DEBUG org.hibernate.SQL - 
+    /* insert for
+        com.invernadero.invernadero_backend.auth.domain.model.Usuario */insert 
+    into
+        usuario (activo, apellido, email, fecha_registro, nombre, password_hash, proveedor_oauth, rol, id_usuario) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+2026-05-20 15:00:04 [main] DEBUG o.s.security.web.FilterChainProxy - Securing POST /auth/register
+2026-05-20 15:00:04 [main] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-05-20 15:00:04 [main] DEBUG o.s.security.web.FilterChainProxy - Secured POST /auth/register
+2026-05-20 15:00:04 [main] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=? 
+    fetch
+        first ? rows only
+2026-05-20 15:00:04 [main] DEBUG o.s.security.web.FilterChainProxy - Securing POST /auth/register
+2026-05-20 15:00:04 [main] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-05-20 15:00:04 [main] DEBUG o.s.security.web.FilterChainProxy - Secured POST /auth/register
+2026-05-20 15:00:04 [main] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=? 
+    fetch
+        first ? rows only
+2026-05-20 15:00:04 [main] DEBUG org.hibernate.SQL - 
+    /* insert for
+        com.invernadero.invernadero_backend.auth.domain.model.Usuario */insert 
+    into
+        usuario (activo, apellido, email, fecha_registro, nombre, password_hash, proveedor_oauth, rol, id_usuario) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+2026-05-20 15:00:04 [main] DEBUG o.s.security.web.FilterChainProxy - Securing POST /auth/register
+2026-05-20 15:00:04 [main] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-05-20 15:00:04 [main] DEBUG o.s.security.web.FilterChainProxy - Secured POST /auth/register
+2026-05-20 15:00:04 [main] DEBUG o.s.security.web.FilterChainProxy - Securing POST /auth/register
+2026-05-20 15:00:04 [main] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-05-20 15:00:04 [main] DEBUG o.s.security.web.FilterChainProxy - Secured POST /auth/register
+2026-05-20 15:00:04 [main] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=? 
+    fetch
+        first ? rows only
+2026-05-20 15:00:04 [main] DEBUG org.hibernate.SQL - 
+    /* insert for
+        com.invernadero.invernadero_backend.auth.domain.model.Usuario */insert 
+    into
+        usuario (activo, apellido, email, fecha_registro, nombre, password_hash, proveedor_oauth, rol, id_usuario) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+2026-05-20 15:00:04 [main] DEBUG o.s.security.web.FilterChainProxy - Securing POST /invernadero
+2026-05-20 15:00:04 [main] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-20 15:00:04 [main] DEBUG o.s.security.web.FilterChainProxy - Secured POST /invernadero
+2026-05-20 15:00:04 [main] DEBUG org.hibernate.SQL - 
+    /* insert for
+        com.invernadero.invernadero_backend.invernadero.domain.model.Invernadero */insert 
+    into
+        invernadero (area_m2, estado, fecha_creacion, nombre, responsable_id, tipo_estructura, ubicacion, id_invernadero) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+2026-05-20 15:00:04 [main] DEBUG o.s.security.web.FilterChainProxy - Securing DELETE /invernadero/1
+2026-05-20 15:00:04 [main] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-20 15:00:04 [main] DEBUG o.s.security.web.FilterChainProxy - Secured DELETE /invernadero/1
+2026-05-20 15:00:04 [main] DEBUG org.hibernate.SQL - 
+    /* select
+        count(*) 
+    from
+        Invernadero x 
+    WHERE
+        x.idInvernadero = :idInvernadero */ select
+            count(*) 
+        from
+            invernadero i1_0 
+        where
+            i1_0.id_invernadero=?
+2026-05-20 15:00:04 [main] DEBUG o.s.security.web.FilterChainProxy - Securing GET /invernadero/1
+2026-05-20 15:00:04 [main] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-20 15:00:04 [main] DEBUG o.s.security.web.FilterChainProxy - Secured GET /invernadero/1
+2026-05-20 15:00:04 [main] DEBUG o.s.security.web.FilterChainProxy - Securing POST /auth/register
+2026-05-20 15:00:04 [main] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-05-20 15:00:04 [main] DEBUG o.s.security.web.FilterChainProxy - Secured POST /auth/register
+2026-05-20 15:00:04 [main] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=? 
+    fetch
+        first ? rows only
+2026-05-20 15:00:04 [main] DEBUG org.hibernate.SQL - 
+    /* insert for
+        com.invernadero.invernadero_backend.auth.domain.model.Usuario */insert 
+    into
+        usuario (activo, apellido, email, fecha_registro, nombre, password_hash, proveedor_oauth, rol, id_usuario) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+2026-05-20 15:00:04 [main] DEBUG o.s.security.web.FilterChainProxy - Securing GET /invernadero
+2026-05-20 15:00:04 [main] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-05-20 15:00:04 [main] DEBUG o.s.security.web.FilterChainProxy - Securing POST /auth/register
+2026-05-20 15:00:04 [main] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-05-20 15:00:04 [main] DEBUG o.s.security.web.FilterChainProxy - Secured POST /auth/register
+2026-05-20 15:00:04 [main] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=? 
+    fetch
+        first ? rows only
+2026-05-20 15:00:05 [main] DEBUG org.hibernate.SQL - 
+    /* insert for
+        com.invernadero.invernadero_backend.auth.domain.model.Usuario */insert 
+    into
+        usuario (activo, apellido, email, fecha_registro, nombre, password_hash, proveedor_oauth, rol, id_usuario) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+2026-05-20 15:00:05 [main] DEBUG o.s.security.web.FilterChainProxy - Securing POST /invernadero
+2026-05-20 15:00:05 [main] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-20 15:00:05 [main] DEBUG o.s.security.web.FilterChainProxy - Secured POST /invernadero
+2026-05-20 15:00:05 [main] DEBUG org.hibernate.SQL - 
+    /* insert for
+        com.invernadero.invernadero_backend.invernadero.domain.model.Invernadero */insert 
+    into
+        invernadero (area_m2, estado, fecha_creacion, nombre, responsable_id, tipo_estructura, ubicacion, id_invernadero) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+2026-05-20 15:00:05 [main] DEBUG o.s.security.web.FilterChainProxy - Securing POST /auth/register
+2026-05-20 15:00:05 [main] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-05-20 15:00:05 [main] DEBUG o.s.security.web.FilterChainProxy - Secured POST /auth/register
+2026-05-20 15:00:05 [main] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=? 
+    fetch
+        first ? rows only
+2026-05-20 15:00:05 [main] DEBUG org.hibernate.SQL - 
+    /* insert for
+        com.invernadero.invernadero_backend.auth.domain.model.Usuario */insert 
+    into
+        usuario (activo, apellido, email, fecha_registro, nombre, password_hash, proveedor_oauth, rol, id_usuario) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+2026-05-20 15:00:05 [main] DEBUG o.s.security.web.FilterChainProxy - Securing POST /invernadero
+2026-05-20 15:00:05 [main] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-20 15:00:05 [main] DEBUG o.s.security.web.FilterChainProxy - Secured POST /invernadero
+2026-05-20 15:00:05 [main] DEBUG org.hibernate.SQL - 
+    /* insert for
+        com.invernadero.invernadero_backend.invernadero.domain.model.Invernadero */insert 
+    into
+        invernadero (area_m2, estado, fecha_creacion, nombre, responsable_id, tipo_estructura, ubicacion, id_invernadero) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+2026-05-20 15:00:05 [main] DEBUG o.s.security.web.FilterChainProxy - Securing GET /invernadero
+2026-05-20 15:00:05 [main] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-20 15:00:05 [main] DEBUG o.s.security.web.FilterChainProxy - Secured GET /invernadero
+2026-05-20 15:00:05 [main] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        i1_0.id_invernadero,
+        i1_0.area_m2,
+        i1_0.estado,
+        i1_0.fecha_creacion,
+        i1_0.nombre,
+        i1_0.responsable_id,
+        i1_0.tipo_estructura,
+        i1_0.ubicacion 
+    from
+        invernadero i1_0 
+    offset
+        ? rows 
+    fetch
+        first ? rows only
+2026-05-20 15:00:05 [main] DEBUG o.s.security.web.FilterChainProxy - Securing POST /auth/register
+2026-05-20 15:00:05 [main] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-05-20 15:00:05 [main] DEBUG o.s.security.web.FilterChainProxy - Secured POST /auth/register
+2026-05-20 15:00:05 [main] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=? 
+    fetch
+        first ? rows only
+2026-05-20 15:00:05 [main] DEBUG org.hibernate.SQL - 
+    /* insert for
+        com.invernadero.invernadero_backend.auth.domain.model.Usuario */insert 
+    into
+        usuario (activo, apellido, email, fecha_registro, nombre, password_hash, proveedor_oauth, rol, id_usuario) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+2026-05-20 15:00:05 [main] DEBUG o.s.security.web.FilterChainProxy - Securing POST /invernadero
+2026-05-20 15:00:05 [main] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-20 15:00:05 [main] DEBUG o.s.security.web.FilterChainProxy - Secured POST /invernadero
+2026-05-20 15:00:05 [main] DEBUG org.hibernate.SQL - 
+    /* insert for
+        com.invernadero.invernadero_backend.invernadero.domain.model.Invernadero */insert 
+    into
+        invernadero (area_m2, estado, fecha_creacion, nombre, responsable_id, tipo_estructura, ubicacion, id_invernadero) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+2026-05-20 15:00:05 [main] DEBUG o.s.security.web.FilterChainProxy - Securing PUT /invernadero/4
+2026-05-20 15:00:05 [main] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-20 15:00:05 [main] DEBUG o.s.security.web.FilterChainProxy - Secured PUT /invernadero/4
+2026-05-20 15:00:05 [SpringApplicationShutdownHook] DEBUG org.hibernate.SQL - 
+    drop table if exists alerta cascade 
+2026-05-20 15:00:05 [SpringApplicationShutdownHook] DEBUG org.hibernate.SQL - 
+    drop table if exists aplicacion_insumo cascade 
+2026-05-20 15:00:05 [SpringApplicationShutdownHook] DEBUG org.hibernate.SQL - 
+    drop table if exists cosecha cascade 
+2026-05-20 15:00:05 [SpringApplicationShutdownHook] DEBUG org.hibernate.SQL - 
+    drop table if exists cultivo cascade 
+2026-05-20 15:00:05 [SpringApplicationShutdownHook] DEBUG org.hibernate.SQL - 
+    drop table if exists insumo cascade 
+2026-05-20 15:00:05 [SpringApplicationShutdownHook] DEBUG org.hibernate.SQL - 
+    drop table if exists invernadero cascade 
+2026-05-20 15:00:05 [SpringApplicationShutdownHook] DEBUG org.hibernate.SQL - 
+    drop table if exists lectura_sensor cascade 
+2026-05-20 15:00:05 [SpringApplicationShutdownHook] DEBUG org.hibernate.SQL - 
+    drop table if exists riego cascade 
+2026-05-20 15:00:05 [SpringApplicationShutdownHook] DEBUG org.hibernate.SQL - 
+    drop table if exists sensor cascade 
+2026-05-20 15:00:05 [SpringApplicationShutdownHook] DEBUG org.hibernate.SQL - 
+    drop table if exists siembra cascade 
+2026-05-20 15:00:05 [SpringApplicationShutdownHook] DEBUG org.hibernate.SQL - 
+    drop table if exists usuario cascade 
+2026-05-20 15:00:05 [SpringApplicationShutdownHook] DEBUG org.hibernate.SQL - 
+    drop table if exists zona cascade 
