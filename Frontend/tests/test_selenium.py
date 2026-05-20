@@ -222,7 +222,7 @@ class TestCRUDInvernadero:
         driver.find_element(By.NAME, "areaM2").send_keys("150.5")
 
         # Rellenar campos adicionales requeridos si existen en el formulario
-        for name, value in [("responsableId", "1"), ("fechaCreacion", "2026-05-20"), ("estado", "ACTIVO")]:
+        for name, value in [("responsableId", "1"), ("fechaCreacion", "2026-05-20"), ("estado", "ACTIVO"), ("tipoEstructura", "PLASTICO")]:
             try:
                 elem = driver.find_element(By.NAME, name)
                 if elem:
@@ -237,7 +237,18 @@ class TestCRUDInvernadero:
 
         driver.find_element(By.CSS_SELECTOR, "button[type='submit']").click()
 
-        WebDriverWait(driver, 5).until(
+        # Paso 1: esperar que el formulario rediriga de vuelta a la lista
+        WebDriverWait(driver, 20).until(
+            lambda d: "/invernadero/new" not in d.current_url and "/invernadero" in d.current_url
+        )
+
+        # Paso 2: esperar que la tabla cargue con los datos del backend
+        WebDriverWait(driver, 20).until(
+            EC.presence_of_element_located((By.TAG_NAME, "table"))
+        )
+
+        # Paso 3: verificar que el nuevo invernadero aparece en la tabla
+        WebDriverWait(driver, 20).until(
             EC.presence_of_element_located(
                 (By.XPATH, f"//td[contains(text(), '{nombre}')]")
             )
