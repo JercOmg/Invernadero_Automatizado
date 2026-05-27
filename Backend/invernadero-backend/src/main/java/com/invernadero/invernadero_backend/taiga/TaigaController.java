@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import java.util.Map;
 
 /**
  * Proyecto: Sistema Invernadero Automatizado
@@ -45,6 +46,50 @@ public class TaigaController {
                 return ResponseEntity.notFound().build();
             }
             return ResponseEntity.ok(criteria);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.internalServerError().body(e.getMessage());
+        }
+    }
+
+    @GetMapping("/miembros")
+    @Operation(summary = "Obtiene la lista de miembros de este proyecto en Taiga")
+    public ResponseEntity<Object> getMembers() {
+        try {
+            return ResponseEntity.ok(taigaService.getMembers());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.internalServerError().body(e.getMessage());
+        }
+    }
+
+    @PostMapping("/historia")
+    @Operation(summary = "Crea una nueva historia de usuario en Taiga")
+    public ResponseEntity<Object> createUserStory(@RequestBody Map<String, Object> data) {
+        try {
+            return ResponseEntity.ok(taigaService.createUserStory(data));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.internalServerError().body(e.getMessage());
+        }
+    }
+
+    @PutMapping("/historia/{id}/asignar")
+    @Operation(summary = "Asigna una historia de usuario en Taiga a un miembro del proyecto")
+    public ResponseEntity<Object> assignUserStory(@PathVariable String id, @RequestBody Map<String, Object> data) {
+        try {
+            return ResponseEntity.ok(taigaService.assignUserStory(id, data));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.internalServerError().body(e.getMessage());
+        }
+    }
+
+    @PostMapping("/tarea")
+    @Operation(summary = "Crea una nueva tarea vinculada a una historia de usuario en Taiga")
+    public ResponseEntity<Object> createTask(@RequestBody Map<String, Object> data) {
+        try {
+            return ResponseEntity.ok(taigaService.createTask(data));
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.internalServerError().body(e.getMessage());

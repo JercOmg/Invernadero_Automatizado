@@ -5,10 +5,12 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.client.JdkClientHttpRequestFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import java.util.List;
 import java.util.Map;
+import java.util.HashMap;
 
 /**
  * Proyecto: Sistema Invernadero Automatizado
@@ -32,7 +34,8 @@ public class TaigaService {
     private final RestTemplate restTemplate;
 
     public TaigaService() {
-        this.restTemplate = new RestTemplate();
+        // Usamos JdkClientHttpRequestFactory para dar soporte nativo a solicitudes PATCH en Java 17+
+        this.restTemplate = new RestTemplate(new JdkClientHttpRequestFactory());
     }
 
     private HttpHeaders getHeaders() {
@@ -89,8 +92,6 @@ public class TaigaService {
     }
 
     public Object getStoryCriteria(String storyId) {
-        // En Taiga, los criterios de aceptacion suelen ir en la descripcion o atributos personalizados.
-        // Aqui traemos el detalle de la user story.
         String storyUrl = taigaApiUrl + "/userstories/" + storyId;
         HttpEntity<String> entity = new HttpEntity<>(getHeaders());
         
@@ -104,12 +105,90 @@ public class TaigaService {
         Map story = response.getBody();
         if (story == null) return null;
         
-        return Map.of(
-            "id", story.get("id"),
-            "ref", story.get("ref"),
-            "subject", story.get("subject"),
-            "description", story.get("description"),
-            "status_extra_info", story.get("status_extra_info")
+        // Traer las tareas asociadas a esta historia de usuario
+        String tasksUrl = taigaApiUrl + "/tasks?user_story=" + storyId;
+        List tasksList = List.of();
+        try {
+            ResponseEntity<List> tasksResponse = restTemplate.exchange(
+                tasksUrl,
+                HttpMethod.GET,
+                entity,
+                List.class
+            );
+            tasksList = tasksResponse.getBody() != null ? tasksResponse.getBody() : List.of();
+        } catch (Exception e) {
+            System.err.println("Error recuperando tareas de la historia: " + e.getMessage());
+        }
+        
+        // Creamos un mapa mutable para armar el resultado
+        Map<String, Object> result = new HashMap<>();
+        result.put("id", story.get("id"));
+        result.put("ref", story.get("ref"));
+        result.put("subject", story.get("subject"));
+        result.put("description", story.get("description"));
+        result.put("status_extra_info", story.get("status_extra_info"));
+        result.put("assigned_to_extra_info", story.get("assigned_to_extra_info"));
+        result.put("tasks", tasksList);
+        
+        return result;
+    }
+
+    public Object getMembers() {
+        String url = taigaApiUrl + "/memberships?project=" + taigaProjectId;
+        HttpEntity<String> entity = new HttpEntity<>(getHeaders());
+        
+        ResponseEntity<List> response = restTemplate.exchange(
+            url,
+            HttpMethod.GET,
+            entity,
+            List.class
         );
+        return response.getBody();
+    }
+
+    public Object createUserStory(Map<String, Object> data) {
+        String url = taigaApiUrl + "/userstories";
+        
+        // Aseguramos asociar el ID del proyecto
+        data.put("project", Integer.parseInt(taigaProjectId));
+        
+        HttpEntity<Map<String, Object>> entity = new HttpEntity<>(data, getHeaders());
+        ResponseEntity<Map> response = restTemplate.exchange(
+            url,
+            HttpMethod.POST,
+            entity,
+            Map.class
+        );
+        return response.getBody();
+    }
+
+    public Object assignUserStory(String storyId, Map<String, Object> data) {
+        String url = taigaApiUrl + "/userstories/" + storyId;
+        
+        // PATCH requiere enviar únicamente los campos que deseamos actualizar
+        HttpEntity<Map<String, Object>> entity = new HttpEntity<>(data, getHeaders());
+        ResponseEntity<Map> response = restTemplate.exchange(
+            url,
+            HttpMethod.PATCH,
+            entity,
+            Map.class
+        );
+        return response.getBody();
+    }
+
+    public Object createTask(Map<String, Object> data) {
+        String url = taigaApiUrl + "/tasks";
+        
+        // Aseguramos asociar el ID del proyecto
+        data.put("project", Integer.parseInt(taigaProjectId));
+        
+        HttpEntity<Map<String, Object>> entity = new HttpEntity<>(data, getHeaders());
+        ResponseEntity<Map> response = restTemplate.exchange(
+            url,
+            HttpMethod.POST,
+            entity,
+            Map.class
+        );
+        return response.getBody();
     }
 }

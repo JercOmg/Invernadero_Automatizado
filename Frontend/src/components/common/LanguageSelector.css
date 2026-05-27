@@ -5,20 +5,23 @@
 
 .language-select {
   padding: 0.4rem 0.8rem;
-  border-radius: 4px;
-  border: 1px solid #ccc;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
   background-color: white;
-  font-size: 0.9rem;
+  color: #334155;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 0.85rem;
   cursor: pointer;
   outline: none;
-  transition: border-color 0.2s;
+  transition: all 0.2s ease;
 }
 
 .language-select:hover {
-  border-color: #4CAF50;
+  border-color: #10b981;
 }
 
 .language-select:focus {
-  border-color: #4CAF50;
-  box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+  border-color: #10b981;
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.15);
 }

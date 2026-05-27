@@ -17,9 +17,34 @@ const getCriteriosHistoria = async (id) => {
   return response.data;
 };
 
+const getMiembros = async () => {
+  const response = await api.get('/taiga/miembros');
+  return response.data;
+};
+
+const crearHistoria = async (data) => {
+  const response = await api.post('/taiga/historia', data);
+  return response.data;
+};
+
+const asignarHistoria = async (id, userId) => {
+  const response = await api.put(`/taiga/historia/${id}/asignar`, { assigned_to: userId });
+  return response.data;
+};
+
+const crearTarea = async (data) => {
+  const response = await api.post('/taiga/tarea', data);
+  return response.data;
+};
+
 const taigaService = {
   getSprintActual,
   getCriteriosHistoria,
+  getMiembros,
+  crearHistoria,
+  asignarHistoria,
+  crearTarea,
 };
 
 export default taigaService;
+

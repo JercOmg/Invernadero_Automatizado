@@ -2824,3 +2824,630 @@
         usuario u1_0 
     where
         u1_0.id_usuario=?
+2026-05-26 22:29:20 [restartedMain] INFO  c.i.i.InvernaderoBackendApplication - Starting InvernaderoBackendApplication using Java 17.0.10 with PID 31236 (C:\Users\Usuario\Desktop\Invernadero automatizado\Backend\invernadero-backend\target\classes started by Usuario in C:\Users\Usuario\Desktop\Invernadero automatizado\Backend\invernadero-backend)
+2026-05-26 22:29:20 [restartedMain] DEBUG c.i.i.InvernaderoBackendApplication - Running with Spring Boot v3.2.5, Spring v6.1.6
+2026-05-26 22:29:20 [restartedMain] INFO  c.i.i.InvernaderoBackendApplication - The following 1 profile is active: "dev"
+2026-05-26 22:29:20 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-05-26 22:29:20 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-05-26 22:29:21 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-05-26 22:29:21 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 101 ms. Found 12 JPA repository interfaces.
+2026-05-26 22:29:22 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-05-26 22:29:22 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-05-26 22:29:22 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.20]
+2026-05-26 22:29:22 [restartedMain] INFO  o.a.c.c.C.[.[localhost].[/api] - Initializing Spring embedded WebApplicationContext
+2026-05-26 22:29:22 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1755 ms
+2026-05-26 22:29:22 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-05-26 22:29:22 [restartedMain] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.4.Final
+2026-05-26 22:29:22 [restartedMain] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-05-26 22:29:22 [restartedMain] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-05-26 22:29:22 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-26 22:29:22 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@4f079eda
+2026-05-26 22:29:22 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-26 22:29:23 [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-05-26 22:29:24 [restartedMain] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-05-26 22:29:24 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-05-26 22:29:24 [restartedMain] DEBUG c.i.i.a.i.s.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2026-05-26 22:29:25 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-05-26 22:29:25 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@1c39c958, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@14eb8195, org.springframework.security.web.context.SecurityContextHolderFilter@1d64706a, org.springframework.security.web.header.HeaderWriterFilter@7e8d209a, org.springframework.web.filter.CorsFilter@44f998bf, org.springframework.security.web.authentication.logout.LogoutFilter@71a30822, com.invernadero.invernadero_backend.auth.infrastructure.security.JwtAuthenticationFilter@291e50cb, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@dbaabc0, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@75c2d8db, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2ab863e5, org.springframework.security.web.session.SessionManagementFilter@7512675c, org.springframework.security.web.access.ExceptionTranslationFilter@40f6dae, org.springframework.security.web.access.intercept.AuthorizationFilter@2e14d9cb]
+2026-05-26 22:29:26 [restartedMain] WARN  o.s.b.d.a.OptionalLiveReloadServer - Unable to start LiveReload server
+2026-05-26 22:29:26 [restartedMain] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2026-05-26 22:29:26 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-05-26 22:29:26 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-05-26 22:29:26 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-05-26 22:29:26 [restartedMain] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-05-26 22:29:26 [restartedMain] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+2026-05-26 22:33:44 [restartedMain] INFO  c.i.i.InvernaderoBackendApplication - Starting InvernaderoBackendApplication using Java 17.0.10 with PID 7944 (C:\Users\Usuario\Desktop\Invernadero automatizado\Backend\invernadero-backend\target\classes started by Usuario in C:\Users\Usuario\Desktop\Invernadero automatizado\Backend\invernadero-backend)
+2026-05-26 22:33:44 [restartedMain] DEBUG c.i.i.InvernaderoBackendApplication - Running with Spring Boot v3.2.5, Spring v6.1.6
+2026-05-26 22:33:44 [restartedMain] INFO  c.i.i.InvernaderoBackendApplication - The following 1 profile is active: "dev"
+2026-05-26 22:33:44 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-05-26 22:33:44 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-05-26 22:33:45 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-05-26 22:33:45 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 104 ms. Found 12 JPA repository interfaces.
+2026-05-26 22:33:45 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-05-26 22:33:45 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-05-26 22:33:45 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.20]
+2026-05-26 22:33:45 [restartedMain] INFO  o.a.c.c.C.[.[localhost].[/api] - Initializing Spring embedded WebApplicationContext
+2026-05-26 22:33:45 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1693 ms
+2026-05-26 22:33:46 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-05-26 22:33:46 [restartedMain] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.4.Final
+2026-05-26 22:33:46 [restartedMain] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-05-26 22:33:46 [restartedMain] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-05-26 22:33:46 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-26 22:33:46 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@6db311e
+2026-05-26 22:33:46 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-26 22:33:46 [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-05-26 22:33:47 [restartedMain] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-05-26 22:33:47 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-05-26 22:33:48 [restartedMain] DEBUG c.i.i.a.i.s.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2026-05-26 22:33:48 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-05-26 22:33:48 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2ab863e5, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@78991ce3, org.springframework.security.web.context.SecurityContextHolderFilter@75c2d8db, org.springframework.security.web.header.HeaderWriterFilter@7b26f48e, org.springframework.web.filter.CorsFilter@30b6dd4c, org.springframework.security.web.authentication.logout.LogoutFilter@5b26cc2c, com.invernadero.invernadero_backend.auth.infrastructure.security.JwtAuthenticationFilter@490cb42b, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@66fce663, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3e40a5d7, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@38029785, org.springframework.security.web.session.SessionManagementFilter@1d64706a, org.springframework.security.web.access.ExceptionTranslationFilter@60dfa36d, org.springframework.security.web.access.intercept.AuthorizationFilter@1c39c958]
+2026-05-26 22:33:49 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2026-05-26 22:33:49 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/api'
+2026-05-26 22:33:49 [restartedMain] INFO  c.i.i.InvernaderoBackendApplication - Started InvernaderoBackendApplication in 5.435 seconds (process running for 5.904)
+2026-05-26 22:34:13 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[.[localhost].[/api] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-05-26 22:34:13 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-05-26 22:34:13 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2026-05-26 22:34:13 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /taiga/sprint-actual
+2026-05-26 22:34:13 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /taiga/sprint-actual
+2026-05-26 22:34:14 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing GET /taiga/sprint-actual
+2026-05-26 22:34:14 [http-nio-8080-exec-6] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-05-26 22:34:14 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Securing GET /taiga/sprint-actual
+2026-05-26 22:34:14 [http-nio-8080-exec-8] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-05-26 22:34:14 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /auth/refresh
+2026-05-26 22:34:14 [http-nio-8080-exec-10] DEBUG o.s.security.web.FilterChainProxy - Securing POST /auth/refresh
+2026-05-26 22:34:14 [http-nio-8080-exec-10] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-05-26 22:34:14 [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Securing POST /auth/refresh
+2026-05-26 22:34:14 [http-nio-8080-exec-9] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-05-26 22:34:20 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /auth/google
+2026-05-26 22:34:20 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing POST /auth/google
+2026-05-26 22:34:20 [http-nio-8080-exec-5] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-05-26 22:34:20 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Secured POST /auth/google
+2026-05-26 22:34:21 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-26 22:34:21 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Securing GET /taiga/sprint-actual
+2026-05-26 22:34:21 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-26 22:34:21 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Secured GET /taiga/sprint-actual
+2026-05-26 22:34:22 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing GET /taiga/sprint-actual
+2026-05-26 22:34:22 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-26 22:34:22 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured GET /taiga/sprint-actual
+2026-05-26 22:44:16 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing GET /taiga/sprint-actual
+2026-05-26 22:44:16 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /taiga/miembros
+2026-05-26 22:44:16 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-26 22:44:16 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Securing GET /taiga/miembros
+2026-05-26 22:44:16 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Secured GET /taiga/sprint-actual
+2026-05-26 22:44:16 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-26 22:44:16 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Secured GET /taiga/miembros
+2026-05-26 22:44:16 [http-nio-8080-exec-8] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource taiga/miembros.]
+2026-05-26 22:44:39 [File Watcher] INFO  o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 105 class path changes (0 additions, 105 deletions, 0 modifications)
+2026-05-26 22:44:39 [Thread-5] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-05-26 22:44:39 [Thread-5] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-05-26 22:44:39 [Thread-5] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-05-26 22:44:40 [restartedMain] INFO  c.i.i.InvernaderoBackendApplication - Starting InvernaderoBackendApplication using Java 17.0.10 with PID 7944 (C:\Users\Usuario\Desktop\Invernadero automatizado\Backend\invernadero-backend\target\classes started by Usuario in C:\Users\Usuario\Desktop\Invernadero automatizado\Backend\invernadero-backend)
+2026-05-26 22:44:40 [restartedMain] DEBUG c.i.i.InvernaderoBackendApplication - Running with Spring Boot v3.2.5, Spring v6.1.6
+2026-05-26 22:44:40 [restartedMain] INFO  c.i.i.InvernaderoBackendApplication - The following 1 profile is active: "dev"
+2026-05-26 22:44:40 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-05-26 22:44:40 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 20 ms. Found 0 JPA repository interfaces.
+2026-05-26 22:44:40 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-05-26 22:44:40 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-05-26 22:44:40 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.20]
+2026-05-26 22:44:40 [restartedMain] INFO  o.a.c.c.C.[.[localhost].[/api] - Initializing Spring embedded WebApplicationContext
+2026-05-26 22:44:40 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 649 ms
+2026-05-26 22:44:40 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-05-26 22:44:40 [restartedMain] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-05-26 22:44:40 [restartedMain] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-05-26 22:44:40 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Starting...
+2026-05-26 22:44:40 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Added connection org.postgresql.jdbc.PgConnection@579d18ba
+2026-05-26 22:44:40 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Start completed.
+2026-05-26 22:44:40 [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-05-26 22:44:40 [restartedMain] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-05-26 22:44:40 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-05-26 22:44:40 [restartedMain] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'corsConfigurer' defined in com.invernadero.invernadero_backend.InvernaderoBackendApplication: Failed to instantiate [org.springframework.web.servlet.config.annotation.WebMvcConfigurer]: Factory method 'corsConfigurer' threw exception with message: com/invernadero/invernadero_backend/InvernaderoBackendApplication$1
+2026-05-26 22:44:40 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-05-26 22:44:40 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Shutdown initiated...
+2026-05-26 22:44:40 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Shutdown completed.
+2026-05-26 22:44:40 [restartedMain] INFO  o.a.catalina.core.StandardService - Stopping service [Tomcat]
+2026-05-26 22:44:40 [restartedMain] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-05-26 22:44:41 [restartedMain] ERROR o.s.boot.SpringApplication - Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'corsConfigurer' defined in com.invernadero.invernadero_backend.InvernaderoBackendApplication: Failed to instantiate [org.springframework.web.servlet.config.annotation.WebMvcConfigurer]: Factory method 'corsConfigurer' threw exception with message: com/invernadero/invernadero_backend/InvernaderoBackendApplication$1
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:648) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:485) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1335) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1165) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:975) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:962) ~[spring-context-6.1.6.jar:6.1.6]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624) ~[spring-context-6.1.6.jar:6.1.6]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.2.5.jar:3.2.5]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754) ~[spring-boot-3.2.5.jar:3.2.5]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456) ~[spring-boot-3.2.5.jar:3.2.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334) ~[spring-boot-3.2.5.jar:3.2.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354) ~[spring-boot-3.2.5.jar:3.2.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343) ~[spring-boot-3.2.5.jar:3.2.5]
+	at com.invernadero.invernadero_backend.InvernaderoBackendApplication.main(InvernaderoBackendApplication.java:46) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50) ~[spring-boot-devtools-3.2.5.jar:3.2.5]
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.web.servlet.config.annotation.WebMvcConfigurer]: Factory method 'corsConfigurer' threw exception with message: com/invernadero/invernadero_backend/InvernaderoBackendApplication$1
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:177) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:644) ~[spring-beans-6.1.6.jar:6.1.6]
+	... 24 common frames omitted
+Caused by: java.lang.NoClassDefFoundError: com/invernadero/invernadero_backend/InvernaderoBackendApplication$1
+	at com.invernadero.invernadero_backend.InvernaderoBackendApplication.corsConfigurer(InvernaderoBackendApplication.java:56) ~[classes/:na]
+	at com.invernadero.invernadero_backend.InvernaderoBackendApplication$$SpringCGLIB$$0.CGLIB$corsConfigurer$0(<generated>) ~[classes/:na]
+	at com.invernadero.invernadero_backend.InvernaderoBackendApplication$$SpringCGLIB$$FastClass$$1.invoke(<generated>) ~[classes/:na]
+	at org.springframework.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:258) ~[spring-core-6.1.6.jar:6.1.6]
+	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:331) ~[spring-context-6.1.6.jar:6.1.6]
+	at com.invernadero.invernadero_backend.InvernaderoBackendApplication$$SpringCGLIB$$0.corsConfigurer(<generated>) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:140) ~[spring-beans-6.1.6.jar:6.1.6]
+	... 25 common frames omitted
+Caused by: java.lang.ClassNotFoundException: com.invernadero.invernadero_backend.InvernaderoBackendApplication$1
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641) ~[na:na]
+	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188) ~[na:na]
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:520) ~[na:na]
+	... 36 common frames omitted
+2026-05-26 22:44:46 [restartedMain] INFO  c.i.i.InvernaderoBackendApplication - Starting InvernaderoBackendApplication using Java 17.0.10 with PID 7944 (C:\Users\Usuario\Desktop\Invernadero automatizado\Backend\invernadero-backend\target\classes started by Usuario in C:\Users\Usuario\Desktop\Invernadero automatizado\Backend\invernadero-backend)
+2026-05-26 22:44:46 [restartedMain] DEBUG c.i.i.InvernaderoBackendApplication - Running with Spring Boot v3.2.5, Spring v6.1.6
+2026-05-26 22:44:46 [restartedMain] INFO  c.i.i.InvernaderoBackendApplication - The following 1 profile is active: "dev"
+2026-05-26 22:44:46 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-05-26 22:44:46 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 58 ms. Found 12 JPA repository interfaces.
+2026-05-26 22:44:46 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-05-26 22:44:46 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-05-26 22:44:46 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.20]
+2026-05-26 22:44:46 [restartedMain] INFO  o.a.c.c.C.[.[localhost].[/api] - Initializing Spring embedded WebApplicationContext
+2026-05-26 22:44:46 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 507 ms
+2026-05-26 22:44:46 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-05-26 22:44:46 [restartedMain] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-05-26 22:44:46 [restartedMain] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-05-26 22:44:46 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-3 - Starting...
+2026-05-26 22:44:46 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-3 - Added connection org.postgresql.jdbc.PgConnection@571719c1
+2026-05-26 22:44:46 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-3 - Start completed.
+2026-05-26 22:44:46 [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-05-26 22:44:46 [restartedMain] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-05-26 22:44:47 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-05-26 22:44:47 [restartedMain] DEBUG c.i.i.a.i.s.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2026-05-26 22:44:47 [restartedMain] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration': Unsatisfied dependency expressed through field 'httpSecurity': Error creating bean with name 'org.springframework.security.config.annotation.web.configuration.HttpSecurityConfiguration': Unsatisfied dependency expressed through method 'setContentNegotiationStrategy' parameter 0: Error creating bean with name 'org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration$EnableWebMvcConfiguration': Unsatisfied dependency expressed through method 'setConfigurers' parameter 0: Error creating bean with name 'corsConfigurer' defined in com.invernadero.invernadero_backend.InvernaderoBackendApplication: Failed to instantiate [org.springframework.web.servlet.config.annotation.WebMvcConfigurer]: Illegal factory instance for factory method 'corsConfigurer'; instance: com.invernadero.invernadero_backend.InvernaderoBackendApplication$$SpringCGLIB$$0
+2026-05-26 22:44:47 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-05-26 22:44:47 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-3 - Shutdown initiated...
+2026-05-26 22:44:47 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-3 - Shutdown completed.
+2026-05-26 22:44:47 [restartedMain] INFO  o.a.catalina.core.StandardService - Stopping service [Tomcat]
+2026-05-26 22:44:47 [restartedMain] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-05-26 22:44:47 [restartedMain] ERROR o.s.boot.SpringApplication - Application run failed
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration': Unsatisfied dependency expressed through field 'httpSecurity': Error creating bean with name 'org.springframework.security.config.annotation.web.configuration.HttpSecurityConfiguration': Unsatisfied dependency expressed through method 'setContentNegotiationStrategy' parameter 0: Error creating bean with name 'org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration$EnableWebMvcConfiguration': Unsatisfied dependency expressed through method 'setConfigurers' parameter 0: Error creating bean with name 'corsConfigurer' defined in com.invernadero.invernadero_backend.InvernaderoBackendApplication: Failed to instantiate [org.springframework.web.servlet.config.annotation.WebMvcConfigurer]: Illegal factory instance for factory method 'corsConfigurer'; instance: com.invernadero.invernadero_backend.InvernaderoBackendApplication$$SpringCGLIB$$0
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:787) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:767) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:145) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:508) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1419) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:599) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:975) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:962) ~[spring-context-6.1.6.jar:6.1.6]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624) ~[spring-context-6.1.6.jar:6.1.6]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.2.5.jar:3.2.5]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754) ~[spring-boot-3.2.5.jar:3.2.5]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456) ~[spring-boot-3.2.5.jar:3.2.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334) ~[spring-boot-3.2.5.jar:3.2.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354) ~[spring-boot-3.2.5.jar:3.2.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343) ~[spring-boot-3.2.5.jar:3.2.5]
+	at com.invernadero.invernadero_backend.InvernaderoBackendApplication.main(InvernaderoBackendApplication.java:46) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50) ~[spring-boot-devtools-3.2.5.jar:3.2.5]
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'org.springframework.security.config.annotation.web.configuration.HttpSecurityConfiguration': Unsatisfied dependency expressed through method 'setContentNegotiationStrategy' parameter 0: Error creating bean with name 'org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration$EnableWebMvcConfiguration': Unsatisfied dependency expressed through method 'setConfigurers' parameter 0: Error creating bean with name 'corsConfigurer' defined in com.invernadero.invernadero_backend.InvernaderoBackendApplication: Failed to instantiate [org.springframework.web.servlet.config.annotation.WebMvcConfigurer]: Illegal factory instance for factory method 'corsConfigurer'; instance: com.invernadero.invernadero_backend.InvernaderoBackendApplication$$SpringCGLIB$$0
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredMethodElement.resolveMethodArguments(AutowiredAnnotationBeanPostProcessor.java:895) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredMethodElement.inject(AutowiredAnnotationBeanPostProcessor.java:848) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:145) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:508) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1419) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:599) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:409) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1335) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1165) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:344) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:784) ~[spring-beans-6.1.6.jar:6.1.6]
+	... 25 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration$EnableWebMvcConfiguration': Unsatisfied dependency expressed through method 'setConfigurers' parameter 0: Error creating bean with name 'corsConfigurer' defined in com.invernadero.invernadero_backend.InvernaderoBackendApplication: Failed to instantiate [org.springframework.web.servlet.config.annotation.WebMvcConfigurer]: Illegal factory instance for factory method 'corsConfigurer'; instance: com.invernadero.invernadero_backend.InvernaderoBackendApplication$$SpringCGLIB$$0
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredMethodElement.resolveMethodArguments(AutowiredAnnotationBeanPostProcessor.java:895) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredMethodElement.inject(AutowiredAnnotationBeanPostProcessor.java:848) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:145) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:508) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1419) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:599) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:409) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1335) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1165) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredMethodElement.resolveMethodArguments(AutowiredAnnotationBeanPostProcessor.java:887) ~[spring-beans-6.1.6.jar:6.1.6]
+	... 46 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'corsConfigurer' defined in com.invernadero.invernadero_backend.InvernaderoBackendApplication: Failed to instantiate [org.springframework.web.servlet.config.annotation.WebMvcConfigurer]: Illegal factory instance for factory method 'corsConfigurer'; instance: com.invernadero.invernadero_backend.InvernaderoBackendApplication$$SpringCGLIB$$0
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:648) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:485) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1335) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1165) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.addCandidateEntry(DefaultListableBeanFactory.java:1689) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.findAutowireCandidates(DefaultListableBeanFactory.java:1653) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveMultipleBeanCollection(DefaultListableBeanFactory.java:1543) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveMultipleBeans(DefaultListableBeanFactory.java:1511) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1392) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredMethodElement.resolveMethodArguments(AutowiredAnnotationBeanPostProcessor.java:887) ~[spring-beans-6.1.6.jar:6.1.6]
+	... 69 common frames omitted
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.web.servlet.config.annotation.WebMvcConfigurer]: Illegal factory instance for factory method 'corsConfigurer'; instance: com.invernadero.invernadero_backend.InvernaderoBackendApplication$$SpringCGLIB$$0
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:159) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:644) ~[spring-beans-6.1.6.jar:6.1.6]
+	... 86 common frames omitted
+Caused by: java.lang.IllegalArgumentException: object is not an instance of declaring class
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:140) ~[spring-beans-6.1.6.jar:6.1.6]
+	... 87 common frames omitted
+2026-05-26 22:50:59 [restartedMain] INFO  c.i.i.InvernaderoBackendApplication - Starting InvernaderoBackendApplication using Java 17.0.10 with PID 30040 (C:\Users\Usuario\Desktop\Invernadero automatizado\Backend\invernadero-backend\target\classes started by Usuario in C:\Users\Usuario\Desktop\Invernadero automatizado\Backend\invernadero-backend)
+2026-05-26 22:50:59 [restartedMain] DEBUG c.i.i.InvernaderoBackendApplication - Running with Spring Boot v3.2.5, Spring v6.1.6
+2026-05-26 22:50:59 [restartedMain] INFO  c.i.i.InvernaderoBackendApplication - The following 1 profile is active: "dev"
+2026-05-26 22:50:59 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-05-26 22:50:59 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-05-26 22:51:00 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-05-26 22:51:01 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 107 ms. Found 12 JPA repository interfaces.
+2026-05-26 22:51:02 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-05-26 22:51:02 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-05-26 22:51:02 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.20]
+2026-05-26 22:51:02 [restartedMain] INFO  o.a.c.c.C.[.[localhost].[/api] - Initializing Spring embedded WebApplicationContext
+2026-05-26 22:51:02 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2337 ms
+2026-05-26 22:51:02 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-05-26 22:51:02 [restartedMain] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.4.Final
+2026-05-26 22:51:02 [restartedMain] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-05-26 22:51:02 [restartedMain] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-05-26 22:51:02 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-26 22:51:03 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@5a3b353b
+2026-05-26 22:51:03 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-26 22:51:03 [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-05-26 22:51:04 [restartedMain] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-05-26 22:51:04 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-05-26 22:51:05 [restartedMain] DEBUG c.i.i.a.i.s.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2026-05-26 22:51:05 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-05-26 22:51:06 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@60a9bef6, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6ad54ad5, org.springframework.security.web.context.SecurityContextHolderFilter@1f1fc912, org.springframework.security.web.header.HeaderWriterFilter@23531449, org.springframework.web.filter.CorsFilter@4842547c, org.springframework.security.web.authentication.logout.LogoutFilter@17b87cec, com.invernadero.invernadero_backend.auth.infrastructure.security.JwtAuthenticationFilter@7c73d882, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3868c735, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7266d027, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5a01fe73, org.springframework.security.web.session.SessionManagementFilter@f4d3716, org.springframework.security.web.access.ExceptionTranslationFilter@34dd2901, org.springframework.security.web.access.intercept.AuthorizationFilter@3487ce38]
+2026-05-26 22:51:06 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2026-05-26 22:51:06 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/api'
+2026-05-26 22:51:06 [restartedMain] INFO  c.i.i.InvernaderoBackendApplication - Started InvernaderoBackendApplication in 7.652 seconds (process running for 8.405)
+2026-05-26 22:51:07 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[.[localhost].[/api] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-05-26 22:51:07 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-05-26 22:51:07 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2026-05-26 22:51:07 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing GET /taiga/miembros
+2026-05-26 22:51:07 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing GET /taiga/sprint-actual
+2026-05-26 22:51:07 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-26 22:51:07 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-26 22:51:07 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured GET /taiga/miembros
+2026-05-26 22:51:07 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured GET /taiga/sprint-actual
+2026-05-26 22:51:08 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing GET /taiga/miembros
+2026-05-26 22:51:08 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-26 22:51:08 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured GET /taiga/miembros
+2026-05-26 22:51:08 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing GET /taiga/sprint-actual
+2026-05-26 22:51:08 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-26 22:51:08 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /taiga/historia/9270036/criterios
+2026-05-26 22:51:08 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Secured GET /taiga/sprint-actual
+2026-05-26 22:51:08 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing GET /taiga/historia/9270036/criterios
+2026-05-26 22:51:08 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-26 22:51:08 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Secured GET /taiga/historia/9270036/criterios
+2026-05-26 22:51:09 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Securing GET /taiga/historia/9270036/criterios
+2026-05-26 22:51:09 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-26 22:51:09 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Secured GET /taiga/historia/9270036/criterios
+2026-05-26 22:58:56 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /invernadero?page=0&size=10
+2026-05-26 22:58:56 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /invernadero?page=0&size=10
+2026-05-26 22:58:56 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing GET /invernadero?page=0&size=10
+2026-05-26 22:58:56 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-26 22:58:56 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured GET /invernadero?page=0&size=10
+2026-05-26 22:58:56 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        i1_0.id_invernadero,
+        i1_0.area_m2,
+        i1_0.estado,
+        i1_0.fecha_creacion,
+        i1_0.nombre,
+        i1_0.responsable_id,
+        i1_0.tipo_estructura,
+        i1_0.ubicacion 
+    from
+        invernadero i1_0 
+    offset
+        ? rows 
+    fetch
+        first ? rows only
+2026-05-26 22:58:56 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.id_usuario=?
+2026-05-26 22:58:56 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing GET /invernadero?page=0&size=10
+2026-05-26 22:58:56 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-26 22:58:56 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Secured GET /invernadero?page=0&size=10
+2026-05-26 22:58:56 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        i1_0.id_invernadero,
+        i1_0.area_m2,
+        i1_0.estado,
+        i1_0.fecha_creacion,
+        i1_0.nombre,
+        i1_0.responsable_id,
+        i1_0.tipo_estructura,
+        i1_0.ubicacion 
+    from
+        invernadero i1_0 
+    offset
+        ? rows 
+    fetch
+        first ? rows only
+2026-05-26 22:58:56 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.id_usuario=?
