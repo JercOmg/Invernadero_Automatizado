@@ -2236,3 +2236,286 @@
         u1_0.email=?
 2026-05-26 21:30:26 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Secured GET /taiga/sprint-actual
 2026-05-26 21:30:27 [http-nio-8080-exec-6] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.context.request.async.AsyncRequestNotUsableException: ServletOutputStream failed to flush: java.io.IOException: Connection reset by peer]
+2026-05-26 21:30:37 [http-nio-8080-exec-10] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /auth/login
+2026-05-26 21:30:37 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing POST /auth/login
+2026-05-26 21:30:37 [http-nio-8080-exec-4] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-05-26 21:30:37 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Secured POST /auth/login
+2026-05-26 21:30:37 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-26 21:30:37 [http-nio-8080-exec-4] DEBUG o.s.s.a.d.DaoAuthenticationProvider - Failed to find user 'noexiste@test.com'
+2026-05-26 21:30:37 [http-nio-8080-exec-4] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.security.authentication.BadCredentialsException: Bad credentials]
+2026-05-26 21:30:47 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /auth/login
+2026-05-26 21:30:47 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Securing POST /auth/login
+2026-05-26 21:30:47 [http-nio-8080-exec-8] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-05-26 21:30:47 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Secured POST /auth/login
+2026-05-26 21:30:47 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-26 21:30:47 [http-nio-8080-exec-8] DEBUG o.s.s.a.d.DaoAuthenticationProvider - Authenticated user
+2026-05-26 21:30:47 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-26 21:30:47 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /taiga/sprint-actual
+2026-05-26 21:30:47 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /taiga/sprint-actual
+2026-05-26 21:30:47 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing GET /taiga/sprint-actual
+2026-05-26 21:30:47 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-26 21:30:47 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured GET /taiga/sprint-actual
+2026-05-26 21:30:47 [http-nio-8080-exec-2] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.context.request.async.AsyncRequestNotUsableException: ServletOutputStream failed to flush: java.io.IOException: Connection reset by peer]
+2026-05-26 21:30:57 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /auth/login
+2026-05-26 21:30:57 [http-nio-8080-exec-10] DEBUG o.s.security.web.FilterChainProxy - Securing POST /auth/login
+2026-05-26 21:30:57 [http-nio-8080-exec-10] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-05-26 21:30:57 [http-nio-8080-exec-10] DEBUG o.s.security.web.FilterChainProxy - Secured POST /auth/login
+2026-05-26 21:30:57 [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-26 21:30:57 [http-nio-8080-exec-10] DEBUG o.s.s.a.d.DaoAuthenticationProvider - Authenticated user
+2026-05-26 21:30:57 [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-26 21:30:57 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /taiga/sprint-actual
+2026-05-26 21:30:57 [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /taiga/sprint-actual
+2026-05-26 21:30:57 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Securing GET /taiga/sprint-actual
+2026-05-26 21:30:57 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-26 21:30:57 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Secured GET /taiga/sprint-actual
+2026-05-26 21:30:58 [http-nio-8080-exec-7] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.context.request.async.AsyncRequestNotUsableException: ServletOutputStream failed to flush: java.io.IOException: Connection reset by peer]
+2026-05-26 21:31:07 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /auth/login
+2026-05-26 21:31:07 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing POST /auth/login
+2026-05-26 21:31:07 [http-nio-8080-exec-3] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-05-26 21:31:07 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured POST /auth/login
+2026-05-26 21:31:07 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-26 21:31:07 [http-nio-8080-exec-3] DEBUG o.s.s.a.d.DaoAuthenticationProvider - Authenticated user
+2026-05-26 21:31:07 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-26 21:31:07 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /taiga/sprint-actual
+2026-05-26 21:31:07 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /taiga/sprint-actual
+2026-05-26 21:31:07 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing GET /taiga/sprint-actual
+2026-05-26 21:31:07 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-26 21:31:07 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Secured GET /taiga/sprint-actual
+2026-05-26 21:31:08 [http-nio-8080-exec-10] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /invernadero?page=0&size=10
+2026-05-26 21:31:08 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /invernadero?page=0&size=10
+2026-05-26 21:31:08 [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Securing GET /invernadero?page=0&size=10
+2026-05-26 21:31:08 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-26 21:31:08 [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Secured GET /invernadero?page=0&size=10
+2026-05-26 21:31:08 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        i1_0.id_invernadero,
+        i1_0.area_m2,
+        i1_0.estado,
+        i1_0.fecha_creacion,
+        i1_0.nombre,
+        i1_0.responsable_id,
+        i1_0.tipo_estructura,
+        i1_0.ubicacion 
+    from
+        invernadero i1_0 
+    offset
+        ? rows 
+    fetch
+        first ? rows only
+2026-05-26 21:31:08 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.id_usuario=?
+2026-05-26 21:31:08 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Securing GET /invernadero?page=0&size=10
+2026-05-26 21:31:08 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.email=?
+2026-05-26 21:31:08 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Secured GET /invernadero?page=0&size=10
+2026-05-26 21:31:08 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        i1_0.id_invernadero,
+        i1_0.area_m2,
+        i1_0.estado,
+        i1_0.fecha_creacion,
+        i1_0.nombre,
+        i1_0.responsable_id,
+        i1_0.tipo_estructura,
+        i1_0.ubicacion 
+    from
+        invernadero i1_0 
+    offset
+        ? rows 
+    fetch
+        first ? rows only
+2026-05-26 21:31:08 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id_usuario,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.fecha_registro,
+        u1_0.nombre,
+        u1_0.password_hash,
+        u1_0.proveedor_oauth,
+        u1_0.rol 
+    from
+        usuario u1_0 
+    where
+        u1_0.id_usuario=?
