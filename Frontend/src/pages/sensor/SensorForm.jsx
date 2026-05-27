@@ -1,10 +1,3 @@
-/**
- * Proyecto: Sistema Invernadero Automatizado
- * Modulo: SensorForm
- * Autor: Invernadero Team
- * Fecha: 2026-05-19
- * Descripcion: Componente/Servicio SensorForm
- */
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import sensorService from '../../services/sensorService';
@@ -90,7 +83,9 @@ const SensorForm = () => {
               onChange={handleChange}
               required
             />
-          </div>\n\n          <div className="form-group">
+          </div>
+
+          <div className="form-group">
             <label htmlFor="tipoSensor">Tipo Sensor</label>
             <select
               id="tipoSensor"
@@ -100,9 +95,16 @@ const SensorForm = () => {
               required
             >
               <option value="">Seleccionar...</option>
-              <option value="TEMPERATURA">TEMPERATURA</option>\n              <option value="HUMEDAD">HUMEDAD</option>\n              <option value="CO2">CO2</option>\n              <option value="LUMINOSIDAD">LUMINOSIDAD</option>\n              <option value="PH">PH</option>\n              <option value="HUMEDAD_SUELO">HUMEDAD_SUELO</option>
+              <option value="TEMPERATURA">TEMPERATURA</option>
+              <option value="HUMEDAD">HUMEDAD</option>
+              <option value="CO2">CO2</option>
+              <option value="LUMINOSIDAD">LUMINOSIDAD</option>
+              <option value="PH">PH</option>
+              <option value="HUMEDAD_SUELO">HUMEDAD_SUELO</option>
             </select>
-          </div>\n\n          <div className="form-group">
+          </div>
+
+          <div className="form-group">
             <label htmlFor="modelo">Modelo</label>
             <input
               type="text"
@@ -112,7 +114,9 @@ const SensorForm = () => {
               onChange={handleChange}
               
             />
-          </div>\n\n          <div className="form-group">
+          </div>
+
+          <div className="form-group">
             <label htmlFor="unidadMedida">Unidad Medida</label>
             <input
               type="text"
@@ -122,7 +126,9 @@ const SensorForm = () => {
               onChange={handleChange}
               required
             />
-          </div>\n\n          <div className="form-group">
+          </div>
+
+          <div className="form-group">
             <label htmlFor="fechaInstalacion">Fecha Instalacion</label>
             <input
               type="date"
@@ -132,7 +138,9 @@ const SensorForm = () => {
               onChange={handleChange}
               
             />
-          </div>\n\n          <div className="form-group">
+          </div>
+
+          <div className="form-group">
             <label htmlFor="estado">Estado</label>
             <select
               id="estado"
@@ -142,7 +150,9 @@ const SensorForm = () => {
               required
             >
               <option value="">Seleccionar...</option>
-              <option value="ACTIVO">ACTIVO</option>\n              <option value="INACTIVO">INACTIVO</option>\n              <option value="FALLA">FALLA</option>
+              <option value="ACTIVO">ACTIVO</option>
+              <option value="INACTIVO">INACTIVO</option>
+              <option value="FALLA">FALLA</option>
             </select>
           </div>
 

@@ -1,10 +1,3 @@
-/**
- * Proyecto: Sistema Invernadero Automatizado
- * Modulo: ZonaForm
- * Autor: Invernadero Team
- * Fecha: 2026-05-19
- * Descripcion: Componente/Servicio ZonaForm
- */
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import zonaService from '../../services/zonaService';
@@ -90,7 +83,9 @@ const ZonaForm = () => {
               onChange={handleChange}
               required
             />
-          </div>\n\n          <div className="form-group">
+          </div>
+
+          <div className="form-group">
             <label htmlFor="nombreZona">Nombre Zona</label>
             <input
               type="text"
@@ -100,7 +95,9 @@ const ZonaForm = () => {
               onChange={handleChange}
               required
             />
-          </div>\n\n          <div className="form-group">
+          </div>
+
+          <div className="form-group">
             <label htmlFor="areaM2">Area M2</label>
             <input
               type="number"
@@ -110,7 +107,9 @@ const ZonaForm = () => {
               onChange={handleChange}
               
             />
-          </div>\n\n          <div className="form-group">
+          </div>
+
+          <div className="form-group">
             <label htmlFor="descripcion">Descripcion</label>
             <textarea
               id="descripcion"

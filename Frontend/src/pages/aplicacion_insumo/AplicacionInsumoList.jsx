@@ -1,29 +1,16 @@
-/**
- * Proyecto: Sistema Invernadero Automatizado
- * Modulo: AplicacionInsumoList
- * Autor: Invernadero Team
- * Fecha: 2026-05-19
- * Descripcion: Componente/Servicio AplicacionInsumoList
- */
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
 import aplicacionInsumoService from '../../services/aplicacionInsumoService';
 import './AplicacionInsumoList.css';
 
 /**
  * Componente para listar AplicacionInsumo
  */
-/**
- * Componente AplicacionInsumoList
- * @returns {JSX.Element}
- */
 const AplicacionInsumoList = () => {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const navigate = useNavigate();
-  const { t } = useTranslation();
 
   useEffect(() => {
     loadItems();
@@ -35,7 +22,7 @@ const AplicacionInsumoList = () => {
       const data = await aplicacionInsumoService.getAll();
       setItems(data.content || data);
     } catch (err) {
-      setError(t('common.errorLoading'));
+      setError('Error al cargar los datos');
       console.error(err);
     } finally {
       setLoading(false);
@@ -43,12 +30,12 @@ const AplicacionInsumoList = () => {
   };
 
   const handleDelete = async (id) => {
-    if (window.confirm(t('common.confirmDelete'))) {
+    if (window.confirm('¿Estás seguro de eliminar este registro?')) {
       try {
         await aplicacionInsumoService.delete(id);
         loadItems();
       } catch (err) {
-        alert(t('common.errorDeleting'));
+        alert('Error al eliminar el registro');
         console.error(err);
       }
     }
@@ -67,7 +54,7 @@ const AplicacionInsumoList = () => {
       <div className="list-header">
         <h1>AplicacionInsumo</h1>
         <Link to="/aplicacion_insumo/new" className="btn btn-primary">
-          {t('common.createNew')}
+          Crear Nuevo
         </Link>
       </div>
 
@@ -80,14 +67,14 @@ const AplicacionInsumoList = () => {
             <th>Id Zona</th>
             <th>Id Usuario</th>
             <th>Fecha Hora</th>
-              <th>{t('common.actions')}</th>
+              <th>Acciones</th>
             </tr>
           </thead>
           <tbody>
             {items.length === 0 ? (
               <tr>
                 <td colSpan="{100}" style={{ textAlign: 'center' }}>
-                  {t('common.noRecords')}
+                  No hay registros disponibles
                 </td>
               </tr>
             ) : (
@@ -103,11 +90,15 @@ const AplicacionInsumoList = () => {
                       <button
                         onClick={() => navigate(`/aplicacion_insumo/${item.idAplicacionInsumo || item.id}`)}
                         className="btn btn-sm btn-primary"
-                      >{t('common.edit')}</button>
+                      >
+                        Editar
+                      </button>
                       <button
                         onClick={() => handleDelete(item.idAplicacionInsumo || item.id)}
                         className="btn btn-sm btn-danger"
-                      >{t('common.delete')}</button>
+                      >
+                        Eliminar
+                      </button>
                     </div>
                   </td>
                 </tr>

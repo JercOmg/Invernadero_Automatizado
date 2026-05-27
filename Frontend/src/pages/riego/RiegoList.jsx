@@ -1,13 +1,5 @@
-/**
- * Proyecto: Sistema Invernadero Automatizado
- * Modulo: RiegoList
- * Autor: Invernadero Team
- * Fecha: 2026-05-19
- * Descripcion: Componente/Servicio RiegoList
- */
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
 import riegoService from '../../services/riegoService';
 import './RiegoList.css';
 
@@ -19,7 +11,6 @@ const RiegoList = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const navigate = useNavigate();
-  const { t } = useTranslation();
 
   useEffect(() => {
     loadItems();
@@ -31,7 +22,7 @@ const RiegoList = () => {
       const data = await riegoService.getAll();
       setItems(data.content || data);
     } catch (err) {
-      setError(t('common.errorLoading'));
+      setError('Error al cargar los datos');
       console.error(err);
     } finally {
       setLoading(false);
@@ -39,12 +30,12 @@ const RiegoList = () => {
   };
 
   const handleDelete = async (id) => {
-    if (window.confirm(t('common.confirmDelete'))) {
+    if (window.confirm('¿Estás seguro de eliminar este registro?')) {
       try {
         await riegoService.delete(id);
         loadItems();
       } catch (err) {
-        alert(t('common.errorDeleting'));
+        alert('Error al eliminar el registro');
         console.error(err);
       }
     }
@@ -63,7 +54,7 @@ const RiegoList = () => {
       <div className="list-header">
         <h1>Riego</h1>
         <Link to="/riego/new" className="btn btn-primary">
-          {t('common.createNew')}
+          Crear Nuevo
         </Link>
       </div>
 
@@ -76,14 +67,14 @@ const RiegoList = () => {
             <th>Fecha Hora</th>
             <th>Duracion Min</th>
             <th>Volumen Litros</th>
-              <th>{t('common.actions')}</th>
+              <th>Acciones</th>
             </tr>
           </thead>
           <tbody>
             {items.length === 0 ? (
               <tr>
                 <td colSpan="{100}" style={{ textAlign: 'center' }}>
-                  {t('common.noRecords')}
+                  No hay registros disponibles
                 </td>
               </tr>
             ) : (
@@ -99,11 +90,15 @@ const RiegoList = () => {
                       <button
                         onClick={() => navigate(`/riego/${item.idRiego || item.id}`)}
                         className="btn btn-sm btn-primary"
-                      >{t('common.edit')}</button>
+                      >
+                        Editar
+                      </button>
                       <button
                         onClick={() => handleDelete(item.idRiego || item.id)}
                         className="btn btn-sm btn-danger"
-                      >{t('common.delete')}</button>
+                      >
+                        Eliminar
+                      </button>
                     </div>
                   </td>
                 </tr>

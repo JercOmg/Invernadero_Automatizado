@@ -1,10 +1,3 @@
-/**
- * Proyecto: Sistema Invernadero Automatizado
- * Modulo: InsumoForm
- * Autor: Invernadero Team
- * Fecha: 2026-05-19
- * Descripcion: Componente/Servicio InsumoForm
- */
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import insumoService from '../../services/insumoService';
@@ -90,7 +83,9 @@ const InsumoForm = () => {
               onChange={handleChange}
               required
             />
-          </div>\n\n          <div className="form-group">
+          </div>
+
+          <div className="form-group">
             <label htmlFor="tipo">Tipo</label>
             <select
               id="tipo"
@@ -100,9 +95,16 @@ const InsumoForm = () => {
               required
             >
               <option value="">Seleccionar...</option>
-              <option value="FERTILIZANTE">FERTILIZANTE</option>\n              <option value="PESTICIDA">PESTICIDA</option>\n              <option value="FUNGICIDA">FUNGICIDA</option>\n              <option value="SUSTRATO">SUSTRATO</option>\n              <option value="AGUA">AGUA</option>\n              <option value="OTRO">OTRO</option>
+              <option value="FERTILIZANTE">FERTILIZANTE</option>
+              <option value="PESTICIDA">PESTICIDA</option>
+              <option value="FUNGICIDA">FUNGICIDA</option>
+              <option value="SUSTRATO">SUSTRATO</option>
+              <option value="AGUA">AGUA</option>
+              <option value="OTRO">OTRO</option>
             </select>
-          </div>\n\n          <div className="form-group">
+          </div>
+
+          <div className="form-group">
             <label htmlFor="unidad">Unidad</label>
             <select
               id="unidad"
@@ -112,9 +114,15 @@ const InsumoForm = () => {
               required
             >
               <option value="">Seleccionar...</option>
-              <option value="kg">kg</option>\n              <option value="g">g</option>\n              <option value="L">L</option>\n              <option value="mL">mL</option>\n              <option value="unidad">unidad</option>
+              <option value="kg">kg</option>
+              <option value="g">g</option>
+              <option value="L">L</option>
+              <option value="mL">mL</option>
+              <option value="unidad">unidad</option>
             </select>
-          </div>\n\n          <div className="form-group">
+          </div>
+
+          <div className="form-group">
             <label htmlFor="stockActual">Stock Actual</label>
             <input
               type="number"
@@ -124,7 +132,9 @@ const InsumoForm = () => {
               onChange={handleChange}
               required
             />
-          </div>\n\n          <div className="form-group">
+          </div>
+
+          <div className="form-group">
             <label htmlFor="stockMinimo">Stock Minimo</label>
             <input
               type="number"
@@ -134,7 +144,9 @@ const InsumoForm = () => {
               onChange={handleChange}
               
             />
-          </div>\n\n          <div className="form-group">
+          </div>
+
+          <div className="form-group">
             <label htmlFor="descripcion">Descripcion</label>
             <textarea
               id="descripcion"

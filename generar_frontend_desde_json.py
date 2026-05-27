@@ -255,7 +255,7 @@ def generar_componente_form(nombre_tabla, nombre_clase, info_tabla):
         required = 'required' if not campo_info.get('nullable', True) else ''
         
         if tipo_input == 'select' and campo_info.get('valores'):
-            opciones = '\\n              '.join([
+            opciones = '\n              '.join([
                 f'<option value="{val}">{val}</option>' 
                 for val in campo_info['valores']
             ])
@@ -309,7 +309,7 @@ def generar_componente_form(nombre_tabla, nombre_clase, info_tabla):
             />
           </div>""")
     
-    campos_html = '\\n\\n'.join(campos_form)
+    campos_html = '\n\n'.join(campos_form)
     
     codigo = f"""import React, {{ useState, useEffect }} from 'react';
 import {{ useNavigate, useParams }} from 'react-router-dom';
@@ -595,7 +595,7 @@ def generar_rutas(tablas):
         rutas.append(f'            <Route path="{nombre_tabla}/new" element={{<{nombre_clase}Form />}} />')
         rutas.append(f'            <Route path="{nombre_tabla}/:id" element={{<{nombre_clase}Form />}} />')
     
-    return '\\n'.join(imports), '\\n'.join(rutas)
+    return '\n'.join(imports), '\n'.join(rutas)
 
 def main():
     """Funcion principal"""
@@ -629,9 +629,9 @@ def main():
     
     rutas_file = FRONTEND_DIR / "routes_generated.txt"
     with open(rutas_file, 'w', encoding='utf-8') as f:
-        f.write("// IMPORTS - Agregar al inicio de App.jsx\\n")
+        f.write("// IMPORTS - Agregar al inicio de App.jsx\n")
         f.write(imports_code)
-        f.write("\\n\\n// RUTAS - Agregar dentro del Layout Route\\n")
+        f.write("\n\n// RUTAS - Agregar dentro del Layout Route\n")
         f.write(rutas_code)
     
     print(f"  ✓ Codigo de rutas generado en: {rutas_file}")

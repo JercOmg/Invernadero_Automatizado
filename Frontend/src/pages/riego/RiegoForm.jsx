@@ -1,10 +1,3 @@
-/**
- * Proyecto: Sistema Invernadero Automatizado
- * Modulo: RiegoForm
- * Autor: Invernadero Team
- * Fecha: 2026-05-19
- * Descripcion: Componente/Servicio RiegoForm
- */
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import riegoService from '../../services/riegoService';
@@ -90,7 +83,9 @@ const RiegoForm = () => {
               onChange={handleChange}
               required
             />
-          </div>\n\n          <div className="form-group">
+          </div>
+
+          <div className="form-group">
             <label htmlFor="idUsuario">Id Usuario</label>
             <input
               type="number"
@@ -100,7 +95,9 @@ const RiegoForm = () => {
               onChange={handleChange}
               
             />
-          </div>\n\n          <div className="form-group">
+          </div>
+
+          <div className="form-group">
             <label htmlFor="fechaHora">Fecha Hora</label>
             <input
               type="datetime-local"
@@ -110,7 +107,9 @@ const RiegoForm = () => {
               onChange={handleChange}
               required
             />
-          </div>\n\n          <div className="form-group">
+          </div>
+
+          <div className="form-group">
             <label htmlFor="duracionMin">Duracion Min</label>
             <input
               type="number"
@@ -120,7 +119,9 @@ const RiegoForm = () => {
               onChange={handleChange}
               required
             />
-          </div>\n\n          <div className="form-group">
+          </div>
+
+          <div className="form-group">
             <label htmlFor="volumenLitros">Volumen Litros</label>
             <input
               type="number"
@@ -130,7 +131,9 @@ const RiegoForm = () => {
               onChange={handleChange}
               
             />
-          </div>\n\n          <div className="form-group">
+          </div>
+
+          <div className="form-group">
             <label htmlFor="tipo">Tipo</label>
             <select
               id="tipo"
@@ -140,9 +143,12 @@ const RiegoForm = () => {
               required
             >
               <option value="">Seleccionar...</option>
-              <option value="AUTOMATICO">AUTOMATICO</option>\n              <option value="MANUAL">MANUAL</option>
+              <option value="AUTOMATICO">AUTOMATICO</option>
+              <option value="MANUAL">MANUAL</option>
             </select>
-          </div>\n\n          <div className="form-group">
+          </div>
+
+          <div className="form-group">
             <label htmlFor="observaciones">Observaciones</label>
             <textarea
               id="observaciones"

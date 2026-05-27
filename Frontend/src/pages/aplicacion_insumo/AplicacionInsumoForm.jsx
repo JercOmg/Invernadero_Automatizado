@@ -1,10 +1,3 @@
-/**
- * Proyecto: Sistema Invernadero Automatizado
- * Modulo: AplicacionInsumoForm
- * Autor: Invernadero Team
- * Fecha: 2026-05-19
- * Descripcion: Componente/Servicio AplicacionInsumoForm
- */
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import aplicacionInsumoService from '../../services/aplicacionInsumoService';
@@ -12,10 +5,6 @@ import './AplicacionInsumoForm.css';
 
 /**
  * Componente para crear/editar AplicacionInsumo
- */
-/**
- * Componente AplicacionInsumoForm
- * @returns {JSX.Element}
  */
 const AplicacionInsumoForm = () => {
   const [formData, setFormData] = useState({});
@@ -94,7 +83,9 @@ const AplicacionInsumoForm = () => {
               onChange={handleChange}
               required
             />
-          </div>\n\n          <div className="form-group">
+          </div>
+
+          <div className="form-group">
             <label htmlFor="idSiembra">Id Siembra</label>
             <input
               type="number"
@@ -104,7 +95,9 @@ const AplicacionInsumoForm = () => {
               onChange={handleChange}
               
             />
-          </div>\n\n          <div className="form-group">
+          </div>
+
+          <div className="form-group">
             <label htmlFor="idZona">Id Zona</label>
             <input
               type="number"
@@ -114,7 +107,9 @@ const AplicacionInsumoForm = () => {
               onChange={handleChange}
               
             />
-          </div>\n\n          <div className="form-group">
+          </div>
+
+          <div className="form-group">
             <label htmlFor="idUsuario">Id Usuario</label>
             <input
               type="number"
@@ -124,7 +119,9 @@ const AplicacionInsumoForm = () => {
               onChange={handleChange}
               required
             />
-          </div>\n\n          <div className="form-group">
+          </div>
+
+          <div className="form-group">
             <label htmlFor="fechaHora">Fecha Hora</label>
             <input
               type="datetime-local"
@@ -134,7 +131,9 @@ const AplicacionInsumoForm = () => {
               onChange={handleChange}
               required
             />
-          </div>\n\n          <div className="form-group">
+          </div>
+
+          <div className="form-group">
             <label htmlFor="cantidad">Cantidad</label>
             <input
               type="number"
@@ -144,7 +143,9 @@ const AplicacionInsumoForm = () => {
               onChange={handleChange}
               required
             />
-          </div>\n\n          <div className="form-group">
+          </div>
+
+          <div className="form-group">
             <label htmlFor="metodo">Metodo</label>
             <select
               id="metodo"
@@ -154,9 +155,14 @@ const AplicacionInsumoForm = () => {
               
             >
               <option value="">Seleccionar...</option>
-              <option value="FOLIAR">FOLIAR</option>\n              <option value="RIEGO">RIEGO</option>\n              <option value="SUELO">SUELO</option>\n              <option value="INYECCION">INYECCION</option>
+              <option value="FOLIAR">FOLIAR</option>
+              <option value="RIEGO">RIEGO</option>
+              <option value="SUELO">SUELO</option>
+              <option value="INYECCION">INYECCION</option>
             </select>
-          </div>\n\n          <div className="form-group">
+          </div>
+
+          <div className="form-group">
             <label htmlFor="observaciones">Observaciones</label>
             <textarea
               id="observaciones"

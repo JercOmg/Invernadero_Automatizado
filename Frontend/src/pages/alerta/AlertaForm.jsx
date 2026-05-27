@@ -1,10 +1,3 @@
-/**
- * Proyecto: Sistema Invernadero Automatizado
- * Modulo: AlertaForm
- * Autor: Invernadero Team
- * Fecha: 2026-05-19
- * Descripcion: Componente/Servicio AlertaForm
- */
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import alertaService from '../../services/alertaService';
@@ -90,7 +83,9 @@ const AlertaForm = () => {
               onChange={handleChange}
               
             />
-          </div>\n\n          <div className="form-group">
+          </div>
+
+          <div className="form-group">
             <label htmlFor="idZona">Id Zona</label>
             <input
               type="number"
@@ -100,7 +95,9 @@ const AlertaForm = () => {
               onChange={handleChange}
               
             />
-          </div>\n\n          <div className="form-group">
+          </div>
+
+          <div className="form-group">
             <label htmlFor="tipoAlerta">Tipo Alerta</label>
             <select
               id="tipoAlerta"
@@ -110,9 +107,18 @@ const AlertaForm = () => {
               required
             >
               <option value="">Seleccionar...</option>
-              <option value="TEMPERATURA_ALTA">TEMPERATURA_ALTA</option>\n              <option value="TEMPERATURA_BAJA">TEMPERATURA_BAJA</option>\n              <option value="HUMEDAD_ALTA">HUMEDAD_ALTA</option>\n              <option value="HUMEDAD_BAJA">HUMEDAD_BAJA</option>\n              <option value="CO2_ALTO">CO2_ALTO</option>\n              <option value="PH_FUERA_RANGO">PH_FUERA_RANGO</option>\n              <option value="FALLA_SENSOR">FALLA_SENSOR</option>\n              <option value="PLAGA_ENFERMEDAD">PLAGA_ENFERMEDAD</option>
+              <option value="TEMPERATURA_ALTA">TEMPERATURA_ALTA</option>
+              <option value="TEMPERATURA_BAJA">TEMPERATURA_BAJA</option>
+              <option value="HUMEDAD_ALTA">HUMEDAD_ALTA</option>
+              <option value="HUMEDAD_BAJA">HUMEDAD_BAJA</option>
+              <option value="CO2_ALTO">CO2_ALTO</option>
+              <option value="PH_FUERA_RANGO">PH_FUERA_RANGO</option>
+              <option value="FALLA_SENSOR">FALLA_SENSOR</option>
+              <option value="PLAGA_ENFERMEDAD">PLAGA_ENFERMEDAD</option>
             </select>
-          </div>\n\n          <div className="form-group">
+          </div>
+
+          <div className="form-group">
             <label htmlFor="descripcion">Descripcion</label>
             <textarea
               id="descripcion"
@@ -122,7 +128,9 @@ const AlertaForm = () => {
               rows="4"
               required
             />
-          </div>\n\n          <div className="form-group">
+          </div>
+
+          <div className="form-group">
             <label htmlFor="fechaHora">Fecha Hora</label>
             <input
               type="datetime-local"
@@ -132,7 +140,9 @@ const AlertaForm = () => {
               onChange={handleChange}
               required
             />
-          </div>\n\n          <div className="form-group">
+          </div>
+
+          <div className="form-group">
             <label htmlFor="nivel">Nivel</label>
             <select
               id="nivel"
@@ -142,9 +152,13 @@ const AlertaForm = () => {
               required
             >
               <option value="">Seleccionar...</option>
-              <option value="INFORMATIVA">INFORMATIVA</option>\n              <option value="ADVERTENCIA">ADVERTENCIA</option>\n              <option value="CRITICA">CRITICA</option>
+              <option value="INFORMATIVA">INFORMATIVA</option>
+              <option value="ADVERTENCIA">ADVERTENCIA</option>
+              <option value="CRITICA">CRITICA</option>
             </select>
-          </div>\n\n          <div className="form-group checkbox-group">
+          </div>
+
+          <div className="form-group checkbox-group">
             <label>
               <input
                 type="checkbox"
@@ -154,7 +168,9 @@ const AlertaForm = () => {
               />
               Resuelta
             </label>
-          </div>\n\n          <div className="form-group">
+          </div>
+
+          <div className="form-group">
             <label htmlFor="fechaResolucion">Fecha Resolucion</label>
             <input
               type="datetime-local"

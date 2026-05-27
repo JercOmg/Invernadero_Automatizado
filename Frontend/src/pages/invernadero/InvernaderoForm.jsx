@@ -1,10 +1,3 @@
-/**
- * Proyecto: Sistema Invernadero Automatizado
- * Modulo: InvernaderoForm
- * Autor: Invernadero Team
- * Fecha: 2026-05-19
- * Descripcion: Componente/Servicio InvernaderoForm
- */
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import invernaderoService from '../../services/invernaderoService';
@@ -12,10 +5,6 @@ import './InvernaderoForm.css';
 
 /**
  * Componente para crear/editar Invernadero
- */
-/**
- * Componente InvernaderoForm
- * @returns {JSX.Element}
  */
 const InvernaderoForm = () => {
   const [formData, setFormData] = useState({});
@@ -94,7 +83,9 @@ const InvernaderoForm = () => {
               onChange={handleChange}
               required
             />
-          </div>\n\n          <div className="form-group">
+          </div>
+
+          <div className="form-group">
             <label htmlFor="ubicacion">Ubicacion</label>
             <input
               type="text"
@@ -104,7 +95,9 @@ const InvernaderoForm = () => {
               onChange={handleChange}
               required
             />
-          </div>\n\n          <div className="form-group">
+          </div>
+
+          <div className="form-group">
             <label htmlFor="areaM2">Area M2</label>
             <input
               type="number"
@@ -114,7 +107,9 @@ const InvernaderoForm = () => {
               onChange={handleChange}
               required
             />
-          </div>\n\n          <div className="form-group">
+          </div>
+
+          <div className="form-group">
             <label htmlFor="tipoEstructura">Tipo Estructura</label>
             <select
               id="tipoEstructura"
@@ -124,9 +119,14 @@ const InvernaderoForm = () => {
               
             >
               <option value="">Seleccionar...</option>
-              <option value="VIDRIO">VIDRIO</option>\n              <option value="POLICARBONATO">POLICARBONATO</option>\n              <option value="MALLA">MALLA</option>\n              <option value="PLASTICO">PLASTICO</option>
+              <option value="VIDRIO">VIDRIO</option>
+              <option value="POLICARBONATO">POLICARBONATO</option>
+              <option value="MALLA">MALLA</option>
+              <option value="PLASTICO">PLASTICO</option>
             </select>
-          </div>\n\n          <div className="form-group">
+          </div>
+
+          <div className="form-group">
             <label htmlFor="responsableId">Responsable Id</label>
             <input
               type="number"
@@ -136,7 +136,9 @@ const InvernaderoForm = () => {
               onChange={handleChange}
               required
             />
-          </div>\n\n          <div className="form-group">
+          </div>
+
+          <div className="form-group">
             <label htmlFor="fechaCreacion">Fecha Creacion</label>
             <input
               type="date"
@@ -146,7 +148,9 @@ const InvernaderoForm = () => {
               onChange={handleChange}
               required
             />
-          </div>\n\n          <div className="form-group">
+          </div>
+
+          <div className="form-group">
             <label htmlFor="estado">Estado</label>
             <select
               id="estado"
@@ -156,7 +160,9 @@ const InvernaderoForm = () => {
               required
             >
               <option value="">Seleccionar...</option>
-              <option value="ACTIVO">ACTIVO</option>\n              <option value="INACTIVO">INACTIVO</option>\n              <option value="MANTENIMIENTO">MANTENIMIENTO</option>
+              <option value="ACTIVO">ACTIVO</option>
+              <option value="INACTIVO">INACTIVO</option>
+              <option value="MANTENIMIENTO">MANTENIMIENTO</option>
             </select>
           </div>
 

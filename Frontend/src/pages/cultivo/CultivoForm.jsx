@@ -1,10 +1,3 @@
-/**
- * Proyecto: Sistema Invernadero Automatizado
- * Modulo: CultivoForm
- * Autor: Invernadero Team
- * Fecha: 2026-05-19
- * Descripcion: Componente/Servicio CultivoForm
- */
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import cultivoService from '../../services/cultivoService';
@@ -90,7 +83,9 @@ const CultivoForm = () => {
               onChange={handleChange}
               required
             />
-          </div>\n\n          <div className="form-group">
+          </div>
+
+          <div className="form-group">
             <label htmlFor="nombreCientifico">Nombre Cientifico</label>
             <input
               type="text"
@@ -100,7 +95,9 @@ const CultivoForm = () => {
               onChange={handleChange}
               
             />
-          </div>\n\n          <div className="form-group">
+          </div>
+
+          <div className="form-group">
             <label htmlFor="tipo">Tipo</label>
             <select
               id="tipo"
@@ -110,9 +107,15 @@ const CultivoForm = () => {
               required
             >
               <option value="">Seleccionar...</option>
-              <option value="HORTALIZA">HORTALIZA</option>\n              <option value="FRUTA">FRUTA</option>\n              <option value="FLOR">FLOR</option>\n              <option value="HIERBA">HIERBA</option>\n              <option value="OTRO">OTRO</option>
+              <option value="HORTALIZA">HORTALIZA</option>
+              <option value="FRUTA">FRUTA</option>
+              <option value="FLOR">FLOR</option>
+              <option value="HIERBA">HIERBA</option>
+              <option value="OTRO">OTRO</option>
             </select>
-          </div>\n\n          <div className="form-group">
+          </div>
+
+          <div className="form-group">
             <label htmlFor="tempMinC">Temp Min C</label>
             <input
               type="number"
@@ -122,7 +125,9 @@ const CultivoForm = () => {
               onChange={handleChange}
               
             />
-          </div>\n\n          <div className="form-group">
+          </div>
+
+          <div className="form-group">
             <label htmlFor="tempMaxC">Temp Max C</label>
             <input
               type="number"
@@ -132,7 +137,9 @@ const CultivoForm = () => {
               onChange={handleChange}
               
             />
-          </div>\n\n          <div className="form-group">
+          </div>
+
+          <div className="form-group">
             <label htmlFor="humedadMinPct">Humedad Min Pct</label>
             <input
               type="number"
@@ -142,7 +149,9 @@ const CultivoForm = () => {
               onChange={handleChange}
               
             />
-          </div>\n\n          <div className="form-group">
+          </div>
+
+          <div className="form-group">
             <label htmlFor="humedadMaxPct">Humedad Max Pct</label>
             <input
               type="number"
@@ -152,7 +161,9 @@ const CultivoForm = () => {
               onChange={handleChange}
               
             />
-          </div>\n\n          <div className="form-group">
+          </div>
+
+          <div className="form-group">
             <label htmlFor="diasCiclo">Dias Ciclo</label>
             <input
               type="number"
@@ -162,7 +173,9 @@ const CultivoForm = () => {
               onChange={handleChange}
               
             />
-          </div>\n\n          <div className="form-group">
+          </div>
+
+          <div className="form-group">
             <label htmlFor="descripcion">Descripcion</label>
             <textarea
               id="descripcion"

@@ -1,13 +1,5 @@
-/**
- * Proyecto: Sistema Invernadero Automatizado
- * Modulo: InvernaderoList
- * Autor: Invernadero Team
- * Fecha: 2026-05-19
- * Descripcion: Componente/Servicio InvernaderoList
- */
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
 import invernaderoService from '../../services/invernaderoService';
 import './InvernaderoList.css';
 
@@ -19,7 +11,6 @@ const InvernaderoList = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const navigate = useNavigate();
-  const { t } = useTranslation();
 
   useEffect(() => {
     loadItems();
@@ -31,7 +22,7 @@ const InvernaderoList = () => {
       const data = await invernaderoService.getAll();
       setItems(data.content || data);
     } catch (err) {
-      setError(t('common.errorLoading'));
+      setError('Error al cargar los datos');
       console.error(err);
     } finally {
       setLoading(false);
@@ -39,12 +30,12 @@ const InvernaderoList = () => {
   };
 
   const handleDelete = async (id) => {
-    if (window.confirm(t('common.confirmDelete'))) {
+    if (window.confirm('¿Estás seguro de eliminar este registro?')) {
       try {
         await invernaderoService.delete(id);
         loadItems();
       } catch (err) {
-        alert(t('common.errorDeleting'));
+        alert('Error al eliminar el registro');
         console.error(err);
       }
     }
@@ -61,9 +52,9 @@ const InvernaderoList = () => {
   return (
     <div className="list-container">
       <div className="list-header">
-        <h1>{t('invernadero.title')}</h1>
+        <h1>Invernadero</h1>
         <Link to="/invernadero/new" className="btn btn-primary">
-          {t('common.createNew')}
+          Crear Nuevo
         </Link>
       </div>
 
@@ -71,19 +62,19 @@ const InvernaderoList = () => {
         <table>
           <thead>
             <tr>
-              <th>{t('invernadero.name')}</th>
-            <th>{t('invernadero.location')}</th>
-            <th>{t('invernadero.area')}</th>
-            <th>{t('invernadero.type')}</th>
-            <th>{t('invernadero.managerId')}</th>
-              <th>{t('common.actions')}</th>
+              <th>Nombre</th>
+            <th>Ubicacion</th>
+            <th>Area M2</th>
+            <th>Tipo Estructura</th>
+            <th>Responsable Id</th>
+              <th>Acciones</th>
             </tr>
           </thead>
           <tbody>
             {items.length === 0 ? (
               <tr>
                 <td colSpan="{100}" style={{ textAlign: 'center' }}>
-                  {t('common.noRecords')}
+                  No hay registros disponibles
                 </td>
               </tr>
             ) : (
@@ -100,13 +91,13 @@ const InvernaderoList = () => {
                         onClick={() => navigate(`/invernadero/${item.idInvernadero || item.id}`)}
                         className="btn btn-sm btn-primary"
                       >
-                        {t('common.edit')}
+                        Editar
                       </button>
                       <button
                         onClick={() => handleDelete(item.idInvernadero || item.id)}
                         className="btn btn-sm btn-danger"
                       >
-                        {t('common.delete')}
+                        Eliminar
                       </button>
                     </div>
                   </td>

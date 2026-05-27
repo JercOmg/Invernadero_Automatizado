@@ -1,10 +1,3 @@
-/**
- * Proyecto: Sistema Invernadero Automatizado
- * Modulo: CosechaForm
- * Autor: Invernadero Team
- * Fecha: 2026-05-19
- * Descripcion: Componente/Servicio CosechaForm
- */
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import cosechaService from '../../services/cosechaService';
@@ -90,7 +83,9 @@ const CosechaForm = () => {
               onChange={handleChange}
               required
             />
-          </div>\n\n          <div className="form-group">
+          </div>
+
+          <div className="form-group">
             <label htmlFor="idUsuario">Id Usuario</label>
             <input
               type="number"
@@ -100,7 +95,9 @@ const CosechaForm = () => {
               onChange={handleChange}
               required
             />
-          </div>\n\n          <div className="form-group">
+          </div>
+
+          <div className="form-group">
             <label htmlFor="fechaCosecha">Fecha Cosecha</label>
             <input
               type="date"
@@ -110,7 +107,9 @@ const CosechaForm = () => {
               onChange={handleChange}
               required
             />
-          </div>\n\n          <div className="form-group">
+          </div>
+
+          <div className="form-group">
             <label htmlFor="cantidadKg">Cantidad Kg</label>
             <input
               type="number"
@@ -120,7 +119,9 @@ const CosechaForm = () => {
               onChange={handleChange}
               required
             />
-          </div>\n\n          <div className="form-group">
+          </div>
+
+          <div className="form-group">
             <label htmlFor="calidad">Calidad</label>
             <select
               id="calidad"
@@ -130,9 +131,14 @@ const CosechaForm = () => {
               
             >
               <option value="">Seleccionar...</option>
-              <option value="PREMIUM">PREMIUM</option>\n              <option value="ESTANDAR">ESTANDAR</option>\n              <option value="SEGUNDA">SEGUNDA</option>\n              <option value="DESCARTE">DESCARTE</option>
+              <option value="PREMIUM">PREMIUM</option>
+              <option value="ESTANDAR">ESTANDAR</option>
+              <option value="SEGUNDA">SEGUNDA</option>
+              <option value="DESCARTE">DESCARTE</option>
             </select>
-          </div>\n\n          <div className="form-group">
+          </div>
+
+          <div className="form-group">
             <label htmlFor="observaciones">Observaciones</label>
             <textarea
               id="observaciones"

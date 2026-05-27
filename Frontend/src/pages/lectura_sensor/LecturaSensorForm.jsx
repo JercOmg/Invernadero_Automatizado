@@ -1,10 +1,3 @@
-/**
- * Proyecto: Sistema Invernadero Automatizado
- * Modulo: LecturaSensorForm
- * Autor: Invernadero Team
- * Fecha: 2026-05-19
- * Descripcion: Componente/Servicio LecturaSensorForm
- */
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import lecturaSensorService from '../../services/lecturaSensorService';
@@ -12,10 +5,6 @@ import './LecturaSensorForm.css';
 
 /**
  * Componente para crear/editar LecturaSensor
- */
-/**
- * Componente LecturaSensorForm
- * @returns {JSX.Element}
  */
 const LecturaSensorForm = () => {
   const [formData, setFormData] = useState({});
@@ -94,7 +83,9 @@ const LecturaSensorForm = () => {
               onChange={handleChange}
               required
             />
-          </div>\n\n          <div className="form-group">
+          </div>
+
+          <div className="form-group">
             <label htmlFor="valor">Valor</label>
             <input
               type="number"
@@ -104,7 +95,9 @@ const LecturaSensorForm = () => {
               onChange={handleChange}
               required
             />
-          </div>\n\n          <div className="form-group">
+          </div>
+
+          <div className="form-group">
             <label htmlFor="fechaHora">Fecha Hora</label>
             <input
               type="datetime-local"
@@ -114,7 +107,9 @@ const LecturaSensorForm = () => {
               onChange={handleChange}
               required
             />
-          </div>\n\n          <div className="form-group checkbox-group">
+          </div>
+
+          <div className="form-group checkbox-group">
             <label>
               <input
                 type="checkbox"

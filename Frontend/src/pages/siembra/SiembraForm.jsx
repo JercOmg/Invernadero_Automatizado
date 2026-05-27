@@ -1,10 +1,3 @@
-/**
- * Proyecto: Sistema Invernadero Automatizado
- * Modulo: SiembraForm
- * Autor: Invernadero Team
- * Fecha: 2026-05-19
- * Descripcion: Componente/Servicio SiembraForm
- */
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import siembraService from '../../services/siembraService';
@@ -90,7 +83,9 @@ const SiembraForm = () => {
               onChange={handleChange}
               required
             />
-          </div>\n\n          <div className="form-group">
+          </div>
+
+          <div className="form-group">
             <label htmlFor="idCultivo">Id Cultivo</label>
             <input
               type="number"
@@ -100,7 +95,9 @@ const SiembraForm = () => {
               onChange={handleChange}
               required
             />
-          </div>\n\n          <div className="form-group">
+          </div>
+
+          <div className="form-group">
             <label htmlFor="idUsuario">Id Usuario</label>
             <input
               type="number"
@@ -110,7 +107,9 @@ const SiembraForm = () => {
               onChange={handleChange}
               required
             />
-          </div>\n\n          <div className="form-group">
+          </div>
+
+          <div className="form-group">
             <label htmlFor="fechaSiembra">Fecha Siembra</label>
             <input
               type="date"
@@ -120,7 +119,9 @@ const SiembraForm = () => {
               onChange={handleChange}
               required
             />
-          </div>\n\n          <div className="form-group">
+          </div>
+
+          <div className="form-group">
             <label htmlFor="fechaCosechaEstimada">Fecha Cosecha Estimada</label>
             <input
               type="date"
@@ -130,7 +131,9 @@ const SiembraForm = () => {
               onChange={handleChange}
               
             />
-          </div>\n\n          <div className="form-group">
+          </div>
+
+          <div className="form-group">
             <label htmlFor="cantidadPlantas">Cantidad Plantas</label>
             <input
               type="number"
@@ -140,7 +143,9 @@ const SiembraForm = () => {
               onChange={handleChange}
               required
             />
-          </div>\n\n          <div className="form-group">
+          </div>
+
+          <div className="form-group">
             <label htmlFor="estado">Estado</label>
             <select
               id="estado"
@@ -150,9 +155,14 @@ const SiembraForm = () => {
               required
             >
               <option value="">Seleccionar...</option>
-              <option value="EN_CRECIMIENTO">EN_CRECIMIENTO</option>\n              <option value="COSECHADO">COSECHADO</option>\n              <option value="PERDIDO">PERDIDO</option>\n              <option value="EN_CUARENTENA">EN_CUARENTENA</option>
+              <option value="EN_CRECIMIENTO">EN_CRECIMIENTO</option>
+              <option value="COSECHADO">COSECHADO</option>
+              <option value="PERDIDO">PERDIDO</option>
+              <option value="EN_CUARENTENA">EN_CUARENTENA</option>
             </select>
-          </div>\n\n          <div className="form-group">
+          </div>
+
+          <div className="form-group">
             <label htmlFor="observaciones">Observaciones</label>
             <textarea
               id="observaciones"
