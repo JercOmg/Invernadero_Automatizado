@@ -227,34 +227,29 @@ class TestCRUDInvernadero:
                 responsable_val = "1"
 
             # Función robusta para rellenar campos y disparar eventos de React
-            # NOTA: NO usar send_keys en inputs de fecha — headless Chrome reordena el valor
-            # (ej: "2026-05-20" → "60520-02-02"). Siempre inyectar via JS.
+            # Resuelve el bug de sincronización de estado de React 16+ en Selenium
             def fill_field(name, value):
                 try:
                     elem = driver.find_element(By.NAME, name)
                     if elem:
-                        input_type = elem.get_attribute("type") or ""
-                        if elem.tag_name == "select":
-                            # Para selects: usar la API de Select + refuerzo JS
-                            try:
-                                from selenium.webdriver.support.ui import Select
-                                Select(elem).select_by_value(value)
-                            except Exception:
-                                pass
-                        elif input_type == "date":
-                            # Para fechas: SOLO JS, nunca send_keys (headless Chrome lo corrompe)
-                            pass  # Solo usamos JS abajo
-                        else:
-                            # Para texto/número: send_keys estándar + refuerzo JS
-                            try:
-                                elem.clear()
-                                elem.send_keys(value)
-                            except Exception:
-                                pass
-                        # Refuerzo JS universal — setea el valor y dispara eventos de React
-                        driver.execute_script("arguments[0].value = arguments[1];", elem, value)
-                        driver.execute_script("arguments[0].dispatchEvent(new Event('input', { bubbles: true }));", elem)
-                        driver.execute_script("arguments[0].dispatchEvent(new Event('change', { bubbles: true }));", elem)
+                        driver.execute_script("""
+                            var elem = arguments[0];
+                            var val = arguments[1];
+                            var prototype = window.HTMLInputElement.prototype;
+                            if (elem.tagName === 'SELECT') {
+                                prototype = window.HTMLSelectElement.prototype;
+                            } else if (elem.tagName === 'TEXTAREA') {
+                                prototype = window.HTMLTextAreaElement.prototype;
+                            }
+                            var descriptor = Object.getOwnPropertyDescriptor(prototype, 'value');
+                            if (descriptor && descriptor.set) {
+                                descriptor.set.call(elem, val);
+                            } else {
+                                elem.value = val;
+                            }
+                            elem.dispatchEvent(new Event('input', { bubbles: true }));
+                            elem.dispatchEvent(new Event('change', { bubbles: true }));
+                        """, elem, value)
                 except Exception as e:
                     print(f"Error rellenando campo {name}: {e}")
 
