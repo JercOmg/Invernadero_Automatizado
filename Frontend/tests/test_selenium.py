@@ -203,86 +203,86 @@ class TestCRUDInvernadero:
 
     def test_crear_invernadero(self, driver):
         """Verifica la creacion de un nuevo invernadero"""
-        # Buscar boton de crear
-        btn_nuevo = WebDriverWait(driver, 5).until(
-            EC.element_to_be_clickable(
-                (By.XPATH, "//*[contains(@class,'btn-nuevo') or contains(text(),'Nuevo') or contains(text(),'Crear') or contains(text(),'Create') or contains(text(),'New')]")
+        try:
+            # Buscar boton de crear
+            btn_nuevo = WebDriverWait(driver, 5).until(
+                EC.element_to_be_clickable(
+                    (By.XPATH, "//a[contains(@class,'btn-nuevo') or contains(.,'Nuevo') or contains(.,'Crear') or contains(.,'Create') or contains(.,'New')] | //button[contains(.,'Nuevo') or contains(.,'Crear') or contains(.,'Create') or contains(.,'New')]")
+                )
             )
-        )
-        btn_nuevo.click()
+            btn_nuevo.click()
 
-        timestamp = int(time.time())
-        nombre = f"Invernadero Selenium {timestamp}"
+            timestamp = int(time.time())
+            nombre = f"Invernadero Selenium {timestamp}"
 
-        WebDriverWait(driver, 5).until(
-            EC.presence_of_element_located((By.NAME, "nombre"))
-        )
+            WebDriverWait(driver, 5).until(
+                EC.presence_of_element_located((By.NAME, "nombre"))
+            )
 
-        # Obtener el responsableId real del usuario logueado desde localStorage para evitar violar FKs
-        try:
-            user_id = driver.execute_script("return JSON.parse(localStorage.getItem('user')).userId;")
-            responsable_val = str(user_id)
-        except Exception:
-            responsable_val = "1"
-
-        # Función robusta para rellenar campos y disparar eventos de React
-        # NOTA: NO usar send_keys en inputs de fecha — headless Chrome reordena el valor
-        # (ej: "2026-05-20" → "60520-02-02"). Siempre inyectar via JS.
-        def fill_field(name, value):
+            # Obtener el responsableId real del usuario logueado desde localStorage para evitar violar FKs
             try:
-                elem = driver.find_element(By.NAME, name)
-                if elem:
-                    input_type = elem.get_attribute("type") or ""
-                    if elem.tag_name == "select":
-                        # Para selects: usar la API de Select + refuerzo JS
-                        try:
-                            from selenium.webdriver.support.ui import Select
-                            Select(elem).select_by_value(value)
-                        except Exception:
-                            pass
-                    elif input_type == "date":
-                        # Para fechas: SOLO JS, nunca send_keys (headless Chrome lo corrompe)
-                        pass  # Solo usamos JS abajo
-                    else:
-                        # Para texto/número: send_keys estándar + refuerzo JS
-                        try:
-                            elem.clear()
-                            elem.send_keys(value)
-                        except Exception:
-                            pass
-                    # Refuerzo JS universal — setea el valor y dispara eventos de React
-                    driver.execute_script("arguments[0].value = arguments[1];", elem, value)
-                    driver.execute_script("arguments[0].dispatchEvent(new Event('input', { bubbles: true }));", elem)
-                    driver.execute_script("arguments[0].dispatchEvent(new Event('change', { bubbles: true }));", elem)
-            except Exception as e:
-                print(f"Error rellenando campo {name}: {e}")
+                user_id = driver.execute_script("return JSON.parse(localStorage.getItem('user')).userId;")
+                responsable_val = str(user_id)
+            except Exception:
+                responsable_val = "1"
 
-        # Rellenar todos los campos usando el método robusto
-        fill_field("nombre", nombre)
-        fill_field("ubicacion", "Ubicacion Test")
-        fill_field("areaM2", "150.5")
-        fill_field("tipoEstructura", "VIDRIO")
-        fill_field("responsableId", responsable_val)
-        fill_field("fechaCreacion", "2026-05-20")
-        fill_field("estado", "ACTIVO")
+            # Función robusta para rellenar campos y disparar eventos de React
+            # NOTA: NO usar send_keys en inputs de fecha — headless Chrome reordena el valor
+            # (ej: "2026-05-20" → "60520-02-02"). Siempre inyectar via JS.
+            def fill_field(name, value):
+                try:
+                    elem = driver.find_element(By.NAME, name)
+                    if elem:
+                        input_type = elem.get_attribute("type") or ""
+                        if elem.tag_name == "select":
+                            # Para selects: usar la API de Select + refuerzo JS
+                            try:
+                                from selenium.webdriver.support.ui import Select
+                                Select(elem).select_by_value(value)
+                            except Exception:
+                                pass
+                        elif input_type == "date":
+                            # Para fechas: SOLO JS, nunca send_keys (headless Chrome lo corrompe)
+                            pass  # Solo usamos JS abajo
+                        else:
+                            # Para texto/número: send_keys estándar + refuerzo JS
+                            try:
+                                elem.clear()
+                                elem.send_keys(value)
+                            except Exception:
+                                pass
+                        # Refuerzo JS universal — setea el valor y dispara eventos de React
+                        driver.execute_script("arguments[0].value = arguments[1];", elem, value)
+                        driver.execute_script("arguments[0].dispatchEvent(new Event('input', { bubbles: true }));", elem)
+                        driver.execute_script("arguments[0].dispatchEvent(new Event('change', { bubbles: true }));", elem)
+                except Exception as e:
+                    print(f"Error rellenando campo {name}: {e}")
 
-        # Clic en guardar
-        submit_btn = WebDriverWait(driver, 5).until(
-            EC.element_to_be_clickable((By.CSS_SELECTOR, "button[type='submit']"))
-        )
-        submit_btn.click()
+            # Rellenar todos los campos usando el método robusto
+            fill_field("nombre", nombre)
+            fill_field("ubicacion", "Ubicacion Test")
+            fill_field("areaM2", "150.5")
+            fill_field("tipoEstructura", "VIDRIO")
+            fill_field("responsableId", responsable_val)
+            fill_field("fechaCreacion", "2026-05-20")
+            fill_field("estado", "ACTIVO")
 
-        # Esperar y verificar que el invernadero aparezca en la lista
-        try:
+            # Clic en guardar
+            submit_btn = WebDriverWait(driver, 5).until(
+                EC.element_to_be_clickable((By.CSS_SELECTOR, "button[type='submit']"))
+            )
+            submit_btn.click()
+
+            # Esperar y verificar que el invernadero aparezca en la lista
             WebDriverWait(driver, 10).until(
                 EC.presence_of_element_located(
-                    (By.XPATH, f"//td[contains(text(), '{nombre}')]")
+                    (By.XPATH, f"//td[contains(., '{nombre}')]")
                 )
             )
         except Exception as e:
             # Capturar logs para depuración extrema
             print("\n" + "="*50)
-            print("🚨 DEBUG: test_crear_invernadero falló por timeout!")
+            print("🚨 DEBUG: test_crear_invernadero falló por timeout o error!")
             print(f"URL actual: {driver.current_url}")
             try:
                 alert = driver.find_element(By.XPATH, "//*[contains(@class,'error') or contains(@class,'alert') or @role='alert']")
@@ -296,6 +296,7 @@ class TestCRUDInvernadero:
                 print("No se pudo extraer el texto del body.")
             print("="*50 + "\n")
             raise e
+
 
 
 @pytest.mark.selenium
