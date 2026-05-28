@@ -7,6 +7,8 @@
  */
 package com.invernadero.invernadero_backend.sensor.application.service;
 
+import com.invernadero.invernadero_backend.zona.domain.model.Zona;
+import com.invernadero.invernadero_backend.zona.domain.repository.ZonaRepository;
 import com.invernadero.invernadero_backend.sensor.application.dto.SensorRequest;
 import com.invernadero.invernadero_backend.sensor.application.dto.SensorResponse;
 import com.invernadero.invernadero_backend.sensor.domain.model.Sensor;
@@ -29,6 +31,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class SensorService {
     
     private final SensorRepository sensorRepository;
+    private final ZonaRepository zonaRepository;
     
     /**
      * Obtiene todos los registros paginados
@@ -95,18 +98,37 @@ public class SensorService {
     /**
      * Actualiza una entidad desde un Request DTO
      */
-    private void updateEntityFromRequest(Sensor entity, SensorRequest request) {
-        // TODO: Implementar mapeo de campos desde request a entity
-        // Usar BeanUtils.copyProperties o mapeo manual
+        private void updateEntityFromRequest(Sensor entity, SensorRequest request) {
+        entity.setNombre(request.getNombre());
+        if (request.getTipoSensor() != null) {
+            entity.setTipoSensor(Sensor.TipoSensor.valueOf(request.getTipoSensor()));
+        }
+        entity.setMarca(request.getMarca());
+        entity.setModelo(request.getModelo());
+        if (request.getEstado() != null) {
+            entity.setEstado(Sensor.Estado.valueOf(request.getEstado()));
+        }
+        if (request.getIdZonaId() != null) {
+            Zona z = zonaRepository.findById(request.getIdZonaId())
+                .orElseThrow(() -> new ResourceNotFoundException("Zona", "id", request.getIdZonaId()));
+            entity.setIdZona(z);
+        }
     }
     
     /**
      * Convierte Entidad a Response DTO
      */
-    private SensorResponse convertToResponse(Sensor entity) {
+        private SensorResponse convertToResponse(Sensor entity) {
         SensorResponse response = new SensorResponse();
-        // TODO: Implementar mapeo de campos desde entity a response
-        // Usar BeanUtils.copyProperties o mapeo manual
+        response.setIdSensor(entity.getIdSensor());
+        response.setNombre(entity.getNombre());
+        response.setTipoSensor(entity.getTipoSensor() != null ? entity.getTipoSensor().name() : null);
+        response.setMarca(entity.getMarca());
+        response.setModelo(entity.getModelo());
+        response.setEstado(entity.getEstado() != null ? entity.getEstado().name() : null);
+        if (entity.getIdZona() != null) {
+            response.setIdZonaId(entity.getIdZona().getIdZona());
+        }
         return response;
     }
 }

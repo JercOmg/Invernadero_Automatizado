@@ -7,6 +7,8 @@
  */
 package com.invernadero.invernadero_backend.lectura_sensor.application.service;
 
+import com.invernadero.invernadero_backend.sensor.domain.model.Sensor;
+import com.invernadero.invernadero_backend.sensor.domain.repository.SensorRepository;
 import com.invernadero.invernadero_backend.lectura_sensor.application.dto.LecturaSensorRequest;
 import com.invernadero.invernadero_backend.lectura_sensor.application.dto.LecturaSensorResponse;
 import com.invernadero.invernadero_backend.lectura_sensor.domain.model.LecturaSensor;
@@ -95,18 +97,29 @@ public class LecturaSensorService {
     /**
      * Actualiza una entidad desde un Request DTO
      */
-    private void updateEntityFromRequest(LecturaSensor entity, LecturaSensorRequest request) {
-        // TODO: Implementar mapeo de campos desde request a entity
-        // Usar BeanUtils.copyProperties o mapeo manual
+        private void updateEntityFromRequest(LecturaSensor entity, LecturaSensorRequest request) {
+        entity.setFechaHora(request.getFechaHora());
+        entity.setValor(request.getValor());
+        entity.setMetrica(request.getMetrica());
+        if (request.getIdSensorId() != null) {
+            Sensor s = sensorRepository.findById(request.getIdSensorId())
+                .orElseThrow(() -> new ResourceNotFoundException("Sensor", "id", request.getIdSensorId()));
+            entity.setIdSensor(s);
+        }
     }
     
     /**
      * Convierte Entidad a Response DTO
      */
-    private LecturaSensorResponse convertToResponse(LecturaSensor entity) {
+        private LecturaSensorResponse convertToResponse(LecturaSensor entity) {
         LecturaSensorResponse response = new LecturaSensorResponse();
-        // TODO: Implementar mapeo de campos desde entity a response
-        // Usar BeanUtils.copyProperties o mapeo manual
+        response.setIdLectura(entity.getIdLectura());
+        response.setFechaHora(entity.getFechaHora());
+        response.setValor(entity.getValor());
+        response.setMetrica(entity.getMetrica());
+        if (entity.getIdSensor() != null) {
+            response.setIdSensorId(entity.getIdSensor().getIdSensor());
+        }
         return response;
     }
 }

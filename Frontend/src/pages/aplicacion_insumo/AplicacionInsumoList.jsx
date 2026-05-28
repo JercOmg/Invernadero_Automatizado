@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import aplicacionInsumoService from '../../services/aplicacionInsumoService';
 import AplicacionInsumoForm from './AplicacionInsumoForm';
+import insumoService from '../../services/insumoService';
+import siembraService from '../../services/siembraService';
+import zonaService from '../../services/zonaService';
+import authService from '../../services/authService';
 import './AplicacionInsumoList.css';
 
 /**
@@ -8,6 +12,10 @@ import './AplicacionInsumoList.css';
  */
 const AplicacionInsumoList = () => {
   const [items, setItems] = useState([]);
+  const [insumos, setInsumos] = useState([]);
+  const [siembras, setSiembras] = useState([]);
+  const [zonas, setZonas] = useState([]);
+  const [usuarios, setUsuarios] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   
@@ -24,6 +32,21 @@ const AplicacionInsumoList = () => {
       setLoading(true);
       const data = await aplicacionInsumoService.getAll();
       setItems(data.content || data);
+    try {
+      const [iData, sData, zData, uData] = await Promise.all([
+        insumoService.getAll(0, 1000),
+        siembraService.getAll(0, 1000),
+        zonaService.getAll(0, 1000),
+        authService.getUsuarios()
+      ]);
+      setInsumos(iData.content || iData || []);
+      setSiembras(sData.content || sData || []);
+      setZonas(zData.content || zData || []);
+      setUsuarios(uData || []);
+    } catch (e) {
+      console.error(e);
+    }
+
     } catch (err) {
       setError('Error al cargar los datos');
       console.error(err);
@@ -66,10 +89,10 @@ const AplicacionInsumoList = () => {
         <table className="min-w-full divide-y divide-slate-200">
           <thead className="bg-slate-50">
             <tr>
-              <th>Id Insumo</th>
-            <th>Id Siembra</th>
-            <th>Id Zona</th>
-            <th>Id Usuario</th>
+              <th>Insumo</th>
+            <th>Siembra</th>
+            <th>Zona</th>
+            <th>Responsable</th>
             <th>Fecha Hora</th>
               <th>Acciones</th>
             </tr>
@@ -82,12 +105,21 @@ const AplicacionInsumoList = () => {
                 </td>
               </tr>
             ) : (
-              items.map((item) => (
-                <tr key={item.idAplicacionInsumo || item.id} className="hover:bg-slate-50/50 transition-colors">
-                  <td>{item.idInsumo}</td>
-                <td>{item.idSiembra}</td>
-                <td>{item.idZona}</td>
-                <td>{item.idUsuario}</td>
+              items.map((item) => {
+            const ins = insumos.find(x => x.idInsumo === (item.idInsumoId || item.idInsumo));
+                  const insNombre = ins ? ins.nombre : (item.idInsumoId || item.idInsumo || 'N/A');
+                  const si = siembras.find(x => x.idSiembra === (item.idSiembraId || item.idSiembra));
+                  const siNombre = si ? `Siembra #${si.idSiembra}` : (item.idSiembraId || item.idSiembra || 'N/A');
+                  const zo = zonas.find(x => x.idZona === (item.idZonaId || item.idZona));
+                  const zoNombre = zo ? zo.nombreZona : (item.idZonaId || item.idZona || 'N/A');
+                  const us = usuarios.find(x => x.idUsuario === (item.idUsuarioId || item.idUsuario));
+                  const usNombre = us ? `${us.nombre} ${us.apellido}` : (item.idUsuarioId || item.idUsuario || 'N/A');
+            return (
+              <tr key={item.idAplicacionInsumo || item.id} className="hover:bg-slate-50/50 transition-colors">
+                  <td>{insNombre}</td>
+                <td>{siNombre}</td>
+                <td>{zoNombre}</td>
+                <td>{usNombre}</td>
                 <td>{item.fechaHora}</td>
                   <td>
                     <div className="action-buttons flex gap-2">
@@ -106,8 +138,9 @@ const AplicacionInsumoList = () => {
                     </div>
                   </td>
                 </tr>
-              ))
-            )}
+            );
+          })
+        )}
           </tbody>
         </table>
       </div>

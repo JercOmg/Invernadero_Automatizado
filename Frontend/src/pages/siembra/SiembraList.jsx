@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import siembraService from '../../services/siembraService';
 import SiembraForm from './SiembraForm';
+import zonaService from '../../services/zonaService';
+import cultivoService from '../../services/cultivoService';
+import authService from '../../services/authService';
 import './SiembraList.css';
 
 /**
@@ -8,6 +11,9 @@ import './SiembraList.css';
  */
 const SiembraList = () => {
   const [items, setItems] = useState([]);
+  const [zonas, setZonas] = useState([]);
+  const [cultivos, setCultivos] = useState([]);
+  const [usuarios, setUsuarios] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   
@@ -24,6 +30,19 @@ const SiembraList = () => {
       setLoading(true);
       const data = await siembraService.getAll();
       setItems(data.content || data);
+    try {
+      const [zData, cData, uData] = await Promise.all([
+        zonaService.getAll(0, 1000),
+        cultivoService.getAll(0, 1000),
+        authService.getUsuarios()
+      ]);
+      setZonas(zData.content || zData || []);
+      setCultivos(cData.content || cData || []);
+      setUsuarios(uData || []);
+    } catch (e) {
+      console.error(e);
+    }
+
     } catch (err) {
       setError('Error al cargar los datos');
       console.error(err);
@@ -66,9 +85,9 @@ const SiembraList = () => {
         <table className="min-w-full divide-y divide-slate-200">
           <thead className="bg-slate-50">
             <tr>
-              <th>Id Zona</th>
-            <th>Id Cultivo</th>
-            <th>Id Usuario</th>
+              <th>Zona</th>
+            <th>Cultivo</th>
+            <th>Responsable</th>
             <th>Fecha Siembra</th>
             <th>Fecha Cosecha Estimada</th>
               <th>Acciones</th>
@@ -82,11 +101,18 @@ const SiembraList = () => {
                 </td>
               </tr>
             ) : (
-              items.map((item) => (
-                <tr key={item.idSiembra || item.id} className="hover:bg-slate-50/50 transition-colors">
-                  <td>{item.idZona}</td>
-                <td>{item.idCultivo}</td>
-                <td>{item.idUsuario}</td>
+              items.map((item) => {
+            const zo = zonas.find(x => x.idZona === (item.idZonaId || item.idZona));
+                  const zoNombre = zo ? zo.nombreZona : (item.idZonaId || item.idZona || 'N/A');
+                  const cu = cultivos.find(x => x.idCultivo === (item.idCultivoId || item.idCultivo));
+                  const cuNombre = cu ? cu.nombreComun : (item.idCultivoId || item.idCultivo || 'N/A');
+                  const us = usuarios.find(x => x.idUsuario === (item.idUsuarioId || item.idUsuario));
+                  const usNombre = us ? `${us.nombre} ${us.apellido}` : (item.idUsuarioId || item.idUsuario || 'N/A');
+            return (
+              <tr key={item.idSiembra || item.id} className="hover:bg-slate-50/50 transition-colors">
+                  <td>{zoNombre}</td>
+                <td>{cuNombre}</td>
+                <td>{usNombre}</td>
                 <td>{item.fechaSiembra}</td>
                 <td>{item.fechaCosechaEstimada}</td>
                   <td>
@@ -106,8 +132,9 @@ const SiembraList = () => {
                     </div>
                   </td>
                 </tr>
-              ))
-            )}
+            );
+          })
+        )}
           </tbody>
         </table>
       </div>

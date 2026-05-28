@@ -7,6 +7,7 @@
  */
 package com.invernadero.invernadero_backend.insumo.application.service;
 
+
 import com.invernadero.invernadero_backend.insumo.application.dto.InsumoRequest;
 import com.invernadero.invernadero_backend.insumo.application.dto.InsumoResponse;
 import com.invernadero.invernadero_backend.insumo.domain.model.Insumo;
@@ -95,18 +96,31 @@ public class InsumoService {
     /**
      * Actualiza una entidad desde un Request DTO
      */
-    private void updateEntityFromRequest(Insumo entity, InsumoRequest request) {
-        // TODO: Implementar mapeo de campos desde request a entity
-        // Usar BeanUtils.copyProperties o mapeo manual
+        private void updateEntityFromRequest(Insumo entity, InsumoRequest request) {
+        entity.setNombre(request.getNombre());
+        if (request.getTipo() != null) {
+            entity.setTipo(Insumo.Tipo.valueOf(request.getTipo()));
+        }
+        if (request.getUnidad() != null) {
+            entity.setUnidad(Insumo.Unidad.valueOf(request.getUnidad()));
+        }
+        entity.setStockActual(request.getStockActual());
+        entity.setStockMinimo(request.getStockMinimo());
+        entity.setDescripcion(request.getDescripcion());
     }
     
     /**
      * Convierte Entidad a Response DTO
      */
-    private InsumoResponse convertToResponse(Insumo entity) {
+        private InsumoResponse convertToResponse(Insumo entity) {
         InsumoResponse response = new InsumoResponse();
-        // TODO: Implementar mapeo de campos desde entity a response
-        // Usar BeanUtils.copyProperties o mapeo manual
+        response.setIdInsumo(entity.getIdInsumo());
+        response.setNombre(entity.getNombre());
+        response.setTipo(entity.getTipo() != null ? entity.getTipo().name() : null);
+        response.setUnidad(entity.getUnidad() != null ? entity.getUnidad().name() : null);
+        response.setStockActual(entity.getStockActual());
+        response.setStockMinimo(entity.getStockMinimo());
+        response.setDescripcion(entity.getDescripcion());
         return response;
     }
 }

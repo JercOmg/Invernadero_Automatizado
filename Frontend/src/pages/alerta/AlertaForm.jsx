@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import alertaService from '../../services/alertaService';
+import sensorService from '../../services/sensorService';
+import zonaService from '../../services/zonaService';
 import './AlertaForm.css';
 
 /**
@@ -7,9 +9,28 @@ import './AlertaForm.css';
  */
 const AlertaForm = ({ id, onClose }) => {
   const [formData, setFormData] = useState({});
+  const [sensores, setSensores] = useState([]);
+  const [zonas, setZonas] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const isEdit = !!id;
+
+    useEffect(() => {
+    loadRelations();
+  }, []);
+
+  const loadRelations = async () => {
+    try {
+      const [sData, zData] = await Promise.all([
+        sensorService.getAll(0, 1000),
+        zonaService.getAll(0, 1000)
+      ]);
+      setSensores(sData.content || sData || []);
+      setZonas(zData.content || zData || []);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   useEffect(() => {
     if (isEdit) {
@@ -21,6 +42,16 @@ const AlertaForm = ({ id, onClose }) => {
 
   const loadItem = async () => {
     try {
+    const sId = formData.idSensorId || formData.idSensor;
+    const zId = formData.idZonaId || formData.idZona;
+    const payload = {
+      ...formData,
+      idSensorId: sId,
+      idSensor: sId,
+      idZonaId: zId,
+      idZona: zId
+    };
+
       setLoading(true);
       const data = await alertaService.getById(id);
       setFormData(data);
@@ -34,9 +65,11 @@ const AlertaForm = ({ id, onClose }) => {
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
+    let finalValue = type === 'checkbox' ? checked : value;
+    if (['idSensorId', 'idSensor', 'idZonaId', 'idZona'].includes(name)) { finalValue = value ? parseInt(value, 10) : ''; }
     setFormData({
       ...formData,
-      [name]: type === 'checkbox' ? checked : value,
+      [name]: finalValue,
     });
   };
 
@@ -47,9 +80,9 @@ const AlertaForm = ({ id, onClose }) => {
 
     try {
       if (isEdit) {
-        await alertaService.update(id, formData);
+        await alertaService.update(id, payload);
       } else {
-        await alertaService.create(formData);
+        await alertaService.create(payload);
       }
       if (onClose) onClose();
     } catch (err) {

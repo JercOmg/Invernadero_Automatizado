@@ -96,8 +96,17 @@ public class CultivoService {
      * Actualiza una entidad desde un Request DTO
      */
     private void updateEntityFromRequest(Cultivo entity, CultivoRequest request) {
-        // TODO: Implementar mapeo de campos desde request a entity
-        // Usar BeanUtils.copyProperties o mapeo manual
+        entity.setNombreComun(request.getNombreComun());
+        entity.setNombreCientifico(request.getNombreCientifico());
+        if (request.getTipo() != null) {
+            entity.setTipo(Cultivo.Tipo.valueOf(request.getTipo()));
+        }
+        entity.setTempMinC(request.getTempMinC());
+        entity.setTempMaxC(request.getTempMaxC());
+        entity.setHumedadMinPct(request.getHumedadMinPct());
+        entity.setHumedadMaxPct(request.getHumedadMaxPct());
+        entity.setDiasCiclo(request.getDiasCiclo());
+        entity.setDescripcion(request.getDescripcion());
     }
     
     /**
@@ -105,8 +114,16 @@ public class CultivoService {
      */
     private CultivoResponse convertToResponse(Cultivo entity) {
         CultivoResponse response = new CultivoResponse();
-        // TODO: Implementar mapeo de campos desde entity a response
-        // Usar BeanUtils.copyProperties o mapeo manual
+        response.setIdCultivo(entity.getIdCultivo());
+        response.setNombreComun(entity.getNombreComun());
+        response.setNombreCientifico(entity.getNombreCientifico());
+        response.setTipo(entity.getTipo() != null ? entity.getTipo().name() : null);
+        response.setTempMinC(entity.getTempMinC());
+        response.setTempMaxC(entity.getTempMaxC());
+        response.setHumedadMinPct(entity.getHumedadMinPct());
+        response.setHumedadMaxPct(entity.getHumedadMaxPct());
+        response.setDiasCiclo(entity.getDiasCiclo());
+        response.setDescripcion(entity.getDescripcion());
         return response;
     }
 }

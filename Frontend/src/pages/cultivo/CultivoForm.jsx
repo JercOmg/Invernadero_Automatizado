@@ -53,7 +53,11 @@ const CultivoForm = ({ id, onClose }) => {
       }
       if (onClose) onClose();
     } catch (err) {
-      setError(err.response?.data?.message || 'Error al guardar los datos');
+      let msg = err.response?.data?.message || 'Error al guardar los datos';
+      if (msg.includes('could not execute statement') || msg.includes('constraint') || msg.includes('SQL') || msg.includes('null value')) {
+        msg = 'Ocurrió un error en la base de datos al guardar. Por favor, verifica que todos los campos requeridos tengan valores correctos y no estén duplicados.';
+      }
+      setError(msg);
       console.error(err);
     } finally {
       setLoading(false);

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import riegoService from '../../services/riegoService';
 import RiegoForm from './RiegoForm';
+import zonaService from '../../services/zonaService';
+import authService from '../../services/authService';
 import './RiegoList.css';
 
 /**
@@ -8,6 +10,8 @@ import './RiegoList.css';
  */
 const RiegoList = () => {
   const [items, setItems] = useState([]);
+  const [zonas, setZonas] = useState([]);
+  const [usuarios, setUsuarios] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   
@@ -24,6 +28,17 @@ const RiegoList = () => {
       setLoading(true);
       const data = await riegoService.getAll();
       setItems(data.content || data);
+    try {
+      const [zData, uData] = await Promise.all([
+        zonaService.getAll(0, 1000),
+        authService.getUsuarios()
+      ]);
+      setZonas(zData.content || zData || []);
+      setUsuarios(uData || []);
+    } catch (e) {
+      console.error(e);
+    }
+
     } catch (err) {
       setError('Error al cargar los datos');
       console.error(err);
@@ -66,8 +81,8 @@ const RiegoList = () => {
         <table className="min-w-full divide-y divide-slate-200">
           <thead className="bg-slate-50">
             <tr>
-              <th>Id Zona</th>
-            <th>Id Usuario</th>
+              <th>Zona</th>
+            <th>Responsable</th>
             <th>Fecha Hora</th>
             <th>Duracion Min</th>
             <th>Volumen Litros</th>
@@ -82,10 +97,15 @@ const RiegoList = () => {
                 </td>
               </tr>
             ) : (
-              items.map((item) => (
-                <tr key={item.idRiego || item.id} className="hover:bg-slate-50/50 transition-colors">
-                  <td>{item.idZona}</td>
-                <td>{item.idUsuario}</td>
+              items.map((item) => {
+            const zo = zonas.find(x => x.idZona === (item.idZonaId || item.idZona));
+                  const zoNombre = zo ? zo.nombreZona : (item.idZonaId || item.idZona || 'N/A');
+                  const us = usuarios.find(x => x.idUsuario === (item.idUsuarioId || item.idUsuario));
+                  const usNombre = us ? `${us.nombre} ${us.apellido}` : (item.idUsuarioId || item.idUsuario || 'N/A');
+            return (
+              <tr key={item.idRiego || item.id} className="hover:bg-slate-50/50 transition-colors">
+                  <td>{zoNombre}</td>
+                <td>{usNombre}</td>
                 <td>{item.fechaHora}</td>
                 <td>{item.duracionMin}</td>
                 <td>{item.volumenLitros}</td>
@@ -106,8 +126,9 @@ const RiegoList = () => {
                     </div>
                   </td>
                 </tr>
-              ))
-            )}
+            );
+          })
+        )}
           </tbody>
         </table>
       </div>

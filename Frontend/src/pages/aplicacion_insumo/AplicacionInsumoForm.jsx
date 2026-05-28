@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import aplicacionInsumoService from '../../services/aplicacionInsumoService';
+import insumoService from '../../services/insumoService';
+import siembraService from '../../services/siembraService';
+import zonaService from '../../services/zonaService';
+import authService from '../../services/authService';
 import './AplicacionInsumoForm.css';
 
 /**
@@ -7,9 +11,34 @@ import './AplicacionInsumoForm.css';
  */
 const AplicacionInsumoForm = ({ id, onClose }) => {
   const [formData, setFormData] = useState({});
+  const [insumos, setInsumos] = useState([]);
+  const [siembras, setSiembras] = useState([]);
+  const [zonas, setZonas] = useState([]);
+  const [usuarios, setUsuarios] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const isEdit = !!id;
+
+    useEffect(() => {
+    loadRelations();
+  }, []);
+
+  const loadRelations = async () => {
+    try {
+      const [iData, sData, zData, uData] = await Promise.all([
+        insumoService.getAll(0, 1000),
+        siembraService.getAll(0, 1000),
+        zonaService.getAll(0, 1000),
+        authService.getUsuarios()
+      ]);
+      setInsumos(iData.content || iData || []);
+      setSiembras(sData.content || sData || []);
+      setZonas(zData.content || zData || []);
+      setUsuarios(uData || []);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   useEffect(() => {
     if (isEdit) {
@@ -21,6 +50,22 @@ const AplicacionInsumoForm = ({ id, onClose }) => {
 
   const loadItem = async () => {
     try {
+    const insId = formData.idInsumoId || formData.idInsumo;
+    const sId = formData.idSiembraId || formData.idSiembra;
+    const zId = formData.idZonaId || formData.idZona;
+    const uId = formData.idUsuarioId || formData.idUsuario;
+    const payload = {
+      ...formData,
+      idInsumoId: insId,
+      idInsumo: insId,
+      idSiembraId: sId,
+      idSiembra: sId,
+      idZonaId: zId,
+      idZona: zId,
+      idUsuarioId: uId,
+      idUsuario: uId
+    };
+
       setLoading(true);
       const data = await aplicacionInsumoService.getById(id);
       setFormData(data);
@@ -34,9 +79,11 @@ const AplicacionInsumoForm = ({ id, onClose }) => {
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
+    let finalValue = type === 'checkbox' ? checked : value;
+    if (['idInsumoId', 'idInsumo', 'idSiembraId', 'idSiembra', 'idZonaId', 'idZona', 'idUsuarioId', 'idUsuario'].includes(name)) { finalValue = value ? parseInt(value, 10) : ''; }
     setFormData({
       ...formData,
-      [name]: type === 'checkbox' ? checked : value,
+      [name]: finalValue,
     });
   };
 
@@ -47,9 +94,9 @@ const AplicacionInsumoForm = ({ id, onClose }) => {
 
     try {
       if (isEdit) {
-        await aplicacionInsumoService.update(id, formData);
+        await aplicacionInsumoService.update(id, payload);
       } else {
-        await aplicacionInsumoService.create(formData);
+        await aplicacionInsumoService.create(payload);
       }
       if (onClose) onClose();
     } catch (err) {
@@ -81,17 +128,23 @@ const AplicacionInsumoForm = ({ id, onClose }) => {
       )}
 
       <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
-          <div className="form-group ">
-            <label htmlFor="idInsumo">Id Insumo</label>
-            <input
-              type="number"
-              id="idInsumo"
-              name="idInsumo"
-              value={formData.idInsumo || ''}
+          <div className="form-group">
+            <label htmlFor="idInsumoId">Insumo</label>
+            <select
+              id="idInsumoId"
+              name="idInsumoId"
+              value={formData.idInsumoId || formData.idInsumo || ''}
               onChange={handleChange}
               required
               className="form-control"
-            />
+            >
+              <option value="">Seleccionar insumo...</option>
+              {insumos.map((ins) => (
+                <option key={ins.idInsumo} value={ins.idInsumo}>
+                  {ins.nombre} ({ins.tipo})
+                </option>
+              ))}
+            </select>
           </div>
 
           <div className="form-group ">
@@ -120,17 +173,23 @@ const AplicacionInsumoForm = ({ id, onClose }) => {
             />
           </div>
 
-          <div className="form-group ">
-            <label htmlFor="idUsuario">Id Usuario</label>
-            <input
-              type="number"
-              id="idUsuario"
-              name="idUsuario"
-              value={formData.idUsuario || ''}
+          <div className="form-group">
+            <label htmlFor="idUsuarioId">Responsable</label>
+            <select
+              id="idUsuarioId"
+              name="idUsuarioId"
+              value={formData.idUsuarioId || formData.idUsuario || ''}
               onChange={handleChange}
               required
               className="form-control"
-            />
+            >
+              <option value="">Seleccionar responsable...</option>
+              {usuarios.map((u) => (
+                <option key={u.idUsuario} value={u.idUsuario}>
+                  {u.nombre} {u.apellido} ({u.rol})
+                </option>
+              ))}
+            </select>
           </div>
 
           <div className="form-group ">

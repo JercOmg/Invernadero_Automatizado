@@ -7,6 +7,14 @@
  */
 package com.invernadero.invernadero_backend.aplicacion_insumo.application.service;
 
+import com.invernadero.invernadero_backend.insumo.domain.model.Insumo;
+import com.invernadero.invernadero_backend.insumo.domain.repository.InsumoRepository;
+import com.invernadero.invernadero_backend.siembra.domain.model.Siembra;
+import com.invernadero.invernadero_backend.siembra.domain.repository.SiembraRepository;
+import com.invernadero.invernadero_backend.zona.domain.model.Zona;
+import com.invernadero.invernadero_backend.zona.domain.repository.ZonaRepository;
+import com.invernadero.invernadero_backend.auth.domain.model.Usuario;
+import com.invernadero.invernadero_backend.auth.domain.repository.UsuarioRepository;
 import com.invernadero.invernadero_backend.aplicacion_insumo.application.dto.AplicacionInsumoRequest;
 import com.invernadero.invernadero_backend.aplicacion_insumo.application.dto.AplicacionInsumoResponse;
 import com.invernadero.invernadero_backend.aplicacion_insumo.domain.model.AplicacionInsumo;
@@ -95,18 +103,57 @@ public class AplicacionInsumoService {
     /**
      * Actualiza una entidad desde un Request DTO
      */
-    private void updateEntityFromRequest(AplicacionInsumo entity, AplicacionInsumoRequest request) {
-        // TODO: Implementar mapeo de campos desde request a entity
-        // Usar BeanUtils.copyProperties o mapeo manual
+        private void updateEntityFromRequest(AplicacionInsumo entity, AplicacionInsumoRequest request) {
+        entity.setFechaHora(request.getFechaHora());
+        entity.setCantidad(request.getCantidad());
+        if (request.getMetodo() != null) {
+            entity.setMetodo(AplicacionInsumo.Metodo.valueOf(request.getMetodo()));
+        }
+        entity.setObservaciones(request.getObservaciones());
+        if (request.getIdInsumoId() != null) {
+            Insumo ins = insumoRepository.findById(request.getIdInsumoId())
+                .orElseThrow(() -> new ResourceNotFoundException("Insumo", "id", request.getIdInsumoId()));
+            entity.setIdInsumo(ins);
+        }
+        if (request.getIdSiembraId() != null) {
+            Siembra s = siembraRepository.findById(request.getIdSiembraId())
+                .orElseThrow(() -> new ResourceNotFoundException("Siembra", "id", request.getIdSiembraId()));
+            entity.setIdSiembra(s);
+        }
+        if (request.getIdZonaId() != null) {
+            Zona z = zonaRepository.findById(request.getIdZonaId())
+                .orElseThrow(() -> new ResourceNotFoundException("Zona", "id", request.getIdZonaId()));
+            entity.setIdZona(z);
+        }
+        if (request.getIdUsuarioId() != null) {
+            Usuario u = usuarioRepository.findById(request.getIdUsuarioId())
+                .orElseThrow(() -> new ResourceNotFoundException("Usuario", "id", request.getIdUsuarioId()));
+            entity.setIdUsuario(u);
+        }
     }
     
     /**
      * Convierte Entidad a Response DTO
      */
-    private AplicacionInsumoResponse convertToResponse(AplicacionInsumo entity) {
+        private AplicacionInsumoResponse convertToResponse(AplicacionInsumo entity) {
         AplicacionInsumoResponse response = new AplicacionInsumoResponse();
-        // TODO: Implementar mapeo de campos desde entity a response
-        // Usar BeanUtils.copyProperties o mapeo manual
+        response.setIdAplicacion(entity.getIdAplicacion());
+        response.setFechaHora(entity.getFechaHora());
+        response.setCantidad(entity.getCantidad());
+        response.setMetodo(entity.getMetodo() != null ? entity.getMetodo().name() : null);
+        response.setObservaciones(entity.getObservaciones());
+        if (entity.getIdInsumo() != null) {
+            response.setIdInsumoId(entity.getIdInsumo().getIdInsumo());
+        }
+        if (entity.getIdSiembra() != null) {
+            response.setIdSiembraId(entity.getIdSiembra().getIdSiembra());
+        }
+        if (entity.getIdZona() != null) {
+            response.setIdZonaId(entity.getIdZona().getIdZona());
+        }
+        if (entity.getIdUsuario() != null) {
+            response.setIdUsuarioId(entity.getIdUsuario().getIdUsuario());
+        }
         return response;
     }
 }

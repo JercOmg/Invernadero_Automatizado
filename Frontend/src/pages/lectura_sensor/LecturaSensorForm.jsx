@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import lecturaSensorService from '../../services/lecturaSensorService';
+import sensorService from '../../services/sensorService';
 import './LecturaSensorForm.css';
 
 /**
@@ -7,9 +8,23 @@ import './LecturaSensorForm.css';
  */
 const LecturaSensorForm = ({ id, onClose }) => {
   const [formData, setFormData] = useState({});
+  const [sensores, setSensores] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const isEdit = !!id;
+
+    useEffect(() => {
+    loadRelations();
+  }, []);
+
+  const loadRelations = async () => {
+    try {
+      const data = await sensorService.getAll(0, 1000);
+      setSensores(data.content || data || []);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   useEffect(() => {
     if (isEdit) {
@@ -21,6 +36,13 @@ const LecturaSensorForm = ({ id, onClose }) => {
 
   const loadItem = async () => {
     try {
+    const sId = formData.idSensorId || formData.idSensor;
+    const payload = {
+      ...formData,
+      idSensorId: sId,
+      idSensor: sId
+    };
+
       setLoading(true);
       const data = await lecturaSensorService.getById(id);
       setFormData(data);
@@ -34,9 +56,11 @@ const LecturaSensorForm = ({ id, onClose }) => {
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
+    let finalValue = type === 'checkbox' ? checked : value;
+    if (name === 'idSensorId' || name === 'idSensor') { finalValue = value ? parseInt(value, 10) : ''; }
     setFormData({
       ...formData,
-      [name]: type === 'checkbox' ? checked : value,
+      [name]: finalValue,
     });
   };
 
@@ -47,9 +71,9 @@ const LecturaSensorForm = ({ id, onClose }) => {
 
     try {
       if (isEdit) {
-        await lecturaSensorService.update(id, formData);
+        await lecturaSensorService.update(id, payload);
       } else {
-        await lecturaSensorService.create(formData);
+        await lecturaSensorService.create(payload);
       }
       if (onClose) onClose();
     } catch (err) {

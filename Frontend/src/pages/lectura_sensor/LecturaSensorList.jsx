@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import lecturaSensorService from '../../services/lecturaSensorService';
 import LecturaSensorForm from './LecturaSensorForm';
+import sensorService from '../../services/sensorService';
 import './LecturaSensorList.css';
 
 /**
@@ -8,6 +9,7 @@ import './LecturaSensorList.css';
  */
 const LecturaSensorList = () => {
   const [items, setItems] = useState([]);
+  const [sensores, setSensores] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   
@@ -24,6 +26,13 @@ const LecturaSensorList = () => {
       setLoading(true);
       const data = await lecturaSensorService.getAll();
       setItems(data.content || data);
+    try {
+      const sData = await sensorService.getAll(0, 1000);
+      setSensores(sData.content || sData || []);
+    } catch (e) {
+      console.error(e);
+    }
+
     } catch (err) {
       setError('Error al cargar los datos');
       console.error(err);
@@ -66,7 +75,7 @@ const LecturaSensorList = () => {
         <table className="min-w-full divide-y divide-slate-200">
           <thead className="bg-slate-50">
             <tr>
-              <th>Id Sensor</th>
+              <th>Sensor</th>
             <th>Valor</th>
             <th>Fecha Hora</th>
             <th>Genera Alerta</th>
@@ -81,9 +90,12 @@ const LecturaSensorList = () => {
                 </td>
               </tr>
             ) : (
-              items.map((item) => (
-                <tr key={item.idLecturaSensor || item.id} className="hover:bg-slate-50/50 transition-colors">
-                  <td>{item.idSensor}</td>
+              items.map((item) => {
+            const se = sensores.find(x => x.idSensor === (item.idSensorId || item.idSensor));
+                  const seNombre = se ? `${se.nombre} (${se.modelo})` : (item.idSensorId || item.idSensor || 'N/A');
+            return (
+              <tr key={item.idLecturaSensor || item.id} className="hover:bg-slate-50/50 transition-colors">
+                  <td>{seNombre}</td>
                 <td>{item.valor}</td>
                 <td>{item.fechaHora}</td>
                 <td>{item.generaAlerta}</td>
@@ -104,8 +116,9 @@ const LecturaSensorList = () => {
                     </div>
                   </td>
                 </tr>
-              ))
-            )}
+            );
+          })
+        )}
           </tbody>
         </table>
       </div>

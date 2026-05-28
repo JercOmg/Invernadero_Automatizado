@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import sensorService from '../../services/sensorService';
+import zonaService from '../../services/zonaService';
 import './SensorForm.css';
 
 /**
@@ -7,9 +8,23 @@ import './SensorForm.css';
  */
 const SensorForm = ({ id, onClose }) => {
   const [formData, setFormData] = useState({});
+  const [zonas, setZonas] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const isEdit = !!id;
+
+    useEffect(() => {
+    loadRelations();
+  }, []);
+
+  const loadRelations = async () => {
+    try {
+      const data = await zonaService.getAll(0, 1000);
+      setZonas(data.content || data || []);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   useEffect(() => {
     if (isEdit) {
@@ -21,6 +36,13 @@ const SensorForm = ({ id, onClose }) => {
 
   const loadItem = async () => {
     try {
+    const zId = formData.idZonaId || formData.idZona;
+    const payload = {
+      ...formData,
+      idZonaId: zId,
+      idZona: zId
+    };
+
       setLoading(true);
       const data = await sensorService.getById(id);
       setFormData(data);
@@ -34,9 +56,11 @@ const SensorForm = ({ id, onClose }) => {
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
+    let finalValue = type === 'checkbox' ? checked : value;
+    if (name === 'idZonaId' || name === 'idZona') { finalValue = value ? parseInt(value, 10) : ''; }
     setFormData({
       ...formData,
-      [name]: type === 'checkbox' ? checked : value,
+      [name]: finalValue,
     });
   };
 
@@ -47,9 +71,9 @@ const SensorForm = ({ id, onClose }) => {
 
     try {
       if (isEdit) {
-        await sensorService.update(id, formData);
+        await sensorService.update(id, payload);
       } else {
-        await sensorService.create(formData);
+        await sensorService.create(payload);
       }
       if (onClose) onClose();
     } catch (err) {
@@ -81,17 +105,23 @@ const SensorForm = ({ id, onClose }) => {
       )}
 
       <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
-          <div className="form-group ">
-            <label htmlFor="idZona">Id Zona</label>
-            <input
-              type="number"
-              id="idZona"
-              name="idZona"
-              value={formData.idZona || ''}
+          <div className="form-group">
+            <label htmlFor="idZonaId">Zona</label>
+            <select
+              id="idZonaId"
+              name="idZonaId"
+              value={formData.idZonaId || formData.idZona || ''}
               onChange={handleChange}
               required
               className="form-control"
-            />
+            >
+              <option value="">Seleccionar zona...</option>
+              {zonas.map((z) => (
+                <option key={z.idZona} value={z.idZona}>
+                  {z.nombreZona}
+                </option>
+              ))}
+            </select>
           </div>
 
           <div className="form-group ">

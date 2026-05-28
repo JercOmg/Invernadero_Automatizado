@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import cosechaService from '../../services/cosechaService';
+import siembraService from '../../services/siembraService';
+import authService from '../../services/authService';
 import './CosechaForm.css';
 
 /**
@@ -7,9 +9,28 @@ import './CosechaForm.css';
  */
 const CosechaForm = ({ id, onClose }) => {
   const [formData, setFormData] = useState({});
+  const [siembras, setSiembras] = useState([]);
+  const [usuarios, setUsuarios] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const isEdit = !!id;
+
+    useEffect(() => {
+    loadRelations();
+  }, []);
+
+  const loadRelations = async () => {
+    try {
+      const [sData, uData] = await Promise.all([
+        siembraService.getAll(0, 1000),
+        authService.getUsuarios()
+      ]);
+      setSiembras(sData.content || sData || []);
+      setUsuarios(uData || []);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   useEffect(() => {
     if (isEdit) {
@@ -21,6 +42,16 @@ const CosechaForm = ({ id, onClose }) => {
 
   const loadItem = async () => {
     try {
+    const sId = formData.idSiembraId || formData.idSiembra;
+    const uId = formData.idUsuarioId || formData.idUsuario;
+    const payload = {
+      ...formData,
+      idSiembraId: sId,
+      idSiembra: sId,
+      idUsuarioId: uId,
+      idUsuario: uId
+    };
+
       setLoading(true);
       const data = await cosechaService.getById(id);
       setFormData(data);
@@ -34,9 +65,11 @@ const CosechaForm = ({ id, onClose }) => {
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
+    let finalValue = type === 'checkbox' ? checked : value;
+    if (['idSiembraId', 'idSiembra', 'idUsuarioId', 'idUsuario'].includes(name)) { finalValue = value ? parseInt(value, 10) : ''; }
     setFormData({
       ...formData,
-      [name]: type === 'checkbox' ? checked : value,
+      [name]: finalValue,
     });
   };
 
@@ -47,9 +80,9 @@ const CosechaForm = ({ id, onClose }) => {
 
     try {
       if (isEdit) {
-        await cosechaService.update(id, formData);
+        await cosechaService.update(id, payload);
       } else {
-        await cosechaService.create(formData);
+        await cosechaService.create(payload);
       }
       if (onClose) onClose();
     } catch (err) {
@@ -81,30 +114,42 @@ const CosechaForm = ({ id, onClose }) => {
       )}
 
       <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
-          <div className="form-group ">
-            <label htmlFor="idSiembra">Id Siembra</label>
-            <input
-              type="number"
-              id="idSiembra"
-              name="idSiembra"
-              value={formData.idSiembra || ''}
+          <div className="form-group">
+            <label htmlFor="idSiembraId">Siembra (Cultivo)</label>
+            <select
+              id="idSiembraId"
+              name="idSiembraId"
+              value={formData.idSiembraId || formData.idSiembra || ''}
               onChange={handleChange}
               required
               className="form-control"
-            />
+            >
+              <option value="">Seleccionar siembra...</option>
+              {siembras.map((s) => (
+                <option key={s.idSiembra} value={s.idSiembra}>
+                  Siembra #{s.idSiembra} - Plantas: {s.cantidadPlantas} ({s.estado})
+                </option>
+              ))}
+            </select>
           </div>
 
-          <div className="form-group ">
-            <label htmlFor="idUsuario">Id Usuario</label>
-            <input
-              type="number"
-              id="idUsuario"
-              name="idUsuario"
-              value={formData.idUsuario || ''}
+          <div className="form-group">
+            <label htmlFor="idUsuarioId">Responsable</label>
+            <select
+              id="idUsuarioId"
+              name="idUsuarioId"
+              value={formData.idUsuarioId || formData.idUsuario || ''}
               onChange={handleChange}
               required
               className="form-control"
-            />
+            >
+              <option value="">Seleccionar responsable...</option>
+              {usuarios.map((u) => (
+                <option key={u.idUsuario} value={u.idUsuario}>
+                  {u.nombre} {u.apellido} ({u.rol})
+                </option>
+              ))}
+            </select>
           </div>
 
           <div className="form-group ">

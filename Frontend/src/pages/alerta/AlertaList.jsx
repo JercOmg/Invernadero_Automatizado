@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import alertaService from '../../services/alertaService';
 import AlertaForm from './AlertaForm';
+import sensorService from '../../services/sensorService';
+import zonaService from '../../services/zonaService';
 import './AlertaList.css';
 
 /**
@@ -8,6 +10,8 @@ import './AlertaList.css';
  */
 const AlertaList = () => {
   const [items, setItems] = useState([]);
+  const [sensores, setSensores] = useState([]);
+  const [zonas, setZonas] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   
@@ -24,6 +28,17 @@ const AlertaList = () => {
       setLoading(true);
       const data = await alertaService.getAll();
       setItems(data.content || data);
+    try {
+      const [sData, zData] = await Promise.all([
+        sensorService.getAll(0, 1000),
+        zonaService.getAll(0, 1000)
+      ]);
+      setSensores(sData.content || sData || []);
+      setZonas(zData.content || zData || []);
+    } catch (e) {
+      console.error(e);
+    }
+
     } catch (err) {
       setError('Error al cargar los datos');
       console.error(err);
@@ -66,8 +81,8 @@ const AlertaList = () => {
         <table className="min-w-full divide-y divide-slate-200">
           <thead className="bg-slate-50">
             <tr>
-              <th>Id Sensor</th>
-            <th>Id Zona</th>
+              <th>Sensor</th>
+            <th>Zona</th>
             <th>Tipo Alerta</th>
             <th>Descripcion</th>
             <th>Fecha Hora</th>
@@ -82,10 +97,15 @@ const AlertaList = () => {
                 </td>
               </tr>
             ) : (
-              items.map((item) => (
-                <tr key={item.idAlerta || item.id} className="hover:bg-slate-50/50 transition-colors">
-                  <td>{item.idSensor}</td>
-                <td>{item.idZona}</td>
+              items.map((item) => {
+            const se = sensores.find(x => x.idSensor === (item.idSensorId || item.idSensor));
+                  const seNombre = se ? se.nombre : (item.idSensorId || item.idSensor || 'N/A');
+                  const zo = zonas.find(x => x.idZona === (item.idZonaId || item.idZona));
+                  const zoNombre = zo ? zo.nombreZona : (item.idZonaId || item.idZona || 'N/A');
+            return (
+              <tr key={item.idAlerta || item.id} className="hover:bg-slate-50/50 transition-colors">
+                  <td>{seNombre}</td>
+                <td>{zoNombre}</td>
                 <td>{item.tipoAlerta}</td>
                 <td>{item.descripcion}</td>
                 <td>{item.fechaHora}</td>
@@ -106,8 +126,9 @@ const AlertaList = () => {
                     </div>
                   </td>
                 </tr>
-              ))
-            )}
+            );
+          })
+        )}
           </tbody>
         </table>
       </div>

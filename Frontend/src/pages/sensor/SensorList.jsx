@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import sensorService from '../../services/sensorService';
 import SensorForm from './SensorForm';
+import zonaService from '../../services/zonaService';
 import './SensorList.css';
 
 /**
@@ -8,6 +9,7 @@ import './SensorList.css';
  */
 const SensorList = () => {
   const [items, setItems] = useState([]);
+  const [zonas, setZonas] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   
@@ -24,6 +26,13 @@ const SensorList = () => {
       setLoading(true);
       const data = await sensorService.getAll();
       setItems(data.content || data);
+    try {
+      const zData = await zonaService.getAll(0, 1000);
+      setZonas(zData.content || zData || []);
+    } catch (e) {
+      console.error(e);
+    }
+
     } catch (err) {
       setError('Error al cargar los datos');
       console.error(err);
@@ -66,7 +75,7 @@ const SensorList = () => {
         <table className="min-w-full divide-y divide-slate-200">
           <thead className="bg-slate-50">
             <tr>
-              <th>Id Zona</th>
+              <th>Zona</th>
             <th>Tipo Sensor</th>
             <th>Modelo</th>
             <th>Unidad Medida</th>
@@ -82,9 +91,12 @@ const SensorList = () => {
                 </td>
               </tr>
             ) : (
-              items.map((item) => (
-                <tr key={item.idSensor || item.id} className="hover:bg-slate-50/50 transition-colors">
-                  <td>{item.idZona}</td>
+              items.map((item) => {
+            const zo = zonas.find(x => x.idZona === (item.idZonaId || item.idZona));
+                  const zoNombre = zo ? zo.nombreZona : (item.idZonaId || item.idZona || 'N/A');
+            return (
+              <tr key={item.idSensor || item.id} className="hover:bg-slate-50/50 transition-colors">
+                  <td>{zoNombre}</td>
                 <td>{item.tipoSensor}</td>
                 <td>{item.modelo}</td>
                 <td>{item.unidadMedida}</td>
@@ -106,8 +118,9 @@ const SensorList = () => {
                     </div>
                   </td>
                 </tr>
-              ))
-            )}
+            );
+          })
+        )}
           </tbody>
         </table>
       </div>

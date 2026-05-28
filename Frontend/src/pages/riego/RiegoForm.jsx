@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import riegoService from '../../services/riegoService';
+import zonaService from '../../services/zonaService';
+import authService from '../../services/authService';
 import './RiegoForm.css';
 
 /**
@@ -7,9 +9,28 @@ import './RiegoForm.css';
  */
 const RiegoForm = ({ id, onClose }) => {
   const [formData, setFormData] = useState({});
+  const [zonas, setZonas] = useState([]);
+  const [usuarios, setUsuarios] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const isEdit = !!id;
+
+    useEffect(() => {
+    loadRelations();
+  }, []);
+
+  const loadRelations = async () => {
+    try {
+      const [zData, uData] = await Promise.all([
+        zonaService.getAll(0, 1000),
+        authService.getUsuarios()
+      ]);
+      setZonas(zData.content || zData || []);
+      setUsuarios(uData || []);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   useEffect(() => {
     if (isEdit) {
@@ -21,6 +42,16 @@ const RiegoForm = ({ id, onClose }) => {
 
   const loadItem = async () => {
     try {
+    const zId = formData.idZonaId || formData.idZona;
+    const uId = formData.idUsuarioId || formData.idUsuario;
+    const payload = {
+      ...formData,
+      idZonaId: zId,
+      idZona: zId,
+      idUsuarioId: uId,
+      idUsuario: uId
+    };
+
       setLoading(true);
       const data = await riegoService.getById(id);
       setFormData(data);
@@ -34,9 +65,11 @@ const RiegoForm = ({ id, onClose }) => {
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
+    let finalValue = type === 'checkbox' ? checked : value;
+    if (['idZonaId', 'idZona', 'idUsuarioId', 'idUsuario'].includes(name)) { finalValue = value ? parseInt(value, 10) : ''; }
     setFormData({
       ...formData,
-      [name]: type === 'checkbox' ? checked : value,
+      [name]: finalValue,
     });
   };
 
@@ -47,9 +80,9 @@ const RiegoForm = ({ id, onClose }) => {
 
     try {
       if (isEdit) {
-        await riegoService.update(id, formData);
+        await riegoService.update(id, payload);
       } else {
-        await riegoService.create(formData);
+        await riegoService.create(payload);
       }
       if (onClose) onClose();
     } catch (err) {
@@ -81,17 +114,23 @@ const RiegoForm = ({ id, onClose }) => {
       )}
 
       <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
-          <div className="form-group ">
-            <label htmlFor="idZona">Id Zona</label>
-            <input
-              type="number"
-              id="idZona"
-              name="idZona"
-              value={formData.idZona || ''}
+          <div className="form-group">
+            <label htmlFor="idZonaId">Zona</label>
+            <select
+              id="idZonaId"
+              name="idZonaId"
+              value={formData.idZonaId || formData.idZona || ''}
               onChange={handleChange}
               required
               className="form-control"
-            />
+            >
+              <option value="">Seleccionar zona...</option>
+              {zonas.map((z) => (
+                <option key={z.idZona} value={z.idZona}>
+                  {z.nombreZona}
+                </option>
+              ))}
+            </select>
           </div>
 
           <div className="form-group ">

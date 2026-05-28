@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import zonaService from '../../services/zonaService';
 import ZonaForm from './ZonaForm';
+import invernaderoService from '../../services/invernaderoService';
 import './ZonaList.css';
 
 /**
@@ -8,6 +9,7 @@ import './ZonaList.css';
  */
 const ZonaList = () => {
   const [items, setItems] = useState([]);
+  const [invernaderos, setInvernaderos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   
@@ -24,6 +26,13 @@ const ZonaList = () => {
       setLoading(true);
       const data = await zonaService.getAll();
       setItems(data.content || data);
+    try {
+      const invData = await invernaderoService.getAll(0, 1000);
+      setInvernaderos(invData.content || invData || []);
+    } catch (e) {
+      console.error(e);
+    }
+
     } catch (err) {
       setError('Error al cargar los datos');
       console.error(err);
@@ -66,7 +75,7 @@ const ZonaList = () => {
         <table className="min-w-full divide-y divide-slate-200">
           <thead className="bg-slate-50">
             <tr>
-              <th>Id Invernadero</th>
+              <th>Invernadero</th>
             <th>Nombre Zona</th>
             <th>Area M2</th>
             <th>Descripcion</th>
@@ -81,9 +90,12 @@ const ZonaList = () => {
                 </td>
               </tr>
             ) : (
-              items.map((item) => (
-                <tr key={item.idZona || item.id} className="hover:bg-slate-50/50 transition-colors">
-                  <td>{item.idInvernaderoId || item.idInvernadero}</td>
+              items.map((item) => {
+            const inv = invernaderos.find(x => x.idInvernadero === (item.idInvernaderoId || item.idInvernadero));
+                  const invNombre = inv ? inv.nombre : (item.idInvernaderoId || item.idInvernadero || 'N/A');
+            return (
+              <tr key={item.idZona || item.id} className="hover:bg-slate-50/50 transition-colors">
+                  <td>{invNombre}</td>
                 <td>{item.nombreZona}</td>
                 <td>{item.areaM2}</td>
                 <td>{item.descripcion}</td>
@@ -104,8 +116,9 @@ const ZonaList = () => {
                     </div>
                   </td>
                 </tr>
-              ))
-            )}
+            );
+          })
+        )}
           </tbody>
         </table>
       </div>

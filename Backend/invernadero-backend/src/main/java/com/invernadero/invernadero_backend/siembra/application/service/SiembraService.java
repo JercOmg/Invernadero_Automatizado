@@ -11,6 +11,12 @@ import com.invernadero.invernadero_backend.siembra.application.dto.SiembraReques
 import com.invernadero.invernadero_backend.siembra.application.dto.SiembraResponse;
 import com.invernadero.invernadero_backend.siembra.domain.model.Siembra;
 import com.invernadero.invernadero_backend.siembra.domain.repository.SiembraRepository;
+import com.invernadero.invernadero_backend.zona.domain.model.Zona;
+import com.invernadero.invernadero_backend.zona.domain.repository.ZonaRepository;
+import com.invernadero.invernadero_backend.cultivo.domain.model.Cultivo;
+import com.invernadero.invernadero_backend.cultivo.domain.repository.CultivoRepository;
+import com.invernadero.invernadero_backend.auth.domain.model.Usuario;
+import com.invernadero.invernadero_backend.auth.domain.repository.UsuarioRepository;
 import com.invernadero.invernadero_backend.shared.exception.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -29,6 +35,9 @@ import org.springframework.transaction.annotation.Transactional;
 public class SiembraService {
     
     private final SiembraRepository siembraRepository;
+    private final ZonaRepository zonaRepository;
+    private final CultivoRepository cultivoRepository;
+    private final UsuarioRepository usuarioRepository;
     
     /**
      * Obtiene todos los registros paginados
@@ -96,8 +105,29 @@ public class SiembraService {
      * Actualiza una entidad desde un Request DTO
      */
     private void updateEntityFromRequest(Siembra entity, SiembraRequest request) {
-        // TODO: Implementar mapeo de campos desde request a entity
-        // Usar BeanUtils.copyProperties o mapeo manual
+        entity.setFechaSiembra(request.getFechaSiembra());
+        entity.setFechaCosechaEstimada(request.getFechaCosechaEstimada());
+        entity.setCantidadPlantas(request.getCantidadPlantas());
+        if (request.getEstado() != null) {
+            entity.setEstado(Siembra.Estado.valueOf(request.getEstado()));
+        }
+        entity.setObservaciones(request.getObservaciones());
+
+        if (request.getIdZonaId() != null) {
+            Zona zona = zonaRepository.findById(request.getIdZonaId())
+                .orElseThrow(() -> new ResourceNotFoundException("Zona", "id", request.getIdZonaId()));
+            entity.setIdZona(zona);
+        }
+        if (request.getIdCultivoId() != null) {
+            Cultivo cultivo = cultivoRepository.findById(request.getIdCultivoId())
+                .orElseThrow(() -> new ResourceNotFoundException("Cultivo", "id", request.getIdCultivoId()));
+            entity.setIdCultivo(cultivo);
+        }
+        if (request.getIdUsuarioId() != null) {
+            Usuario usuario = usuarioRepository.findById(request.getIdUsuarioId())
+                .orElseThrow(() -> new ResourceNotFoundException("Usuario", "id", request.getIdUsuarioId()));
+            entity.setIdUsuario(usuario);
+        }
     }
     
     /**
@@ -105,8 +135,22 @@ public class SiembraService {
      */
     private SiembraResponse convertToResponse(Siembra entity) {
         SiembraResponse response = new SiembraResponse();
-        // TODO: Implementar mapeo de campos desde entity a response
-        // Usar BeanUtils.copyProperties o mapeo manual
+        response.setIdSiembra(entity.getIdSiembra());
+        response.setFechaSiembra(entity.getFechaSiembra());
+        response.setFechaCosechaEstimada(entity.getFechaCosechaEstimada());
+        response.setCantidadPlantas(entity.getCantidadPlantas());
+        response.setEstado(entity.getEstado() != null ? entity.getEstado().name() : null);
+        response.setObservaciones(entity.getObservaciones());
+
+        if (entity.getIdZona() != null) {
+            response.setIdZonaId(entity.getIdZona().getIdZona());
+        }
+        if (entity.getIdCultivo() != null) {
+            response.setIdCultivoId(entity.getIdCultivo().getIdCultivo());
+        }
+        if (entity.getIdUsuario() != null) {
+            response.setIdUsuarioId(entity.getIdUsuario().getIdUsuario());
+        }
         return response;
     }
 }

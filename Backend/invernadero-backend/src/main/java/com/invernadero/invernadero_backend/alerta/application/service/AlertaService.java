@@ -7,6 +7,10 @@
  */
 package com.invernadero.invernadero_backend.alerta.application.service;
 
+import com.invernadero.invernadero_backend.sensor.domain.model.Sensor;
+import com.invernadero.invernadero_backend.sensor.domain.repository.SensorRepository;
+import com.invernadero.invernadero_backend.zona.domain.model.Zona;
+import com.invernadero.invernadero_backend.zona.domain.repository.ZonaRepository;
 import com.invernadero.invernadero_backend.alerta.application.dto.AlertaRequest;
 import com.invernadero.invernadero_backend.alerta.application.dto.AlertaResponse;
 import com.invernadero.invernadero_backend.alerta.domain.model.Alerta;
@@ -29,6 +33,8 @@ import org.springframework.transaction.annotation.Transactional;
 public class AlertaService {
     
     private final AlertaRepository alertaRepository;
+    private final SensorRepository sensorRepository;
+    private final ZonaRepository zonaRepository;
     
     /**
      * Obtiene todos los registros paginados
@@ -95,18 +101,43 @@ public class AlertaService {
     /**
      * Actualiza una entidad desde un Request DTO
      */
-    private void updateEntityFromRequest(Alerta entity, AlertaRequest request) {
-        // TODO: Implementar mapeo de campos desde request a entity
-        // Usar BeanUtils.copyProperties o mapeo manual
+        private void updateEntityFromRequest(Alerta entity, AlertaRequest request) {
+        entity.setFechaHora(request.getFechaHora());
+        if (request.getTipoAlerta() != null) {
+            entity.setTipoAlerta(Alerta.TipoAlerta.valueOf(request.getTipoAlerta()));
+        }
+        entity.setMensaje(request.getMensaje());
+        if (request.getLeida() != null) {
+            entity.setLeida(request.getLeida());
+        }
+        if (request.getIdSensorId() != null) {
+            Sensor s = sensorRepository.findById(request.getIdSensorId())
+                .orElseThrow(() -> new ResourceNotFoundException("Sensor", "id", request.getIdSensorId()));
+            entity.setIdSensor(s);
+        }
+        if (request.getIdZonaId() != null) {
+            Zona z = zonaRepository.findById(request.getIdZonaId())
+                .orElseThrow(() -> new ResourceNotFoundException("Zona", "id", request.getIdZonaId()));
+            entity.setIdZona(z);
+        }
     }
     
     /**
      * Convierte Entidad a Response DTO
      */
-    private AlertaResponse convertToResponse(Alerta entity) {
+        private AlertaResponse convertToResponse(Alerta entity) {
         AlertaResponse response = new AlertaResponse();
-        // TODO: Implementar mapeo de campos desde entity a response
-        // Usar BeanUtils.copyProperties o mapeo manual
+        response.setIdAlerta(entity.getIdAlerta());
+        response.setFechaHora(entity.getFechaHora());
+        response.setTipoAlerta(entity.getTipoAlerta() != null ? entity.getTipoAlerta().name() : null);
+        response.setMensaje(entity.getMensaje());
+        response.setLeida(entity.getLeida());
+        if (entity.getIdSensor() != null) {
+            response.setIdSensorId(entity.getIdSensor().getIdSensor());
+        }
+        if (entity.getIdZona() != null) {
+            response.setIdZonaId(entity.getIdZona().getIdZona());
+        }
         return response;
     }
 }

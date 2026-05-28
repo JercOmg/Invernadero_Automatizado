@@ -7,6 +7,10 @@
  */
 package com.invernadero.invernadero_backend.cosecha.application.service;
 
+import com.invernadero.invernadero_backend.siembra.domain.model.Siembra;
+import com.invernadero.invernadero_backend.siembra.domain.repository.SiembraRepository;
+import com.invernadero.invernadero_backend.auth.domain.model.Usuario;
+import com.invernadero.invernadero_backend.auth.domain.repository.UsuarioRepository;
 import com.invernadero.invernadero_backend.cosecha.application.dto.CosechaRequest;
 import com.invernadero.invernadero_backend.cosecha.application.dto.CosechaResponse;
 import com.invernadero.invernadero_backend.cosecha.domain.model.Cosecha;
@@ -29,6 +33,8 @@ import org.springframework.transaction.annotation.Transactional;
 public class CosechaService {
     
     private final CosechaRepository cosechaRepository;
+    private final SiembraRepository siembraRepository;
+    private final UsuarioRepository usuarioRepository;
     
     /**
      * Obtiene todos los registros paginados
@@ -95,18 +101,39 @@ public class CosechaService {
     /**
      * Actualiza una entidad desde un Request DTO
      */
-    private void updateEntityFromRequest(Cosecha entity, CosechaRequest request) {
-        // TODO: Implementar mapeo de campos desde request a entity
-        // Usar BeanUtils.copyProperties o mapeo manual
+        private void updateEntityFromRequest(Cosecha entity, CosechaRequest request) {
+        entity.setFechaCosecha(request.getFechaCosecha());
+        entity.setCantidadKgs(request.getCantidadKgs());
+        entity.setCalidad(request.getCalidad());
+        entity.setObservaciones(request.getObservaciones());
+        if (request.getIdSiembraId() != null) {
+            Siembra s = siembraRepository.findById(request.getIdSiembraId())
+                .orElseThrow(() -> new ResourceNotFoundException("Siembra", "id", request.getIdSiembraId()));
+            entity.setIdSiembra(s);
+        }
+        if (request.getIdUsuarioId() != null) {
+            Usuario u = usuarioRepository.findById(request.getIdUsuarioId())
+                .orElseThrow(() -> new ResourceNotFoundException("Usuario", "id", request.getIdUsuarioId()));
+            entity.setIdUsuario(u);
+        }
     }
     
     /**
      * Convierte Entidad a Response DTO
      */
-    private CosechaResponse convertToResponse(Cosecha entity) {
+        private CosechaResponse convertToResponse(Cosecha entity) {
         CosechaResponse response = new CosechaResponse();
-        // TODO: Implementar mapeo de campos desde entity a response
-        // Usar BeanUtils.copyProperties o mapeo manual
+        response.setIdCosecha(entity.getIdCosecha());
+        response.setFechaCosecha(entity.getFechaCosecha());
+        response.setCantidadKgs(entity.getCantidadKgs());
+        response.setCalidad(entity.getCalidad());
+        response.setObservaciones(entity.getObservaciones());
+        if (entity.getIdSiembra() != null) {
+            response.setIdSiembraId(entity.getIdSiembra().getIdSiembra());
+        }
+        if (entity.getIdUsuario() != null) {
+            response.setIdUsuarioId(entity.getIdUsuario().getIdUsuario());
+        }
         return response;
     }
 }

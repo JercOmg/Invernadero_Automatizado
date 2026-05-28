@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import cosechaService from '../../services/cosechaService';
 import CosechaForm from './CosechaForm';
+import siembraService from '../../services/siembraService';
+import authService from '../../services/authService';
 import './CosechaList.css';
 
 /**
@@ -8,6 +10,8 @@ import './CosechaList.css';
  */
 const CosechaList = () => {
   const [items, setItems] = useState([]);
+  const [siembras, setSiembras] = useState([]);
+  const [usuarios, setUsuarios] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   
@@ -24,6 +28,17 @@ const CosechaList = () => {
       setLoading(true);
       const data = await cosechaService.getAll();
       setItems(data.content || data);
+    try {
+      const [sData, uData] = await Promise.all([
+        siembraService.getAll(0, 1000),
+        authService.getUsuarios()
+      ]);
+      setSiembras(sData.content || sData || []);
+      setUsuarios(uData || []);
+    } catch (e) {
+      console.error(e);
+    }
+
     } catch (err) {
       setError('Error al cargar los datos');
       console.error(err);
@@ -66,8 +81,8 @@ const CosechaList = () => {
         <table className="min-w-full divide-y divide-slate-200">
           <thead className="bg-slate-50">
             <tr>
-              <th>Id Siembra</th>
-            <th>Id Usuario</th>
+              <th>Siembra</th>
+            <th>Responsable</th>
             <th>Fecha Cosecha</th>
             <th>Cantidad Kg</th>
             <th>Calidad</th>
@@ -82,10 +97,15 @@ const CosechaList = () => {
                 </td>
               </tr>
             ) : (
-              items.map((item) => (
-                <tr key={item.idCosecha || item.id} className="hover:bg-slate-50/50 transition-colors">
-                  <td>{item.idSiembra}</td>
-                <td>{item.idUsuario}</td>
+              items.map((item) => {
+            const si = siembras.find(x => x.idSiembra === (item.idSiembraId || item.idSiembra));
+                  const siNombre = si ? `Siembra #${si.idSiembra} (${si.estado})` : (item.idSiembraId || item.idSiembra || 'N/A');
+                  const us = usuarios.find(x => x.idUsuario === (item.idUsuarioId || item.idUsuario));
+                  const usNombre = us ? `${us.nombre} ${us.apellido}` : (item.idUsuarioId || item.idUsuario || 'N/A');
+            return (
+              <tr key={item.idCosecha || item.id} className="hover:bg-slate-50/50 transition-colors">
+                  <td>{siNombre}</td>
+                <td>{usNombre}</td>
                 <td>{item.fechaCosecha}</td>
                 <td>{item.cantidadKg}</td>
                 <td>{item.calidad}</td>
@@ -106,8 +126,9 @@ const CosechaList = () => {
                     </div>
                   </td>
                 </tr>
-              ))
-            )}
+            );
+          })
+        )}
           </tbody>
         </table>
       </div>

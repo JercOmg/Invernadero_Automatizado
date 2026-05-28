@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import siembraService from '../../services/siembraService';
+import zonaService from '../../services/zonaService';
+import cultivoService from '../../services/cultivoService';
+import authService from '../../services/authService';
 import './SiembraForm.css';
 
 /**
@@ -9,7 +12,14 @@ const SiembraForm = ({ id, onClose }) => {
   const [formData, setFormData] = useState({});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [zonas, setZonas] = useState([]);
+  const [cultivos, setCultivos] = useState([]);
+  const [usuarios, setUsuarios] = useState([]);
   const isEdit = !!id;
+
+  useEffect(() => {
+    loadRelations();
+  }, []);
 
   useEffect(() => {
     if (isEdit) {
@@ -18,6 +28,21 @@ const SiembraForm = ({ id, onClose }) => {
       setFormData({});
     }
   }, [id]);
+
+  const loadRelations = async () => {
+    try {
+      const [resZonas, resCultivos, resUsuarios] = await Promise.all([
+        zonaService.getAll(0, 1000),
+        cultivoService.getAll(0, 1000),
+        authService.getUsuarios()
+      ]);
+      setZonas(resZonas.content || resZonas || []);
+      setCultivos(resCultivos.content || resCultivos || []);
+      setUsuarios(resUsuarios || []);
+    } catch (err) {
+      console.error('Error al cargar datos relacionales:', err);
+    }
+  };
 
   const loadItem = async () => {
     try {
@@ -34,9 +59,13 @@ const SiembraForm = ({ id, onClose }) => {
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
+    let finalValue = type === 'checkbox' ? checked : value;
+    if (['idZonaId', 'idZona', 'idCultivoId', 'idCultivo', 'idUsuarioId', 'idUsuario', 'cantidadPlantas'].includes(name)) {
+      finalValue = value ? parseInt(value, 10) : '';
+    }
     setFormData({
       ...formData,
-      [name]: type === 'checkbox' ? checked : value,
+      [name]: finalValue,
     });
   };
 
@@ -45,15 +74,33 @@ const SiembraForm = ({ id, onClose }) => {
     setError('');
     setLoading(true);
 
+    const zonaId = formData.idZonaId || formData.idZona;
+    const cultivoId = formData.idCultivoId || formData.idCultivo;
+    const usuarioId = formData.idUsuarioId || formData.idUsuario;
+
+    const payload = {
+      ...formData,
+      idZonaId: zonaId,
+      idZona: zonaId,
+      idCultivoId: cultivoId,
+      idCultivo: cultivoId,
+      idUsuarioId: usuarioId,
+      idUsuario: usuarioId
+    };
+
     try {
       if (isEdit) {
-        await siembraService.update(id, formData);
+        await siembraService.update(id, payload);
       } else {
-        await siembraService.create(formData);
+        await siembraService.create(payload);
       }
       if (onClose) onClose();
     } catch (err) {
-      setError(err.response?.data?.message || 'Error al guardar los datos');
+      let msg = err.response?.data?.message || 'Error al guardar los datos';
+      if (msg.includes('could not execute statement') || msg.includes('constraint') || msg.includes('SQL') || msg.includes('null value')) {
+        msg = 'Ocurrió un error en la base de datos al guardar. Por favor, verifica que todos los campos requeridos tengan valores correctos.';
+      }
+      setError(msg);
       console.error(err);
     } finally {
       setLoading(false);
@@ -81,43 +128,61 @@ const SiembraForm = ({ id, onClose }) => {
       )}
 
       <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
-          <div className="form-group ">
-            <label htmlFor="idZona">Id Zona</label>
-            <input
-              type="number"
-              id="idZona"
-              name="idZona"
-              value={formData.idZona || ''}
+          <div className="form-group">
+            <label htmlFor="idZonaId">Zona</label>
+            <select
+              id="idZonaId"
+              name="idZonaId"
+              value={formData.idZonaId || formData.idZona || ''}
               onChange={handleChange}
               required
               className="form-control"
-            />
+            >
+              <option value="">Seleccionar zona...</option>
+              {zonas.map((z) => (
+                <option key={z.idZona} value={z.idZona}>
+                  {z.nombreZona} (ID Invernadero: {z.idInvernaderoId || z.idInvernadero})
+                </option>
+              ))}
+            </select>
           </div>
 
-          <div className="form-group ">
-            <label htmlFor="idCultivo">Id Cultivo</label>
-            <input
-              type="number"
-              id="idCultivo"
-              name="idCultivo"
-              value={formData.idCultivo || ''}
+          <div className="form-group">
+            <label htmlFor="idCultivoId">Cultivo</label>
+            <select
+              id="idCultivoId"
+              name="idCultivoId"
+              value={formData.idCultivoId || formData.idCultivo || ''}
               onChange={handleChange}
               required
               className="form-control"
-            />
+            >
+              <option value="">Seleccionar cultivo...</option>
+              {cultivos.map((c) => (
+                <option key={c.idCultivo} value={c.idCultivo}>
+                  {c.nombreComun} ({c.nombreCientifico})
+                </option>
+              ))}
+            </select>
           </div>
 
-          <div className="form-group ">
-            <label htmlFor="idUsuario">Id Usuario</label>
-            <input
-              type="number"
-              id="idUsuario"
-              name="idUsuario"
-              value={formData.idUsuario || ''}
+          <div className="form-group">
+            <label htmlFor="idUsuarioId">Responsable</label>
+            <select
+              id="idUsuarioId"
+              name="idUsuarioId"
+              value={formData.idUsuarioId || formData.idUsuario || ''}
               onChange={handleChange}
               required
               className="form-control"
-            />
+            >
+              <option value="">Seleccionar responsable...</option>
+              {usuarios.map((u) => (
+                <option key={u.idUsuario} value={u.idUsuario}>
+                  {u.nombre} {u.apellido} ({u.rol})
+                </option>
+              ))}
+            </select>
           </div>
 
           <div className="form-group ">
