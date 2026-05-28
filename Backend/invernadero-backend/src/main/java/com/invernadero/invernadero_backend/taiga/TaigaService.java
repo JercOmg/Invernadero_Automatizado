@@ -20,6 +20,7 @@ import java.util.HashMap;
  * Descripcion: Servicio para integracion con la API de Taiga
  */
 @Service
+@SuppressWarnings({"rawtypes", "unchecked"})
 public class TaigaService {
 
     @Value("${taiga.api.url}")

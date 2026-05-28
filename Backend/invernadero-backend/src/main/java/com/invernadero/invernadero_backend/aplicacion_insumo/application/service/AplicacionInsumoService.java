@@ -37,6 +37,10 @@ import org.springframework.transaction.annotation.Transactional;
 public class AplicacionInsumoService {
     
     private final AplicacionInsumoRepository aplicacion_insumoRepository;
+    private final InsumoRepository insumoRepository;
+    private final SiembraRepository siembraRepository;
+    private final ZonaRepository zonaRepository;
+    private final UsuarioRepository usuarioRepository;
     
     /**
      * Obtiene todos los registros paginados

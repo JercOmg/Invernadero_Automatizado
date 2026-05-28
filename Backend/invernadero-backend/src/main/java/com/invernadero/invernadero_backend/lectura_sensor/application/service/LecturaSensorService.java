@@ -31,6 +31,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class LecturaSensorService {
     
     private final LecturaSensorRepository lectura_sensorRepository;
+    private final SensorRepository sensorRepository;
     
     /**
      * Obtiene todos los registros paginados
@@ -97,10 +98,12 @@ public class LecturaSensorService {
     /**
      * Actualiza una entidad desde un Request DTO
      */
-        private void updateEntityFromRequest(LecturaSensor entity, LecturaSensorRequest request) {
+    private void updateEntityFromRequest(LecturaSensor entity, LecturaSensorRequest request) {
         entity.setFechaHora(request.getFechaHora());
         entity.setValor(request.getValor());
-        entity.setMetrica(request.getMetrica());
+        if (request.getGeneraAlerta() != null) {
+            entity.setGeneraAlerta(request.getGeneraAlerta());
+        }
         if (request.getIdSensorId() != null) {
             Sensor s = sensorRepository.findById(request.getIdSensorId())
                 .orElseThrow(() -> new ResourceNotFoundException("Sensor", "id", request.getIdSensorId()));
@@ -111,12 +114,12 @@ public class LecturaSensorService {
     /**
      * Convierte Entidad a Response DTO
      */
-        private LecturaSensorResponse convertToResponse(LecturaSensor entity) {
+    private LecturaSensorResponse convertToResponse(LecturaSensor entity) {
         LecturaSensorResponse response = new LecturaSensorResponse();
         response.setIdLectura(entity.getIdLectura());
         response.setFechaHora(entity.getFechaHora());
         response.setValor(entity.getValor());
-        response.setMetrica(entity.getMetrica());
+        response.setGeneraAlerta(entity.getGeneraAlerta());
         if (entity.getIdSensor() != null) {
             response.setIdSensorId(entity.getIdSensor().getIdSensor());
         }

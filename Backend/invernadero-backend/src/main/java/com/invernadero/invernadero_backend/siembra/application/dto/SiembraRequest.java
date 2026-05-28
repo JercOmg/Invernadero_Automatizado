@@ -11,11 +11,6 @@ import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import com.invernadero.invernadero_backend.auth.domain.model.Usuario;
-import com.invernadero.invernadero_backend.cultivo.domain.model.Cultivo;
-import com.invernadero.invernadero_backend.zona.domain.model.Zona;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import java.time.LocalDate;
 
 /**

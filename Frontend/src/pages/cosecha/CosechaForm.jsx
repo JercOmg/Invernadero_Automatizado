@@ -42,16 +42,6 @@ const CosechaForm = ({ id, onClose }) => {
 
   const loadItem = async () => {
     try {
-    const sId = formData.idSiembraId || formData.idSiembra;
-    const uId = formData.idUsuarioId || formData.idUsuario;
-    const payload = {
-      ...formData,
-      idSiembraId: sId,
-      idSiembra: sId,
-      idUsuarioId: uId,
-      idUsuario: uId
-    };
-
       setLoading(true);
       const data = await cosechaService.getById(id);
       setFormData(data);
@@ -77,6 +67,16 @@ const CosechaForm = ({ id, onClose }) => {
     e.preventDefault();
     setError('');
     setLoading(true);
+
+    const sId = formData.idSiembraId || formData.idSiembra;
+    const uId = formData.idUsuarioId || formData.idUsuario;
+    const payload = {
+      ...formData,
+      idSiembraId: sId,
+      idSiembra: sId,
+      idUsuarioId: uId,
+      idUsuario: uId
+    };
 
     try {
       if (isEdit) {

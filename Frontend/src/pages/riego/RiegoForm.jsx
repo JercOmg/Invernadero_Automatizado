@@ -42,16 +42,6 @@ const RiegoForm = ({ id, onClose }) => {
 
   const loadItem = async () => {
     try {
-    const zId = formData.idZonaId || formData.idZona;
-    const uId = formData.idUsuarioId || formData.idUsuario;
-    const payload = {
-      ...formData,
-      idZonaId: zId,
-      idZona: zId,
-      idUsuarioId: uId,
-      idUsuario: uId
-    };
-
       setLoading(true);
       const data = await riegoService.getById(id);
       setFormData(data);
@@ -77,6 +67,16 @@ const RiegoForm = ({ id, onClose }) => {
     e.preventDefault();
     setError('');
     setLoading(true);
+
+    const zId = formData.idZonaId || formData.idZona;
+    const uId = formData.idUsuarioId || formData.idUsuario;
+    const payload = {
+      ...formData,
+      idZonaId: zId,
+      idZona: zId,
+      idUsuarioId: uId,
+      idUsuario: uId
+    };
 
     try {
       if (isEdit) {
@@ -133,17 +133,23 @@ const RiegoForm = ({ id, onClose }) => {
             </select>
           </div>
 
-          <div className="form-group ">
-            <label htmlFor="idUsuario">Id Usuario</label>
-            <input
-              type="number"
-              id="idUsuario"
-              name="idUsuario"
-              value={formData.idUsuario || ''}
+          <div className="form-group">
+            <label htmlFor="idUsuarioId">Responsable</label>
+            <select
+              id="idUsuarioId"
+              name="idUsuarioId"
+              value={formData.idUsuarioId || formData.idUsuario || ''}
               onChange={handleChange}
-              
+              required
               className="form-control"
-            />
+            >
+              <option value="">Seleccionar responsable...</option>
+              {usuarios.map((u) => (
+                <option key={u.idUsuario} value={u.idUsuario}>
+                  {u.nombre} {u.apellido} ({u.rol})
+                </option>
+              ))}
+            </select>
           </div>
 
           <div className="form-group ">

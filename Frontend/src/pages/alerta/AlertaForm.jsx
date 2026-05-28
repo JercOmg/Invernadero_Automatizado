@@ -42,16 +42,6 @@ const AlertaForm = ({ id, onClose }) => {
 
   const loadItem = async () => {
     try {
-    const sId = formData.idSensorId || formData.idSensor;
-    const zId = formData.idZonaId || formData.idZona;
-    const payload = {
-      ...formData,
-      idSensorId: sId,
-      idSensor: sId,
-      idZonaId: zId,
-      idZona: zId
-    };
-
       setLoading(true);
       const data = await alertaService.getById(id);
       setFormData(data);
@@ -77,6 +67,16 @@ const AlertaForm = ({ id, onClose }) => {
     e.preventDefault();
     setError('');
     setLoading(true);
+
+    const sId = formData.idSensorId || formData.idSensor;
+    const zId = formData.idZonaId || formData.idZona;
+    const payload = {
+      ...formData,
+      idSensorId: sId,
+      idSensor: sId,
+      idZonaId: zId,
+      idZona: zId
+    };
 
     try {
       if (isEdit) {
@@ -114,30 +114,42 @@ const AlertaForm = ({ id, onClose }) => {
       )}
 
       <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
-          <div className="form-group ">
-            <label htmlFor="idSensor">Id Sensor</label>
-            <input
-              type="number"
-              id="idSensor"
-              name="idSensor"
-              value={formData.idSensor || ''}
+          <div className="form-group">
+            <label htmlFor="idSensorId">Sensor</label>
+            <select
+              id="idSensorId"
+              name="idSensorId"
+              value={formData.idSensorId || formData.idSensor || ''}
               onChange={handleChange}
-              
+              required
               className="form-control"
-            />
+            >
+              <option value="">Seleccionar sensor...</option>
+              {sensores.map((s) => (
+                <option key={s.idSensor} value={s.idSensor}>
+                  Sensor #{s.idSensor} - {s.tipoSensor} ({s.modelo || 'Sin Modelo'})
+                </option>
+              ))}
+            </select>
           </div>
 
-          <div className="form-group ">
-            <label htmlFor="idZona">Id Zona</label>
-            <input
-              type="number"
-              id="idZona"
-              name="idZona"
-              value={formData.idZona || ''}
+          <div className="form-group">
+            <label htmlFor="idZonaId">Zona</label>
+            <select
+              id="idZonaId"
+              name="idZonaId"
+              value={formData.idZonaId || formData.idZona || ''}
               onChange={handleChange}
-              
+              required
               className="form-control"
-            />
+            >
+              <option value="">Seleccionar zona...</option>
+              {zonas.map((z) => (
+                <option key={z.idZona} value={z.idZona}>
+                  {z.nombreZona}
+                </option>
+              ))}
+            </select>
           </div>
 
           <div className="form-group ">

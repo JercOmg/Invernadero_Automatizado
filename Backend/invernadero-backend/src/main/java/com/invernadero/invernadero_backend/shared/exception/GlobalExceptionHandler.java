@@ -7,7 +7,6 @@
  */
 package com.invernadero.invernadero_backend.shared.exception;
 
-import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import com.invernadero.invernadero_backend.shared.dto.ErrorResponse;
 import org.springframework.http.HttpStatus;

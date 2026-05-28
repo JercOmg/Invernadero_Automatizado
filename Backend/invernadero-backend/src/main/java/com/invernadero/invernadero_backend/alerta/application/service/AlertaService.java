@@ -101,15 +101,19 @@ public class AlertaService {
     /**
      * Actualiza una entidad desde un Request DTO
      */
-        private void updateEntityFromRequest(Alerta entity, AlertaRequest request) {
+    private void updateEntityFromRequest(Alerta entity, AlertaRequest request) {
         entity.setFechaHora(request.getFechaHora());
         if (request.getTipoAlerta() != null) {
             entity.setTipoAlerta(Alerta.TipoAlerta.valueOf(request.getTipoAlerta()));
         }
-        entity.setMensaje(request.getMensaje());
-        if (request.getLeida() != null) {
-            entity.setLeida(request.getLeida());
+        entity.setDescripcion(request.getDescripcion());
+        if (request.getNivel() != null) {
+            entity.setNivel(Alerta.Nivel.valueOf(request.getNivel()));
         }
+        if (request.getResuelta() != null) {
+            entity.setResuelta(request.getResuelta());
+        }
+        entity.setFechaResolucion(request.getFechaResolucion());
         if (request.getIdSensorId() != null) {
             Sensor s = sensorRepository.findById(request.getIdSensorId())
                 .orElseThrow(() -> new ResourceNotFoundException("Sensor", "id", request.getIdSensorId()));
@@ -125,13 +129,15 @@ public class AlertaService {
     /**
      * Convierte Entidad a Response DTO
      */
-        private AlertaResponse convertToResponse(Alerta entity) {
+    private AlertaResponse convertToResponse(Alerta entity) {
         AlertaResponse response = new AlertaResponse();
         response.setIdAlerta(entity.getIdAlerta());
         response.setFechaHora(entity.getFechaHora());
         response.setTipoAlerta(entity.getTipoAlerta() != null ? entity.getTipoAlerta().name() : null);
-        response.setMensaje(entity.getMensaje());
-        response.setLeida(entity.getLeida());
+        response.setDescripcion(entity.getDescripcion());
+        response.setNivel(entity.getNivel() != null ? entity.getNivel().name() : null);
+        response.setResuelta(entity.getResuelta());
+        response.setFechaResolucion(entity.getFechaResolucion());
         if (entity.getIdSensor() != null) {
             response.setIdSensorId(entity.getIdSensor().getIdSensor());
         }

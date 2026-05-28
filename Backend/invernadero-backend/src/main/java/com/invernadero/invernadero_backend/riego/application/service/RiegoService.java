@@ -101,10 +101,10 @@ public class RiegoService {
     /**
      * Actualiza una entidad desde un Request DTO
      */
-        private void updateEntityFromRequest(Riego entity, RiegoRequest request) {
+    private void updateEntityFromRequest(Riego entity, RiegoRequest request) {
         entity.setFechaHora(request.getFechaHora());
-        entity.setDuracionMinutos(request.getDuracionMinutos());
-        entity.setCantidadLitros(request.getCantidadLitros());
+        entity.setDuracionMin(request.getDuracionMin());
+        entity.setVolumenLitros(request.getVolumenLitros());
         if (request.getTipo() != null) {
             entity.setTipo(Riego.Tipo.valueOf(request.getTipo()));
         }
@@ -124,12 +124,12 @@ public class RiegoService {
     /**
      * Convierte Entidad a Response DTO
      */
-        private RiegoResponse convertToResponse(Riego entity) {
+    private RiegoResponse convertToResponse(Riego entity) {
         RiegoResponse response = new RiegoResponse();
         response.setIdRiego(entity.getIdRiego());
         response.setFechaHora(entity.getFechaHora());
-        response.setDuracionMinutos(entity.getDuracionMinutos());
-        response.setCantidadLitros(entity.getCantidadLitros());
+        response.setDuracionMin(entity.getDuracionMin());
+        response.setVolumenLitros(entity.getVolumenLitros());
         response.setTipo(entity.getTipo() != null ? entity.getTipo().name() : null);
         response.setObservaciones(entity.getObservaciones());
         if (entity.getIdZona() != null) {

@@ -11,7 +11,6 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import com.invernadero.invernadero_backend.auth.domain.model.Usuario;
 import com.invernadero.invernadero_backend.insumo.domain.model.Insumo;

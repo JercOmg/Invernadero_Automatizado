@@ -50,22 +50,6 @@ const AplicacionInsumoForm = ({ id, onClose }) => {
 
   const loadItem = async () => {
     try {
-    const insId = formData.idInsumoId || formData.idInsumo;
-    const sId = formData.idSiembraId || formData.idSiembra;
-    const zId = formData.idZonaId || formData.idZona;
-    const uId = formData.idUsuarioId || formData.idUsuario;
-    const payload = {
-      ...formData,
-      idInsumoId: insId,
-      idInsumo: insId,
-      idSiembraId: sId,
-      idSiembra: sId,
-      idZonaId: zId,
-      idZona: zId,
-      idUsuarioId: uId,
-      idUsuario: uId
-    };
-
       setLoading(true);
       const data = await aplicacionInsumoService.getById(id);
       setFormData(data);
@@ -91,6 +75,22 @@ const AplicacionInsumoForm = ({ id, onClose }) => {
     e.preventDefault();
     setError('');
     setLoading(true);
+
+    const insId = formData.idInsumoId || formData.idInsumo;
+    const sId = formData.idSiembraId || formData.idSiembra;
+    const zId = formData.idZonaId || formData.idZona;
+    const uId = formData.idUsuarioId || formData.idUsuario;
+    const payload = {
+      ...formData,
+      idInsumoId: insId,
+      idInsumo: insId,
+      idSiembraId: sId,
+      idSiembra: sId,
+      idZonaId: zId,
+      idZona: zId,
+      idUsuarioId: uId,
+      idUsuario: uId
+    };
 
     try {
       if (isEdit) {
@@ -147,30 +147,42 @@ const AplicacionInsumoForm = ({ id, onClose }) => {
             </select>
           </div>
 
-          <div className="form-group ">
-            <label htmlFor="idSiembra">Id Siembra</label>
-            <input
-              type="number"
-              id="idSiembra"
-              name="idSiembra"
-              value={formData.idSiembra || ''}
+          <div className="form-group">
+            <label htmlFor="idSiembraId">Siembra</label>
+            <select
+              id="idSiembraId"
+              name="idSiembraId"
+              value={formData.idSiembraId || formData.idSiembra || ''}
               onChange={handleChange}
-              
+              required
               className="form-control"
-            />
+            >
+              <option value="">Seleccionar siembra...</option>
+              {siembras.map((s) => (
+                <option key={s.idSiembra} value={s.idSiembra}>
+                  Siembra #{s.idSiembra} - Plantas: {s.cantidadPlantas} ({s.estado})
+                </option>
+              ))}
+            </select>
           </div>
 
-          <div className="form-group ">
-            <label htmlFor="idZona">Id Zona</label>
-            <input
-              type="number"
-              id="idZona"
-              name="idZona"
-              value={formData.idZona || ''}
+          <div className="form-group">
+            <label htmlFor="idZonaId">Zona</label>
+            <select
+              id="idZonaId"
+              name="idZonaId"
+              value={formData.idZonaId || formData.idZona || ''}
               onChange={handleChange}
-              
+              required
               className="form-control"
-            />
+            >
+              <option value="">Seleccionar zona...</option>
+              {zonas.map((z) => (
+                <option key={z.idZona} value={z.idZona}>
+                  {z.nombreZona}
+                </option>
+              ))}
+            </select>
           </div>
 
           <div className="form-group">

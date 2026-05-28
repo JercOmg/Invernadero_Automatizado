@@ -36,13 +36,6 @@ const SensorForm = ({ id, onClose }) => {
 
   const loadItem = async () => {
     try {
-    const zId = formData.idZonaId || formData.idZona;
-    const payload = {
-      ...formData,
-      idZonaId: zId,
-      idZona: zId
-    };
-
       setLoading(true);
       const data = await sensorService.getById(id);
       setFormData(data);
@@ -68,6 +61,13 @@ const SensorForm = ({ id, onClose }) => {
     e.preventDefault();
     setError('');
     setLoading(true);
+
+    const zId = formData.idZonaId || formData.idZona;
+    const payload = {
+      ...formData,
+      idZonaId: zId,
+      idZona: zId
+    };
 
     try {
       if (isEdit) {

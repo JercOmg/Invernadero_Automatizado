@@ -101,10 +101,12 @@ public class CosechaService {
     /**
      * Actualiza una entidad desde un Request DTO
      */
-        private void updateEntityFromRequest(Cosecha entity, CosechaRequest request) {
+    private void updateEntityFromRequest(Cosecha entity, CosechaRequest request) {
         entity.setFechaCosecha(request.getFechaCosecha());
-        entity.setCantidadKgs(request.getCantidadKgs());
-        entity.setCalidad(request.getCalidad());
+        entity.setCantidadKg(request.getCantidadKg());
+        if (request.getCalidad() != null) {
+            entity.setCalidad(Cosecha.Calidad.valueOf(request.getCalidad()));
+        }
         entity.setObservaciones(request.getObservaciones());
         if (request.getIdSiembraId() != null) {
             Siembra s = siembraRepository.findById(request.getIdSiembraId())
@@ -121,12 +123,12 @@ public class CosechaService {
     /**
      * Convierte Entidad a Response DTO
      */
-        private CosechaResponse convertToResponse(Cosecha entity) {
+    private CosechaResponse convertToResponse(Cosecha entity) {
         CosechaResponse response = new CosechaResponse();
         response.setIdCosecha(entity.getIdCosecha());
         response.setFechaCosecha(entity.getFechaCosecha());
-        response.setCantidadKgs(entity.getCantidadKgs());
-        response.setCalidad(entity.getCalidad());
+        response.setCantidadKg(entity.getCantidadKg());
+        response.setCalidad(entity.getCalidad() != null ? entity.getCalidad().name() : null);
         response.setObservaciones(entity.getObservaciones());
         if (entity.getIdSiembra() != null) {
             response.setIdSiembraId(entity.getIdSiembra().getIdSiembra());

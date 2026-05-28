@@ -7,7 +7,6 @@
  */
 package com.invernadero.invernadero_backend.auth.infrastructure.security;
 
-import com.invernadero.invernadero_backend.shared.exception.UnauthorizedException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

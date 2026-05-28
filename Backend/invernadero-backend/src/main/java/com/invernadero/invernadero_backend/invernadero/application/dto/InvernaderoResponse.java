@@ -10,9 +10,6 @@ package com.invernadero.invernadero_backend.invernadero.application.dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import com.invernadero.invernadero_backend.auth.domain.model.Usuario;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 

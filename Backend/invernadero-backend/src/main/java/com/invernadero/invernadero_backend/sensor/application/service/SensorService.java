@@ -98,13 +98,13 @@ public class SensorService {
     /**
      * Actualiza una entidad desde un Request DTO
      */
-        private void updateEntityFromRequest(Sensor entity, SensorRequest request) {
-        entity.setNombre(request.getNombre());
+    private void updateEntityFromRequest(Sensor entity, SensorRequest request) {
         if (request.getTipoSensor() != null) {
             entity.setTipoSensor(Sensor.TipoSensor.valueOf(request.getTipoSensor()));
         }
-        entity.setMarca(request.getMarca());
         entity.setModelo(request.getModelo());
+        entity.setUnidadMedida(request.getUnidadMedida());
+        entity.setFechaInstalacion(request.getFechaInstalacion());
         if (request.getEstado() != null) {
             entity.setEstado(Sensor.Estado.valueOf(request.getEstado()));
         }
@@ -118,13 +118,13 @@ public class SensorService {
     /**
      * Convierte Entidad a Response DTO
      */
-        private SensorResponse convertToResponse(Sensor entity) {
+    private SensorResponse convertToResponse(Sensor entity) {
         SensorResponse response = new SensorResponse();
         response.setIdSensor(entity.getIdSensor());
-        response.setNombre(entity.getNombre());
         response.setTipoSensor(entity.getTipoSensor() != null ? entity.getTipoSensor().name() : null);
-        response.setMarca(entity.getMarca());
         response.setModelo(entity.getModelo());
+        response.setUnidadMedida(entity.getUnidadMedida());
+        response.setFechaInstalacion(entity.getFechaInstalacion());
         response.setEstado(entity.getEstado() != null ? entity.getEstado().name() : null);
         if (entity.getIdZona() != null) {
             response.setIdZonaId(entity.getIdZona().getIdZona());

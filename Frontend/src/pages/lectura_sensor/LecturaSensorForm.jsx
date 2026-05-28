@@ -36,13 +36,6 @@ const LecturaSensorForm = ({ id, onClose }) => {
 
   const loadItem = async () => {
     try {
-    const sId = formData.idSensorId || formData.idSensor;
-    const payload = {
-      ...formData,
-      idSensorId: sId,
-      idSensor: sId
-    };
-
       setLoading(true);
       const data = await lecturaSensorService.getById(id);
       setFormData(data);
@@ -68,6 +61,13 @@ const LecturaSensorForm = ({ id, onClose }) => {
     e.preventDefault();
     setError('');
     setLoading(true);
+
+    const sId = formData.idSensorId || formData.idSensor;
+    const payload = {
+      ...formData,
+      idSensorId: sId,
+      idSensor: sId
+    };
 
     try {
       if (isEdit) {
@@ -105,17 +105,23 @@ const LecturaSensorForm = ({ id, onClose }) => {
       )}
 
       <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
-          <div className="form-group ">
-            <label htmlFor="idSensor">Id Sensor</label>
-            <input
-              type="number"
-              id="idSensor"
-              name="idSensor"
-              value={formData.idSensor || ''}
+          <div className="form-group">
+            <label htmlFor="idSensorId">Sensor</label>
+            <select
+              id="idSensorId"
+              name="idSensorId"
+              value={formData.idSensorId || formData.idSensor || ''}
               onChange={handleChange}
               required
               className="form-control"
-            />
+            >
+              <option value="">Seleccionar sensor...</option>
+              {sensores.map((s) => (
+                <option key={s.idSensor} value={s.idSensor}>
+                  Sensor #{s.idSensor} - {s.tipoSensor} ({s.modelo || 'Sin Modelo'})
+                </option>
+              ))}
+            </select>
           </div>
 
           <div className="form-group ">
