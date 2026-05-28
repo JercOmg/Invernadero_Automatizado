@@ -112,7 +112,7 @@ export default {snake_to_camel(nombre_tabla)}Service;
     return codigo
 
 def generar_componente_list(nombre_tabla, nombre_clase, info_tabla):
-    """Genera el componente List para mostrar registros en tabla"""
+    """Genera el componente List para mostrar registros en tabla con formulario en Modal integrado"""
     campos = info_tabla['campos']
     
     # Obtener los primeros 5 campos para mostrar en la tabla (excluyendo PK)
@@ -131,8 +131,8 @@ def generar_componente_list(nombre_tabla, nombre_clase, info_tabla):
     celdas = '\n                '.join([f'<td>{{item.{snake_to_camel(campo["nombre"])}}}</td>' for campo in campos_mostrar])
     
     codigo = f"""import React, {{ useState, useEffect }} from 'react';
-import {{ Link, useNavigate }} from 'react-router-dom';
 import {snake_to_camel(nombre_tabla)}Service from '../../services/{snake_to_camel(nombre_tabla)}Service';
+import {nombre_clase}Form from './{nombre_clase}Form';
 import './{nombre_clase}List.css';
 
 /**
@@ -142,7 +142,10 @@ const {nombre_clase}List = () => {{
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-  const navigate = useNavigate();
+  
+  // Estados para controlar el modal
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentId, setCurrentId] = useState(null);
 
   useEffect(() => {{
     loadItems();
@@ -173,32 +176,33 @@ const {nombre_clase}List = () => {{
     }}
   }};
 
-  if (loading) {{
+  if (loading && items.length === 0) {{
     return <div className="loading"><div className="spinner"></div></div>;
   }}
 
-  if (error) {{
-    return <div className="error-message">{{error}}</div>;
-  }}
-
   return (
-    <div className="list-container">
-      <div className="list-header">
-        <h1>{nombre_clase}</h1>
-        <Link to="/{nombre_tabla}/new" className="btn btn-primary">
+    <div className="list-container max-w-7xl mx-auto px-4 py-8">
+      <div className="list-header flex justify-between items-center mb-6">
+        <h1 className="text-2xl font-extrabold text-slate-800">{nombre_clase}</h1>
+        <button 
+          onClick={{() => {{ setCurrentId(null); setIsModalOpen(true); }}}} 
+          className="btn btn-primary bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-4 py-2.5 rounded-lg shadow-xs transition-all text-sm cursor-pointer"
+        >
           Crear Nuevo
-        </Link>
+        </button>
       </div>
 
-      <div className="table-container">
-        <table>
-          <thead>
+      {{error && <div className="error-message mb-4 p-3 rounded-lg bg-rose-50 text-rose-600 border border-rose-100 text-sm">{{error}}</div>}}
+
+      <div className="table-container rounded-xl border border-slate-200 bg-white overflow-hidden shadow-2xs">
+        <table className="min-w-full divide-y divide-slate-200">
+          <thead className="bg-slate-50">
             <tr>
               {headers}
               <th>Acciones</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="bg-white divide-y divide-slate-100">
             {{items.length === 0 ? (
               <tr>
                 <td colSpan="{{100}}" style={{{{ textAlign: 'center' }}}}>
@@ -207,19 +211,19 @@ const {nombre_clase}List = () => {{
               </tr>
             ) : (
               items.map((item) => (
-                <tr key={{item.id{nombre_clase} || item.id}}>
+                <tr key={{item.id{nombre_clase} || item.id}} className="hover:bg-slate-50/50 transition-colors">
                   {celdas}
                   <td>
-                    <div className="action-buttons">
+                    <div className="action-buttons flex gap-2">
                       <button
-                        onClick={{() => navigate(`/{nombre_tabla}/${{item.id{nombre_clase} || item.id}}`)}}
-                        className="btn btn-sm btn-primary"
+                        onClick={{() => {{ setCurrentId(item.id{nombre_clase} || item.id); setIsModalOpen(true); }}}}
+                        className="btn btn-sm btn-primary border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 font-bold px-3 py-1.5 rounded-lg transition-all text-xs cursor-pointer"
                       >
                         Editar
                       </button>
                       <button
                         onClick={{() => handleDelete(item.id{nombre_clase} || item.id)}}
-                        className="btn btn-sm btn-danger"
+                        className="btn btn-sm btn-danger bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-100 font-bold px-3 py-1.5 rounded-lg transition-all text-xs cursor-pointer"
                       >
                         Eliminar
                       </button>
@@ -231,6 +235,22 @@ const {nombre_clase}List = () => {{
           </tbody>
         </table>
       </div>
+
+      {{/* Modal para Crear y Editar */}}
+      {{isModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/40 backdrop-blur-xs animate-fade-in p-4">
+          <div className="bg-white rounded-xl border border-slate-200 shadow-2xl p-6 w-full max-w-2xl max-h-[95vh] overflow-y-auto relative animate-scale-up">
+            <button 
+              onClick={{() => setIsModalOpen(false)}} 
+              className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-2xl font-light focus:outline-none cursor-pointer"
+              aria-label="Cerrar modal"
+            >
+              &times;
+            </button>
+            <{nombre_clase}Form id={{currentId}} onClose={{() => {{ setIsModalOpen(false); loadItems(); }}}} />
+          </div>
+        </div>
+      )}}
     </div>
   );
 }};
@@ -240,7 +260,7 @@ export default {nombre_clase}List;
     return codigo
 
 def generar_componente_form(nombre_tabla, nombre_clase, info_tabla):
-    """Genera el componente Form para crear/editar registros"""
+    """Genera el componente Form para crear/editar registros en dos columnas"""
     campos = info_tabla['campos']
     
     # Generar campos del formulario (excluir PK y autoincrementales)
@@ -254,12 +274,15 @@ def generar_componente_form(nombre_tabla, nombre_clase, info_tabla):
         label = campo_nombre.replace('_', ' ').title()
         required = 'required' if not campo_info.get('nullable', True) else ''
         
+        # Textareas y Checkbox ocupan 2 columnas, el resto 1 en desktop
+        grid_col_span = 'md:col-span-2' if tipo_input in ['textarea', 'checkbox'] else ''
+        
         if tipo_input == 'select' and campo_info.get('valores'):
             opciones = '\n              '.join([
                 f'<option value="{val}">{val}</option>' 
                 for val in campo_info['valores']
             ])
-            campos_form.append(f"""          <div className="form-group">
+            campos_form.append(f"""          <div className="form-group {grid_col_span}">
             <label htmlFor="{nombre_camel}">{label}</label>
             <select
               id="{nombre_camel}"
@@ -267,37 +290,40 @@ def generar_componente_form(nombre_tabla, nombre_clase, info_tabla):
               value={{formData.{nombre_camel} || ''}}
               onChange={{handleChange}}
               {required}
+              className="form-control"
             >
               <option value="">Seleccionar...</option>
               {opciones}
             </select>
           </div>""")
         elif tipo_input == 'textarea':
-            campos_form.append(f"""          <div className="form-group">
+            campos_form.append(f"""          <div className="form-group {grid_col_span}">
             <label htmlFor="{nombre_camel}">{label}</label>
             <textarea
               id="{nombre_camel}"
               name="{nombre_camel}"
               value={{formData.{nombre_camel} || ''}}
               onChange={{handleChange}}
-              rows="4"
+              rows="3"
               {required}
+              className="form-control"
             />
           </div>""")
         elif tipo_input == 'checkbox':
-            campos_form.append(f"""          <div className="form-group checkbox-group">
-            <label>
+            campos_form.append(f"""          <div className="form-group checkbox-group {grid_col_span} pt-2">
+            <label className="flex items-center gap-2 cursor-pointer font-medium text-slate-700">
               <input
                 type="checkbox"
                 name="{nombre_camel}"
                 checked={{formData.{nombre_camel} || false}}
                 onChange={{handleChange}}
+                className="w-4 h-4 rounded text-emerald-600 focus:ring-emerald-500 border-slate-300"
               />
               {label}
             </label>
           </div>""")
         else:
-            campos_form.append(f"""          <div className="form-group">
+            campos_form.append(f"""          <div className="form-group {grid_col_span}">
             <label htmlFor="{nombre_camel}">{label}</label>
             <input
               type="{tipo_input}"
@@ -306,30 +332,30 @@ def generar_componente_form(nombre_tabla, nombre_clase, info_tabla):
               value={{formData.{nombre_camel} || ''}}
               onChange={{handleChange}}
               {required}
+              className="form-control"
             />
           </div>""")
     
     campos_html = '\n\n'.join(campos_form)
     
     codigo = f"""import React, {{ useState, useEffect }} from 'react';
-import {{ useNavigate, useParams }} from 'react-router-dom';
 import {snake_to_camel(nombre_tabla)}Service from '../../services/{snake_to_camel(nombre_tabla)}Service';
 import './{nombre_clase}Form.css';
 
 /**
  * Componente para crear/editar {nombre_clase}
  */
-const {nombre_clase}Form = () => {{
+const {nombre_clase}Form = ({{ id, onClose }}) => {{
   const [formData, setFormData] = useState({{}});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  const navigate = useNavigate();
-  const {{ id }} = useParams();
   const isEdit = !!id;
 
   useEffect(() => {{
     if (isEdit) {{
       loadItem();
+    }} else {{
+      setFormData({{}});
     }}
   }}, [id]);
 
@@ -365,7 +391,7 @@ const {nombre_clase}Form = () => {{
       }} else {{
         await {snake_to_camel(nombre_tabla)}Service.create(formData);
       }}
-      navigate('/{nombre_tabla}');
+      if (onClose) onClose();
     }} catch (err) {{
       setError(err.response?.data?.message || 'Error al guardar los datos');
       console.error(err);
@@ -375,34 +401,46 @@ const {nombre_clase}Form = () => {{
   }};
 
   if (loading && isEdit) {{
-    return <div className="loading"><div className="spinner"></div></div>;
+    return (
+      <div className="flex justify-center items-center py-12">
+        <div className="spinner"></div>
+      </div>
+    );
   }}
 
   return (
-    <div className="form-page">
-      <div className="form-container">
-        <h1>{{isEdit ? 'Editar' : 'Crear'}} {nombre_clase}</h1>
+    <div className="form-container-modal">
+      <h2 className="text-xl font-bold text-slate-800 mb-6 border-b border-slate-100 pb-3">
+        {{isEdit ? 'Editar' : 'Crear'}} {nombre_clase}
+      </h2>
 
-        {{error && <div className="error-message">{{error}}</div>}}
+      {{error && (
+        <div className="error-message mb-4 p-3 rounded-lg bg-rose-50 text-rose-600 border border-rose-100 text-sm">
+          {{error}}
+        </div>
+      )}}
 
-        <form onSubmit={{handleSubmit}}>
+      <form onSubmit={{handleSubmit}} className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
 {campos_html}
 
-          <div className="form-actions">
-            <button type="submit" className="btn btn-primary" disabled={{loading}}>
-              {{loading ? 'Guardando...' : 'Guardar'}}
-            </button>
-            <button
-              type="button"
-              className="btn btn-secondary"
-              onClick={{() => navigate('/{nombre_tabla}')}}
-              disabled={{loading}}
-            >
-              Cancelar
-            </button>
-          </div>
-        </form>
-      </div>
+        <div className="form-actions md:col-span-2 flex justify-end gap-3 pt-4 border-t border-slate-100 mt-4">
+          <button
+            type="button"
+            className="btn btn-secondary border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 font-bold px-5 py-2.5 rounded-lg transition-all text-sm cursor-pointer"
+            onClick={{onClose}}
+            disabled={{loading}}
+          >
+            Cancelar
+          </button>
+          <button 
+            type="submit" 
+            className="btn btn-primary bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-5 py-2.5 rounded-lg shadow-xs transition-all text-sm cursor-pointer" 
+            disabled={{loading}}
+          >
+            {{loading ? 'Guardando...' : 'Guardar'}}
+          </button>
+        </div>
+      </form>
     </div>
   );
 }};
@@ -579,7 +617,7 @@ def generar_modulo_completo(nombre_tabla, info_tabla):
     print(f"  ✓ Modulo {nombre_tabla} generado exitosamente")
 
 def generar_rutas(tablas):
-    """Genera el codigo de rutas para App.jsx"""
+    """Genera el codigo de rutas para App.jsx - Solo Listas ya que los formularios son modals"""
     rutas = []
     imports = []
     
@@ -589,11 +627,8 @@ def generar_rutas(tablas):
         
         nombre_clase = snake_to_pascal(nombre_tabla)
         imports.append(f"import {nombre_clase}List from './pages/{nombre_tabla}/{nombre_clase}List';")
-        imports.append(f"import {nombre_clase}Form from './pages/{nombre_tabla}/{nombre_clase}Form';")
         
         rutas.append(f'            <Route path="{nombre_tabla}" element={{<{nombre_clase}List />}} />')
-        rutas.append(f'            <Route path="{nombre_tabla}/new" element={{<{nombre_clase}Form />}} />')
-        rutas.append(f'            <Route path="{nombre_tabla}/:id" element={{<{nombre_clase}Form />}} />')
     
     return '\n'.join(imports), '\n'.join(rutas)
 

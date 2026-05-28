@@ -1,22 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
 import alertaService from '../../services/alertaService';
 import './AlertaForm.css';
 
 /**
  * Componente para crear/editar Alerta
  */
-const AlertaForm = () => {
+const AlertaForm = ({ id, onClose }) => {
   const [formData, setFormData] = useState({});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  const navigate = useNavigate();
-  const { id } = useParams();
   const isEdit = !!id;
 
   useEffect(() => {
     if (isEdit) {
       loadItem();
+    } else {
+      setFormData({});
     }
   }, [id]);
 
@@ -52,7 +51,7 @@ const AlertaForm = () => {
       } else {
         await alertaService.create(formData);
       }
-      navigate('/alerta');
+      if (onClose) onClose();
     } catch (err) {
       setError(err.response?.data?.message || 'Error al guardar los datos');
       console.error(err);
@@ -62,18 +61,27 @@ const AlertaForm = () => {
   };
 
   if (loading && isEdit) {
-    return <div className="loading"><div className="spinner"></div></div>;
+    return (
+      <div className="flex justify-center items-center py-12">
+        <div className="spinner"></div>
+      </div>
+    );
   }
 
   return (
-    <div className="form-page">
-      <div className="form-container">
-        <h1>{isEdit ? 'Editar' : 'Crear'} Alerta</h1>
+    <div className="form-container-modal">
+      <h2 className="text-xl font-bold text-slate-800 mb-6 border-b border-slate-100 pb-3">
+        {isEdit ? 'Editar' : 'Crear'} Alerta
+      </h2>
 
-        {error && <div className="error-message">{error}</div>}
+      {error && (
+        <div className="error-message mb-4 p-3 rounded-lg bg-rose-50 text-rose-600 border border-rose-100 text-sm">
+          {error}
+        </div>
+      )}
 
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
+      <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
+          <div className="form-group ">
             <label htmlFor="idSensor">Id Sensor</label>
             <input
               type="number"
@@ -82,10 +90,11 @@ const AlertaForm = () => {
               value={formData.idSensor || ''}
               onChange={handleChange}
               
+              className="form-control"
             />
           </div>
 
-          <div className="form-group">
+          <div className="form-group ">
             <label htmlFor="idZona">Id Zona</label>
             <input
               type="number"
@@ -94,10 +103,11 @@ const AlertaForm = () => {
               value={formData.idZona || ''}
               onChange={handleChange}
               
+              className="form-control"
             />
           </div>
 
-          <div className="form-group">
+          <div className="form-group ">
             <label htmlFor="tipoAlerta">Tipo Alerta</label>
             <select
               id="tipoAlerta"
@@ -105,6 +115,7 @@ const AlertaForm = () => {
               value={formData.tipoAlerta || ''}
               onChange={handleChange}
               required
+              className="form-control"
             >
               <option value="">Seleccionar...</option>
               <option value="TEMPERATURA_ALTA">TEMPERATURA_ALTA</option>
@@ -118,19 +129,20 @@ const AlertaForm = () => {
             </select>
           </div>
 
-          <div className="form-group">
+          <div className="form-group md:col-span-2">
             <label htmlFor="descripcion">Descripcion</label>
             <textarea
               id="descripcion"
               name="descripcion"
               value={formData.descripcion || ''}
               onChange={handleChange}
-              rows="4"
+              rows="3"
               required
+              className="form-control"
             />
           </div>
 
-          <div className="form-group">
+          <div className="form-group ">
             <label htmlFor="fechaHora">Fecha Hora</label>
             <input
               type="datetime-local"
@@ -139,10 +151,11 @@ const AlertaForm = () => {
               value={formData.fechaHora || ''}
               onChange={handleChange}
               required
+              className="form-control"
             />
           </div>
 
-          <div className="form-group">
+          <div className="form-group ">
             <label htmlFor="nivel">Nivel</label>
             <select
               id="nivel"
@@ -150,6 +163,7 @@ const AlertaForm = () => {
               value={formData.nivel || ''}
               onChange={handleChange}
               required
+              className="form-control"
             >
               <option value="">Seleccionar...</option>
               <option value="INFORMATIVA">INFORMATIVA</option>
@@ -158,19 +172,20 @@ const AlertaForm = () => {
             </select>
           </div>
 
-          <div className="form-group checkbox-group">
-            <label>
+          <div className="form-group checkbox-group md:col-span-2 pt-2">
+            <label className="flex items-center gap-2 cursor-pointer font-medium text-slate-700">
               <input
                 type="checkbox"
                 name="resuelta"
                 checked={formData.resuelta || false}
                 onChange={handleChange}
+                className="w-4 h-4 rounded text-emerald-600 focus:ring-emerald-500 border-slate-300"
               />
               Resuelta
             </label>
           </div>
 
-          <div className="form-group">
+          <div className="form-group ">
             <label htmlFor="fechaResolucion">Fecha Resolucion</label>
             <input
               type="datetime-local"
@@ -179,24 +194,28 @@ const AlertaForm = () => {
               value={formData.fechaResolucion || ''}
               onChange={handleChange}
               
+              className="form-control"
             />
           </div>
 
-          <div className="form-actions">
-            <button type="submit" className="btn btn-primary" disabled={loading}>
-              {loading ? 'Guardando...' : 'Guardar'}
-            </button>
-            <button
-              type="button"
-              className="btn btn-secondary"
-              onClick={() => navigate('/alerta')}
-              disabled={loading}
-            >
-              Cancelar
-            </button>
-          </div>
-        </form>
-      </div>
+        <div className="form-actions md:col-span-2 flex justify-end gap-3 pt-4 border-t border-slate-100 mt-4">
+          <button
+            type="button"
+            className="btn btn-secondary border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 font-bold px-5 py-2.5 rounded-lg transition-all text-sm cursor-pointer"
+            onClick={onClose}
+            disabled={loading}
+          >
+            Cancelar
+          </button>
+          <button 
+            type="submit" 
+            className="btn btn-primary bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-5 py-2.5 rounded-lg shadow-xs transition-all text-sm cursor-pointer" 
+            disabled={loading}
+          >
+            {loading ? 'Guardando...' : 'Guardar'}
+          </button>
+        </div>
+      </form>
     </div>
   );
 };

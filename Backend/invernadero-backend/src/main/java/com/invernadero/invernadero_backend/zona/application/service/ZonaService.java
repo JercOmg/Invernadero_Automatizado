@@ -11,6 +11,8 @@ import com.invernadero.invernadero_backend.zona.application.dto.ZonaRequest;
 import com.invernadero.invernadero_backend.zona.application.dto.ZonaResponse;
 import com.invernadero.invernadero_backend.zona.domain.model.Zona;
 import com.invernadero.invernadero_backend.zona.domain.repository.ZonaRepository;
+import com.invernadero.invernadero_backend.invernadero.domain.model.Invernadero;
+import com.invernadero.invernadero_backend.invernadero.domain.repository.InvernaderoRepository;
 import com.invernadero.invernadero_backend.shared.exception.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -29,6 +31,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class ZonaService {
     
     private final ZonaRepository zonaRepository;
+    private final InvernaderoRepository invernaderoRepository;
     
     /**
      * Obtiene todos los registros paginados
@@ -96,8 +99,14 @@ public class ZonaService {
      * Actualiza una entidad desde un Request DTO
      */
     private void updateEntityFromRequest(Zona entity, ZonaRequest request) {
-        // TODO: Implementar mapeo de campos desde request a entity
-        // Usar BeanUtils.copyProperties o mapeo manual
+        entity.setNombreZona(request.getNombreZona());
+        entity.setAreaM2(request.getAreaM2());
+        entity.setDescripcion(request.getDescripcion());
+        if (request.getIdInvernaderoId() != null) {
+            Invernadero inv = invernaderoRepository.findById(request.getIdInvernaderoId())
+                .orElseThrow(() -> new ResourceNotFoundException("Invernadero", "id", request.getIdInvernaderoId()));
+            entity.setIdInvernadero(inv);
+        }
     }
     
     /**
@@ -105,8 +114,13 @@ public class ZonaService {
      */
     private ZonaResponse convertToResponse(Zona entity) {
         ZonaResponse response = new ZonaResponse();
-        // TODO: Implementar mapeo de campos desde entity a response
-        // Usar BeanUtils.copyProperties o mapeo manual
+        response.setIdZona(entity.getIdZona());
+        response.setNombreZona(entity.getNombreZona());
+        response.setAreaM2(entity.getAreaM2());
+        response.setDescripcion(entity.getDescripcion());
+        if (entity.getIdInvernadero() != null) {
+            response.setIdInvernaderoId(entity.getIdInvernadero().getIdInvernadero());
+        }
         return response;
     }
 }

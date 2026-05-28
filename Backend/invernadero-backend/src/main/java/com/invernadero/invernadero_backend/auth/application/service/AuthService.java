@@ -32,6 +32,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.Collections;
+import java.util.List;
 
 /**
  * Servicio de autenticacion y autorizacion
@@ -251,5 +252,15 @@ public class AuthService {
         
         return usuarioRepository.findByEmail(email)
                 .orElseThrow(() -> new ResourceNotFoundException("Usuario", "email", email));
+    }
+
+    /**
+     * Obtiene todos los usuarios registrados en el sistema
+     * 
+     * @return Lista de usuarios
+     */
+    @Transactional(readOnly = true)
+    public List<Usuario> getAllUsers() {
+        return usuarioRepository.findAll();
     }
 }

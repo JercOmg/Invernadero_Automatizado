@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
 import zonaService from '../../services/zonaService';
+import ZonaForm from './ZonaForm';
 import './ZonaList.css';
 
 /**
@@ -10,7 +10,10 @@ const ZonaList = () => {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-  const navigate = useNavigate();
+  
+  // Estados para controlar el modal
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentId, setCurrentId] = useState(null);
 
   useEffect(() => {
     loadItems();
@@ -41,26 +44,27 @@ const ZonaList = () => {
     }
   };
 
-  if (loading) {
+  if (loading && items.length === 0) {
     return <div className="loading"><div className="spinner"></div></div>;
   }
 
-  if (error) {
-    return <div className="error-message">{error}</div>;
-  }
-
   return (
-    <div className="list-container">
-      <div className="list-header">
-        <h1>Zona</h1>
-        <Link to="/zona/new" className="btn btn-primary">
+    <div className="list-container max-w-7xl mx-auto px-4 py-8">
+      <div className="list-header flex justify-between items-center mb-6">
+        <h1 className="text-2xl font-extrabold text-slate-800">Zona</h1>
+        <button 
+          onClick={() => { setCurrentId(null); setIsModalOpen(true); }} 
+          className="btn btn-primary bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-4 py-2.5 rounded-lg shadow-xs transition-all text-sm cursor-pointer"
+        >
           Crear Nuevo
-        </Link>
+        </button>
       </div>
 
-      <div className="table-container">
-        <table>
-          <thead>
+      {error && <div className="error-message mb-4 p-3 rounded-lg bg-rose-50 text-rose-600 border border-rose-100 text-sm">{error}</div>}
+
+      <div className="table-container rounded-xl border border-slate-200 bg-white overflow-hidden shadow-2xs">
+        <table className="min-w-full divide-y divide-slate-200">
+          <thead className="bg-slate-50">
             <tr>
               <th>Id Invernadero</th>
             <th>Nombre Zona</th>
@@ -69,7 +73,7 @@ const ZonaList = () => {
               <th>Acciones</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="bg-white divide-y divide-slate-100">
             {items.length === 0 ? (
               <tr>
                 <td colSpan="{100}" style={{ textAlign: 'center' }}>
@@ -78,22 +82,22 @@ const ZonaList = () => {
               </tr>
             ) : (
               items.map((item) => (
-                <tr key={item.idZona || item.id}>
-                  <td>{item.idInvernadero}</td>
+                <tr key={item.idZona || item.id} className="hover:bg-slate-50/50 transition-colors">
+                  <td>{item.idInvernaderoId || item.idInvernadero}</td>
                 <td>{item.nombreZona}</td>
                 <td>{item.areaM2}</td>
                 <td>{item.descripcion}</td>
                   <td>
-                    <div className="action-buttons">
+                    <div className="action-buttons flex gap-2">
                       <button
-                        onClick={() => navigate(`/zona/${item.idZona || item.id}`)}
-                        className="btn btn-sm btn-primary"
+                        onClick={() => { setCurrentId(item.idZona || item.id); setIsModalOpen(true); }}
+                        className="btn btn-sm btn-primary border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 font-bold px-3 py-1.5 rounded-lg transition-all text-xs cursor-pointer"
                       >
                         Editar
                       </button>
                       <button
                         onClick={() => handleDelete(item.idZona || item.id)}
-                        className="btn btn-sm btn-danger"
+                        className="btn btn-sm btn-danger bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-100 font-bold px-3 py-1.5 rounded-lg transition-all text-xs cursor-pointer"
                       >
                         Eliminar
                       </button>
@@ -105,6 +109,22 @@ const ZonaList = () => {
           </tbody>
         </table>
       </div>
+
+      {/* Modal para Crear y Editar */}
+      {isModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/40 backdrop-blur-xs animate-fade-in p-4">
+          <div className="bg-white rounded-xl border border-slate-200 shadow-2xl p-6 w-full max-w-2xl max-h-[95vh] overflow-y-auto relative animate-scale-up">
+            <button 
+              onClick={() => setIsModalOpen(false)} 
+              className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-2xl font-light focus:outline-none cursor-pointer"
+              aria-label="Cerrar modal"
+            >
+              &times;
+            </button>
+            <ZonaForm id={currentId} onClose={() => { setIsModalOpen(false); loadItems(); }} />
+          </div>
+        </div>
+      )}
     </div>
   );
 };

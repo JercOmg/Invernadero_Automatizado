@@ -1,22 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
 import cultivoService from '../../services/cultivoService';
 import './CultivoForm.css';
 
 /**
  * Componente para crear/editar Cultivo
  */
-const CultivoForm = () => {
+const CultivoForm = ({ id, onClose }) => {
   const [formData, setFormData] = useState({});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  const navigate = useNavigate();
-  const { id } = useParams();
   const isEdit = !!id;
 
   useEffect(() => {
     if (isEdit) {
       loadItem();
+    } else {
+      setFormData({});
     }
   }, [id]);
 
@@ -52,7 +51,7 @@ const CultivoForm = () => {
       } else {
         await cultivoService.create(formData);
       }
-      navigate('/cultivo');
+      if (onClose) onClose();
     } catch (err) {
       setError(err.response?.data?.message || 'Error al guardar los datos');
       console.error(err);
@@ -62,18 +61,27 @@ const CultivoForm = () => {
   };
 
   if (loading && isEdit) {
-    return <div className="loading"><div className="spinner"></div></div>;
+    return (
+      <div className="flex justify-center items-center py-12">
+        <div className="spinner"></div>
+      </div>
+    );
   }
 
   return (
-    <div className="form-page">
-      <div className="form-container">
-        <h1>{isEdit ? 'Editar' : 'Crear'} Cultivo</h1>
+    <div className="form-container-modal">
+      <h2 className="text-xl font-bold text-slate-800 mb-6 border-b border-slate-100 pb-3">
+        {isEdit ? 'Editar' : 'Crear'} Cultivo
+      </h2>
 
-        {error && <div className="error-message">{error}</div>}
+      {error && (
+        <div className="error-message mb-4 p-3 rounded-lg bg-rose-50 text-rose-600 border border-rose-100 text-sm">
+          {error}
+        </div>
+      )}
 
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
+      <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
+          <div className="form-group ">
             <label htmlFor="nombreComun">Nombre Comun</label>
             <input
               type="text"
@@ -82,10 +90,11 @@ const CultivoForm = () => {
               value={formData.nombreComun || ''}
               onChange={handleChange}
               required
+              className="form-control"
             />
           </div>
 
-          <div className="form-group">
+          <div className="form-group ">
             <label htmlFor="nombreCientifico">Nombre Cientifico</label>
             <input
               type="text"
@@ -94,10 +103,11 @@ const CultivoForm = () => {
               value={formData.nombreCientifico || ''}
               onChange={handleChange}
               
+              className="form-control"
             />
           </div>
 
-          <div className="form-group">
+          <div className="form-group ">
             <label htmlFor="tipo">Tipo</label>
             <select
               id="tipo"
@@ -105,6 +115,7 @@ const CultivoForm = () => {
               value={formData.tipo || ''}
               onChange={handleChange}
               required
+              className="form-control"
             >
               <option value="">Seleccionar...</option>
               <option value="HORTALIZA">HORTALIZA</option>
@@ -115,7 +126,7 @@ const CultivoForm = () => {
             </select>
           </div>
 
-          <div className="form-group">
+          <div className="form-group ">
             <label htmlFor="tempMinC">Temp Min C</label>
             <input
               type="number"
@@ -124,10 +135,11 @@ const CultivoForm = () => {
               value={formData.tempMinC || ''}
               onChange={handleChange}
               
+              className="form-control"
             />
           </div>
 
-          <div className="form-group">
+          <div className="form-group ">
             <label htmlFor="tempMaxC">Temp Max C</label>
             <input
               type="number"
@@ -136,10 +148,11 @@ const CultivoForm = () => {
               value={formData.tempMaxC || ''}
               onChange={handleChange}
               
+              className="form-control"
             />
           </div>
 
-          <div className="form-group">
+          <div className="form-group ">
             <label htmlFor="humedadMinPct">Humedad Min Pct</label>
             <input
               type="number"
@@ -148,10 +161,11 @@ const CultivoForm = () => {
               value={formData.humedadMinPct || ''}
               onChange={handleChange}
               
+              className="form-control"
             />
           </div>
 
-          <div className="form-group">
+          <div className="form-group ">
             <label htmlFor="humedadMaxPct">Humedad Max Pct</label>
             <input
               type="number"
@@ -160,10 +174,11 @@ const CultivoForm = () => {
               value={formData.humedadMaxPct || ''}
               onChange={handleChange}
               
+              className="form-control"
             />
           </div>
 
-          <div className="form-group">
+          <div className="form-group ">
             <label htmlFor="diasCiclo">Dias Ciclo</label>
             <input
               type="number"
@@ -172,36 +187,41 @@ const CultivoForm = () => {
               value={formData.diasCiclo || ''}
               onChange={handleChange}
               
+              className="form-control"
             />
           </div>
 
-          <div className="form-group">
+          <div className="form-group md:col-span-2">
             <label htmlFor="descripcion">Descripcion</label>
             <textarea
               id="descripcion"
               name="descripcion"
               value={formData.descripcion || ''}
               onChange={handleChange}
-              rows="4"
+              rows="3"
               
+              className="form-control"
             />
           </div>
 
-          <div className="form-actions">
-            <button type="submit" className="btn btn-primary" disabled={loading}>
-              {loading ? 'Guardando...' : 'Guardar'}
-            </button>
-            <button
-              type="button"
-              className="btn btn-secondary"
-              onClick={() => navigate('/cultivo')}
-              disabled={loading}
-            >
-              Cancelar
-            </button>
-          </div>
-        </form>
-      </div>
+        <div className="form-actions md:col-span-2 flex justify-end gap-3 pt-4 border-t border-slate-100 mt-4">
+          <button
+            type="button"
+            className="btn btn-secondary border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 font-bold px-5 py-2.5 rounded-lg transition-all text-sm cursor-pointer"
+            onClick={onClose}
+            disabled={loading}
+          >
+            Cancelar
+          </button>
+          <button 
+            type="submit" 
+            className="btn btn-primary bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-5 py-2.5 rounded-lg shadow-xs transition-all text-sm cursor-pointer" 
+            disabled={loading}
+          >
+            {loading ? 'Guardando...' : 'Guardar'}
+          </button>
+        </div>
+      </form>
     </div>
   );
 };

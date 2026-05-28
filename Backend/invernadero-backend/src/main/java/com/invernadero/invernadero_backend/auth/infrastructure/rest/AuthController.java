@@ -22,6 +22,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import java.util.List;
 
 /**
  * Controlador REST para autenticacion y autorizacion
@@ -117,5 +118,18 @@ public class AuthController {
     @Operation(summary = "Health check", description = "Verifica que el servicio de autenticacion esta funcionando")
     public ResponseEntity<ApiResponse<String>> healthCheck() {
         return ResponseEntity.ok(ApiResponse.success("Servicio de autenticacion funcionando correctamente", "OK"));
+    }
+
+    /**
+     * Endpoint para obtener la lista de todos los usuarios registrados
+     * GET /api/auth/usuarios
+     * 
+     * @return Lista de usuarios
+     */
+    @GetMapping("/usuarios")
+    @Operation(summary = "Listar usuarios", description = "Obtiene la lista de todos los usuarios registrados en el sistema")
+    public ResponseEntity<List<Usuario>> getAllUsers() {
+        List<Usuario> usuarios = authService.getAllUsers();
+        return ResponseEntity.ok(usuarios);
     }
 }

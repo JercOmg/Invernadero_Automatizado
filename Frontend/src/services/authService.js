@@ -115,6 +115,15 @@ const authService = {
     localStorage.setItem('accessToken', accessToken);
     return response.data;
   },
+
+  /**
+   * Obtener todos los usuarios registrados en el sistema
+   * @returns {Promise} Lista de usuarios
+   */
+  getUsuarios: async () => {
+    const response = await apiClient.get('/auth/usuarios');
+    return response.data;
+  },
 };
 
 export default authService;
